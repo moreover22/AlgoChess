@@ -26,6 +26,3 @@ hs_err_pid*
 *.iml
 .idea/
 .idea/*
-
-# target folder
-target/
