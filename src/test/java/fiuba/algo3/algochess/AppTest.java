@@ -1,4 +1,4 @@
-package fiuba.algo3.AlgoChess;
+package fiuba.algo3.algochess;
 
 import static org.junit.Assert.assertTrue;
 

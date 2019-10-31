@@ -1,4 +1,4 @@
-package fiuba.algo3.AlgoChess;
+package fiuba.algo3.algochess;
 
 /**
  * Hello world!
