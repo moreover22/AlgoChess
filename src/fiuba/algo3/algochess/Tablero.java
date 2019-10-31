@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess;
 
-import java.util.ArrayList;
 
 public class Tablero {
     private Unidad[][] unidades;

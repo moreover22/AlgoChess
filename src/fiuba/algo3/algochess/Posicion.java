@@ -6,6 +6,5 @@ public class Posicion {
     public Posicion(int x, int y) {
         this.x = x;
         this.y = y;
-
     }
 }

@@ -1,6 +1,4 @@
-# 7507-AlgoChess  &middot; 
-[![Build Status](https://travis-ci.org/moreover22/AlgoChess.svg?branch=master)](https://travis-ci.org/moreover22/AlgoChess) 
-[![codecov](https://codecov.io/gh/moreover22/AlgoChess/branch/master/graph/badge.svg)](https://codecov.io/gh/moreover22/AlgoChess) 
+# 7507-AlgoChess  &middot; [![Build Status](https://travis-ci.org/moreover22/AlgoChess.svg?branch=master)](https://travis-ci.org/moreover22/AlgoChess) [![codecov](https://codecov.io/gh/moreover22/AlgoChess/branch/master/graph/badge.svg)](https://codecov.io/gh/moreover22/AlgoChess) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5309252d73654dfbb4421de8c9c62c39)](https://www.codacy.com/manual/moreover22/AlgoChess?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=moreover22/AlgoChess&amp;utm_campaign=Badge_Grade)
 
 ---
 ### Pasos para trabajar:
