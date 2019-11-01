@@ -6,9 +6,11 @@ FIUBA - 2° Cuatrimestre 2019
 ### Pasos para trabajar:
 
 Instalar Ant:
+
 `apt install ant`
 
 Solo la primera vez:
+
 `git clone https://github.com/moreover22/N5_AlgoChess.git`
 
 Al realizar cambios:
@@ -22,6 +24,6 @@ Al realizar cambios:
 1. Confirmar que el build paso las pruebas de [Travis](https://travis-ci.org/moreover22/N5_AlgoChess) y la calidad de código en [Codacy](https://app.codacy.com/manual/moreover22/N5_AlgoChess)
 1. Solicitar merge desde github.
 
-Para JavaFX installar:
-`apt install openjdk-8-jdk`
-`export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64`
+Para JavaFX instalar:
+1. `apt install openjdk-8-jdk`
+1. `export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64`
