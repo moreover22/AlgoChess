@@ -9,7 +9,7 @@ FIUBA - 2° Cuatrimestre 2019
 
 |Padrón|Nombre|Email|
 |------|------|-------|
-|102223|Franco ...|f@...|
+|102223|Franco Mariotti|fmariotti@fi.uba.ar|
 |102914|Agustín More|amore@fi.uba.ar|
 |102692|Franco ...|f@...|
 |102165|Franco ...|f@...|
