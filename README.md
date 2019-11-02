@@ -46,10 +46,10 @@ FIUBA - 2° Cuatrimestre 2019
 - [ ] 5. Una catapulta aliada ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
 - [ ] 6. Un Curandero aliado cura a una pieza aliada y se verifica que se suma la vida correspondiente.
 #### Pruebas tablero:
-- [ ] 7. Se coloca una pieza aliada en un casillero del sector aliado vacío con éxito.
-- [ ] 8. Se verifica que no se puede colocar una pieza aliada en un casillero del sector aliado ocupado.
-- [ ] 9. Se verifica que no se puede colocar una pieza aliada en un casillero del sector enemigo.
-- [ ] 10. Correcta creación e inicialización del tablero.
+- [x] 7. Se coloca una pieza aliada en un casillero del sector aliado vacío con éxito.
+- [x] 8. Se verifica que no se puede colocar una pieza aliada en un casillero del sector aliado ocupado.
+- [x] 9. Se verifica que no se puede colocar una pieza aliada en un casillero del sector enemigo.
+- [x] 10. Correcta creación e inicialización del tablero.
 #### Pruebas Jugador:
 - [ ] 11. Se verifica que no puede tomar más entidades de lo que sus puntos le permiten.
 - [ ] 12. Se verifica que el jugador que se queda sin entidades, es el perdedor.

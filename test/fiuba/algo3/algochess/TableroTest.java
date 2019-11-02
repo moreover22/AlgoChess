@@ -1,48 +1,65 @@
 package fiuba.algo3.algochess;
 
-import org.junit.Test;
+import fiuba.algo3.algochess.casillero.ColocarEnCasilleroEnemigoException;
+import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TableroTest {
     @Test
     public void testTableroRecienCreadoEstaVacio() {
-        // Arrange
         Tablero tablero = new Tablero();
-        // Act
-        boolean estaVacio = tablero.estaVacio();
-        // Assert
-        assertTrue(estaVacio);
+        assertTrue(tablero.estaVacio());
     }
 
     @Test
-    public void testTableroAlColocarUnaUnidadDejaDeEstarVacio() {
-        // Arrange
+    public void testTableroAlColocarUnaPiezaDejaDeEstarVacio() throws ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
         Tablero tablero = new Tablero();
-        Unidad unidad = new Unidad();
-        int posX = 0;
-        int posY = 0;
-        // Act
-        tablero.colocar(unidad, posX, posY);
-        // Assert
+        Pieza pieza = new Pieza();
+        tablero.colocarPieza(pieza, 0, 0);
         assertFalse(tablero.estaVacio());
     }
 
     @Test
-    public void testTableroAlColocarUnaUnidadLuegoSePuedeRecuperar() {
+    public void testTableroAlColocarUnaPiezaSePuedeObtenerNuevamente() throws ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
         // Arrange
         Tablero tablero = new Tablero();
-        Unidad unidad = new Unidad();
-        int posX = 0;
-        int posY = 0;
-        tablero.colocar(unidad, posX, posY);
+        Pieza pieza = new Pieza();
+        int x = 0;
+        int y = 0;
         // Act
-        Unidad unidadTmp = tablero.obtener(posX, posY);
+        tablero.colocarPieza(pieza, x, y);
         // Assert
-        assertEquals(unidad, unidadTmp);
+        assertEquals(pieza, tablero.obtenerPieza(x, y));
     }
 
-
+    @Test
+    public void testTableroAlColocarUnaPiezaEnUnCasilleroOcupadoSeLanzaCasilleroOcupadoException() throws ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        Pieza pieza = new Pieza();
+        Pieza piezaOcupante = new Pieza();
+        int x = 0;
+        int y = 0;
+        tablero.colocarPieza(piezaOcupante, x, y);
+        // Act - Assert
+        assertThrows(ColocarEnCasilleroOcupadoException.class,
+                () -> {
+                    tablero.colocarPieza(pieza, x, y);
+                });
+    }
+    @Test
+    public void testTableroAlColocarUnaPiezaEnUnCasilleroEnemigoSeLanzaCasilleroEnemigoException() {
+        // Arrange
+        Tablero tablero = new Tablero();
+        Pieza pieza = new Pieza();
+        int x = 0;
+        int y = tablero.getCantColumnas() / 2;
+        // Act - Assert
+        assertThrows(ColocarEnCasilleroEnemigoException.class,
+                () -> {
+                    tablero.colocarPieza(pieza, x, y);
+                });
+    }
 }
