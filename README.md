@@ -12,7 +12,7 @@ FIUBA - 2° Cuatrimestre 2019
 |102223|Franco Mariotti|fmariotti@fi.uba.ar|
 |102914|Agustín More|amore@fi.uba.ar|
 |102692|Franco Alasino|alasinofranco3@gmail.com|
-|102165|Franco ...|f@...|
+|102165|Franco Fusco|franfusco99@gmail.com|
 
 ## Pasos para trabajar:
 ### Unica vez
