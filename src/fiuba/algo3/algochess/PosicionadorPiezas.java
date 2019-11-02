@@ -4,7 +4,7 @@ import fiuba.algo3.algochess.casillero.ColocarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
 
 public class PosicionadorPiezas {
-    Tablero tablero;
+    private Tablero tablero;
     public PosicionadorPiezas(Tablero tablero) {
         this.tablero = tablero;
     }
