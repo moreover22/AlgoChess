@@ -21,7 +21,8 @@ public class TableroTest {
     public void testTableroAlColocarUnaPiezaDejaDeEstarVacio() throws ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
         Tablero tablero = new Tablero();
         Pieza pieza = new Pieza();
-        tablero.colocarPieza(pieza, 0, 0);
+        PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
+        posicionador.posicionarPieza(pieza, 0, 0);
         assertFalse(tablero.estaVacio());
     }
 
@@ -30,10 +31,11 @@ public class TableroTest {
         // Arrange
         Tablero tablero = new Tablero();
         Pieza pieza = new Pieza();
+        PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
         int x = 0;
         int y = 0;
         // Act
-        tablero.colocarPieza(pieza, x, y);
+        posicionador.posicionarPieza(pieza, x, y);
         // Assert
         assertEquals(pieza, tablero.obtenerPieza(x, y));
     }
@@ -44,9 +46,10 @@ public class TableroTest {
         Tablero tablero = new Tablero();
         Pieza pieza = new Pieza();
         Pieza piezaOcupante = new Pieza();
+        PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
         int x = 0;
         int y = 0;
-        tablero.colocarPieza(piezaOcupante, x, y);
+        posicionador.posicionarPieza(piezaOcupante, x, y);
         // Act - Assert
         assertThrows(ColocarEnCasilleroOcupadoException.class,
                 () -> {
@@ -58,23 +61,27 @@ public class TableroTest {
         // Arrange
         Tablero tablero = new Tablero();
         Pieza pieza = new Pieza();
+        PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
         int x = 0;
         int y = tablero.getCantColumnas() / 2;
         // Act - Assert
         assertThrows(ColocarEnCasilleroEnemigoException.class,
                 () -> {
-                    tablero.colocarPieza(pieza, x, y);
+                    posicionador.posicionarPieza(pieza, x, y);
                 });
     }
+    // TODO armar una clase CasilleroException y que el resto herede de esta para evitar los "throws largos"
     @Test
     public void testTableroAlColocarYSacarUnaPiezaElTableroQuedaVacio() throws ColocarEnCasilleroEnemigoException, ColocarEnCasilleroOcupadoException, VaciarCasilleroVacioException {
         // Arrange
         Tablero tablero = new Tablero();
         Pieza pieza = new Pieza();
+        PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
         int x = 0;
         int y = 0;
         // Act
-        tablero.colocarPieza(pieza, x, y);
+        posicionador.posicionarPieza(pieza, x, y);
+        // TODO para mantener la interfaz, se podría agregar al PosicionadorPiezas
         tablero.sacarPieza(x, y);
         // Assert
         assertTrue(tablero.estaVacio());
@@ -92,17 +99,18 @@ public class TableroTest {
                 });
     }
     @Test
-    public void testTableroSePuedeColocarPiezaDespuésDeColocarYVaciarOtraPieza() throws VaciarCasilleroVacioException, ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException{
+    public void testTableroSePuedeColocarPiezaDespuesDeColocarYVaciarOtraPieza() throws VaciarCasilleroVacioException, ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException{
         // Arrange
         Tablero tablero = new Tablero();
         Pieza pieza = new Pieza();
         Pieza piezaTemp = new Pieza();
+        PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
         int x = 0;
         int y = 0;
-        tablero.colocarPieza(piezaTemp, x, y);
+        posicionador.posicionarPieza(piezaTemp, x, y);
         tablero.sacarPieza(x, y);
         // Act
-        tablero.colocarPieza(pieza, x, y);
+        posicionador.posicionarPieza(pieza, x, y);
         // Assert
         assertEquals(pieza, tablero.obtenerPieza(x, y));
     }

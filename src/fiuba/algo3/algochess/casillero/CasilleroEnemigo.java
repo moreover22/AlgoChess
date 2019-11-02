@@ -7,7 +7,7 @@ public class CasilleroEnemigo implements CasilleroAlianza {
     }
 
     @Override
-    public void colocar() throws ColocarEnCasilleroEnemigoException {
-        throw new ColocarEnCasilleroEnemigoException();
+    public boolean esAliado() {
+        return false;
     }
 }

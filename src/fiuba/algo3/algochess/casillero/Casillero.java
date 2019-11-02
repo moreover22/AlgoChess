@@ -12,9 +12,8 @@ public class Casillero {
         alianza = new CasilleroAliado();
     }
 
-    public void colocar(Pieza pieza) throws ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
+    public void colocar(Pieza pieza) throws ColocarEnCasilleroOcupadoException {
         estado = estado.ocupar();
-        alianza.colocar();
         this.pieza = pieza;
     }
 
@@ -29,6 +28,15 @@ public class Casillero {
     public Pieza vaciar() throws VaciarCasilleroVacioException {
         Pieza piezaAEliminar = pieza;
         estado = estado.vaciar();
+        pieza = null;
         return piezaAEliminar;
+    }
+
+    public boolean esAliado() {
+        return alianza.esAliado();
+    }
+
+    public boolean estaVacio() {
+        return estado.estaVacio();
     }
 }

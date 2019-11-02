@@ -7,7 +7,7 @@ public class CasilleroAliado implements CasilleroAlianza {
     }
 
     @Override
-    public void colocar() {
-
+    public boolean esAliado() {
+        return true;
     }
 }

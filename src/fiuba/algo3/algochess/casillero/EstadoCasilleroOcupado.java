@@ -10,4 +10,9 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
     public EstadoCasillero vaciar() {
         return new EstadoCasilleroVacio();
     }
+
+    @Override
+    public boolean estaVacio() {
+        return false;
+    }
 }

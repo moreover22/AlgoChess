@@ -2,33 +2,38 @@ package fiuba.algo3.algochess;
 
 
 import fiuba.algo3.algochess.casillero.Casillero;
-import fiuba.algo3.algochess.casillero.ColocarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
 import fiuba.algo3.algochess.casillero.VaciarCasilleroVacioException;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 
 public class Tablero {
-    private Collection<Pieza> piezas;
     private Casillero[][] casilleros;
     private int cantFilas;
     private int cantColumnas;
+
     public Tablero() {
-        cantColumnas = 20;
-        cantFilas = 20;
-        piezas = new ArrayList<>();
-        casilleros = new Casillero[cantFilas][cantColumnas];
-        inicializarCasilleros();
+        this(20, 20);
     }
 
+    public Tablero(int cantFilas, int cantColumnas) {
+        this.cantFilas = cantFilas;
+        this.cantColumnas = cantColumnas;
+        this.casilleros = new CreadorTablero(cantFilas, cantColumnas).getCasilleros();
+    }
+
+    // TODO Casilleros podría ser un objeto
     public boolean estaVacio() {
-        return piezas.isEmpty();
+        for (Casillero[] fila : casilleros) {
+            for (Casillero casillero : fila) {
+                if (!casillero.estaVacio()){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
-    public void colocarPieza(Pieza pieza, int x, int y) throws ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
-        piezas.add(pieza);
+    public void colocarPieza(Pieza pieza, int x, int y) throws ColocarEnCasilleroOcupadoException {
         casilleros[x][y].colocar(pieza);
     }
 
@@ -36,31 +41,19 @@ public class Tablero {
         return casilleros[x][y].getPieza();
     }
 
-    private void inicializarCasilleros() {
-        for(int i = 0; i < getCantFilas(); i++) {
-            for(int j = 0; j < getCantColumnas(); j++) {
-                casilleros[i][j] = new Casillero();
-            }
-        }
+    public Pieza sacarPieza(int x, int y) throws VaciarCasilleroVacioException {
+        return casilleros[x][y].vaciar();
+    }
 
-        for(int i = 0; i < getCantFilas(); i++) {
-            for(int j = getCantColumnas() / 2; j < getCantColumnas(); j++) {
-                casilleros[i][j].cambiarAlianza();
-            }
-        }
+    public boolean esAliado(int x, int y) {
+        return casilleros[x][y].esAliado();
     }
 
     public int getCantFilas() {
         return cantFilas;
     }
+
     public int getCantColumnas() {
         return cantColumnas;
-    }
-
-    public Pieza sacarPieza(int x, int y) throws VaciarCasilleroVacioException {
-        Pieza piezaARemover = casilleros[x][y].getPieza();
-        piezas.remove(piezaARemover);
-        casilleros[x][y].vaciar();
-        return piezaARemover;
     }
 }
