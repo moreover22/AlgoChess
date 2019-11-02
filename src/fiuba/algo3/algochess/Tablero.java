@@ -4,6 +4,7 @@ package fiuba.algo3.algochess;
 import fiuba.algo3.algochess.casillero.Casillero;
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
+import fiuba.algo3.algochess.casillero.VaciarCasilleroVacioException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -54,5 +55,12 @@ public class Tablero {
     }
     public int getCantColumnas() {
         return cantColumnas;
+    }
+
+    public Pieza sacarPieza(int x, int y) throws VaciarCasilleroVacioException {
+        Pieza piezaARemover = casilleros[x][y].getPieza();
+        piezas.remove(piezaARemover);
+        casilleros[x][y].vaciar();
+        return piezaARemover;
     }
 }

@@ -4,7 +4,7 @@ import fiuba.algo3.algochess.Pieza;
 
 public class Casillero {
     private Pieza pieza;
-    private  EstadoCasillero estado;
+    private EstadoCasillero estado;
     private CasilleroAlianza alianza;
 
     public Casillero() {
@@ -13,14 +13,9 @@ public class Casillero {
     }
 
     public void colocar(Pieza pieza) throws ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
-        if (!estado.estaVacio()) {
-            throw new ColocarEnCasilleroOcupadoException();
-        }
-        if (!alianza.esAliado()) {
-            throw new ColocarEnCasilleroEnemigoException();
-        }
+        estado = estado.ocupar();
+        alianza.colocar();
         this.pieza = pieza;
-        estado = new EstadoCasilleroOcupado();
     }
 
     public Pieza getPieza() {
@@ -29,5 +24,11 @@ public class Casillero {
 
     public void cambiarAlianza() {
         alianza = alianza.cambiar();
+    }
+
+    public Pieza vaciar() throws VaciarCasilleroVacioException {
+        Pieza piezaAEliminar = pieza;
+        estado = estado.vaciar();
+        return piezaAEliminar;
     }
 }
