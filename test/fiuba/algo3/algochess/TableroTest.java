@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.casillero.ColocarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
 import fiuba.algo3.algochess.casillero.VaciarCasilleroVacioException;
 import org.junit.Test;
+import fiuba.algo3.algochess.pieza.Pieza;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
