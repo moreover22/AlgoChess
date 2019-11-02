@@ -16,3 +16,17 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
         return false;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

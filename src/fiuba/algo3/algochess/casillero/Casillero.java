@@ -1,7 +1,5 @@
 package fiuba.algo3.algochess.casillero;
 
-import fiuba.algo3.algochess.Pieza;
-
 public class Casillero {
     private Pieza pieza;
     private EstadoCasillero estado;
