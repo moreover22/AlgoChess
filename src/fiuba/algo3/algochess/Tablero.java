@@ -4,7 +4,7 @@ package fiuba.algo3.algochess;
 import fiuba.algo3.algochess.casillero.Casillero;
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
 import fiuba.algo3.algochess.casillero.VaciarCasilleroVacioException;
-
+import fiuba.algo3.algochess.pieza.Pieza;
 
 public class Tablero {
     private Casillero[][] casilleros;

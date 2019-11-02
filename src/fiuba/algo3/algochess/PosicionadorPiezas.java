@@ -2,6 +2,7 @@ package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
+import fiuba.algo3.algochess.pieza.Pieza;
 
 public class PosicionadorPiezas {
     private Tablero tablero;
