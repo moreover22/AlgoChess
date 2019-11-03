@@ -28,7 +28,7 @@ FIUBA - 2° Cuatrimestre 2019
 1. `git status`
 1. `git add .`
 1. `git commit -m "Comentario"`
-1. `git push` 
+1. `git push origin NOMBRE-BRANCH` 
 1. Confirmar que el build paso las pruebas de [Travis](https://travis-ci.com/moreover22/N5_AlgoChess) y la calidad de código en [Codacy](https://app.codacy.com/manual/moreover22/AlgoChess/issues/index).
 1. Solicitar merge desde github.
 
