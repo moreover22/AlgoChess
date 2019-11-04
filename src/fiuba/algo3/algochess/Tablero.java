@@ -2,8 +2,7 @@ package fiuba.algo3.algochess;
 
 
 import fiuba.algo3.algochess.casillero.Casillero;
-import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
-import fiuba.algo3.algochess.casillero.VaciarCasilleroVacioException;
+import fiuba.algo3.algochess.casillero.CasilleroException;
 
 
 public class Tablero {
@@ -25,7 +24,7 @@ public class Tablero {
     public boolean estaVacio() {
         for (Casillero[] fila : casilleros) {
             for (Casillero casillero : fila) {
-                if (!casillero.estaVacio()){
+                if (!casillero.estaVacio()) {
                     return false;
                 }
             }
@@ -33,20 +32,29 @@ public class Tablero {
         return true;
     }
 
-    public void colocarPieza(Pieza pieza, int x, int y) throws ColocarEnCasilleroOcupadoException {
+    public void colocarPieza(Pieza pieza, int x, int y) throws CasilleroException, FueraDelTableroException {
+        if (!this.estaDentro(x, y)) throw new FueraDelTableroException();
         casilleros[x][y].colocar(pieza);
     }
 
-    public Pieza obtenerPieza(int x, int y) {
+    public Pieza obtenerPieza(int x, int y) throws FueraDelTableroException {
+        if (!this.estaDentro(x, y)) throw new FueraDelTableroException();
         return casilleros[x][y].getPieza();
     }
 
-    public Pieza sacarPieza(int x, int y) throws VaciarCasilleroVacioException {
+    public Pieza sacarPieza(int x, int y) throws CasilleroException, FueraDelTableroException {
+        if (!this.estaDentro(x, y)) throw new FueraDelTableroException();
         return casilleros[x][y].vaciar();
     }
 
-    public boolean esAliado(int x, int y) {
+    public boolean esAliado(int x, int y) throws FueraDelTableroException {
+        if (!this.estaDentro(x, y)) throw new FueraDelTableroException();
         return casilleros[x][y].esAliado();
+    }
+    private boolean estaDentro(int x, int y) {
+        boolean dentroEnX = x >= 0 && x < this.getCantFilas();
+        boolean dentroEnY = y >= 0 && y < this.getCantColumnas();
+        return dentroEnX && dentroEnY;
     }
 
     public int getCantFilas() {
