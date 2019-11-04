@@ -7,4 +7,10 @@ public class SoldadoDeInfanteria extends Pieza {
         this.puntosDeVida = 100;
         this.coste = 1;
     }
+
+    @Override
+    public void usarHabilidadEn(Pieza objetivo) {
+
+    }
+
 }

@@ -7,4 +7,10 @@ public class Jinete extends Pieza {
         this.puntosDeVida = 100;
         this.coste = 3;
     }
+
+    @Override
+    public void usarHabilidadEn(Pieza objetivo) {
+
+    }
+
 }
