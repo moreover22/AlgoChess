@@ -1,17 +1,23 @@
 package fiuba.algo3.algochess;
 
+import fiuba.algo3.algochess.casillero.CasilleroException;
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
 import fiuba.algo3.algochess.casillero.VaciarCasilleroVacioException;
-import org.junit.Test;
 import fiuba.algo3.algochess.pieza.Pieza;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+import org.junit.Test;
+import org.mockito.Mock;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TableroTest {
+    @Mock
+    private Pieza pieza, otraPieza;
+
     @Test
     public void testTableroRecienCreadoEstaVacio() {
         Tablero tablero = new Tablero();
@@ -19,19 +25,17 @@ public class TableroTest {
     }
 
     @Test
-    public void testTableroAlColocarUnaPiezaDejaDeEstarVacio() throws ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
+    public void testTableroAlColocarUnaPiezaDejaDeEstarVacio() throws CasilleroException, FueraDelTableroException {
         Tablero tablero = new Tablero();
-        Pieza pieza = new Pieza();
         PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
         posicionador.posicionarPieza(pieza, 0, 0);
         assertFalse(tablero.estaVacio());
     }
 
     @Test
-    public void testTableroAlColocarUnaPiezaSePuedeObtenerNuevamente() throws ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
+    public void testTableroAlColocarUnaPiezaSePuedeObtenerNuevamente() throws CasilleroException, FueraDelTableroException {
         // Arrange
         Tablero tablero = new Tablero();
-        Pieza pieza = new Pieza();
         PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
         int x = 0;
         int y = 0;
@@ -42,26 +46,24 @@ public class TableroTest {
     }
 
     @Test
-    public void testTableroAlColocarUnaPiezaEnUnCasilleroOcupadoSeLanzaCasilleroOcupadoException() throws ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
+    public void testTableroAlColocarUnaPiezaEnUnCasilleroOcupadoSeLanzaCasilleroOcupadoException() throws CasilleroException, FueraDelTableroException {
         // Arrange
         Tablero tablero = new Tablero();
-        Pieza pieza = new Pieza();
-        Pieza piezaOcupante = new Pieza();
         PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
         int x = 0;
         int y = 0;
-        posicionador.posicionarPieza(piezaOcupante, x, y);
+        posicionador.posicionarPieza(otraPieza, x, y);
         // Act - Assert
         assertThrows(ColocarEnCasilleroOcupadoException.class,
                 () -> {
                     tablero.colocarPieza(pieza, x, y);
                 });
     }
+
     @Test
     public void testTableroAlColocarUnaPiezaEnUnCasilleroEnemigoSeLanzaCasilleroEnemigoException() {
         // Arrange
         Tablero tablero = new Tablero();
-        Pieza pieza = new Pieza();
         PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
         int x = 0;
         int y = tablero.getCantColumnas() / 2;
@@ -71,12 +73,11 @@ public class TableroTest {
                     posicionador.posicionarPieza(pieza, x, y);
                 });
     }
-    // TODO armar una clase CasilleroException y que el resto herede de esta para evitar los "throws largos"
+
     @Test
-    public void testTableroAlColocarYSacarUnaPiezaElTableroQuedaVacio() throws ColocarEnCasilleroEnemigoException, ColocarEnCasilleroOcupadoException, VaciarCasilleroVacioException {
+    public void testTableroAlColocarYSacarUnaPiezaElTableroQuedaVacio() throws CasilleroException, FueraDelTableroException {
         // Arrange
         Tablero tablero = new Tablero();
-        Pieza pieza = new Pieza();
         PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
         int x = 0;
         int y = 0;
@@ -100,15 +101,13 @@ public class TableroTest {
                 });
     }
     @Test
-    public void testTableroSePuedeColocarPiezaDespuesDeColocarYVaciarOtraPieza() throws VaciarCasilleroVacioException, ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException{
+    public void testTableroSePuedeColocarPiezaEnCasilleroDespuesDeColocarYSacarOtraPiezaEnElMismoCasillero() throws CasilleroException, FueraDelTableroException {
         // Arrange
         Tablero tablero = new Tablero();
-        Pieza pieza = new Pieza();
-        Pieza piezaTemp = new Pieza();
         PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
         int x = 0;
         int y = 0;
-        posicionador.posicionarPieza(piezaTemp, x, y);
+        posicionador.posicionarPieza(otraPieza, x, y);
         tablero.sacarPieza(x, y);
         // Act
         posicionador.posicionarPieza(pieza, x, y);
@@ -116,4 +115,59 @@ public class TableroTest {
         assertEquals(pieza, tablero.obtenerPieza(x, y));
     }
 
+    @Test
+    public void testTableroColocarPiezaFueraDelRangoEnFilasLanzaFueraDelTableroException() {
+        // Arrange
+        Tablero tablero = new Tablero();
+        PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
+        int x = tablero.getCantFilas();
+        int y = 0;
+        // Act - Assert
+        assertThrows(FueraDelTableroException.class,
+                () -> {
+                    posicionador.posicionarPieza(pieza, x, y);
+                });
+    }
+
+    @Test
+    public void testTableroColocarPiezaFueraDelRangoEnColumnasLanzaFueraDelTableroException() {
+        // Arrange
+        Tablero tablero = new Tablero();
+        PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
+        int x = 0;
+        int y = tablero.getCantColumnas();
+        // Act - Assert
+        assertThrows(FueraDelTableroException.class,
+                () -> {
+                    posicionador.posicionarPieza(pieza, x, y);
+                });
+    }
+
+    @Test
+    public void testTableroColocarPiezaFueraDelRangoEnFilasYColumnasLanzaFueraDelTableroException() {
+        // Arrange
+        Tablero tablero = new Tablero();
+        PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
+        int x = tablero.getCantFilas();
+        int y = tablero.getCantColumnas();
+        // Act - Assert
+        assertThrows(FueraDelTableroException.class,
+                () -> {
+                    posicionador.posicionarPieza(pieza, x, y);
+                });
+    }
+
+    @Test
+    public void testTableroColocarPiezaEnPoscicionNegativaLanzaFueraDelTableroException() {
+        // Arrange
+        Tablero tablero = new Tablero();
+        PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
+        int x = -1;
+        int y = 0;
+        // Act - Assert
+        assertThrows(FueraDelTableroException.class,
+                () -> {
+                    posicionador.posicionarPieza(pieza, x, y);
+                });
+    }
 }
