@@ -1,7 +1,12 @@
 package fiuba.algo3.algochess;
 
-public class PiezaTest {
+import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
+public class PiezaTest {
     @Test
-    public void
+    public void test() {
+        assertTrue(true);
+    }
 }

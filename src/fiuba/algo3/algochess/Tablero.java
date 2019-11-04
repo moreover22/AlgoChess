@@ -1,9 +1,8 @@
 package fiuba.algo3.algochess;
 
-
 import fiuba.algo3.algochess.casillero.Casillero;
 import fiuba.algo3.algochess.casillero.CasilleroException;
-
+import fiuba.algo3.algochess.pieza.Pieza;
 
 public class Tablero {
     private Casillero[][] casilleros;

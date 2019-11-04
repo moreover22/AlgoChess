@@ -4,13 +4,14 @@ import fiuba.algo3.algochess.casillero.CasilleroException;
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
 import fiuba.algo3.algochess.casillero.VaciarCasilleroVacioException;
+import fiuba.algo3.algochess.pieza.Pieza;
 
 import org.junit.Test;
 import org.mockito.Mock;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TableroTest {
