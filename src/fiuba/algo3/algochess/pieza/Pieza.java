@@ -1,13 +1,15 @@
 package fiuba.algo3.algochess.pieza;
 
-public abstract class Pieza {
+import fiuba.algo3.algochess.Movimiento.Direccion;
+import fiuba.algo3.algochess.Movimiento.Movimiento;
 
+public abstract class Pieza {
     protected float puntosDeVida;
     protected int coste;
     protected int fila;
     protected int columna;
     protected Habilidad habilidad;
-
+    protected Movimiento movimiento;
 
     public Pieza(int fila,int columna){
         this.fila = fila;
@@ -21,8 +23,8 @@ public abstract class Pieza {
     public int descontarCoste(int monto ){
         return (monto - this.coste) ;
     }
-
     public abstract void usarHabilidadEn(Pieza objetivo);
 
+    public void mover(Direccion direccion){ movimiento.mover(this.columna,this.fila,direccion);}
 
 }
