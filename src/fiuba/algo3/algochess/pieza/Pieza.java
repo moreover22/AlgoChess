@@ -6,7 +6,7 @@ public abstract class Pieza {
     protected int coste;
     protected int fila;
     protected int columna;
-
+    protected Habilidad habilidad;
 
 
     public Pieza(int fila,int columna){
@@ -24,8 +24,5 @@ public abstract class Pieza {
 
     public abstract void usarHabilidadEn(Pieza objetivo);
 
-    public int calcularDistancia(int filaObjetivo,int columnaObjetivo){
-       return  (Math.abs(this.fila - filaObjetivo) + Math.abs(this.columna - columnaObjetivo));
-    }
 
 }
