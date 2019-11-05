@@ -1,11 +1,12 @@
 package fiuba.algo3.algochess.pieza;
 
-public class Ataque implements Habilidad{
+import fiuba.algo3.algochess.Posicion;
 
+public class Ataque implements Habilidad{
     private Arma arma;
 
     @Override
-    public void usarCon(Pieza p, int fila, int columna) {
-
+    public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcance {
+        arma.atacarA(objetivo, desde);
     }
 }

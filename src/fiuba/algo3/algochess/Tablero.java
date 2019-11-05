@@ -21,39 +21,37 @@ public class Tablero {
 
     // TODO Casilleros podría ser un objeto
     public boolean estaVacio() {
-        for (Casillero[] fila : casilleros) {
-            for (Casillero casillero : fila) {
-                if (!casillero.estaVacio()) {
-                    return false;
-                }
-            }
-        }
+        for (Casillero[] fila : casilleros)
+            for (Casillero casillero : fila)
+                if (!casillero.estaVacio()) return false;
         return true;
     }
 
-    public void colocarPieza(Pieza pieza, int x, int y) throws CasilleroException, FueraDelTableroException {
-        if (!this.estaDentro(x, y)) throw new FueraDelTableroException();
-        casilleros[x][y].colocar(pieza);
+    public void colocarPieza(Pieza pieza, int fila, int columna) throws CasilleroException, FueraDelTableroException {
+        getCasillero(fila, columna).colocar(pieza);
     }
 
-    public Pieza obtenerPieza(int x, int y) throws FueraDelTableroException {
-        if (!this.estaDentro(x, y)) throw new FueraDelTableroException();
-        return casilleros[x][y].getPieza();
+    public Pieza obtenerPieza(int fila, int columna) throws FueraDelTableroException {
+        return getCasillero(fila, columna).getPieza();
     }
 
-    public Pieza sacarPieza(int x, int y) throws CasilleroException, FueraDelTableroException {
-        if (!this.estaDentro(x, y)) throw new FueraDelTableroException();
-        return casilleros[x][y].vaciar();
+    public Pieza sacarPieza(int fila, int columna) throws CasilleroException, FueraDelTableroException {
+        return getCasillero(fila, columna).vaciar();
     }
 
-    public boolean esAliado(int x, int y) throws FueraDelTableroException {
-        if (!this.estaDentro(x, y)) throw new FueraDelTableroException();
-        return casilleros[x][y].esAliado();
+    public boolean esAliado(int fila, int columna) throws FueraDelTableroException {
+        return getCasillero(fila, columna).esAliado();
     }
-    private boolean estaDentro(int x, int y) {
-        boolean dentroEnX = x >= 0 && x < this.getCantFilas();
-        boolean dentroEnY = y >= 0 && y < this.getCantColumnas();
-        return dentroEnX && dentroEnY;
+
+    private boolean estaDentro(int fila, int columna) {
+        boolean dentroDeFila = fila >= 0 && fila < this.getCantFilas();
+        boolean dentroDeColumna = columna >= 0 && columna < this.getCantColumnas();
+        return dentroDeFila && dentroDeColumna;
+    }
+
+    private Casillero getCasillero(int columna, int fila) throws FueraDelTableroException {
+        if (!this.estaDentro(columna, fila)) throw new FueraDelTableroException();
+        return casilleros[columna][fila];
     }
 
     public int getCantFilas() {

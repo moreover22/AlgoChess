@@ -16,8 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TableroTest {
     @Mock
-    private Pieza pieza, otraPieza;
-
+    private Pieza pieza;
+    private Pieza otraPieza;
     @Test
     public void testTableroRecienCreadoEstaVacio() {
         Tablero tablero = new Tablero();
