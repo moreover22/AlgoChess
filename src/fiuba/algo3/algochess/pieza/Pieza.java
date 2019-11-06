@@ -44,7 +44,7 @@ public abstract class Pieza {
         this.puntosDeVida -= danio;
     }
 
-    public void mover(Direccion direccion){
-        movimiento.mover(posicion, direccion);
+    public Posicion mover(Direccion direccion){
+        return movimiento.mover(posicion, direccion);
     }
 }

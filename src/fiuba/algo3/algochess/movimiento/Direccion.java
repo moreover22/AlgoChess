@@ -11,7 +11,7 @@ public abstract class Direccion {
         this.deltaY = deltaY;
     }
 
-    Posicion aplicarA(Posicion desde) {
+    public Posicion aplicarA(Posicion desde) {
         int nuevoX = desde.getX() + deltaX;
         int nuevoY = desde.getY() + deltaY;
         return new Posicion(nuevoX, nuevoY);

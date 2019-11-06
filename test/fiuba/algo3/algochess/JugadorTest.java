@@ -1,61 +1,103 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.casillero.CasilleroException;
-import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
 import fiuba.algo3.algochess.jugador.CantidadDePuntosInsuficientesException;
-import fiuba.algo3.algochess.pieza.Catapulta;
-import fiuba.algo3.algochess.pieza.Curandero;
 import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
-import org.junit.Test;
 import fiuba.algo3.algochess.pieza.Pieza;
 import fiuba.algo3.algochess.jugador.Jugador;
-import org.mockito.Mock;
+
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class JugadorTest {
     @Test
-    public void testJugadorAgregaUnaUnidad() throws CantidadDePuntosInsuficientesException, CasilleroException, FueraDelTableroException {
+    public void testJugadorRecienCreadoTiene20Puntos() {
         // Arrange
-        Tablero tablero = new Tablero();
-        Jugador jugador = new Jugador();
-        Pieza pieza = new SoldadoDeInfanteria();
-        int x = 1;
-        int y = 1;
-
+        Jugador jugador = new Jugador(20);
         // Act
-        jugador.agregarPieza(tablero, pieza, x, y);
-
+        int puntos = jugador.getPuntos();
         // Asserts
-        assertEquals(pieza,tablero.obtenerPieza(x,y));
+        assertEquals(puntos, 20);
     }
-
 /*
     @Test
-    public void testJugadorGastaPuntosdDeMasAgregandoUnidadesLanzaExcepcion() throws CantidadDePuntosInsuficientesException, CasilleroException, FueraDelTableroException {
+    public void testJugadorAgregaUnaUnidadYSeDescuentaDePuntosElCosteDeLaPieza() throws CantidadDePuntosInsuficientesException, CasilleroException, FueraDelTableroException {
         // Arrange
-        Tablero tablero = new Tablero();
-        Jugador jugador = new Jugador();
-        Pieza catapulta1 = new Catapulta();
-        Pieza catapulta2 = new Catapulta();
-        Pieza catapulta3 = new Catapulta();
-        Pieza catapulta4 = new Catapulta();
-        Pieza curandero1 = new Curandero();
+        Jugador jugador = new Jugador(20);
+        Pieza pieza = mock(SoldadoDeInfanteria.class);
+        when(pieza.getCoste()).thenReturn(1);
+        // Act
+        jugador.agregarPieza(pieza);
+        // Asserts
+        assertEquals(jugador.getPuntos(), 19);
+    }
+*/
 
-        //Act
-        jugador.agregarPieza(tablero,catapulta1,2,2);
-        jugador.agregarPieza(tablero,catapulta2,4,8);
-        jugador.agregarPieza(tablero,catapulta3,5,9);
-        jugador.agregarPieza(tablero,catapulta4,4,1);
+    @Test
+    public void testJugadorAgregaUnaPiezaYSeDescuentaDePuntosElCosteDeLaPieza() throws CantidadDePuntosInsuficientesException, CasilleroException, FueraDelTableroException {
+        // Arrange
+        Jugador jugador = new Jugador(20);
+        Pieza pieza = new SoldadoDeInfanteria();
+        // Act
+        jugador.agregarPieza(pieza);
+        // Asserts
+        assertEquals(jugador.getPuntos(), 19);
+    }
 
+    @Test
+    public void testJugadorAgregaDosVecesLaMismaPiezaYSeDescuentaDosVecesDeLosPuntosDelJugador() throws CantidadDePuntosInsuficientesException {
+        // Arrange
+        Jugador jugador = new Jugador(20);
+        Pieza pieza = new SoldadoDeInfanteria();
+        Pieza otraPieza = new SoldadoDeInfanteria();
+        // Act
+        jugador.agregarPieza(pieza);
+        jugador.agregarPieza(otraPieza);
+        // Asserts
+        assertEquals(jugador.getPuntos(), 18);
+    }
 
-        assertThrows (CantidadDePuntosInsuficientesException.class,
+    @Test
+    public void testJugadorAgregaUnaPiezaLuegoLaSacaYSeReintegraElCosto() throws CantidadDePuntosInsuficientesException {
+        // Arrange
+        Jugador jugador = new Jugador(20);
+        Pieza pieza = new SoldadoDeInfanteria();
+        // Act
+        jugador.agregarPieza(pieza);
+        jugador.sacarPieza(pieza);
+        // Asserts
+        assertEquals(jugador.getPuntos(), 20);
+    }
+
+    @Test
+    public void testJugadorAgregaDosVecesElMismoTipoDePiezaYSacaUnaPeroSeDescuentaUnaVez() throws CantidadDePuntosInsuficientesException {
+        // Arrange
+        Jugador jugador = new Jugador(20);
+        Pieza pieza = new SoldadoDeInfanteria();
+        Pieza otraPieza = new SoldadoDeInfanteria();
+        jugador.agregarPieza(pieza);
+        jugador.agregarPieza(otraPieza);
+        // Act
+        jugador.sacarPieza(pieza);
+        // Asserts
+        assertEquals(jugador.getPuntos(), 19);
+
+    }
+
+    @Test
+    public void testJugadorSinPuntosAgregaUnaPiezaDeberiaLanzarCantidadDePuntosInsuficientesException() {
+        // Arrange
+        Jugador jugador = new Jugador(0);
+        Pieza pieza = new SoldadoDeInfanteria();
+        // Act - Assert
+        assertThrows(CantidadDePuntosInsuficientesException.class,
                 () -> {
-                    jugador.agregarPieza(tablero,curandero1,5,6);
+                    jugador.agregarPieza(pieza);
                 });
     }
-    */
-
 }

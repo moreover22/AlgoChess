@@ -1,37 +1,36 @@
 package fiuba.algo3.algochess.jugador;
 
-import fiuba.algo3.algochess.FueraDelTableroException;
-import fiuba.algo3.algochess.casillero.CasilleroException;
-import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
 import fiuba.algo3.algochess.pieza.Pieza;
-import fiuba.algo3.algochess.Tablero;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Jugador {
-    private int cantPuntos;
-    private int cantPiezas;
-    private char nombre;
+    private int puntos;
+    private List<Pieza> piezas;
 
+    public Jugador(int puntos) {
+        this.puntos = puntos;
+        this.piezas = new ArrayList<>();
+    }
     public Jugador() {
-        this.cantPuntos = 20;
-        this.cantPiezas = 0;
-        this.nombre = '-';
-
+        this(20);
     }
 
-    public int obtenerCantPiezas() {
-        return this.cantPiezas;
+    public void sacarPieza(Pieza pieza) {
+        puntos += pieza.getCoste();
+        piezas.remove(pieza);
     }
 
-    public void sacarPieza() {
-        this.cantPiezas--;
+    public int getPuntos() {
+        return puntos;
     }
 
-    public void agregarPieza(Tablero tablero, Pieza pieza, int x,int y) throws CantidadDePuntosInsuficientesException, CasilleroException, FueraDelTableroException {
-        if (cantPuntos - pieza.getCoste() < 0) {
+    public void agregarPieza(Pieza pieza) throws CantidadDePuntosInsuficientesException {
+        if (puntos - pieza.getCoste() < 0) {
             throw new CantidadDePuntosInsuficientesException();
         }
-        this.cantPuntos -= pieza.getCoste();
-        this.cantPiezas++;
-        tablero.colocarPieza(pieza, x, y);
+        puntos -= pieza.getCoste();
+        piezas.add(pieza);
     }
 }
