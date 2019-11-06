@@ -10,3 +10,23 @@ public class Ataque implements Habilidad{
         arma.atacarA(objetivo, desde);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

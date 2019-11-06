@@ -7,4 +7,5 @@ public class Jinete extends Pieza {
         this.setVida(100);
         this.setHabilidad(new Ataque());
     }
+
 }

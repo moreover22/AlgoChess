@@ -7,4 +7,5 @@ public class Catapulta extends Pieza {
         this.setVida(50);
         this.setHabilidad(new Ataque());
     }
+
 }

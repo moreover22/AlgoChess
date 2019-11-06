@@ -46,7 +46,8 @@ public abstract class Pieza {
     }
 
     public void recibirCuracion(float curacion) {
-        this.vida += curacion;
+        this.vida += curacion; //ACA HAY QUE PENSAR COMO HACER PARA QUE AL CURAR UNA UNIDAD NO SUPERE EL MAXIMO DE VIDA DE LA UNIDAD
+                                // PORQUE EL ATRIBUTO DE LA PIEZA GUARDA LA VIDA ACTUAL DE LA PIEZA PERO NO LA ORIGINAL
     }
 
     public void recibirDanio(float danio) {
