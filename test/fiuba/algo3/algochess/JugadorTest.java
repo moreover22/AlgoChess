@@ -10,7 +10,7 @@ import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JugadorTest {
     @Test
@@ -97,5 +97,56 @@ public class JugadorTest {
                 () -> {
                     jugador.agregarPieza(pieza);
                 });
+    }
+
+    @Test
+    public void testJugadorConUnaPiezaVivaSigueEnPartida()throws CantidadDePuntosInsuficientesException{
+        // Arrange
+        Jugador jugador = new Jugador(20);
+        Pieza pieza = new SoldadoDeInfanteria();
+        //Act
+        jugador.agregarPieza(pieza);
+        //Assert
+        assertFalse(jugador.perdio());
+    }
+
+    @Test
+    public void testJugadorConDosPiezasVivaSigueEnPartida()throws CantidadDePuntosInsuficientesException{
+        // Arrange
+        Jugador jugador = new Jugador(20);
+        Pieza pieza1 = new SoldadoDeInfanteria();
+        Pieza pieza2 = new SoldadoDeInfanteria();
+        //Act
+        jugador.agregarPieza(pieza1);
+        jugador.agregarPieza(pieza2);
+        //Assert
+        assertFalse(jugador.perdio());
+    }
+
+    @Test
+    public void testJugadorConUnaPiezaVivaYUnaMuertaSigueEnPartida()throws CantidadDePuntosInsuficientesException{
+        // Arrange
+        Jugador jugador = new Jugador(20);
+        Pieza pieza1 = new SoldadoDeInfanteria();
+        Pieza pieza2 = new SoldadoDeInfanteria();
+        //Act
+        jugador.agregarPieza(pieza1);
+        jugador.agregarPieza(pieza2);
+        pieza1.recibirDanio(100);
+        //Assert
+        assertFalse(jugador.perdio());
+    }
+
+    @Test
+    public void testJugadorSinPiezasPierdeLaPartida()throws CantidadDePuntosInsuficientesException {
+        // Arrange
+        Jugador jugador = new Jugador(20);
+        Pieza pieza = new SoldadoDeInfanteria();
+        // Act
+        jugador.agregarPieza(pieza);
+        pieza.recibirDanio(100);
+        //Assert
+        assertTrue(jugador.perdio());
+
     }
 }
