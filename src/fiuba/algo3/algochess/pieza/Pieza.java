@@ -1,11 +1,12 @@
 package fiuba.algo3.algochess.pieza;
 
 import fiuba.algo3.algochess.Posicion;
-import fiuba.algo3.algochess.movimiento.Direccion;
-import fiuba.algo3.algochess.movimiento.Movimiento;
+import fiuba.algo3.algochess.pieza.movimiento.Direccion;
+import fiuba.algo3.algochess.pieza.movimiento.Movimiento;
+import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
 
 public abstract class Pieza {
-    private float puntosDeVida;
+    private float vida;
     private int coste;
     private Posicion posicion;
 
@@ -16,8 +17,8 @@ public abstract class Pieza {
         habilidad.usarCon(objetivo, posicion);
     }
 
-    protected void setPuntosDeVida(float puntosDeVida) {
-        this.puntosDeVida = puntosDeVida;
+    protected void setPuntosDeVida(float vida) {
+        this.vida = vida;
     }
 
     protected void setCoste(int coste) {
@@ -37,14 +38,14 @@ public abstract class Pieza {
     }
 
     public void recibirCuracion(float curacion) {
-        this.puntosDeVida += curacion;
+        this.vida += curacion;
     }
 
-    public void recibirDanio(float danio){
-        this.puntosDeVida -= danio;
+    public void recibirDanio(float danio) {
+        this.vida -= danio;
     }
 
-    public Posicion mover(Direccion direccion){
-        return movimiento.mover(posicion, direccion);
+    public void mover(Direccion direccion) throws MovimientoFueraDeAlcanceException {
+        this.posicion = movimiento.mover(posicion, direccion);
     }
 }

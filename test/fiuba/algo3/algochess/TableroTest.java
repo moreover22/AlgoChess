@@ -1,17 +1,17 @@
 package fiuba.algo3.algochess;
 
-import fiuba.algo3.algochess.casillero.CasilleroException;
-import fiuba.algo3.algochess.casillero.ColocarEnCasilleroEnemigoException;
-import fiuba.algo3.algochess.casillero.ColocarEnCasilleroOcupadoException;
-import fiuba.algo3.algochess.casillero.VaciarCasilleroVacioException;
+import fiuba.algo3.algochess.tablero.casillero.CasilleroException;
+import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroOcupadoException;
+import fiuba.algo3.algochess.tablero.casillero.VaciarCasilleroVacioException;
 import fiuba.algo3.algochess.pieza.Pieza;
 
 import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
+import fiuba.algo3.algochess.tablero.FueraDelTableroException;
+import fiuba.algo3.algochess.tablero.Tablero;
 import org.junit.Test;
 import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 public class TableroTest {
     @Mock

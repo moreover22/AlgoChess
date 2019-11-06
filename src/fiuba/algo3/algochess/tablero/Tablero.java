@@ -1,7 +1,8 @@
-package fiuba.algo3.algochess;
+package fiuba.algo3.algochess.tablero;
 
-import fiuba.algo3.algochess.casillero.Casillero;
-import fiuba.algo3.algochess.casillero.CasilleroException;
+import fiuba.algo3.algochess.Posicion;
+import fiuba.algo3.algochess.tablero.casillero.Casillero;
+import fiuba.algo3.algochess.tablero.casillero.CasilleroException;
 
 public class Tablero {
     private Casillero[][] casilleros;

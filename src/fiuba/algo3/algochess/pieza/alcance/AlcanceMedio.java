@@ -1,4 +1,4 @@
-package fiuba.algo3.algochess.pieza;
+package fiuba.algo3.algochess.pieza.alcance;
 
 public class AlcanceMedio extends Alcance {
     public AlcanceMedio() {

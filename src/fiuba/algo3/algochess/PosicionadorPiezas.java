@@ -1,8 +1,10 @@
 package fiuba.algo3.algochess;
 
-import fiuba.algo3.algochess.casillero.CasilleroException;
-import fiuba.algo3.algochess.casillero.ColocarEnCasilleroEnemigoException;
+import fiuba.algo3.algochess.tablero.casillero.CasilleroException;
+import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.pieza.Pieza;
+import fiuba.algo3.algochess.tablero.FueraDelTableroException;
+import fiuba.algo3.algochess.tablero.Tablero;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package fiuba.algo3.algochess.movimiento;
+package fiuba.algo3.algochess.pieza.movimiento;
 
 import fiuba.algo3.algochess.Posicion;
 

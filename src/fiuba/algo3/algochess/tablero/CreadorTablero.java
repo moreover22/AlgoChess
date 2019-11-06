@@ -1,6 +1,6 @@
-package fiuba.algo3.algochess;
+package fiuba.algo3.algochess.tablero;
 
-import fiuba.algo3.algochess.casillero.Casillero;
+import fiuba.algo3.algochess.tablero.casillero.Casillero;
 
 public class CreadorTablero {
     private Casillero[][] casilleros;

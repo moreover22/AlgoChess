@@ -1,18 +1,16 @@
 package fiuba.algo3.algochess;
 
-import fiuba.algo3.algochess.casillero.CasilleroException;
+import fiuba.algo3.algochess.tablero.casillero.CasilleroException;
 import fiuba.algo3.algochess.jugador.CantidadDePuntosInsuficientesException;
 import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
 import fiuba.algo3.algochess.pieza.Pieza;
 import fiuba.algo3.algochess.jugador.Jugador;
 
+import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class JugadorTest {
     @Test

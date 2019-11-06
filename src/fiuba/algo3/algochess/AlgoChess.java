@@ -1,9 +1,12 @@
 package fiuba.algo3.algochess;
 
-import fiuba.algo3.algochess.casillero.CasilleroException;
+import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
+import fiuba.algo3.algochess.tablero.casillero.CasilleroException;
 import fiuba.algo3.algochess.jugador.Jugador;
-import fiuba.algo3.algochess.movimiento.Direccion;
+import fiuba.algo3.algochess.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.pieza.Pieza;
+import fiuba.algo3.algochess.tablero.FueraDelTableroException;
+import fiuba.algo3.algochess.tablero.Tablero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ public class AlgoChess {
         posicionador.posicionarPieza(pieza, posicion);
     }
 
-    public void mover(Pieza pieza, Direccion direccion) throws CasilleroException, FueraDelTableroException {
+    public void mover(Pieza pieza, Direccion direccion) throws CasilleroException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         movedor.mover(pieza, direccion);
     }
 
