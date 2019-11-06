@@ -33,4 +33,12 @@ public class Jugador {
         puntos -= pieza.getCoste();
         piezas.add(pieza);
     }
+    public boolean perdio() {
+
+        for (Pieza pieza : piezas) {
+            if (pieza.estaViva()) return false;
+        }
+
+        return true;
+    }
 }

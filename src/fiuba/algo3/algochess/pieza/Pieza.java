@@ -64,6 +64,11 @@ public abstract class Pieza {
         vida -= danio;
     }
 
+    public boolean estaViva(){
+        if(vida > 0) return true;
+        return false;
+    }
+
     public void mover(Direccion direccion) throws MovimientoFueraDeAlcanceException {
         this.posicion = movimiento.mover(posicion, direccion);
     }
