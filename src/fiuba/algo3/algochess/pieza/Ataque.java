@@ -6,7 +6,7 @@ public class Ataque implements Habilidad{
     private Arma arma;
 
     @Override
-    public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcance {
+    public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException {
         arma.atacarA(objetivo, desde);
     }
 }

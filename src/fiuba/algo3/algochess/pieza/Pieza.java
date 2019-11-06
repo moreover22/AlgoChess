@@ -12,7 +12,7 @@ public abstract class Pieza {
     protected Habilidad habilidad;
     protected Movimiento movimiento;
 
-    public void usarHabilidadEn(Pieza objetivo) throws HabilidadFueraDeAlcance {
+    public void usarHabilidadEn(Pieza objetivo) throws HabilidadFueraDeAlcanceException {
         habilidad.usarCon(objetivo, posicion);
     }
 
