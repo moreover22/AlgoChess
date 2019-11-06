@@ -1,24 +1,45 @@
 package fiuba.algo3.algochess.jugador;
 
-import fiuba.algo3.algochess.Tablero;
+import fiuba.algo3.algochess.pieza.Pieza;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Jugador {
-    private int cantPuntos;
-    private char[] nombre;
-    private int cantPiezas;
+    private int puntos;
+    private List<Pieza> piezas;
 
-
-    public Jugador() {
-        this.cantPuntos = 20;
-        this.cantPiezas = 0;
+    public Jugador(int puntos) {
+        this.puntos = puntos;
+        this.piezas = new ArrayList<>();
     }
-}
+    public Jugador() {
+        this(20);
+    }
 
-public agregarUnidad(Tablero tablero,Pieza pieza,int x,int y){
-    public int PuntosActuales = this.cantPuntos;
-    this.cantPuntos = pieza DescontarCoste(PuntosActuales);
-    this.cantPiezas ++;
+    public void sacarPieza(Pieza pieza) {
+        puntos += pieza.getCoste();
+        piezas.remove(pieza);
+    }
 
-    tablero colocarPieza(pieza,x,y);
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void agregarPieza(Pieza pieza) throws CantidadDePuntosInsuficientesException {
+        if (puntos - pieza.getCoste() < 0) {
+            throw new CantidadDePuntosInsuficientesException();
+        }
+        puntos -= pieza.getCoste();
+        piezas.add(pieza);
+    }
+    public boolean perdio() {
+
+        for (Pieza pieza : piezas) {
+            if (pieza.estaViva()) return false;
+        }
+
+        return true;
+    }
 
 }

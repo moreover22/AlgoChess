@@ -1,4 +1,4 @@
-package fiuba.algo3.algochess.casillero;
+package fiuba.algo3.algochess.tablero.casillero;
 
 public interface EstadoCasillero {
     EstadoCasillero ocupar() throws ColocarEnCasilleroOcupadoException;

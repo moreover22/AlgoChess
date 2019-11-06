@@ -1,3 +1,4 @@
+
 <project xmlns:ivy="antlib:org.apache.ivy.ant" name="fiuba.algo3.algochess" basedir="." default="test">
     <property name="build" location="build" />
     <property name="libs" location="libs" />
