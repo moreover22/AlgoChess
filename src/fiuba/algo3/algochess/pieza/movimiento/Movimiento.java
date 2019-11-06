@@ -13,7 +13,7 @@ public class Movimiento {
 
     public Posicion mover(Posicion desde, Direccion direccion) throws MovimientoFueraDeAlcanceException {
         Posicion hasta = direccion.aplicarA(desde);
-        if (alcance.llegoA(desde, hasta)) {
+        if (!alcance.llegoA(desde, hasta)) {
             throw new MovimientoFueraDeAlcanceException();
         }
         return direccion.aplicarA(desde);
