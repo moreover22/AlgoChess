@@ -4,12 +4,7 @@ public class Jinete extends Pieza {
 
     public Jinete() {
         this.setCoste(3);
-        this.setPuntosDeVida(100);
+        this.setVida(100);
+        this.setHabilidad(new Ataque());
     }
-
-    @Override
-    public void usarHabilidadEn(Pieza objetivo) {
-
-    }
-
 }

@@ -4,12 +4,7 @@ public class Curandero extends Pieza {
 
     public Curandero () {
         this.setCoste(2);
-        this.setPuntosDeVida(75);
+        this.setVida(75);
+        this.setHabilidad(new Curacion());
     }
-
-    @Override
-    public void usarHabilidadEn(Pieza objetivo) {
-
-    }
-
 }

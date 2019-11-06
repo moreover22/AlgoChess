@@ -4,12 +4,7 @@ public class Catapulta extends Pieza {
 
     public Catapulta() {
         this.setCoste(5);
-        this.setPuntosDeVida(50);
+        this.setVida(50);
+        this.setHabilidad(new Ataque());
     }
-
-    @Override
-    public void usarHabilidadEn(Pieza objetivo) {
-
-    }
-
 }

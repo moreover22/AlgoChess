@@ -10,14 +10,22 @@ public abstract class Pieza {
     private int coste;
     private Posicion posicion;
 
-    protected Habilidad habilidad;
-    protected Movimiento movimiento;
+    private Habilidad habilidad;
+    private Movimiento movimiento;
+
+    protected Pieza() {
+        this.movimiento = new Movimiento();
+    }
+
+    protected void setHabilidad(Habilidad habilidad) {
+        this.habilidad = habilidad;
+    }
 
     public void usarHabilidadEn(Pieza objetivo) throws HabilidadFueraDeAlcanceException {
         habilidad.usarCon(objetivo, posicion);
     }
 
-    protected void setPuntosDeVida(float vida) {
+    protected void setVida(float vida) {
         this.vida = vida;
     }
 
