@@ -5,7 +5,6 @@ import fiuba.algo3.algochess.pieza.alcance.AlcanceLejano;
 public class Proyectil extends Arma {
 
     public Proyectil(){
-        this.danio = 20;
-        this.alcance = new AlcanceLejano();
+        super(20, new AlcanceLejano());
     }
 }
