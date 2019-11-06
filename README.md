@@ -53,8 +53,8 @@ FIUBA - 2° Cuatrimestre 2019
 - [x] 9. Se verifica que no se puede colocar una pieza aliada en un casillero del sector enemigo.
 - [x] 10. Correcta creación e inicialización del tablero.
 #### Pruebas Jugador
-- [ ] 11. Se verifica que no puede tomar más entidades de lo que sus puntos le permiten.
-- [ ] 12. Se verifica que el jugador que se queda sin entidades, es el perdedor.
+- [x] 11. Se verifica que no puede tomar más entidades de lo que sus puntos le permiten.
+- [x] 12. Se verifica que el jugador que se queda sin entidades, es el perdedor.
 
 ### Entrega 2 (jueves 21 de noviembre)
 #### Soldado
