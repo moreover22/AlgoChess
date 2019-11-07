@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ArmaTest {
 
     @Test
-    public void test00EspadaPesadaMataAUnaPiezaQueEstaACortoAlcanceQueTiene10DeVida() throws ArmaFueraDeAlcanceException {
+    public void test00EspadaPesadaMataAUnaPiezaQueEstaACortoAlcanceQueTiene10DeVida() throws HabilidadFueraDeAlcanceException {
         //Arrange
         Arma espadaPesada = new EspadaPesada();
         Posicion posOrigen = new Posicion(0,0);
@@ -26,7 +26,7 @@ public class ArmaTest {
     }
 
     @Test
-    public void test01EspadaPesadaNoMataAUnaPiezaQueEstaACortoAlcanceQueTiene11DeVida() throws ArmaFueraDeAlcanceException {
+    public void test01EspadaPesadaNoMataAUnaPiezaQueEstaACortoAlcanceQueTiene11DeVida() throws HabilidadFueraDeAlcanceException {
         //Arrange
         Arma espadaPesada = new EspadaPesada();
         Posicion posOrigen = new Posicion(0,0);
@@ -41,7 +41,7 @@ public class ArmaTest {
     }
 
     @Test
-    public void test02EspadaPesadaAtacarAPiezaQueNoEstaACortoAlcanceLanzaArmaFueraDeAlcanceException() {
+    public void test02EspadaPesadaAtacarAPiezaQueNoEstaACortoAlcanceLanzaHabilidadFueraDeAlcanceException() {
         //Arrange
         Arma espadaPesada = new EspadaPesada();
         Posicion posOrigen = new Posicion(0,0);
@@ -50,14 +50,14 @@ public class ArmaTest {
         objetivo.setPosicion(posObjetivo);
 
         //Act-Assert
-        assertThrows(ArmaFueraDeAlcanceException.class,
+        assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {
                     espadaPesada.atacarA(objetivo,posOrigen);
                 });
     }
 
     @Test
-    public void test03EspadaLivianaMataAUnaPiezaQueEstaACortoAlcanceQueTiene5DeVida() throws ArmaFueraDeAlcanceException {
+    public void test03EspadaLivianaMataAUnaPiezaQueEstaACortoAlcanceQueTiene5DeVida() throws HabilidadFueraDeAlcanceException {
         //Arrange
         Arma espadaLiviana = new EspadaLiviana();
         Posicion posOrigen = new Posicion(0,0);
@@ -72,7 +72,7 @@ public class ArmaTest {
     }
 
     @Test
-    public void test04EspadaLivianaNoMataAUnaPiezaQueEstaACortoAlcanceQueTiene6DeVida() throws ArmaFueraDeAlcanceException {
+    public void test04EspadaLivianaNoMataAUnaPiezaQueEstaACortoAlcanceQueTiene6DeVida() throws HabilidadFueraDeAlcanceException {
         //Arrange
         Arma espadaLiviana = new EspadaLiviana();
         Posicion posOrigen = new Posicion(0,0);
@@ -87,7 +87,7 @@ public class ArmaTest {
     }
 
     @Test
-    public void test05EspadaLivianaAtacarAPiezaQueNoEstaACortoAlcanceLanzaArmaFueraDeAlcanceException() {
+    public void test05EspadaLivianaAtacarAPiezaQueNoEstaACortoAlcanceLanzaHabilidadFueraDeAlcanceException() {
         //Arrange
         Arma espadaLiviana = new EspadaLiviana();
         Posicion posOrigen = new Posicion(0,0);
@@ -96,14 +96,14 @@ public class ArmaTest {
         objetivo.setPosicion(posObjetivo);
 
         //Act-Assert
-        assertThrows(ArmaFueraDeAlcanceException.class,
+        assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {
                     espadaLiviana.atacarA(objetivo,posOrigen);
                 });
     }
 
     @Test
-    public void test06ArcoMataAUnaPiezaQueEstaAAlcanceMedioQueTiene15DeVida() throws ArmaFueraDeAlcanceException {
+    public void test06ArcoMataAUnaPiezaQueEstaAAlcanceMedioQueTiene15DeVida() throws HabilidadFueraDeAlcanceException {
         //Arrange
         Arma arco= new Arco();
         Posicion posOrigen = new Posicion(0,0);
@@ -118,7 +118,7 @@ public class ArmaTest {
     }
 
     @Test
-    public void test07ArcoNoMataAUnaPiezaQueEstaAAlcanceMedioQueTiene16DeVida() throws ArmaFueraDeAlcanceException {
+    public void test07ArcoNoMataAUnaPiezaQueEstaAAlcanceMedioQueTiene16DeVida() throws HabilidadFueraDeAlcanceException {
         //Arrange
         Arma arco = new Arco();
         Posicion posOrigen = new Posicion(0,0);
@@ -133,7 +133,7 @@ public class ArmaTest {
     }
 
     @Test
-    public void test08ArcoAtacarAPiezaQueNoEstaAAlcanceMedioLanzaArmaFueraDeAlcanceException() {
+    public void test08ArcoAtacarAPiezaQueNoEstaAAlcanceMedioLanzaHabilidadFueraDeAlcanceException() {
         //Arrange
         Arma arco = new Arco();
         Posicion posOrigen = new Posicion(0,0);
@@ -142,14 +142,14 @@ public class ArmaTest {
         objetivo.setPosicion(posObjetivo);
 
         //Act-Assert
-        assertThrows(ArmaFueraDeAlcanceException.class,
+        assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {
                     arco.atacarA(objetivo,posOrigen);
                 });
     }
 
     @Test
-    public void test09ProyectilMataAUnaPiezaQueEstaAAlcanceLejanoQueTiene20DeVida() throws ArmaFueraDeAlcanceException {
+    public void test09ProyectilMataAUnaPiezaQueEstaAAlcanceLejanoQueTiene20DeVida() throws HabilidadFueraDeAlcanceException {
         //Arrange
         Arma proyectil= new Proyectil();
         Posicion posOrigen = new Posicion(0,0);
@@ -164,7 +164,7 @@ public class ArmaTest {
     }
 
     @Test
-    public void test10ProyectilNoMataAUnaPiezaQueEstaAAlcanceLejanoQueTiene21DeVida() throws ArmaFueraDeAlcanceException {
+    public void test10ProyectilNoMataAUnaPiezaQueEstaAAlcanceLejanoQueTiene21DeVida() throws HabilidadFueraDeAlcanceException {
         //Arrange
         Arma proyectil = new Proyectil();
         Posicion posOrigen = new Posicion(0,0);
@@ -179,7 +179,7 @@ public class ArmaTest {
     }
 
     @Test
-    public void test11ProyectilAtacarAPiezaQueNoEstaAAlcanceLejanoLanzaArmaFueraDeAlcanceException() {
+    public void test11ProyectilAtacarAPiezaQueNoEstaAAlcanceLejanoLanzaHabilidadFueraDeAlcanceException() {
         //Arrange
         Arma proyectil = new Proyectil();
         Posicion posOrigen = new Posicion(0,0);
@@ -188,7 +188,7 @@ public class ArmaTest {
         objetivo.setPosicion(posObjetivo);
 
         //Act-Assert
-        assertThrows(ArmaFueraDeAlcanceException.class,
+        assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {
                     proyectil.atacarA(objetivo,posOrigen);
                 });

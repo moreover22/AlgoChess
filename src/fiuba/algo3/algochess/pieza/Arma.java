@@ -17,9 +17,9 @@ public abstract class Arma {
     }
 
 
-    public void atacarA(Pieza objetivo, Posicion desde) throws ArmaFueraDeAlcanceException {
+    public void atacarA(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException {
         if (!alcance.llegoA(desde, objetivo.getPosicion())) {
-            throw new ArmaFueraDeAlcanceException();
+            throw new HabilidadFueraDeAlcanceException();
         }
         objetivo.recibirDanio(danio);
     }
