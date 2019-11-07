@@ -4,9 +4,12 @@ import fiuba.algo3.algochess.pieza.alcance.Alcance;
 import fiuba.algo3.algochess.pieza.alcance.AlcanceCercano;
 import fiuba.algo3.algochess.pieza.alcance.AlcanceLejano;
 import fiuba.algo3.algochess.pieza.alcance.AlcanceMedio;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class AlcanceTest {
@@ -20,7 +23,7 @@ public class AlcanceTest {
         //Act
         boolean resultado = alcance.llegoA(origen,destino);
         //Assert
-        assertEquals(true,resultado);
+        assertTrue(resultado);
     }
 
     @Test
@@ -32,7 +35,7 @@ public class AlcanceTest {
         //Act
         boolean resultado = alcance.llegoA(origen,destino);
         //Assert
-        assertEquals(false,resultado);
+        assertFalse(resultado);
     }
 
     @Test
@@ -44,7 +47,7 @@ public class AlcanceTest {
         //Act
         boolean resultado = alcance.llegoA(origen,destino);
         //Assert
-        assertEquals(true,resultado);
+        assertTrue(resultado);
     }
 
     @Test
@@ -56,7 +59,7 @@ public class AlcanceTest {
         //Act
         boolean resultado = alcance.llegoA(origen,destino);
         //Assert
-        assertEquals(false,resultado);
+        assertFalse(resultado);
     }
 
     @Test
@@ -68,7 +71,7 @@ public class AlcanceTest {
         //Act
         boolean resultado = alcance.llegoA(origen,destino);
         //Assert
-        assertEquals(true,resultado);
+        assertTrue(resultado);
     }
 
     @Test
@@ -80,7 +83,7 @@ public class AlcanceTest {
         //Act
         boolean resultado = alcance.llegoA(origen,destino);
         //Assert
-        assertEquals(false,resultado);
+        assertFalse(resultado);
     }
 
     @Test
@@ -92,7 +95,7 @@ public class AlcanceTest {
         //Act
         boolean resultado = alcance.llegoA(origen, destino);
         //Assert
-        assertEquals(true, resultado);
+        assertTrue(resultado);
 
     }
 
@@ -105,7 +108,7 @@ public class AlcanceTest {
         //Act
         boolean resultado = alcance.llegoA(origen,destino);
         //Assert
-        assertEquals(false,resultado);
+        assertFalse(resultado);
     }
 
 }
