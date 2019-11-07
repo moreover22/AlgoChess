@@ -1,6 +1,8 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.pieza.*;
+import fiuba.algo3.algochess.pieza.habilidad.AtaqueAAliadoException;
+import fiuba.algo3.algochess.pieza.habilidad.CuracionAEnemigoException;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.pieza.movimiento.*;
@@ -406,6 +408,31 @@ public class PiezaTest {
         assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {
                     pieza.usarHabilidadEn(objetivo);
+                });
+    }
+
+    @Test
+    public void testPiezaCuranderaCuraAUnaPiezaEnemigaDeberiaLanzarCuracionAEnemigoException() {
+        // Arrange
+        Pieza curandero = new Curandero();
+        Pieza objetivo = new SoldadoDeInfanteria();
+        objetivo.cambiarAlianza();
+        // Act - Assert
+        assertThrows(CuracionAEnemigoException.class,
+                () -> {
+                    curandero.usarHabilidadEn(objetivo);
+                });
+    }
+
+    @Test
+    public void testPiezaAtacaAPiezaAliadaDeberiaLanzarAtaqueAAliadoException() {
+        // Arrange
+        Pieza pieza = new SoldadoDeInfanteria();
+        Pieza otraPieza = new SoldadoDeInfanteria();
+        // Act - Assert
+        assertThrows(AtaqueAAliadoException.class,
+                () -> {
+                    pieza.usarHabilidadEn(otraPieza);
                 });
     }
 }
