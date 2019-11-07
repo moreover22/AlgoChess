@@ -43,10 +43,10 @@ FIUBA - 2° Cuatrimestre 2019
 #### Pruebas entidades
 - [x] 1. Una Unidad movible se puede mover en todas las direcciones.
 - [x] 2. Una Unidad movible no puede moverse a un casillero ocupado.
-- [ ] 3. Un Soldado de infantería aliado ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
-- [ ] 4. Un Jinete aliado ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
-- [ ] 5. Una catapulta aliada ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
-- [ ] 6. Un Curandero aliado cura a una pieza aliada y se verifica que se suma la vida correspondiente.
+- [x] 3. Un Soldado de infantería aliado ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
+- [x] 4. Un Jinete aliado ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
+- [x] 5. Una catapulta aliada ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
+- [x] 6. Un Curandero aliado cura a una pieza aliada y se verifica que se suma la vida correspondiente.
 #### Pruebas tablero
 - [x] 7. Se coloca una pieza aliada en un casillero del sector aliado vacío con éxito.
 - [x] 8. Se verifica que no se puede colocar una pieza aliada en un casillero del sector aliado ocupado.
