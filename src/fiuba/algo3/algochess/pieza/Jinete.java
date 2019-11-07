@@ -6,7 +6,29 @@ public class Jinete extends Pieza {
         this.setVidaInicial(100);
         this.setCoste(3);
         this.setVida(100);
-        this.setHabilidad(new Ataque());
+        this.setHabilidad(new Ataque(new EspadaLiviana()));
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

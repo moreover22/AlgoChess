@@ -112,7 +112,6 @@ public class PiezaTest {
         assertTrue(objetivo.estaViva());
 
     }
-
     @Test
     public void testJineteUsaHabilidadYMataAEnemigoCon5Vida()throws HabilidadFueraDeAlcanceException{
         //Arrange
@@ -214,5 +213,4 @@ public class PiezaTest {
         //Assert
         assertFalse(objetivo.estaViva());
     }
-
 }

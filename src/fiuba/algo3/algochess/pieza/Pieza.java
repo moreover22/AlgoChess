@@ -52,16 +52,16 @@ public abstract class Pieza {
     }
 
     public void recibirCuracion(float curacion) {
-        this.vida += curacion;
+        vida += curacion;
 
-        if(this.vida > this.vidaInicial){
-            this.setVida(this.vidaInicial);
+        if(vida > vidaInicial){
+            this.setVida(vidaInicial);
         }
 
     }
 
     public void recibirDanio(float danio) {
-        this.vida -= danio;
+        vida -= danio;
     }
 
     public boolean estaViva(){
