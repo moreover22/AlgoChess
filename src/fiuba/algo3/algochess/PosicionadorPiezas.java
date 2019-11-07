@@ -23,6 +23,7 @@ public class PosicionadorPiezas {
         pieza.setPosicion(posicion);
         piezas.put(posicion, pieza);
     }
+
     public void sacarPieza(Posicion posicion) throws CasilleroException, FueraDelTableroException {
         tablero.vaciarCasillero(posicion);
         Pieza piezaARemover = piezas.remove(posicion);

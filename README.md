@@ -1,4 +1,4 @@
-# 7507-AlgoChess  &middot; [![Build Status](https://travis-ci.com/moreover22/N5_AlgoChess.svg?token=8zaGfwuy5T7mJJsyoyN9&branch=master)](https://travis-ci.com/moreover22/N5_AlgoChess) [![codecov](https://codecov.io/gh/moreover22/N5_AlgoChess/branch/master/graph/badge.svg?token=QMptFbINCT)](https://codecov.io/gh/moreover22/N5_AlgoChess) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/47d3308e93e24df89ffa7cf32d96b427)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=moreover22/N5_AlgoChess&amp;utm_campaign=Badge_Grade)  
+# 7507-AlgoChess  &middot; [![Build Status](https://travis-ci.com/moreover22/N5_AlgoChess.svg?token=8zaGfwuy5T7mJJsyoyN9&branch=master)](https://travis-ci.com/moreover22/N5_AlgoChess) [![codecov](https://codecov.io/gh/moreover22/N5_AlgoChess/graph/badge.svg?token=QMptFbINCT)](https://codecov.io/gh/moreover22/N5_AlgoChess) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/47d3308e93e24df89ffa7cf32d96b427)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=moreover22/N5_AlgoChess&amp;utm_campaign=Badge_Grade)  
 
 
 Trabajo práctico número 2 de Algoritmos y programación 3  
@@ -43,18 +43,18 @@ FIUBA - 2° Cuatrimestre 2019
 #### Pruebas entidades
 - [x] 1. Una Unidad movible se puede mover en todas las direcciones.
 - [x] 2. Una Unidad movible no puede moverse a un casillero ocupado.
-- [ ] 3. Un Soldado de infantería aliado ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
-- [ ] 4. Un Jinete aliado ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
-- [ ] 5. Una catapulta aliada ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
-- [ ] 6. Un Curandero aliado cura a una pieza aliada y se verifica que se suma la vida correspondiente.
+- [x] 3. Un Soldado de infantería aliado ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
+- [x] 4. Un Jinete aliado ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
+- [x] 5. Una catapulta aliada ataca a una pieza enemiga y se verifica que se resta la vida correspondiente.
+- [x] 6. Un Curandero aliado cura a una pieza aliada y se verifica que se suma la vida correspondiente.
 #### Pruebas tablero
 - [x] 7. Se coloca una pieza aliada en un casillero del sector aliado vacío con éxito.
 - [x] 8. Se verifica que no se puede colocar una pieza aliada en un casillero del sector aliado ocupado.
 - [x] 9. Se verifica que no se puede colocar una pieza aliada en un casillero del sector enemigo.
 - [x] 10. Correcta creación e inicialización del tablero.
 #### Pruebas Jugador
-- [ ] 11. Se verifica que no puede tomar más entidades de lo que sus puntos le permiten.
-- [ ] 12. Se verifica que el jugador que se queda sin entidades, es el perdedor.
+- [x] 11. Se verifica que no puede tomar más entidades de lo que sus puntos le permiten.
+- [x] 12. Se verifica que el jugador que se queda sin entidades, es el perdedor.
 
 ### Entrega 2 (jueves 21 de noviembre)
 #### Soldado

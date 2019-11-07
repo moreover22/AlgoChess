@@ -1,38 +1,39 @@
 package fiuba.algo3.algochess.pieza;
 
 import fiuba.algo3.algochess.Posicion;
+import fiuba.algo3.algochess.alianza.Aliable;
+import fiuba.algo3.algochess.alianza.EstadoAliado;
+import fiuba.algo3.algochess.alianza.EstadoAlianza;
+import fiuba.algo3.algochess.pieza.habilidad.Habilidad;
+import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
+import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.pieza.movimiento.Movimiento;
 import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
 
-public abstract class Pieza {
+public abstract class Pieza implements Aliable {
     private float vidaInicial;
     private float vida;
     private int coste;
-    private Posicion posicion;
 
+    private Posicion posicion;
     private Habilidad habilidad;
     private Movimiento movimiento;
+    private EstadoAlianza alianza;
 
-    protected Pieza() {
+    protected Pieza(float vidaInicial) {
+        this.vidaInicial = vidaInicial;
+        this.vida = vidaInicial;
         this.movimiento = new Movimiento();
+        this.alianza = new EstadoAliado();
     }
 
     protected void setHabilidad(Habilidad habilidad) {
         this.habilidad = habilidad;
     }
 
-    public void usarHabilidadEn(Pieza objetivo) throws HabilidadFueraDeAlcanceException {
+    public void usarHabilidadEn(Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         habilidad.usarCon(objetivo, posicion);
-    }
-
-
-    protected void setVidaInicial(float vidaInicial) {
-        this.vidaInicial = vidaInicial;
-    }
-
-    protected void setVida(float vida) {
-        this.vida = vida;
     }
 
     protected void setCoste(int coste) {
@@ -52,12 +53,10 @@ public abstract class Pieza {
     }
 
     public void recibirCuracion(float curacion) {
-        vida += curacion;
-
-        if(vida > vidaInicial){
-            this.setVida(vidaInicial);
+        if(vida + curacion > vidaInicial){
+            curacion = vidaInicial - vida;
         }
-
+        vida += curacion;
     }
 
     public void recibirDanio(float danio) {
@@ -65,11 +64,19 @@ public abstract class Pieza {
     }
 
     public boolean estaViva(){
-        if(vida > 0) return true;
-        return false;
+        return vida > 0;
     }
 
     public void mover(Direccion direccion) throws MovimientoFueraDeAlcanceException {
         this.posicion = movimiento.mover(posicion, direccion);
+    }
+
+    @Override
+    public boolean esAliado() {
+        return alianza.esAliado();
+    }
+    @Override
+    public void cambiarAlianza() {
+        alianza = alianza.cambiar();
     }
 }

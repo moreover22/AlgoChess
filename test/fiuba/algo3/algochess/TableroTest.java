@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.tablero.casillero.CasilleroException;
+import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroOcupadoException;
 import fiuba.algo3.algochess.tablero.casillero.VaciarCasilleroVacioException;
 import fiuba.algo3.algochess.pieza.Pieza;
@@ -12,6 +13,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 public class TableroTest {
     @Mock
@@ -48,14 +51,16 @@ public class TableroTest {
                     posicionador.posicionarPieza(piezaConcreta, posicion);
                 });
     }
-/*
+
     @Test
     public void testTableroAlColocarUnaPiezaEnUnCasilleroEnemigoSeLanzaCasilleroEnemigoException() throws FueraDelTableroException {
         // Arrange
-        Posicion posicionEnemiga = new Posicion(0, 0);
-        Tablero tablero = spy(new Tablero());
-        when(tablero.esAliado(posicionEnemiga)).thenReturn(false);
-        // doReturn(false).when(tablero).esAliado(posicionEnemiga);
+        Tablero tablero = new Tablero();
+        Posicion posicionEnemiga = new Posicion(0, tablero.getCantColumnas() / 2);
+
+        //Tablero tablero = spy(new Tablero());
+        // when(tablero.esAliado(posicionEnemiga)).thenReturn(false);
+
         PosicionadorPiezas posicionador = new PosicionadorPiezas(tablero);
 
         Pieza piezaConcreta = new SoldadoDeInfanteria();
@@ -65,7 +70,7 @@ public class TableroTest {
                     posicionador.posicionarPieza(piezaConcreta, posicionEnemiga);
                 });
     }
-*/
+
     @Test
     public void testTableroAlColocarYSacarUnaPiezaElTableroQuedaVacio() throws CasilleroException, FueraDelTableroException {
         // Arrange

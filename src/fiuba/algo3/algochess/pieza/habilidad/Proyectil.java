@@ -1,10 +1,9 @@
-package fiuba.algo3.algochess.pieza;
+package fiuba.algo3.algochess.pieza.habilidad;
 
 import fiuba.algo3.algochess.pieza.alcance.AlcanceLejano;
 
 public class Proyectil extends Arma {
-
-    public Proyectil(){
+    public Proyectil() {
         super(20, new AlcanceLejano());
     }
 }

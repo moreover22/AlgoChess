@@ -2,9 +2,6 @@ package fiuba.algo3.algochess.pieza.alcance;
 
 import fiuba.algo3.algochess.Posicion;
 
-import static java.lang.Math.max;
-import static java.lang.Math.abs;
-
 public abstract class Alcance {
     private int distanciaMinima;
     private int distanciaMaxima;
@@ -18,7 +15,7 @@ public abstract class Alcance {
     }
 
     final public boolean llegoA(Posicion desde, Posicion hasta) {
-        int distancia = calcularDistancia(desde, hasta);
+        int distancia = desde.calcularDistancia(hasta);
         return llegoDistanciaMinima(distancia) && llegoDistanciaMaxima(distancia);
     }
 
@@ -28,12 +25,6 @@ public abstract class Alcance {
 
     protected boolean llegoDistanciaMaxima(int distancia) {
         return distancia <= distanciaMaxima;
-    }
-
-    protected int calcularDistancia(Posicion desde, Posicion hasta) {
-        int deltaX = abs(desde.getX() - hasta.getX());
-        int deltaY = abs(desde.getY() - hasta.getY());
-        return max(deltaX, deltaY);
     }
 }
 

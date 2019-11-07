@@ -33,12 +33,4 @@ public class AlgoChess {
     public void mover(Pieza pieza, Direccion direccion) throws CasilleroException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         movedor.mover(pieza, direccion);
     }
-//
-//    public Jugador getPerdedor(){
-//
-//        for (Jugador jugador : jugadores) {
-//            if (jugador.perdio()) return jugador;
-//        }
-//        return null;
-//    }
 }

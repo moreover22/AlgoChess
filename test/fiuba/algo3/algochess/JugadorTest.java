@@ -9,10 +9,10 @@ import fiuba.algo3.algochess.jugador.Jugador;
 import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JugadorTest {
+
     @Test
     public void testJugadorRecienCreadoTiene20Puntos() {
         // Arrange
@@ -22,19 +22,6 @@ public class JugadorTest {
         // Asserts
         assertEquals(puntos, 20);
     }
-/*
-    @Test
-    public void testJugadorAgregaUnaUnidadYSeDescuentaDePuntosElCosteDeLaPieza() throws CantidadDePuntosInsuficientesException, CasilleroException, FueraDelTableroException {
-        // Arrange
-        Jugador jugador = new Jugador(20);
-        Pieza pieza = mock(SoldadoDeInfanteria.class);
-        when(pieza.getCoste()).thenReturn(1);
-        // Act
-        jugador.agregarPieza(pieza);
-        // Asserts
-        assertEquals(jugador.getPuntos(), 19);
-    }
-*/
 
     @Test
     public void testJugadorAgregaUnaPiezaYSeDescuentaDePuntosElCosteDeLaPieza() throws CantidadDePuntosInsuficientesException, CasilleroException, FueraDelTableroException {
