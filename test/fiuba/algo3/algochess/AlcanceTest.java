@@ -2,6 +2,8 @@ package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.pieza.alcance.Alcance;
 import fiuba.algo3.algochess.pieza.alcance.AlcanceCercano;
+import fiuba.algo3.algochess.pieza.alcance.AlcanceLejano;
+import fiuba.algo3.algochess.pieza.alcance.AlcanceMedio;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -36,7 +38,7 @@ public class AlcanceTest {
     @Test
     public void test02AlcanceMedioReconoceQueLlegaAUnaDistanciaDe4(){
         //Arrange
-        Alcance alcance = new AlcanceCercano();
+        Alcance alcance = new AlcanceMedio();
         Posicion origen = new Posicion(1,2);
         Posicion destino = new Posicion(5,2);
         //Act
@@ -48,7 +50,7 @@ public class AlcanceTest {
     @Test
     public void test03AlcanceMedioReconoceQueNoLlegaAUnaDistanciaDe1(){
         //Arrange
-        Alcance alcance = new AlcanceCercano();
+        Alcance alcance = new AlcanceMedio();
         Posicion origen = new Posicion(1,2);
         Posicion destino = new Posicion(2,2);
         //Act
@@ -60,7 +62,7 @@ public class AlcanceTest {
     @Test
     public void test04AlcanceLejanoReconoceQueLlegaAUnaDistanciaDe8(){
         //Arrange
-        Alcance alcance = new AlcanceCercano();
+        Alcance alcance = new AlcanceLejano();
         Posicion origen = new Posicion(1,2);
         Posicion destino = new Posicion(9,2);
         //Act
