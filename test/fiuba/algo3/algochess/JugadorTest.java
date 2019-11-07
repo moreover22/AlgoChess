@@ -9,7 +9,6 @@ import fiuba.algo3.algochess.jugador.Jugador;
 import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JugadorTest {

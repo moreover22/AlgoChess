@@ -1,7 +1,7 @@
-package fiuba.algo3.algochess.pieza;
-
+package fiuba.algo3.algochess.pieza.habilidad;
 
 import fiuba.algo3.algochess.Posicion;
+import fiuba.algo3.algochess.pieza.Pieza;
 import fiuba.algo3.algochess.pieza.alcance.Alcance;
 import fiuba.algo3.algochess.pieza.alcance.AlcanceCercano;
 
