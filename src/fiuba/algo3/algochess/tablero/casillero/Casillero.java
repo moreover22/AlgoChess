@@ -1,16 +1,20 @@
 package fiuba.algo3.algochess.tablero.casillero;
 
-public class Casillero {
+import fiuba.algo3.algochess.alianza.Aliable;
+import fiuba.algo3.algochess.alianza.EstadoAliado;
+import fiuba.algo3.algochess.alianza.EstadoAlianza;
+
+public class Casillero implements Aliable {
     private EstadoCasillero estado;
-    private CasilleroAlianza alianza;
+    private EstadoAlianza alianza;
 
     public Casillero() {
         estado = new EstadoCasilleroVacio();
-        alianza = new CasilleroAliado();
+        alianza = new EstadoAliado();
     }
 
-    public void cambiarAlianza() {
-        alianza = alianza.cambiar();
+    public boolean estaVacio() {
+        return estado.estaVacio();
     }
 
     public void vaciar() throws VaciarCasilleroVacioException {
@@ -20,12 +24,13 @@ public class Casillero {
     public void ocupar() throws ColocarEnCasilleroOcupadoException {
         estado = estado.ocupar();
     }
-
-    public boolean esAliado() {
-        return alianza.esAliado();
+    @Override
+    public void cambiarAlianza() {
+        alianza = alianza.cambiar();
     }
 
-    public boolean estaVacio() {
-        return estado.estaVacio();
+    @Override
+    public boolean esAliado() {
+        return alianza.esAliado();
     }
 }

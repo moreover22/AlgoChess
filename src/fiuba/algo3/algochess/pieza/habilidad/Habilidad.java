@@ -4,5 +4,5 @@ import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.pieza.Pieza;
 
 public interface Habilidad {
-    void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException;
+    void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException;
 }

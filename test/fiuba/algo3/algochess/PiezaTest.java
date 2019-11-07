@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.pieza.*;
+import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.pieza.movimiento.*;
 import fiuba.algo3.algochess.tablero.FueraDelTableroException;
@@ -65,10 +66,11 @@ public class PiezaTest {
     }
 
     @Test
-    public void testSoldadoDeInfateriaUsaHabilidadYMataAEnemigoCon10DeVida() throws HabilidadFueraDeAlcanceException {
+    public void testSoldadoDeInfateriaUsaHabilidadYMataAEnemigoCon10DeVida() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         //Arrange
         Pieza pieza = new SoldadoDeInfanteria();
         Pieza objetivo = new SoldadoDeInfanteria();
+        objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0, 0);
         Posicion ubicacionObjetivo = new Posicion(1, 1);
         pieza.setPosicion(ubicacionPieza);
@@ -81,10 +83,11 @@ public class PiezaTest {
     }
 
     @Test
-    public void testSoldadoDeInfateriaUsaHabilidadYNoMataAEnemigoCon11Vida() throws HabilidadFueraDeAlcanceException {
+    public void testSoldadoDeInfateriaUsaHabilidadYNoMataAEnemigoCon11Vida() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         //Arrange
         Pieza pieza = new SoldadoDeInfanteria();
         Pieza objetivo = new SoldadoDeInfanteria();
+        objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0,0);
         Posicion ubicacionObjetivo = new Posicion(1,1);
         pieza.setPosicion(ubicacionPieza);
@@ -97,10 +100,11 @@ public class PiezaTest {
     }
 
     @Test
-    public void testJineteUsaHabilidadYMataAEnemigoCon5Vida() throws HabilidadFueraDeAlcanceException {
+    public void testJineteUsaHabilidadYMataAEnemigoCon5Vida() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         //Arrange
         Pieza pieza = new Jinete();
         Pieza objetivo = new Jinete();
+        objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0,0);
         Posicion ubicacionObjetivo = new Posicion(1,1);
         pieza.setPosicion(ubicacionPieza);
@@ -113,10 +117,11 @@ public class PiezaTest {
     }
 
     @Test
-    public void testJineteUsaHabilidadYNoMataAEnemigoCon6Vida() throws HabilidadFueraDeAlcanceException {
+    public void testJineteUsaHabilidadYNoMataAEnemigoCon6Vida() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         //Arrange
         Pieza pieza = new Jinete();
         Pieza objetivo = new Jinete();
+        objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0, 0);
         Posicion ubicacionObjetivo = new Posicion(1, 1);
         pieza.setPosicion(ubicacionPieza);
@@ -129,10 +134,11 @@ public class PiezaTest {
     }
 
     @Test
-    public void testCatapultaUsaHabilidadYMataAEnemigoCon20Vida() throws HabilidadFueraDeAlcanceException {
+    public void testCatapultaUsaHabilidadYMataAEnemigoCon20Vida() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         //Arrange
         Pieza pieza = new Catapulta();
         Pieza objetivo = new Catapulta();
+        objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0, 0);
         Posicion ubicacionObjetivo = new Posicion(20, 40);
         pieza.setPosicion(ubicacionPieza);
@@ -145,10 +151,11 @@ public class PiezaTest {
     }
 
     @Test
-    public void testCatapultaUsaHabilidadYNoMataAEnemigoCon21Vida() throws HabilidadFueraDeAlcanceException {
+    public void testCatapultaUsaHabilidadYNoMataAEnemigoCon21Vida() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         //Arrange
         Pieza pieza = new Catapulta();
         Pieza objetivo = new Catapulta();
+        objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0, 0);
         Posicion ubicacionObjetivo = new Posicion(20, 40);
         pieza.setPosicion(ubicacionPieza);
@@ -161,7 +168,7 @@ public class PiezaTest {
     }
 
     @Test
-    public void testCuranderoUsaHabilidadYSalvaAALiadoCon1DeVida() throws HabilidadFueraDeAlcanceException {
+    public void testCuranderoUsaHabilidadYSalvaAALiadoCon1DeVida() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         //Arrange
         Pieza pieza = new Curandero();
         Pieza objetivo = new Curandero();
@@ -178,7 +185,7 @@ public class PiezaTest {
     }
 
     @Test
-    public void testCuranderoUsaHabilidadYNoSalvaAALiadoCon1DeVida() throws HabilidadFueraDeAlcanceException {
+    public void testCuranderoUsaHabilidadYNoSalvaAALiadoCon1DeVida() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         //Arrange
         Pieza pieza = new Curandero();
         Pieza objetivo = new Curandero();
@@ -233,11 +240,12 @@ public class PiezaTest {
     }
 
     @Test
-    public void test03SoldadoDeInfanteriaAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException {
+    public void test03SoldadoDeInfanteriaAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         soldado.setPosicion(new Posicion(0, 0));
 
         Jinete enemigo = new Jinete();
+        enemigo.cambiarAlianza();
         enemigo.setPosicion(new Posicion(1, 0));
 
         enemigo.recibirDanio(90);
@@ -245,6 +253,7 @@ public class PiezaTest {
         assertFalse(enemigo.estaViva());
 
         enemigo = new Jinete();
+        enemigo.cambiarAlianza();
         enemigo.setPosicion(new Posicion(1, 0));
         enemigo.recibirDanio(89);
         soldado.usarHabilidadEn(enemigo);
@@ -253,17 +262,19 @@ public class PiezaTest {
     }
 
     @Test
-    public void test04JineteAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException {
+    public void test04JineteAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         SoldadoDeInfanteria enemigo =  new SoldadoDeInfanteria();
         enemigo.setPosicion(new Posicion(0, 0));
+        enemigo.cambiarAlianza();
 
-        Jinete jinete =new Jinete();
+        Jinete jinete = new Jinete();
         jinete.setPosicion(new Posicion(1, 0));
         enemigo.recibirDanio(95);
         jinete.usarHabilidadEn(enemigo);
         assertFalse(enemigo.estaViva());
 
         enemigo = new SoldadoDeInfanteria();
+        enemigo.cambiarAlianza();
         enemigo.setPosicion(new Posicion(0, 0));
         enemigo.recibirDanio(94);
         jinete.usarHabilidadEn(enemigo);
@@ -271,10 +282,11 @@ public class PiezaTest {
     }
 
     @Test
-    public void test05CatapultaAliadoAtacaAUnaPiezaEnemigaYSeVerificaQueSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException {
+    public void test05CatapultaAliadoAtacaAUnaPiezaEnemigaYSeVerificaQueSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         Catapulta catapulta = new Catapulta();
         catapulta.setPosicion(new Posicion(0, 0));
         Jinete enemigo = new Jinete();
+        enemigo.cambiarAlianza();
         enemigo.setPosicion(new Posicion(10, 0));
 
         enemigo.recibirDanio(80);
@@ -282,6 +294,7 @@ public class PiezaTest {
         assertFalse(enemigo.estaViva());
 
         enemigo = new Jinete();
+        enemigo.cambiarAlianza();
         enemigo.setPosicion(new Posicion(10, 0));
         enemigo.recibirDanio(79);
 
@@ -290,11 +303,12 @@ public class PiezaTest {
     }
 
     @Test
-    public void test06CuranderoAliadoCuraAUnaPiezaAliadaSeLeSumaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException {
+    public void test06CuranderoAliadoCuraAUnaPiezaAliadaSeLeSumaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         Curandero curandero =  new Curandero();
         curandero.setPosicion(new Posicion(0, 0));
 
         SoldadoDeInfanteria enemigo =  new SoldadoDeInfanteria();
+        enemigo.cambiarAlianza();
         enemigo.setPosicion(new Posicion(0, 1));
 
         Jinete aliado = new Jinete();
@@ -302,6 +316,10 @@ public class PiezaTest {
         aliado.recibirDanio(95);
 
         curandero.usarHabilidadEn(aliado);
+
+        // Cambio las alianzas
+        enemigo.cambiarAlianza();
+        aliado.cambiarAlianza();
 
         enemigo.usarHabilidadEn(aliado);
         enemigo.usarHabilidadEn(aliado);
@@ -311,7 +329,14 @@ public class PiezaTest {
         aliado.setPosicion(new Posicion(1, 0));
         aliado.recibirDanio(94);
 
+        // Cambio las alianzas
+        enemigo.cambiarAlianza();
         curandero.usarHabilidadEn(aliado);
+
+        // Cambio las alianzas
+        enemigo.cambiarAlianza();
+        aliado.cambiarAlianza();
+
         enemigo.usarHabilidadEn(aliado);
         enemigo.usarHabilidadEn(aliado);
         assertTrue(aliado.estaViva());
@@ -322,6 +347,7 @@ public class PiezaTest {
         //Arrange
         Pieza pieza = new SoldadoDeInfanteria();
         Pieza objetivo = new SoldadoDeInfanteria();
+        objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0, 0);
         Posicion ubicacionObjetivo = new Posicion(12, 7);
         pieza.setPosicion(ubicacionPieza);
@@ -338,6 +364,7 @@ public class PiezaTest {
         //Arrange
         Pieza pieza = new Jinete();
         Pieza objetivo = new Jinete();
+        objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0, 0);
         Posicion ubicacionObjetivo = new Posicion(12, 7);
         pieza.setPosicion(ubicacionPieza);
@@ -354,6 +381,7 @@ public class PiezaTest {
         //Arrange
         Pieza pieza = new Catapulta();
         Pieza objetivo = new Catapulta();
+        objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0, 0);
         Posicion ubicacionObjetivo = new Posicion(1, 1);
         pieza.setPosicion(ubicacionPieza);
