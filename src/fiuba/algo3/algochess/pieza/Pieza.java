@@ -1,7 +1,6 @@
 package fiuba.algo3.algochess.pieza;
 
 import fiuba.algo3.algochess.Posicion;
-import fiuba.algo3.algochess.alianza.Aliable;
 import fiuba.algo3.algochess.alianza.EstadoAliado;
 import fiuba.algo3.algochess.alianza.EstadoAlianza;
 import fiuba.algo3.algochess.pieza.habilidad.Habilidad;
@@ -11,7 +10,7 @@ import fiuba.algo3.algochess.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.pieza.movimiento.Movimiento;
 import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
 
-public abstract class Pieza implements Aliable {
+public abstract class Pieza /*implements Aliable*/ {
     private float vidaInicial;
     private float vida;
     private int coste;
@@ -53,14 +52,15 @@ public abstract class Pieza implements Aliable {
     }
 
     public void recibirCuracion(float curacion) {
-        if(vida + curacion > vidaInicial){
-            curacion = vidaInicial - vida;
+        vida = alianza.recibirCuracion(this.vida,curacion);
+
+        if(vida  > vidaInicial){
+            vida = vidaInicial;
         }
-        vida += curacion;
     }
 
-    public void recibirDanio(float danio) {
-        vida -= danio;
+    public void descontarDanio(float danio) {
+        vida = alianza.descontarDanio(this.vida,danio);
     }
 
     public boolean estaViva(){
@@ -71,12 +71,9 @@ public abstract class Pieza implements Aliable {
         this.posicion = movimiento.mover(posicion, direccion);
     }
 
-    @Override
-    public boolean esAliado() {
-        return alianza.esAliado();
-    }
-    @Override
+   /*@Override
     public void cambiarAlianza() {
         alianza = alianza.cambiar();
     }
+    */
 }

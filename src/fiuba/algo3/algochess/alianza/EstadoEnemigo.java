@@ -7,7 +7,12 @@ public class EstadoEnemigo implements EstadoAlianza {
     }
 
     @Override
-    public boolean esAliado() {
-        return false;
+    public float descontarDanio(float vida, float danio){
+        return (vida -danio);
+    }
+
+    @Override
+    public float recibirCuracion(float vida,float curacion){
+        return vida;
     }
 }

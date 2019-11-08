@@ -20,7 +20,7 @@ public abstract class Arma {
         if (!alcance.llegoA(desde, posicionEnemigo)) {
             throw new HabilidadFueraDeAlcanceException();
         }
-        objetivo.recibirDanio(danio);
+        objetivo.descontarDanio(danio);
     }
 
 }
