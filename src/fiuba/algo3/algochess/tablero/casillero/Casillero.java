@@ -1,36 +1,40 @@
 package fiuba.algo3.algochess.tablero.casillero;
 
-import fiuba.algo3.algochess.alianza.Aliable;
-import fiuba.algo3.algochess.alianza.EstadoAliado;
-import fiuba.algo3.algochess.alianza.EstadoAlianza;
+import fiuba.algo3.algochess.Aliable;
+import fiuba.algo3.algochess.pieza.Pieza;
+import fiuba.algo3.algochess.pieza.PiezaNula;
 
 public class Casillero implements Aliable {
     private EstadoCasillero estado;
-    private EstadoAlianza alianza;
+    private CasilleroAlianza alianza;
+    private Pieza pieza;
 
     public Casillero() {
         estado = new EstadoCasilleroVacio();
-        alianza = new EstadoAliado();
+        alianza = new CasilleroAliado();
+        pieza = new PiezaNula();
     }
 
-    public boolean estaVacio() {
-        return estado.estaVacio();
-    }
-
-    public void vaciar() throws VaciarCasilleroVacioException {
-        estado = estado.vaciar();
-    }
-
-    public void ocupar() throws ColocarEnCasilleroOcupadoException {
+    public void ocupar(Pieza pieza) throws ColocarEnCasilleroOcupadoException {
+        this.pieza = pieza;
         estado = estado.ocupar();
     }
+
+
+    public void posicionar(Pieza pieza) throws ColocarEnCasilleroEnemigoException, ColocarEnCasilleroOcupadoException {
+        alianza.posicionar(estado);
+        ocupar(pieza);
+    }
+
+    public Pieza sacar() throws VaciarCasilleroVacioException {
+        Pieza piezaASacar = pieza;
+        estado = estado.vaciar();
+        pieza = new PiezaNula();
+        return piezaASacar;
+    }
+
     @Override
     public void cambiarAlianza() {
         alianza = alianza.cambiar();
-    }
-
-    @Override
-    public boolean esAliado() {
-        return alianza.esAliado();
     }
 }

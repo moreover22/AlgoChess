@@ -12,8 +12,10 @@ public abstract class Direccion {
     }
 
     public Posicion aplicarA(Posicion desde) {
-        int nuevoX = desde.getX() + deltaX;
-        int nuevoY = desde.getY() + deltaY;
-        return new Posicion(nuevoX, nuevoY);
+        return desde.aplicarDireccion(deltaX, deltaY);
+    }
+
+    public Posicion opuestaA(Posicion desde) {
+        return desde.aplicarDireccion(-deltaX, -deltaY);
     }
 }

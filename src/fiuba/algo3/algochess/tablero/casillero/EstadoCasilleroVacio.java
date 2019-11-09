@@ -10,9 +10,4 @@ public class EstadoCasilleroVacio implements EstadoCasillero {
     public EstadoCasillero vaciar() throws VaciarCasilleroVacioException {
         throw new VaciarCasilleroVacioException();
     }
-
-    @Override
-    public boolean estaVacio() {
-        return true;
-    }
 }

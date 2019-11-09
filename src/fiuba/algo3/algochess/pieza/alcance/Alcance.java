@@ -27,24 +27,3 @@ public abstract class Alcance {
         return distancia <= distanciaMaxima;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
