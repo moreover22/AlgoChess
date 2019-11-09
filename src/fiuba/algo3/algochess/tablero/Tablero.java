@@ -1,11 +1,14 @@
 package fiuba.algo3.algochess.tablero;
 
 import fiuba.algo3.algochess.Posicion;
-import fiuba.algo3.algochess.tablero.casillero.Casillero;
-import fiuba.algo3.algochess.tablero.casillero.CasilleroException;
+import fiuba.algo3.algochess.pieza.Pieza;
+import fiuba.algo3.algochess.tablero.casillero.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Tablero {
-    private Casillero[][] casilleros;
+    private Map<Posicion, Casillero> casilleros;
     private int cantFilas;
     private int cantColumnas;
 
@@ -16,46 +19,45 @@ public class Tablero {
     public Tablero(int cantFilas, int cantColumnas) {
         this.cantFilas = cantFilas;
         this.cantColumnas = cantColumnas;
-        this.casilleros = new CreadorTablero(cantFilas, cantColumnas).getCasilleros();
+        this.casilleros = new HashMap<>();
+        inicializarCasilleros();
     }
 
-    public boolean estaVacio() {
-        for (Casillero[] fila : casilleros)
-            for (Casillero casillero : fila)
-                if (!casillero.estaVacio()) return false;
-        return true;
+    private void inicializarCasilleros() {
+        for (int i = 0; i < cantFilas; i++) {
+            iniciarFila(i);
+        }
     }
-
-    public void ocuparCasillero(Posicion posicion) throws CasilleroException, FueraDelTableroException {
-        getCasillero(posicion).ocupar();
-    }
-
-    public void vaciarCasillero(Posicion posicion) throws CasilleroException, FueraDelTableroException {
-        getCasillero(posicion).vaciar();
-    }
-
-    public boolean esAliado(Posicion posicion) throws FueraDelTableroException {
-        return getCasillero(posicion).esAliado();
+    private void iniciarFila(int fila) {
+        for (int j = 0; j < cantColumnas; j++){
+            Casillero casillero = new Casillero();
+            if (j >= cantColumnas / 2) {
+                casillero.cambiarAlianza();
+            }
+            casilleros.put(new Posicion(fila, j),casillero);
+        }
     }
 
     private boolean estaDentro(Posicion posicion) {
-        int fila = posicion.getX();
-        int columna = posicion.getY();
-        boolean dentroDeFila = fila >= 0 && fila < this.getCantFilas();
-        boolean dentroDeColumna = columna >= 0 && columna < this.getCantColumnas();
-        return dentroDeFila && dentroDeColumna;
+        return posicion.estaDentroDe(0, 0, cantFilas, cantColumnas);
     }
 
     private Casillero getCasillero(Posicion posicion) throws FueraDelTableroException {
-        if (!this.estaDentro(posicion)) throw new FueraDelTableroException();
-        return casilleros[posicion.getX()][posicion.getY()];
+        if (!estaDentro(posicion)) throw new FueraDelTableroException();
+        return casilleros.get(posicion);
     }
 
-    public int getCantFilas() {
-        return cantFilas;
+    public void posicionar(Pieza pieza, Posicion posicion) throws FueraDelTableroException, ColocarEnCasilleroEnemigoException, ColocarEnCasilleroOcupadoException {
+        getCasillero(posicion).posicionar(pieza);
+        pieza.setPosicion(posicion);
     }
 
-    public int getCantColumnas() {
-        return cantColumnas;
+    public void ocupar(Pieza pieza, Posicion posicion) throws FueraDelTableroException, ColocarEnCasilleroOcupadoException {
+        getCasillero(posicion).ocupar(pieza);
+        pieza.setPosicion(posicion);
+    }
+
+    public Pieza sacar(Posicion posicion) throws FueraDelTableroException, VaciarCasilleroVacioException {
+        return getCasillero(posicion).sacar();
     }
 }
