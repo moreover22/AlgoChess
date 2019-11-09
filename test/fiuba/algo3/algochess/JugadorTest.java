@@ -27,7 +27,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void testJugadorAgregaUnaPiezaYSeDescuentaDePuntosElCosteDeLaPieza() throws CantidadDePuntosInsuficientesException, CasilleroException, FueraDelTableroException {
+    public void testJugadorAgregaUnaPiezaYSeDescuentaDePuntosElCosteDeLaPieza() throws CantidadDePuntosInsuficientesException {
         // Arrange
         Jugador jugador = new Jugador(20);
         Pieza pieza = new SoldadoDeInfanteria();

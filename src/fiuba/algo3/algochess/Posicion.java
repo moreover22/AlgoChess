@@ -52,6 +52,7 @@ public class Posicion {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
+        if (getClass() != o.getClass()) return false;
         Posicion otraPosicion = (Posicion) o;
         return otraPosicion.x == x && otraPosicion.y == y;
     }

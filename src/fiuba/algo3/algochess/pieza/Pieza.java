@@ -79,7 +79,7 @@ public abstract class Pieza implements Aliable {
         return vida > 0;
     }
 
-    public Posicion mover(Direccion direccion) throws MovimientoFueraDeAlcanceException, FueraDelTableroException, VaciarCasilleroVacioException, ColocarEnCasilleroOcupadoException {
+    public Posicion mover(Direccion direccion) throws MovimientoFueraDeAlcanceException {
         this.posicion = movimiento.mover(posicion, direccion);
         return posicion;
     }

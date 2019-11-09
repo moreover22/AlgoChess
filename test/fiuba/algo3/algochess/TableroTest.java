@@ -47,7 +47,7 @@ public class TableroTest {
     }
 
     @Test
-    public void testTableroAlColocarUnaPiezaEnUnCasilleroEnemigoSeLanzaCasilleroEnemigoException() throws FueraDelTableroException {
+    public void testTableroAlColocarUnaPiezaEnUnCasilleroEnemigoSeLanzaCasilleroEnemigoException() {
         // Arrange
          Tablero tablero = new Tablero();
         Pieza piezaConcreta = new SoldadoDeInfanteria();

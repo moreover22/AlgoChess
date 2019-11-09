@@ -12,8 +12,6 @@ import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroOcupadoExceptio
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 
 public class PiezaTest {
@@ -444,8 +442,7 @@ public class PiezaTest {
         Pieza pieza = new SoldadoDeInfanteria();
         Posicion posicion = new Posicion(0, 0);
         chess.colocar(pieza, posicion);
-        Direccion direccion = mock(DireccionIzquierda.class);
-        when(direccion.aplicarA(posicion)).thenReturn(new Posicion(0, 2));
+        Direccion direccion = new Direccion(2, 0);
         // Act - Assert
         assertThrows(MovimientoFueraDeAlcanceException.class,
                 () -> {
