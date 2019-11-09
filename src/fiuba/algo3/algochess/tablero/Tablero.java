@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.tablero;
 
 import fiuba.algo3.algochess.Posicion;
+import fiuba.algo3.algochess.Rango;
 import fiuba.algo3.algochess.pieza.Pieza;
 import fiuba.algo3.algochess.tablero.casillero.*;
 
@@ -11,7 +12,7 @@ public class Tablero {
     private Map<Posicion, Casillero> casilleros;
     private int cantFilas;
     private int cantColumnas;
-
+    private Rango rango;
     public Tablero() {
         this(20, 20);
     }
@@ -19,6 +20,7 @@ public class Tablero {
     public Tablero(int cantFilas, int cantColumnas) {
         this.cantFilas = cantFilas;
         this.cantColumnas = cantColumnas;
+        this.rango = new Rango(0, 0, cantFilas, cantColumnas);
         this.casilleros = new HashMap<>();
         inicializarCasilleros();
     }
@@ -28,6 +30,7 @@ public class Tablero {
             iniciarFila(i);
         }
     }
+
     private void iniciarFila(int fila) {
         for (int j = 0; j < cantColumnas; j++){
             Casillero casillero = new Casillero();
@@ -38,12 +41,8 @@ public class Tablero {
         }
     }
 
-    private boolean estaDentro(Posicion posicion) {
-        return posicion.estaDentroDe(0, 0, cantFilas, cantColumnas);
-    }
-
     private Casillero getCasillero(Posicion posicion) throws FueraDelTableroException {
-        if (!estaDentro(posicion)) throw new FueraDelTableroException();
+        if (!posicion.estaDentroDe(rango)) throw new FueraDelTableroException();
         return casilleros.get(posicion);
     }
 

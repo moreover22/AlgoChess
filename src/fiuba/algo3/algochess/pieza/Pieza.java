@@ -3,6 +3,7 @@ package fiuba.algo3.algochess.pieza;
 import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.Aliable;
 import fiuba.algo3.algochess.pieza.alcance.Alcance;
+import fiuba.algo3.algochess.pieza.alcance.AlcanceInmediato;
 import fiuba.algo3.algochess.pieza.habilidad.*;
 import fiuba.algo3.algochess.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.pieza.movimiento.Movimiento;
@@ -21,8 +22,12 @@ public abstract class Pieza implements Aliable {
     protected Pieza(float vidaInicial) {
         this.vidaInicial = vidaInicial;
         this.vida = vidaInicial;
-        this.movimiento = new Movimiento();
         this.alianza = new PiezaAliada();
+        this.setMovimiento(new Movimiento(new AlcanceInmediato()));
+    }
+
+    protected void setMovimiento(Movimiento movimiento) {
+        this.movimiento = movimiento;
     }
 
     protected void setHabilidad(Habilidad habilidad) {
@@ -77,7 +82,7 @@ public abstract class Pieza implements Aliable {
     }
 
     public Posicion mover(Direccion direccion) throws MovimientoFueraDeAlcanceException {
-        this.posicion = movimiento.mover(posicion, direccion);
+        posicion = movimiento.mover(posicion, direccion);
         return posicion;
     }
 

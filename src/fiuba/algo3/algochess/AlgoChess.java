@@ -7,6 +7,7 @@ import fiuba.algo3.algochess.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.pieza.Pieza;
 import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.tablero.Tablero;
+import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroOcupadoException;
 
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ public class AlgoChess {
         jugadores = new Jugador[2];
     }
 
-    public void colocar(Pieza pieza, Posicion posicion) throws FueraDelTableroException, ColocarEnCasilleroOcupadoException {
-        tablero.ocupar(pieza, posicion);
+    public void posicionar(Pieza pieza, Posicion posicion) throws FueraDelTableroException, ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
+        tablero.posicionar(pieza, posicion);
     }
 
     public Posicion mover(Pieza pieza, Direccion direccion) throws CasilleroException, FueraDelTableroException, MovimientoFueraDeAlcanceException {

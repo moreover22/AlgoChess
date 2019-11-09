@@ -12,12 +12,8 @@ public class Posicion {
         this.y = y;
     }
 
-    public boolean estaDentroDe(int minimoX, int minimoY, int maximoX, int maximoY) {
-        return dentroDeRango(x, minimoX, maximoX) && dentroDeRango(y, minimoY, maximoY);
-    }
-
-    private boolean dentroDeRango(int valor, int valorMinimo, int valorMaximo) {
-        return (valor >= valorMinimo) && (valor < valorMaximo);
+    public boolean estaDentroDe(Rango rango) {
+        return rango.estaDentro(x, y);
     }
 
     private int deltaX(int x){

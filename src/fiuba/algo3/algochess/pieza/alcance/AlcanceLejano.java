@@ -6,7 +6,7 @@ public class AlcanceLejano extends Alcance {
      }
 
     @Override
-    public boolean llegoDistanciaMaxima(int distancia) {
+    final protected boolean llegoDistanciaMaxima(int distancia) {
         return true;
     }
 }

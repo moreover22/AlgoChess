@@ -8,6 +8,7 @@ import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.pieza.movimiento.*;
 import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.tablero.casillero.CasilleroException;
+import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroOcupadoException;
 import org.junit.Test;
 
@@ -203,9 +204,9 @@ public class PiezaTest {
     public void test01PiezaNoPuedeMoverseAUnCasilleroOcupado() throws CasilleroException, FueraDelTableroException {
         AlgoChess chess = new AlgoChess();
         Pieza pieza1 = new SoldadoDeInfanteria();
-        chess.colocar(pieza1, new Posicion(0, 0));
+        chess.posicionar(pieza1, new Posicion(0, 0));
         Pieza pieza2 = new SoldadoDeInfanteria();
-        chess.colocar(pieza2, new Posicion(0, 1));
+        chess.posicionar(pieza2, new Posicion(0, 1));
 
         assertThrows(ColocarEnCasilleroOcupadoException.class,
                 ()->{
@@ -218,7 +219,7 @@ public class PiezaTest {
         AlgoChess chess = new AlgoChess();
         Pieza pieza = new SoldadoDeInfanteria();
 
-        chess.colocar(pieza, new Posicion(0, 0));
+        chess.posicionar(pieza, new Posicion(0, 0));
 
         Posicion destino = chess.mover(pieza, new DireccionAbajo());
         assertEquals(new Posicion(0, 1), destino);
@@ -436,12 +437,12 @@ public class PiezaTest {
     }
 
     @Test
-    public void testPiezaNoSePuedeMoverAUnaDireccionMayorAUno() throws FueraDelTableroException, ColocarEnCasilleroOcupadoException {
+    public void testPiezaNoSePuedeMoverAUnaDireccionMayorAUno() throws FueraDelTableroException, ColocarEnCasilleroOcupadoException, ColocarEnCasilleroEnemigoException {
         // Arrange
         AlgoChess chess = new AlgoChess();
         Pieza pieza = new SoldadoDeInfanteria();
         Posicion posicion = new Posicion(0, 0);
-        chess.colocar(pieza, posicion);
+        chess.posicionar(pieza, posicion);
         Direccion direccion = new Direccion(2, 0);
         // Act - Assert
         assertThrows(MovimientoFueraDeAlcanceException.class,
