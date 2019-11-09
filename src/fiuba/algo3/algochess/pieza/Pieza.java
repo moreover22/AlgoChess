@@ -7,9 +7,6 @@ import fiuba.algo3.algochess.pieza.habilidad.*;
 import fiuba.algo3.algochess.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.pieza.movimiento.Movimiento;
 import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
-import fiuba.algo3.algochess.tablero.FueraDelTableroException;
-import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroOcupadoException;
-import fiuba.algo3.algochess.tablero.casillero.VaciarCasilleroVacioException;
 
 public abstract class Pieza implements Aliable {
     private float vidaInicial;

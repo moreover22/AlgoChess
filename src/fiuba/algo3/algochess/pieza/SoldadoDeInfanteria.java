@@ -10,23 +10,3 @@ public class SoldadoDeInfanteria extends Pieza {
         this.setHabilidad(new Ataque(new EspadaPesada()));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

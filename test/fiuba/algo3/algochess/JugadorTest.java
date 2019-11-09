@@ -9,7 +9,6 @@ import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
 import fiuba.algo3.algochess.pieza.Pieza;
 import fiuba.algo3.algochess.jugador.Jugador;
 
-import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

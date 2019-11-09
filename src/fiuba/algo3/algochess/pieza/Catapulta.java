@@ -12,23 +12,3 @@ public class Catapulta extends Pieza {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

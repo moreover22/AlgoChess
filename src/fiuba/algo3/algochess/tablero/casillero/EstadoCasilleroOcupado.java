@@ -11,17 +11,3 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
         return new EstadoCasilleroVacio();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
