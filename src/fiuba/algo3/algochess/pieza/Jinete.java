@@ -9,27 +9,4 @@ public class Jinete extends Pieza {
         this.setCoste(3);
         this.setHabilidad(new Ataque(new EspadaLiviana()));
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

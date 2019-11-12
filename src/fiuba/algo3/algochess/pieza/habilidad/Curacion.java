@@ -16,17 +16,10 @@ public class Curacion implements Habilidad {
 
     @Override
     public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
-        if(!alcance.llegoA(desde, objetivo.getPosicion())) {
-            throw new HabilidadFueraDeAlcanceException();
-        }
-        objetivo.recibirCuracion(curacion);
+        objetivo.recibirCuracion(curacion, desde,alcance);
     }
 
 }
-
-
-
-
 
 
 
