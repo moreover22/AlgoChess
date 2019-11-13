@@ -167,15 +167,18 @@ public class Entrega1Test {
 
     //Pruebas de Tablero
 
-    /*
     @Test
-    public void test06TableroAlColocarUnaPiezaDejaDeEstarVacio() throws CasilleroException, FueraDelTableroException {
+    public void test06SeColocaUnaPiezaAliadaEnUnCasilleroDelSectorAliadoVacíoConExito() throws CasilleroException, FueraDelTableroException {
+        //Arrange
         Tablero tablero = new Tablero();
         Pieza piezaConcreta = new SoldadoDeInfanteria();
-        tablero.posicionar(piezaConcreta, 0, 0);
-        assertFalse(tablero.estaVacio());
+        Posicion posicion =  new Posicion(0, 0);
+        //Act
+        tablero.posicionar(piezaConcreta,posicion);
+        //Assert
+        assertEquals(piezaConcreta,tablero.sacar(posicion));
+
     }
-*/
 
     @Test
     public void test07TableroAlColocarUnaPiezaEnUnCasilleroOcupadoSeLanzaCasilleroOcupadoException() throws CasilleroException, FueraDelTableroException {
@@ -202,13 +205,13 @@ public class Entrega1Test {
                     tablero.posicionar(piezaConcreta, new Posicion(0, 10));
                 });
     }
-/*
+
     @Test
-    public void test09TableroRecienCreadoEstaVacio() {
+    public void test09TableroSeCreaECorrectamente() {
         Tablero tablero = new Tablero();
-        assertTrue(tablero.estaVacio());
+        assertNotNull(tablero);
     }
-*/
+
 
     //Prueba de Jugador
 
