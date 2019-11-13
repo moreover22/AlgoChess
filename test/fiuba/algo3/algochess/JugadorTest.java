@@ -1,12 +1,14 @@
 package fiuba.algo3.algochess;
 
+import fiuba.algo3.algochess.pieza.alcance.AlcanceCercano;
+import fiuba.algo3.algochess.pieza.habilidad.AtaqueAAliadoException;
+import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.tablero.casillero.CasilleroException;
 import fiuba.algo3.algochess.jugador.CantidadDePuntosInsuficientesException;
 import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
 import fiuba.algo3.algochess.pieza.Pieza;
 import fiuba.algo3.algochess.jugador.Jugador;
 
-import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +26,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void testJugadorAgregaUnaPiezaYSeDescuentaDePuntosElCosteDeLaPieza() throws CantidadDePuntosInsuficientesException, CasilleroException, FueraDelTableroException {
+    public void testJugadorAgregaUnaPiezaYSeDescuentaDePuntosElCosteDeLaPieza() throws CantidadDePuntosInsuficientesException {
         // Arrange
         Jugador jugador = new Jugador(20);
         Pieza pieza = new SoldadoDeInfanteria();
@@ -111,27 +113,31 @@ public class JugadorTest {
     }
 
     @Test
-    public void testJugadorConUnaPiezaVivaYUnaMuertaSigueEnPartida()throws CantidadDePuntosInsuficientesException{
+    public void testJugadorConUnaPiezaVivaYUnaMuertaSigueEnPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, AtaqueAAliadoException {
         // Arrange
         Jugador jugador = new Jugador(20);
         Pieza pieza1 = new SoldadoDeInfanteria();
+        pieza1.cambiarAlianza();
+        pieza1.setPosicion(new Posicion(0, 0));
         Pieza pieza2 = new SoldadoDeInfanteria();
         //Act
         jugador.agregarPieza(pieza1);
         jugador.agregarPieza(pieza2);
-        pieza1.recibirDanio(100);
+        pieza1.recibirDanio(100, new Posicion(1, 0), new AlcanceCercano());
         //Assert
         assertFalse(jugador.perdio());
     }
 
     @Test
-    public void testJugadorSinPiezasPierdeLaPartida()throws CantidadDePuntosInsuficientesException {
+    public void testJugadorSinPiezasPierdeLaPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, AtaqueAAliadoException {
         // Arrange
         Jugador jugador = new Jugador(20);
         Pieza pieza = new SoldadoDeInfanteria();
+        pieza.setPosicion(new Posicion(0, 0));
+        pieza.cambiarAlianza();
         // Act
         jugador.agregarPieza(pieza);
-        pieza.recibirDanio(100);
+        pieza.recibirDanio(100, new Posicion(1, 0), new AlcanceCercano());
         //Assert
         assertTrue(jugador.perdio());
 
