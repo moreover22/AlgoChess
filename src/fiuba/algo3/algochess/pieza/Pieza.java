@@ -1,15 +1,15 @@
 package fiuba.algo3.algochess.pieza;
 
-import fiuba.algo3.algochess.Posicion;
-import fiuba.algo3.algochess.pieza.habilidad.Habilidad;
-import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
-import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
-import fiuba.algo3.algochess.pieza.alcance.Alcance;
-import fiuba.algo3.algochess.pieza.alcance.AlcanceInmediato;
-import fiuba.algo3.algochess.pieza.habilidad.*;
-import fiuba.algo3.algochess.pieza.movimiento.Direccion;
-import fiuba.algo3.algochess.pieza.movimiento.Movimiento;
-import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
+        import fiuba.algo3.algochess.Posicion;
+        import fiuba.algo3.algochess.pieza.habilidad.Habilidad;
+        import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
+        import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
+        import fiuba.algo3.algochess.pieza.alcance.Alcance;
+        import fiuba.algo3.algochess.pieza.alcance.AlcanceInmediato;
+        import fiuba.algo3.algochess.pieza.habilidad.*;
+        import fiuba.algo3.algochess.pieza.movimiento.Direccion;
+        import fiuba.algo3.algochess.pieza.movimiento.Movimiento;
+        import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
 
 public abstract class Pieza /*implements Aliable*/ {
     private float vidaInicial;
@@ -92,6 +92,26 @@ public abstract class Pieza /*implements Aliable*/ {
     public int descontarCoste(int puntos){
         return puntos - coste;
     }
+
+    public int agregarCoste(int puntos){
+        return puntos + coste;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

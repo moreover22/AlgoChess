@@ -18,7 +18,7 @@ public class Jugador {
     }
 
     public void sacarPieza(Pieza pieza) {
-        //puntos += pieza.getCoste(); //para que le volvemos a sumar los puntos unavez que saca la pieza??
+        puntos = pieza.agregarCoste(puntos);
         piezas.remove(pieza);
     }
 
