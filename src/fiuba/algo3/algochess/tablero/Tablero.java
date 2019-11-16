@@ -60,3 +60,10 @@ public class Tablero {
         return getCasillero(posicion).sacar();
     }
 }
+
+
+
+
+
+
+

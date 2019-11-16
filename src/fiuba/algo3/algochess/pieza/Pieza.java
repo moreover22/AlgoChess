@@ -1,15 +1,17 @@
 package fiuba.algo3.algochess.pieza;
 
-import fiuba.algo3.algochess.Posicion;
-import fiuba.algo3.algochess.Aliable;
-import fiuba.algo3.algochess.pieza.alcance.Alcance;
-import fiuba.algo3.algochess.pieza.alcance.AlcanceInmediato;
-import fiuba.algo3.algochess.pieza.habilidad.*;
-import fiuba.algo3.algochess.pieza.movimiento.Direccion;
-import fiuba.algo3.algochess.pieza.movimiento.Movimiento;
-import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
+        import fiuba.algo3.algochess.Posicion;
+        import fiuba.algo3.algochess.pieza.habilidad.Habilidad;
+        import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
+        import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
+        import fiuba.algo3.algochess.pieza.alcance.Alcance;
+        import fiuba.algo3.algochess.pieza.alcance.AlcanceInmediato;
+        import fiuba.algo3.algochess.pieza.habilidad.*;
+        import fiuba.algo3.algochess.pieza.movimiento.Direccion;
+        import fiuba.algo3.algochess.pieza.movimiento.Movimiento;
+        import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
 
-public abstract class Pieza implements Aliable {
+public abstract class Pieza /*implements Aliable*/ {
     private float vidaInicial;
     private float vida;
     private int coste;
@@ -43,9 +45,6 @@ public abstract class Pieza implements Aliable {
     }
 
     // TODO ver si hay que sacarlo
-    public int getCoste() {
-        return coste;
-    }
 
     public void setPosicion(Posicion posicion) {
         this.posicion = posicion;
@@ -78,7 +77,7 @@ public abstract class Pieza implements Aliable {
     }
 
     public boolean estaViva(){
-        return vida > 0;
+        return (vida > 0);
     }
 
     public Posicion mover(Direccion direccion) throws MovimientoFueraDeAlcanceException {
@@ -86,8 +85,27 @@ public abstract class Pieza implements Aliable {
         return posicion;
     }
 
-    @Override
-    public void cambiarAlianza() {
+    public void cambiarAlianza(){
         alianza = alianza.cambiar();
     }
+
+    public int descontarCoste(int puntos){
+        return puntos - coste;
+    }
+
+    public int agregarCoste(int puntos){
+        return puntos + coste;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+

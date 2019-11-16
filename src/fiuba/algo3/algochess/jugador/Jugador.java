@@ -18,7 +18,7 @@ public class Jugador {
     }
 
     public void sacarPieza(Pieza pieza) {
-        puntos += pieza.getCoste();
+        puntos = pieza.agregarCoste(puntos);
         piezas.remove(pieza);
     }
 
@@ -27,10 +27,10 @@ public class Jugador {
     }
 
     public void agregarPieza(Pieza pieza) throws CantidadDePuntosInsuficientesException {
-        if (puntos - pieza.getCoste() < 0) {
+        if (pieza.descontarCoste(puntos) < 0) {
             throw new CantidadDePuntosInsuficientesException();
         }
-        puntos -= pieza.getCoste();
+        puntos = pieza.descontarCoste(puntos);
         piezas.add(pieza);
     }
 

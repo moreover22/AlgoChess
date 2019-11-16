@@ -1,12 +1,14 @@
 package fiuba.algo3.algochess;
 
 
-import fiuba.algo3.algochess.pieza.*;
+import fiuba.algo3.algochess.pieza.Pieza;
+import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
 import fiuba.algo3.algochess.pieza.habilidad.*;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ArmaTest {
 

@@ -16,5 +16,21 @@ public abstract class Arma {
 
     public void atacarA(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException {
         objetivo.recibirDanio(danio, desde, alcance);
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

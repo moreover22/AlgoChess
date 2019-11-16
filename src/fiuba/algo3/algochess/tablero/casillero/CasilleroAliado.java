@@ -7,7 +7,28 @@ public class CasilleroAliado implements CasilleroAlianza {
     }
 
     @Override
-    public EstadoCasillero posicionar(EstadoCasillero estado) throws ColocarEnCasilleroOcupadoException {
-        return estado.ocupar();
+    public void posicionar() {
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
