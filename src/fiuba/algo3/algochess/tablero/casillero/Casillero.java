@@ -32,9 +32,11 @@ public class Casillero implements Aliable {
         pieza = new PiezaNula();
         return piezaASacar;
     }
+    public Pieza getPieza(){return this.pieza;}
 
     @Override
     public void cambiarAlianza() {
         alianza = alianza.cambiar();
     }
+
 }

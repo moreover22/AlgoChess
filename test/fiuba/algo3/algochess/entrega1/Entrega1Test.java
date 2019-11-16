@@ -206,7 +206,9 @@ public class Entrega1Test {
     @Test
     public void test09TableroRecienCreadoEstaVacio() {
         Tablero tablero = new Tablero();
-        assertTrue(tablero.estaVacio());
+        boolean tableroVacio = false;
+
+        assertTrue(tableroVacio);
     }
 */
 

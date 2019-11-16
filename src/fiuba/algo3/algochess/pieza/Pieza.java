@@ -11,6 +11,8 @@ package fiuba.algo3.algochess.pieza;
         import fiuba.algo3.algochess.pieza.movimiento.Movimiento;
         import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
 
+        import java.util.List;
+
 public abstract class Pieza /*implements Aliable*/ {
     private float vidaInicial;
     private float vida;
@@ -20,6 +22,7 @@ public abstract class Pieza /*implements Aliable*/ {
     private Habilidad habilidad;
     private Movimiento movimiento;
     private PiezaAlianza alianza;
+    private List<Pieza> piezas;
 
     protected Pieza(float vidaInicial) {
         this.vidaInicial = vidaInicial;
@@ -95,6 +98,10 @@ public abstract class Pieza /*implements Aliable*/ {
 
     public int agregarCoste(int puntos){
         return puntos + coste;
+    }
+
+    public void agregarVecino (Pieza pieza){
+        piezas.add(pieza);
     }
 
 
