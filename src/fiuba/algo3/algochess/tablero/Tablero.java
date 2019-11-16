@@ -42,6 +42,7 @@ public class Tablero {
         }
     }
 
+    //TODO Hay que sacarlo
     private Casillero getCasillero(Posicion posicion) throws FueraDelTableroException {
         if (!posicion.estaDentroDe(rango)) throw new FueraDelTableroException();
         return casilleros.get(posicion);

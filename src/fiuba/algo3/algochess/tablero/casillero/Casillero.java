@@ -23,7 +23,7 @@ public class Casillero implements Aliable {
 
     public void posicionar(Pieza pieza) throws ColocarEnCasilleroEnemigoException, ColocarEnCasilleroOcupadoException {
         alianza.posicionar();
-         ocupar(pieza);
+        ocupar(pieza);
     }
 
     public Pieza sacar() throws VaciarCasilleroVacioException {
@@ -39,9 +39,11 @@ public class Casillero implements Aliable {
         alianza = alianza.cambiar();
     }
 
+    public void aplicarDanioTerritorio() {
+        alianza.aplicarDanioTerritorio(pieza);
+    }
+
 }
-
-
 
 
 

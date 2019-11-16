@@ -11,9 +11,11 @@ package fiuba.algo3.algochess.pieza;
         import fiuba.algo3.algochess.pieza.movimiento.Movimiento;
         import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
 
+
         import java.util.List;
 
-public abstract class Pieza /*implements Aliable*/ {
+public abstract class Pieza  {
+
     private float vidaInicial;
     private float vida;
     private int coste;
@@ -23,6 +25,8 @@ public abstract class Pieza /*implements Aliable*/ {
     private Movimiento movimiento;
     private PiezaAlianza alianza;
     private List<Pieza> piezas;
+
+    static final int PORCENTAJE_DANIO_TERRITORIO = 5;
 
     protected Pieza(float vidaInicial) {
         this.vidaInicial = vidaInicial;
@@ -105,6 +109,10 @@ public abstract class Pieza /*implements Aliable*/ {
         piezas.add(pieza);
     }
 
+
+    public void  recibirDanioTerritorio() {
+        vida -= PORCENTAJE_DANIO_TERRITORIO * vidaInicial /100;
+    }
 }
 
 
