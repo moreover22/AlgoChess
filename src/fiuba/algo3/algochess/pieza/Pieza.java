@@ -100,25 +100,10 @@ public abstract class Pieza /*implements Aliable*/ {
         return puntos + coste;
     }
 
+
     public void agregarVecino (Pieza pieza){
         piezas.add(pieza);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
