@@ -85,4 +85,27 @@ public class PiezaJineteTest {
         // Assert
         assertEquals(95, soldadoEnemigo.getVida());
     }
+
+    @Test
+    public void testJineteMataAEnemigoCercanoArmaCambiaAArcoYFlechaYPuedeAtacarAEnemigoADistanciaLejana() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        Jinete jinete = new Jinete();
+        SoldadoDeInfanteria soldadoEnemigoCercano = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldadoEnemigoMediano = new SoldadoDeInfanteria();
+        soldadoEnemigoCercano.cambiarAlianza();
+        soldadoEnemigoMediano.cambiarAlianza();
+        // Arrange - Posiciono
+        jinete.posicionar(tablero, new Posicion(0, 9));
+        tablero.cambiarAlianza();
+        soldadoEnemigoCercano.posicionar(tablero, new Posicion(0, 10));
+        soldadoEnemigoMediano.posicionar(tablero, new Posicion(0, 12));
+        while(soldadoEnemigoCercano.estaViva()) {
+            jinete.usarHabilidadEn(tablero, soldadoEnemigoCercano);
+        }
+        // Act
+        jinete.usarHabilidadEn(tablero, soldadoEnemigoMediano);
+        // Assert
+        assertEquals(85, soldadoEnemigoMediano.getVida());
+    }
 }

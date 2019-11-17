@@ -27,8 +27,9 @@ public abstract class Pieza implements Aliable, Movible {
         this.movimiento = new Movimiento(new AlcanceInmediato());
     }
 
-    public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
+    public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, FueraDelTableroException {
         habilidad.usarCon(objetivo, posicion);
+        if (!objetivo.estaViva()) tablero.sacar(objetivo.getPosicion());
     }
 
     public void posicionar(Tablero tablero, Posicion posicion) throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
