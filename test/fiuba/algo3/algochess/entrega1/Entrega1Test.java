@@ -1,11 +1,9 @@
 package fiuba.algo3.algochess.entrega1;
 
-import fiuba.algo3.algochess.AlgoChess;
 import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.jugador.CantidadDePuntosInsuficientesException;
 import fiuba.algo3.algochess.jugador.Jugador;
 import fiuba.algo3.algochess.pieza.*;
-import fiuba.algo3.algochess.pieza.alcance.AlcanceCercano;
 import fiuba.algo3.algochess.pieza.habilidad.AtaqueAAliadoException;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
@@ -13,8 +11,8 @@ import fiuba.algo3.algochess.pieza.movimiento.*;
 import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.tablero.Tablero;
 import fiuba.algo3.algochess.tablero.casillero.CasilleroException;
-import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroEnemigoException;
-import fiuba.algo3.algochess.tablero.casillero.ColocarEnCasilleroOcupadoException;
+import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
+import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroOcupadoException;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,52 +20,58 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Entrega1Test {
 
     //Pruebas Entidades
-
     @Test
     public void test00PiezaPuedeMoverseAUnCasilleroDeDistanciaEnCualquierDireccion() throws CasilleroException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
-        AlgoChess chess = new AlgoChess();
         Pieza pieza = new SoldadoDeInfanteria();
+        Tablero tablero = new Tablero();
 
-        chess.posicionar(pieza, new Posicion(0, 0));
+        pieza.posicionar(tablero, new Posicion(0, 0));
 
-        Posicion destino = chess.mover(pieza, new DireccionAbajo());
-        assertEquals(new Posicion(0, 1), destino);
+        pieza.mover(tablero, Direccion.abajo());
+        assertEquals(new Posicion(0, 1), pieza.getPosicion());
 
-        destino = chess.mover(pieza, new DireccionDerecha());
-        assertEquals(new Posicion(1, 1), destino);
+        pieza.mover(tablero, Direccion.derecha());
+        assertEquals(new Posicion(1, 1), pieza.getPosicion());
 
-        destino = chess.mover(pieza, new DireccionIzquierda());
-        assertEquals(new Posicion(0, 1), destino);
+        pieza.mover(tablero, Direccion.izquierda());
+        assertEquals(new Posicion(0, 1), pieza.getPosicion());
 
-        destino = chess.mover(pieza, new DireccionArriba());
-        assertEquals(new Posicion(0, 0), destino);
+        pieza.mover(tablero, Direccion.arriba());
+        assertEquals(new Posicion(0, 0), pieza.getPosicion());
+
+        pieza.mover(tablero, Direccion.derechaAbajo());
+        assertEquals(new Posicion(1, 1), pieza.getPosicion());
+
     }
 
-
     @Test
-    public void test01PiezaNoPuedeMoverseAUnCasilleroOcupado() throws CasilleroException, FueraDelTableroException {
-        AlgoChess chess = new AlgoChess();
-        Pieza pieza1 = new SoldadoDeInfanteria();
-        chess.posicionar(pieza1, new Posicion(0, 0));
-        Pieza pieza2 = new SoldadoDeInfanteria();
-        chess.posicionar(pieza2, new Posicion(0, 1));
+    public void test01PiezaNoPuedeMoverseAUnCasilleroOcupado() throws CasilleroException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
+        // Arrange
+        Pieza unaPieza = new SoldadoDeInfanteria();
+        Posicion posicionOriginal = new Posicion(0, 0);
+        Tablero tablero = new Tablero();
 
-        assertThrows(ColocarEnCasilleroOcupadoException.class,
-                () -> {
-                    chess.mover(pieza2, new DireccionArriba());
-                });
+        unaPieza.posicionar(tablero, posicionOriginal);
+
+        Pieza otraPieza = new SoldadoDeInfanteria();
+        otraPieza.posicionar(tablero, new Posicion(0, 1));
+
+        // Act
+        unaPieza.mover(tablero, Direccion.abajo());
+
+        // Assert
+        assertEquals(posicionOriginal, unaPieza.getPosicion());
     }
 
-
-
     @Test
-    public void test02SoldadoDeInfanteriaAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
+    public void test02SoldadoDeInfanteriaAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
-        soldado.setPosicion(new Posicion(0, 0));
+        Tablero tablero = new Tablero();
+        soldado.posicionar(tablero, new Posicion(0, 0));
 
         Jinete enemigo = new Jinete();
         enemigo.cambiarAlianza();
-        enemigo.setPosicion(new Posicion(1, 0));
+        enemigo.posicionar(tablero, new Posicion(1, 0));
 
         enemigo.recibirDanio(90);
         soldado.usarHabilidadEn(enemigo);
@@ -75,7 +79,7 @@ public class Entrega1Test {
 
         enemigo = new Jinete();
         enemigo.cambiarAlianza();
-        enemigo.setPosicion(new Posicion(1, 0));
+        enemigo.posicionar(new Tablero(), new Posicion(1, 0));
         enemigo.recibirDanio(89);
         soldado.usarHabilidadEn(enemigo);
 
@@ -83,32 +87,34 @@ public class Entrega1Test {
     }
 
     @Test
-    public void test03JineteAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
+    public void test03JineteAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         SoldadoDeInfanteria enemigo = new SoldadoDeInfanteria();
-        enemigo.setPosicion(new Posicion(0, 0));
+        Tablero tablero = new Tablero();
+        enemigo.posicionar(tablero, new Posicion(0, 0));
         enemigo.cambiarAlianza();
 
         Jinete jinete = new Jinete();
-        jinete.setPosicion(new Posicion(1, 0));
+        jinete.posicionar(tablero, new Posicion(1, 0));
         enemigo.recibirDanio(95);
         jinete.usarHabilidadEn(enemigo);
         assertFalse(enemigo.estaViva());
 
         enemigo = new SoldadoDeInfanteria();
         enemigo.cambiarAlianza();
-        enemigo.setPosicion(new Posicion(0, 0));
+        enemigo.posicionar(new Tablero(), new Posicion(0, 0));
         enemigo.recibirDanio(94);
         jinete.usarHabilidadEn(enemigo);
         assertTrue(enemigo.estaViva());
     }
 
     @Test
-    public void test04CatapultaAliadoAtacaAUnaPiezaEnemigaYSeVerificaQueSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
+    public void test04CatapultaAliadoAtacaAUnaPiezaEnemigaYSeVerificaQueSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         Catapulta catapulta = new Catapulta();
-        catapulta.setPosicion(new Posicion(0, 0));
+        Tablero tablero = new Tablero();
+        catapulta.posicionar(tablero, new Posicion(0, 0));
         Jinete enemigo = new Jinete();
         enemigo.cambiarAlianza();
-        enemigo.setPosicion(new Posicion(10, 0));
+        enemigo.posicionar(tablero, new Posicion(10, 0));
 
         enemigo.recibirDanio(80);
         catapulta.usarHabilidadEn(enemigo);
@@ -116,7 +122,7 @@ public class Entrega1Test {
 
         enemigo = new Jinete();
         enemigo.cambiarAlianza();
-        enemigo.setPosicion(new Posicion(10, 0));
+        enemigo.posicionar(new Tablero(), new Posicion(10, 0));
         enemigo.recibirDanio(79);
 
         catapulta.usarHabilidadEn(enemigo);
@@ -124,16 +130,17 @@ public class Entrega1Test {
     }
 
     @Test
-    public void test05CuranderoAliadoCuraAUnaPiezaAliadaSeLeSumaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
+    public void test05CuranderoAliadoCuraAUnaPiezaAliadaSeLeSumaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         Curandero curandero = new Curandero();
-        curandero.setPosicion(new Posicion(0, 0));
+        Tablero tablero = new Tablero();
+        curandero.posicionar(tablero, new Posicion(0, 0));
 
         SoldadoDeInfanteria enemigo = new SoldadoDeInfanteria();
         enemigo.cambiarAlianza();
-        enemigo.setPosicion(new Posicion(0, 1));
+        enemigo.posicionar(tablero, new Posicion(0, 1));
 
         Jinete aliado = new Jinete();
-        aliado.setPosicion(new Posicion(1, 0));
+        aliado.posicionar(tablero, new Posicion(1, 0));
         aliado.cambiarAlianza();
         aliado.recibirDanio(95);
 
@@ -149,7 +156,7 @@ public class Entrega1Test {
         assertFalse(aliado.estaViva());
 
         aliado = new Jinete();
-        aliado.setPosicion(new Posicion(1, 0));
+        aliado.posicionar(new Tablero(), new Posicion(1, 0));
         aliado.cambiarAlianza();
         aliado.recibirDanio(94);
 
@@ -168,41 +175,42 @@ public class Entrega1Test {
     //Pruebas de Tablero
 
     @Test
-    public void test06SeColocaUnaPiezaAliadaEnUnCasilleroDelSectorAliadoVacíoConExito() throws CasilleroException, FueraDelTableroException {
+    public void test06SeColocaUnaPiezaAliadaEnUnCasilleroDelSectorAliadoVacioConExito() throws CasilleroException, FueraDelTableroException {
         //Arrange
-        Tablero tablero = new Tablero();
         Pieza piezaConcreta = new SoldadoDeInfanteria();
         Posicion posicion =  new Posicion(0, 0);
-        //Act
-        tablero.posicionar(piezaConcreta,posicion);
-        //Assert
-        assertEquals(piezaConcreta,tablero.sacar(posicion));
+        Tablero tablero = new Tablero();
 
+        //Act
+        piezaConcreta.posicionar(tablero, posicion);
+        //Assert
+        assertEquals(posicion, piezaConcreta.getPosicion());
     }
 
     @Test
-    public void test07TableroAlColocarUnaPiezaEnUnCasilleroOcupadoSeLanzaCasilleroOcupadoException() throws CasilleroException, FueraDelTableroException {
+    public void test07TableroNoSePuedeColocarUnaPiezaEnUnCasilleroOcupado() throws CasilleroException, FueraDelTableroException {
         // Arrange
-        Tablero tablero = new Tablero();
         Pieza piezaConcreta = new SoldadoDeInfanteria();
         Pieza otraPiezaConcreta = new SoldadoDeInfanteria();
-        tablero.posicionar(otraPiezaConcreta, new Posicion(0, 0));
+        Tablero tablero = new Tablero();
+        piezaConcreta.posicionar(tablero, new Posicion(0, 0));
         // Act - Assert
-        assertThrows(ColocarEnCasilleroOcupadoException.class,
+        assertThrows(PosicionarEnCasilleroOcupadoException.class,
                 () -> {
-                    tablero.posicionar(piezaConcreta, new Posicion(0, 0));
+                    otraPiezaConcreta.posicionar(tablero, new Posicion(0, 0));
                 });
     }
 
     @Test
     public void test08TableroAlColocarUnaPiezaEnUnCasilleroEnemigoSeLanzaCasilleroEnemigoException() {
         // Arrange
-        Tablero tablero = new Tablero();
         Pieza piezaConcreta = new SoldadoDeInfanteria();
+        Tablero tablero = new Tablero();
+
         // Act - Assert
-        assertThrows(ColocarEnCasilleroEnemigoException.class,
+        assertThrows(PosicionarEnCasilleroEnemigoException.class,
                 () -> {
-                    tablero.posicionar(piezaConcreta, new Posicion(0, 10));
+                    piezaConcreta.posicionar(tablero, new Posicion(0, 10));
                 });
     }
 
@@ -228,15 +236,16 @@ public class Entrega1Test {
     }
 
     @Test
-    public void test11JugadorSinPiezasPierdeLaPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, AtaqueAAliadoException {
+    public void test11JugadorSinPiezasPierdeLaPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         // Arrange
         Jugador jugador = new Jugador(20);
         Pieza pieza = new SoldadoDeInfanteria();
-        pieza.setPosicion(new Posicion(0, 0));
+        Tablero tablero = new Tablero();
+        pieza.posicionar(tablero, new Posicion(0, 0));
         pieza.cambiarAlianza();
         // Act
         jugador.agregarPieza(pieza);
-        pieza.recibirDanio(100, new Posicion(1, 0), new AlcanceCercano());
+        pieza.recibirDanio(100);
         //Assert
         assertTrue(jugador.perdio());
 

@@ -1,7 +1,7 @@
 package fiuba.algo3.algochess.pieza;
 
 import fiuba.algo3.algochess.pieza.habilidad.Ataque;
-import fiuba.algo3.algochess.pieza.habilidad.EspadaPesada;
+import fiuba.algo3.algochess.pieza.habilidad.armas.EspadaPesada;
 
 public class SoldadoDeInfanteria extends Pieza {
     public SoldadoDeInfanteria(){

@@ -2,7 +2,7 @@ package fiuba.algo3.algochess.tablero.casillero;
 
 public interface CasilleroAlianza {
     CasilleroAlianza cambiar();
-    void posicionar() throws ColocarEnCasilleroEnemigoException;
+    void posicionar() throws PosicionarEnCasilleroEnemigoException;
 }
 
 

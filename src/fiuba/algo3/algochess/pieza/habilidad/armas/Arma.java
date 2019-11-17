@@ -1,8 +1,10 @@
-package fiuba.algo3.algochess.pieza.habilidad;
+package fiuba.algo3.algochess.pieza.habilidad.armas;
 
 import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.pieza.Pieza;
 import fiuba.algo3.algochess.pieza.alcance.Alcance;
+import fiuba.algo3.algochess.pieza.habilidad.AtaqueAAliadoException;
+import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
 
 public abstract class Arma {
 
@@ -15,8 +17,10 @@ public abstract class Arma {
     }
 
     public void atacarA(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException {
-        objetivo.recibirDanio(danio, desde, alcance);
-
+        if (! alcance.llegoA(desde, objetivo.getPosicion())) {
+            throw new HabilidadFueraDeAlcanceException();
+        }
+        objetivo.recibirDanio(danio);
     }
 }
 

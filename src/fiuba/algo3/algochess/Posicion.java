@@ -32,9 +32,7 @@ public class Posicion {
         return new Posicion(x + deltaX, y + deltaY);
     }
 
-    /*
-     * Se sobre-escriben equals y hashCode para poder usarlos en un Map
-     */
+    // Se sobre-escriben equals y hashCode para poder usarlos en un Map
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -51,6 +49,11 @@ public class Posicion {
         if (getClass() != o.getClass()) return false;
         Posicion otraPosicion = (Posicion) o;
         return otraPosicion.x == x && otraPosicion.y == y;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ")";
     }
 }
 

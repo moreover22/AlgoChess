@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.pieza.habilidad;
 
 import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.pieza.Pieza;
+import fiuba.algo3.algochess.pieza.habilidad.armas.Arma;
 
 public class Ataque implements Habilidad{
     private Arma arma;

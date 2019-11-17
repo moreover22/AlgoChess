@@ -13,6 +13,7 @@ public class Jugador {
         this.puntos = puntos;
         this.piezas = new ArrayList<>();
     }
+
     public Jugador() {
         this(20);
     }
