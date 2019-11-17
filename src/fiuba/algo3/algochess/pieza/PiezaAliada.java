@@ -18,4 +18,14 @@ public class PiezaAliada implements PiezaAlianza {
         return vida + curacion;
     }
 
+    @Override
+    public int contarAliado(int cantidadAliados) {
+        return cantidadAliados + 1;
+    }
+
+    @Override
+    public int contarEnemigo(int cantidadEnemigos) {
+        return cantidadEnemigos;
+    }
+
 }

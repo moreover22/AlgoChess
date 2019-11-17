@@ -1,6 +1,33 @@
 package fiuba.algo3.algochess.tablero.casillero;
 
+import fiuba.algo3.algochess.pieza.Pieza;
+
 public interface CasilleroAlianza {
     CasilleroAlianza cambiar();
-    EstadoCasillero posicionar(EstadoCasillero estado) throws ColocarEnCasilleroEnemigoException, ColocarEnCasilleroOcupadoException;
+    void posicionar() throws PosicionarEnCasilleroEnemigoException;
+    void aplicarDanioTerritorio(Pieza pieza);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

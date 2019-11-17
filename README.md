@@ -63,8 +63,8 @@ FIUBA - 2° Cuatrimestre 2019
 - [ ] 15. (En la situación anterior) Se verifica que el Batallón se disuelve, al quedar separados los 3 soldados.
 - [ ] 16. Habiendo 4 soldados contiguos, se verifica que al mover un Batallón se mueven únicamente 3.
 #### Jinete
-- [ ] 17. Un jinete sin aliados en distancia corta y un enemigo en distancia corta, ataca con su espada al enemigo y se verifica que se realiza correctamente el ataque.
-- [ ] 18. Un jinete sin aliados en distancia corta y un enemigo en distancia corta y otro enemigo en distancia media, trata de atacar al enemigo en distancia media y se verifica que no se puede realizar el ataque.
+- [x] 17. Un jinete sin aliados en distancia corta y un enemigo en distancia corta, ataca con su espada al enemigo y se verifica que se realiza correctamente el ataque.
+- [x] 18. Un jinete sin aliados en distancia corta y un enemigo en distancia corta y otro enemigo en distancia media, trata de atacar al enemigo en distancia media y se verifica que no se puede realizar el ataque.
 
 ### Entrega 3 (jueves 28 de noviembre)
 Interfaz gráfica inicial básica: comienzo del juego y visualización del tablero e interfaz de usuario básica.

@@ -1,13 +1,20 @@
 package fiuba.algo3.algochess.tablero.casillero;
 
-public class EstadoCasilleroOcupado implements EstadoCasillero {
-    @Override
-    public EstadoCasillero ocupar() throws ColocarEnCasilleroOcupadoException {
-        throw new ColocarEnCasilleroOcupadoException();
+import fiuba.algo3.algochess.pieza.Pieza;
+
+public class EstadoCasilleroOcupado extends EstadoCasillero {
+    public EstadoCasilleroOcupado(Pieza pieza) {
+        this.pieza = pieza;
     }
 
     @Override
-    public EstadoCasillero vaciar() {
-        return new EstadoCasilleroVacio();
+    public EstadoCasillero posicionar(Pieza pieza) {
+        throw new PosicionarEnCasilleroOcupadoException();
+    }
+
+    @Override
+    public EstadoCasillero ocupar(Pieza pieza) {
+        pieza.deshacerMovimiento();
+        return this;
     }
 }
