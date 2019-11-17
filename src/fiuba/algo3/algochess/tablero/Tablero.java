@@ -94,6 +94,33 @@ public class Tablero implements Aliable {
 
         }
     }
+    public void buscarVecinosVertical()throws FueraDelTableroException {
+        Posicion posicionActual;
+        Casillero casilleroActual;
+        Pieza pieza;
+        for (Map.Entry<Posicion,Casillero>p:casilleros.entrySet()) {
+            for (int i = -2; i <= 2; i++) {
+                posicionActual = p.getKey().aplicarDireccion(i,0);
+                casilleroActual = getCasillero(posicionActual);
+                pieza = casilleroActual.getPieza();
+                p.getValue().getPieza().agregarVecino(pieza);
+            }
+        }
+    }
+
+    public void buscarVecinosHorizontal()throws FueraDelTableroException {
+        Posicion posicionActual;
+        Casillero casilleroActual;
+        Pieza pieza;
+        for (Map.Entry<Posicion,Casillero>p:casilleros.entrySet()) {
+            for (int j = -2; j <= 2; j++) {
+                posicionActual = p.getKey().aplicarDireccion(0,j);
+                casilleroActual = getCasillero(posicionActual);
+                pieza = casilleroActual.getPieza();
+                p.getValue().getPieza().agregarVecino(pieza);
+            }
+        }
+    }
 }
 
 
