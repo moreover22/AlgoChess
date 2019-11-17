@@ -7,4 +7,6 @@ public interface PiezaAlianza {
     PiezaAlianza cambiar();
     float recibirDanio(float vida, float danio) throws AtaqueAAliadoException;
     float recibirCuracion(float vida, float curacion) throws CuracionAEnemigoException;
+    int contarAliado(int cantidadAliados);
+    int contarEnemigo(int cantidadEnemigos);
 }

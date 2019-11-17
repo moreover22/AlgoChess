@@ -40,10 +40,6 @@ public class Direccion {
         return desde.aplicarDireccion(deltaX, deltaY);
     }
 
-    public Posicion opuestaA(Posicion desde) {
-        return desde.aplicarDireccion(-deltaX, -deltaY);
-    }
-
     public static Direccion derecha() {
         return derecha;
     }

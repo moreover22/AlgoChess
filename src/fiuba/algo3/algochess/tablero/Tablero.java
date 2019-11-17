@@ -4,10 +4,10 @@ import fiuba.algo3.algochess.Aliable;
 import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.Rango;
 import fiuba.algo3.algochess.pieza.Pieza;
+import fiuba.algo3.algochess.pieza.alcance.Alcance;
 import fiuba.algo3.algochess.tablero.casillero.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Tablero implements Aliable {
     private Map<Posicion, Casillero> casilleros;
@@ -18,6 +18,7 @@ public class Tablero implements Aliable {
     public Tablero() {
         this(20, 20);
     }
+
     public Tablero(int cantFilas, int cantColumnas) {
         this.cantFilas = cantFilas;
         this.cantColumnas = cantColumnas;
@@ -47,8 +48,8 @@ public class Tablero implements Aliable {
         return casilleros.get(posicion);
     }
 
-    public void posicionar(Posicion posicion) throws FueraDelTableroException, PosicionarEnCasilleroEnemigoException {
-        getCasillero(posicion).posicionar();
+    public void posicionar(Posicion posicion, Pieza pieza) throws FueraDelTableroException, PosicionarEnCasilleroEnemigoException {
+        getCasillero(posicion).posicionar(pieza);
     }
 
     public void ocupar(Posicion posicion, Pieza pieza) throws FueraDelTableroException {
@@ -57,6 +58,17 @@ public class Tablero implements Aliable {
 
     public void sacar(Posicion posicion) throws FueraDelTableroException {
         getCasillero(posicion).sacar();
+    }
+
+    public Iterable<Pieza> piezasDentroDe(Alcance alcance, Posicion desde) {
+        List<Pieza> piezas = new ArrayList<>();
+
+        casilleros.forEach((posicion, casillero) -> {
+            if (alcance.llegoA(desde, posicion)) {
+                piezas.add(casillero.getPieza());
+            }
+        });
+        return piezas;
     }
 
     @Override

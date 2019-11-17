@@ -16,10 +16,10 @@ public abstract class Pieza implements Aliable, Movible {
     private float vida;
     private int coste;
 
-    private Posicion posicion;
-    private Habilidad habilidad;
-    private Movimiento movimiento;
-    private PiezaAlianza alianza;
+    protected Posicion posicion;
+    protected Habilidad habilidad;
+    protected Movimiento movimiento;
+    protected PiezaAlianza alianza;
 
     protected Pieza(float vidaInicial) {
         this.vidaInicial = vidaInicial;
@@ -40,12 +40,16 @@ public abstract class Pieza implements Aliable, Movible {
         this.coste = coste;
     }
 
-    public void usarHabilidadEn(Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
+    public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         habilidad.usarCon(objetivo, posicion);
     }
 
     public Posicion getPosicion() {
         return posicion;
+    }
+
+    public float getVida() {
+        return vida;
     }
 
     public void recibirCuracion(float curacion) throws CuracionAEnemigoException {
@@ -72,8 +76,16 @@ public abstract class Pieza implements Aliable, Movible {
     }
 
     public void posicionar(Tablero tablero, Posicion posicion) throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
-        tablero.posicionar(posicion);
+        tablero.posicionar(posicion, this);
         this.posicion = posicion;
+    }
+
+    public int contarAliadosDeCaballeria(int cantidadAliadosCaballeria) {
+        return cantidadAliadosCaballeria;
+    }
+
+    public int contarEnemigo(int cantidadEnemigos) {
+        return alianza.contarEnemigo(cantidadEnemigos);
     }
 
     @Override

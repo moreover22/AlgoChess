@@ -17,4 +17,14 @@ public class PiezaEnemiga implements PiezaAlianza {
     public float recibirCuracion(float vida, float curacion) throws CuracionAEnemigoException {
         throw new CuracionAEnemigoException();
     }
+
+    @Override
+    public int contarAliado(int cantidadAliados) {
+        return cantidadAliados;
+    }
+
+    @Override
+    public int contarEnemigo(int cantidadEnemigos) {
+        return cantidadEnemigos + 1;
+    }
 }

@@ -2,8 +2,8 @@ package fiuba.algo3.algochess.pieza.habilidad.armas;
 
 import fiuba.algo3.algochess.pieza.alcance.AlcanceMedio;
 
-public class Arco extends Arma {
-    public Arco() {
+public class ArcoYFlecha extends Arma {
+    public ArcoYFlecha() {
         super(15, new AlcanceMedio());
     }
 }

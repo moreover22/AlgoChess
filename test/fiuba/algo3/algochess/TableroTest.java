@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess;
 
+import fiuba.algo3.algochess.pieza.PiezaNula;
 import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.pieza.Pieza;
 
@@ -72,7 +73,7 @@ public class TableroTest {
 
         assertThrows(FueraDelTableroException.class,
                 () -> {
-                    tablero.posicionar(new Posicion(0, 21));
+                    tablero.posicionar(new Posicion(0, 21), new SoldadoDeInfanteria());
                 });
     }
 
@@ -82,7 +83,7 @@ public class TableroTest {
 
         assertThrows(FueraDelTableroException.class,
                 () -> {
-                    tablero.posicionar(new Posicion(21, 0));
+                    tablero.posicionar(new Posicion(21, 0), new SoldadoDeInfanteria());
                 });
     }
 
@@ -92,7 +93,7 @@ public class TableroTest {
 
         assertThrows(FueraDelTableroException.class,
                 () -> {
-                    tablero.posicionar(new Posicion(21, 21));
+                    tablero.posicionar(new Posicion(21, 21), new SoldadoDeInfanteria());
                 });
     }
 
@@ -102,7 +103,7 @@ public class TableroTest {
 
         assertThrows(FueraDelTableroException.class,
                 () -> {
-                    tablero.posicionar(new Posicion(-1, -1));
+                    tablero.posicionar(new Posicion(-1, -1), new SoldadoDeInfanteria());
                 });
     }
 }

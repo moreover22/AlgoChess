@@ -116,7 +116,7 @@ public class ArmaTest {
     @Test
     public void test06ArcoMataAUnaPiezaQueEstaAAlcanceMedioQueTiene15DeVida() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         //Arrange
-        Arma arco = new Arco();
+        Arma arco = new ArcoYFlecha();
         Posicion posOrigen = new Posicion(0, 0);
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
@@ -132,7 +132,7 @@ public class ArmaTest {
     @Test
     public void test07ArcoNoMataAUnaPiezaQueEstaAAlcanceMedioQueTiene16DeVida() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         //Arrange
-        Arma arco = new Arco();
+        Arma arco = new ArcoYFlecha();
         Posicion posOrigen = new Posicion(0, 0);
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
@@ -148,7 +148,7 @@ public class ArmaTest {
     @Test
     public void test08ArcoAtacarAPiezaQueNoEstaAAlcanceMedioLanzaHabilidadFueraDeAlcanceException() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         //Arrange
-        Arma arco = new Arco();
+        Arma arco = new ArcoYFlecha();
         Posicion posOrigen = new Posicion(0, 0);
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();

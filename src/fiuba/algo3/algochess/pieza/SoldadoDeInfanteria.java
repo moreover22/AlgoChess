@@ -9,4 +9,9 @@ public class SoldadoDeInfanteria extends Pieza {
         this.setCoste(1);
         this.setHabilidad(new Ataque(new EspadaPesada()));
     }
+
+    @Override
+    public int contarAliadosDeCaballeria(int cantidadAliadosCaballeria) {
+        return alianza.contarAliado(cantidadAliadosCaballeria);
+    }
 }

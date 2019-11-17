@@ -12,9 +12,9 @@ public class Casillero implements Aliable {
         alianza = new CasilleroAliado();
     }
 
-    public void posicionar() throws PosicionarEnCasilleroEnemigoException {
+    public void posicionar(Pieza pieza) throws PosicionarEnCasilleroEnemigoException {
         alianza.posicionar();
-        estado = estado.posicionar();
+        estado = estado.posicionar(pieza);
     }
 
     public void ocupar(Pieza pieza) {
@@ -23,6 +23,10 @@ public class Casillero implements Aliable {
 
     public void sacar() {
         estado = estado.vaciar();
+    }
+
+    public Pieza getPieza() {
+        return estado.getPieza();
     }
 
     @Override

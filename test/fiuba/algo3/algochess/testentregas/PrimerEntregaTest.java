@@ -1,4 +1,4 @@
-package fiuba.algo3.algochess.entrega1;
+package fiuba.algo3.algochess.testentregas;
 
 import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.jugador.CantidadDePuntosInsuficientesException;
@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Entrega1Test {
+public class PrimerEntregaTest {
 
     //Pruebas Entidades
     @Test
@@ -74,14 +74,14 @@ public class Entrega1Test {
         enemigo.posicionar(tablero, new Posicion(1, 0));
 
         enemigo.recibirDanio(90);
-        soldado.usarHabilidadEn(enemigo);
+        soldado.usarHabilidadEn(tablero, enemigo);
         assertFalse(enemigo.estaViva());
 
         enemigo = new Jinete();
         enemigo.cambiarAlianza();
         enemigo.posicionar(new Tablero(), new Posicion(1, 0));
         enemigo.recibirDanio(89);
-        soldado.usarHabilidadEn(enemigo);
+        soldado.usarHabilidadEn(tablero, enemigo);
 
         assertTrue(enemigo.estaViva());
     }
@@ -96,14 +96,14 @@ public class Entrega1Test {
         Jinete jinete = new Jinete();
         jinete.posicionar(tablero, new Posicion(1, 0));
         enemigo.recibirDanio(95);
-        jinete.usarHabilidadEn(enemigo);
+        jinete.usarHabilidadEn(tablero, enemigo);
         assertFalse(enemigo.estaViva());
 
         enemigo = new SoldadoDeInfanteria();
         enemigo.cambiarAlianza();
         enemigo.posicionar(new Tablero(), new Posicion(0, 0));
         enemigo.recibirDanio(94);
-        jinete.usarHabilidadEn(enemigo);
+        jinete.usarHabilidadEn(tablero, enemigo);
         assertTrue(enemigo.estaViva());
     }
 
@@ -117,7 +117,7 @@ public class Entrega1Test {
         enemigo.posicionar(tablero, new Posicion(10, 0));
 
         enemigo.recibirDanio(80);
-        catapulta.usarHabilidadEn(enemigo);
+        catapulta.usarHabilidadEn(tablero, enemigo);
         assertFalse(enemigo.estaViva());
 
         enemigo = new Jinete();
@@ -125,7 +125,7 @@ public class Entrega1Test {
         enemigo.posicionar(new Tablero(), new Posicion(10, 0));
         enemigo.recibirDanio(79);
 
-        catapulta.usarHabilidadEn(enemigo);
+        catapulta.usarHabilidadEn(tablero, enemigo);
         assertTrue(enemigo.estaViva());
     }
 
@@ -145,14 +145,14 @@ public class Entrega1Test {
         aliado.recibirDanio(95);
 
         aliado.cambiarAlianza();
-        curandero.usarHabilidadEn(aliado);
+        curandero.usarHabilidadEn(tablero, aliado);
 
         // Cambio las alianzas
         enemigo.cambiarAlianza();
         aliado.cambiarAlianza();
 
-        enemigo.usarHabilidadEn(aliado);
-        enemigo.usarHabilidadEn(aliado);
+        enemigo.usarHabilidadEn(tablero, aliado);
+        enemigo.usarHabilidadEn(tablero, aliado);
         assertFalse(aliado.estaViva());
 
         aliado = new Jinete();
@@ -162,13 +162,13 @@ public class Entrega1Test {
 
         // Cambio las alianzas
         aliado.cambiarAlianza();
-        curandero.usarHabilidadEn(aliado);
+        curandero.usarHabilidadEn(tablero, aliado);
 
         // Cambio las alianzas
         aliado.cambiarAlianza();
 
-        enemigo.usarHabilidadEn(aliado);
-        enemigo.usarHabilidadEn(aliado);
+        enemigo.usarHabilidadEn(tablero, aliado);
+        enemigo.usarHabilidadEn(tablero, aliado);
         assertTrue(aliado.estaViva());
     }
 
