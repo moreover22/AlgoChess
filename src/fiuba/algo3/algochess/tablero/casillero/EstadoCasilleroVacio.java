@@ -12,9 +12,4 @@ public class EstadoCasilleroVacio extends EstadoCasillero {
     public EstadoCasillero ocupar(Pieza pieza) {
         return new EstadoCasilleroOcupado(pieza);
     }
-
-    @Override
-    public EstadoCasillero vaciar() {
-        return new EstadoCasilleroVacio();
-    }
 }

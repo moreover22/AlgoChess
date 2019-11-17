@@ -17,9 +17,4 @@ public class EstadoCasilleroOcupado extends EstadoCasillero {
         pieza.deshacerMovimiento();
         return this;
     }
-
-    @Override
-    public EstadoCasillero vaciar() {
-        return new EstadoCasilleroVacio();
-    }
 }

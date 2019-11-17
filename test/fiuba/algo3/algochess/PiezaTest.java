@@ -239,6 +239,18 @@ public class PiezaTest {
 
         pieza.mover(tablero, Direccion.arriba());
         assertEquals(new Posicion(0, 0), pieza.getPosicion());
+
+        pieza.mover(tablero, Direccion.derechaAbajo());
+        assertEquals(new Posicion(1, 1), pieza.getPosicion());
+
+        pieza.mover(tablero, Direccion.derechaArriba());
+        assertEquals(new Posicion(2, 0), pieza.getPosicion());
+
+        pieza.mover(tablero, Direccion.izquierdaAbajo());
+        assertEquals(new Posicion(1, 1), pieza.getPosicion());
+
+        pieza.mover(tablero, Direccion.izquierdaArriba());
+        assertEquals(new Posicion(0, 0), pieza.getPosicion());
     }
 
 
@@ -451,6 +463,21 @@ public class PiezaTest {
                 () -> {
                     pieza.usarHabilidadEn(tablero, otraPieza);
                 });
+    }
+
+    @Test
+    public void testCatapultaNoPuedeMoverse() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        Pieza catapulta = new Catapulta();
+        catapulta.posicionar(tablero, new Posicion(0, 0));
+        // Act - Assert excepcion
+        assertThrows(MovimientoFueraDeAlcanceException.class,
+                () -> {
+                    catapulta.mover(tablero, Direccion.derechaAbajo());
+                });
+        // Assert
+        assertEquals(new Posicion(0, 0), catapulta.getPosicion());
     }
 
 }

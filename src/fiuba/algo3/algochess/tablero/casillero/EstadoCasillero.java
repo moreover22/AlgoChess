@@ -13,5 +13,7 @@ public abstract class EstadoCasillero {
     }
     public abstract EstadoCasillero posicionar(Pieza pieza);
     public abstract EstadoCasillero ocupar(Pieza pieza);
-    public abstract EstadoCasillero vaciar();
+    public EstadoCasillero vaciar() {
+        return new EstadoCasilleroVacio();
+    }
 }

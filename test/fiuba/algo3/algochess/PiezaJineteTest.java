@@ -10,6 +10,7 @@ import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoExcep
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PiezaJineteTest {
     @Test
@@ -30,6 +31,28 @@ public class PiezaJineteTest {
         // Assert
         assertEquals(85, soldadoEnemigo.getVida());
     }
+    @Test
+    public void testJineteConSoldadoDeInfanteriaAliadoCercanoNoPuedeAtacarADistanciaCercana() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        Jinete jinete = new Jinete();
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
+        soldadoEnemigo.cambiarAlianza();
+        // Arrange - Posiciono
+        jinete.posicionar(tablero, new Posicion(0, 9));
+        soldado.posicionar(tablero, new Posicion(1, 9));
+        tablero.cambiarAlianza();
+        soldadoEnemigo.posicionar(tablero, new Posicion(0, 10));
+        // Act - Assert exception
+        assertThrows(HabilidadFueraDeAlcanceException.class,
+                () -> {
+                    jinete.usarHabilidadEn(tablero, soldadoEnemigo);
+                });
+        // Assert
+        assertEquals(100, soldadoEnemigo.getVida());
+    }
+
     @Test
     public void testJineteSinEnemigoCercanoPuedeAtacarADistanciaMediaConArcoYFlechaAEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
         // Arrange
