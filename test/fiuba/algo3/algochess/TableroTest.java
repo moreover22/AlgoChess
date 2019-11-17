@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess;
 
-import fiuba.algo3.algochess.pieza.PiezaNula;
 import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.pieza.Pieza;
 

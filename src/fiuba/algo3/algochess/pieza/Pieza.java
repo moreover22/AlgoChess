@@ -72,6 +72,10 @@ public abstract class Pieza implements Aliable, Movible {
         return alianza.contarEnemigo(cantidadEnemigos);
     }
 
+    public int contarAliado(int cantidadAliados) {
+        return alianza.contarAliado(cantidadAliados);
+    }
+
     @Override
     public void mover(Tablero tablero, Direccion direccion) throws MovimientoFueraDeAlcanceException, FueraDelTableroException {
         tablero.sacar(posicion);

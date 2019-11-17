@@ -11,6 +11,10 @@ public class Ataque implements Habilidad{
         this.arma = arma;
     }
 
+    public void actualizarArma(Iterable<Pieza> piezas) {
+        arma = arma.actualizar(piezas);
+    }
+
     @Override
     public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         arma.atacarA(objetivo, desde);
