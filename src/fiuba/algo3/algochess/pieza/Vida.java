@@ -29,4 +29,8 @@ public class Vida {
     public boolean tieneVida() {
         return vidaActual > 0;
     }
+
+    public void recibirDanioPorcentual(int porcentaje) {
+        vidaActual -= vidaInicial * porcentaje / 100;
+    }
 }
