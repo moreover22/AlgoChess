@@ -10,9 +10,8 @@ import fiuba.algo3.algochess.tablero.Tablero;
 
 public class Jinete extends Pieza {
     public Jinete() {
-        super(100);
-        this.setCoste(3);
-        this.setHabilidad(new Ataque(new EspadaLiviana()));
+        super(100, 3);
+        habilidad = new Ataque(new EspadaLiviana());
     }
 
     @Override

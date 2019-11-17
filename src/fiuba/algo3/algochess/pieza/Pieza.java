@@ -12,8 +12,7 @@ import fiuba.algo3.algochess.tablero.Tablero;
 import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 
 public abstract class Pieza implements Aliable, Movible {
-    private float vidaInicial;
-    private float vida;
+    private Vida vida;
     private int coste;
 
     protected Posicion posicion;
@@ -21,50 +20,40 @@ public abstract class Pieza implements Aliable, Movible {
     protected Movimiento movimiento;
     protected PiezaAlianza alianza;
 
-    protected Pieza(float vidaInicial) {
-        this.vidaInicial = vidaInicial;
-        this.vida = vidaInicial;
+    protected Pieza(float vidaInicial, int coste) {
+        this.vida = new Vida(vidaInicial);
+        this.coste = coste;
         this.alianza = new PiezaAliada();
         this.movimiento = new Movimiento(new AlcanceInmediato());
-    }
-
-    protected void setMovimiento(Movimiento movimiento) {
-        this.movimiento = movimiento;
-    }
-
-    protected void setHabilidad(Habilidad habilidad) {
-        this.habilidad = habilidad;
-    }
-
-    protected void setCoste(int coste) {
-        this.coste = coste;
     }
 
     public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         habilidad.usarCon(objetivo, posicion);
     }
 
+    public void posicionar(Tablero tablero, Posicion posicion) throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+        tablero.posicionar(posicion, this);
+        this.posicion = posicion;
+    }
+
     public Posicion getPosicion() {
         return posicion;
     }
 
-    public float getVida() {
-        return vida;
-    }
-
     public void recibirCuracion(float curacion) throws CuracionAEnemigoException {
-        if(vida + curacion > vidaInicial) {
-            curacion = vidaInicial - vida;
-        }
-        vida = alianza.recibirCuracion(vida, curacion);
+        vida.recibirCuracion(curacion, alianza);
     }
 
     public void recibirDanio(float danio) throws AtaqueAAliadoException {
-        vida = alianza.recibirDanio(vida, danio);
+        vida.recibirDanio(danio, alianza);
+    }
+
+    public float getVida() {
+        return vida.vidaActual();
     }
 
     public boolean estaViva(){
-        return vida > 0;
+        return vida.tieneVida();
     }
 
     public int descontarCoste(int puntos){
@@ -73,11 +62,6 @@ public abstract class Pieza implements Aliable, Movible {
 
     public int agregarCoste(int puntos){
         return puntos + coste;
-    }
-
-    public void posicionar(Tablero tablero, Posicion posicion) throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
-        tablero.posicionar(posicion, this);
-        this.posicion = posicion;
     }
 
     public int contarAliadosDeCaballeria(int cantidadAliadosCaballeria) {
@@ -105,14 +89,3 @@ public abstract class Pieza implements Aliable, Movible {
         alianza = alianza.cambiar();
     }
 }
-
-
-
-
-
-
-
-
-
-
-

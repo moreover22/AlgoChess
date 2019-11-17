@@ -10,7 +10,6 @@ import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoExcep
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PiezaJineteTest {
     @Test
