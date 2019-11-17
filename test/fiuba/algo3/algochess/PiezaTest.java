@@ -292,7 +292,7 @@ public class PiezaTest {
 
         enemigo = new SoldadoDeInfanteria();
         enemigo.cambiarAlianza();
-        enemigo.posicionar(new Tablero(), new Posicion(0, 0));
+        enemigo.posicionar(tablero, new Posicion(1, 1));
         enemigo.recibirDanio(94);
         jinete.usarHabilidadEn(tablero, enemigo);
         assertTrue(enemigo.estaViva());
