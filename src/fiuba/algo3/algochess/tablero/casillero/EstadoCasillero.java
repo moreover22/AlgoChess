@@ -8,9 +8,11 @@ public abstract class EstadoCasillero {
     public EstadoCasillero() {
         this.pieza = new PiezaNula();
     }
+
     public Pieza getPieza() {
         return pieza;
     }
+
     public abstract EstadoCasillero posicionar(Pieza pieza);
     public abstract EstadoCasillero ocupar(Pieza pieza);
     public EstadoCasillero vaciar() {

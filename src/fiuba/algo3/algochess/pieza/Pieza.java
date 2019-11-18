@@ -77,7 +77,7 @@ public abstract class Pieza implements Aliable, Movible {
     }
 
     public void  recibirDanioTerritorio() {
-//        vida -= PORCENTAJE_DANIO_TERRITORIO * vidaInicial /100;
+        vida.recibirDanioPorcentual(PORCENTAJE_DANIO_TERRITORIO);
     }
 
     public int contarAliadosDeCaballeria(int cantidadAliadosCaballeria) {
