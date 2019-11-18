@@ -4,7 +4,7 @@ import fiuba.algo3.algochess.pieza.Pieza;
 
 public interface CasilleroAlianza {
     CasilleroAlianza cambiar();
-    void posicionar() throws ColocarEnCasilleroEnemigoException;
+    void posicionar() throws PosicionarEnCasilleroEnemigoException;
     void aplicarDanioTerritorio(Pieza pieza);
 }
 
