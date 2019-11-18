@@ -12,6 +12,7 @@ public class CasilleroEnemigo implements CasilleroAlianza {
     public void posicionar() throws PosicionarEnCasilleroEnemigoException {
         throw new PosicionarEnCasilleroEnemigoException();
     }
+
     @Override
     public void aplicarDanioTerritorio(Pieza pieza){
         pieza.recibirDanioTerritorio();

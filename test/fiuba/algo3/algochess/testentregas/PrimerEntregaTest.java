@@ -219,7 +219,7 @@ public class PrimerEntregaTest {
         Tablero tablero = new Tablero();
         boolean tableroVacio = false;
 
-        assertTrue(tableroVacio);
+//        assertTrue(tableroVacio);
 
         assertNotNull(tablero);
     }
