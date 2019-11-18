@@ -217,8 +217,13 @@ public class PrimerEntregaTest {
     @Test
     public void test09TableroSeCreaECorrectamente() {
         Tablero tablero = new Tablero();
+        boolean tableroVacio = false;
+
+        assertTrue(tableroVacio);
+
         assertNotNull(tablero);
     }
+
 
 
     //Prueba de Jugador

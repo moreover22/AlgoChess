@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.Aliable;
 import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.Rango;
 import fiuba.algo3.algochess.pieza.Pieza;
+import fiuba.algo3.algochess.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.pieza.alcance.Alcance;
 import fiuba.algo3.algochess.tablero.casillero.*;
 
@@ -43,6 +44,7 @@ public class Tablero implements Aliable {
         }
     }
 
+    //TODO Hay que sacarlo
     private Casillero getCasillero(Posicion posicion) throws FueraDelTableroException {
         if (!posicion.estaDentroDe(rango)) throw new FueraDelTableroException();
         return casilleros.get(posicion);
@@ -74,6 +76,23 @@ public class Tablero implements Aliable {
     @Override
     public void cambiarAlianza() {
         casilleros.forEach((posicion, casillero) -> casillero.cambiarAlianza());
+    }
+    public void buscarVecinos()throws FueraDelTableroException {
+        Posicion posicionActual;
+        Casillero casilleroActual;
+        Pieza pieza;
+        for (Map.Entry<Posicion,Casillero>p:casilleros.entrySet()){
+            for (int i =-1;i <= 1;i++){
+                for (int j =-1;j <= 1;i++){
+
+                    posicionActual = p.getKey().aplicarDireccion(i,j);
+                    casilleroActual = getCasillero(posicionActual);
+                    pieza = casilleroActual.getPieza();
+                    p.getValue().getPieza().agregarVecino(pieza);
+                }
+            }
+
+        }
     }
 }
 

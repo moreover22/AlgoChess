@@ -11,6 +11,9 @@ import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.tablero.Tablero;
 import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Pieza implements Aliable, Movible {
     private Vida vida;
     private int coste;
@@ -19,12 +22,16 @@ public abstract class Pieza implements Aliable, Movible {
     protected Habilidad habilidad;
     protected Movimiento movimiento;
     protected PiezaAlianza alianza;
+    private List<Pieza> piezas;
+
+    static final int PORCENTAJE_DANIO_TERRITORIO = 5;
 
     protected Pieza(float vidaInicial, int coste) {
         this.vida = new Vida(vidaInicial);
         this.coste = coste;
         this.alianza = new PiezaAliada();
         this.movimiento = new Movimiento(new AlcanceInmediato());
+        piezas = new ArrayList<>();
     }
 
     public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, FueraDelTableroException {
@@ -63,6 +70,14 @@ public abstract class Pieza implements Aliable, Movible {
 
     public int agregarCoste(int puntos){
         return puntos + coste;
+    }
+
+    public void agregarVecino(Pieza pieza) {
+        piezas.add(pieza);
+    }
+
+    public void  recibirDanioTerritorio() {
+//        vida -= PORCENTAJE_DANIO_TERRITORIO * vidaInicial /100;
     }
 
     public int contarAliadosDeCaballeria(int cantidadAliadosCaballeria) {

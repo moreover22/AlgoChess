@@ -33,4 +33,9 @@ public class Casillero implements Aliable {
     public void cambiarAlianza() {
         alianza = alianza.cambiar();
     }
+
+    public void aplicarDanioTerritorio() {
+        alianza.aplicarDanioTerritorio(estado.getPieza());
+    }
+
 }
