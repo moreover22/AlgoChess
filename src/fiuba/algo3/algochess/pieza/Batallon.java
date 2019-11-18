@@ -26,3 +26,12 @@ public class Batallon implements Movible {
         }
     }
 }
+
+
+
+
+
+
+
+
+

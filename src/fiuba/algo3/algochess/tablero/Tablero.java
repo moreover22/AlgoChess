@@ -4,11 +4,14 @@ import fiuba.algo3.algochess.Aliable;
 import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.Rango;
 import fiuba.algo3.algochess.pieza.Pieza;
-import fiuba.algo3.algochess.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.pieza.alcance.Alcance;
-import fiuba.algo3.algochess.tablero.casillero.*;
+import fiuba.algo3.algochess.tablero.casillero.Casillero;
+import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Tablero implements Aliable {
     private Map<Posicion, Casillero> casilleros;
@@ -83,7 +86,7 @@ public class Tablero implements Aliable {
         Pieza pieza;
         for (Map.Entry<Posicion,Casillero>p:casilleros.entrySet()){
             for (int i =-1;i <= 1;i++){
-                for (int j =-1;j <= 1;i++){
+                for (int j =-1;j <= 1;j++){
 
                     posicionActual = p.getKey().aplicarDireccion(i,j);
                     casilleroActual = getCasillero(posicionActual);
@@ -94,7 +97,30 @@ public class Tablero implements Aliable {
 
         }
     }
+
+    public void aplicarDanioTeritorio(){
+        casilleros.forEach((posicion,casillero) -> casillero.aplicarDanioTerritorio());
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
