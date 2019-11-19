@@ -22,7 +22,7 @@ public abstract class Pieza implements Aliable, Movible {
     protected Habilidad habilidad;
     protected Movimiento movimiento;
     protected PiezaAlianza alianza;
-    private List<Pieza> piezas;
+    private List<Pieza> vecinos;
 
     static final int PORCENTAJE_DANIO_TERRITORIO = 5;
 
@@ -31,7 +31,7 @@ public abstract class Pieza implements Aliable, Movible {
         this.coste = coste;
         this.alianza = new PiezaAliada();
         this.movimiento = new Movimiento(new AlcanceInmediato());
-        piezas = new ArrayList<>();
+        vecinos = new ArrayList<>();
     }
 
     public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, FueraDelTableroException {
@@ -73,7 +73,7 @@ public abstract class Pieza implements Aliable, Movible {
     }
 
     public void agregarVecino(Pieza pieza) {
-        piezas.add(pieza);
+        vecinos.add(pieza);
     }
 
     public void  recibirDanioTerritorio() {
@@ -108,4 +108,24 @@ public abstract class Pieza implements Aliable, Movible {
     public void cambiarAlianza(){
         alianza = alianza.cambiar();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
