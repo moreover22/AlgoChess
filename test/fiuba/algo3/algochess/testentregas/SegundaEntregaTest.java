@@ -1,17 +1,20 @@
 package fiuba.algo3.algochess.testentregas;
 
 import fiuba.algo3.algochess.Posicion;
-import fiuba.algo3.algochess.pieza.Jinete;
-import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
+import fiuba.algo3.algochess.pieza.*;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
+import fiuba.algo3.algochess.pieza.movimiento.Direccion;
+import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
 import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.tablero.Tablero;
 import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SegundaEntregaTest {
 
@@ -54,4 +57,67 @@ public class SegundaEntregaTest {
         // Assert
         assertEquals(100, otroSoldadoEnemigo.getVida());
     }
+    @Test
+    public void test13ElBatallonSeMueveCorrectamente() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        List<Pieza> listPiezas = new ArrayList<Pieza>();
+        listPiezas.add(soldado1);
+        listPiezas.add(soldado2);
+        listPiezas.add(soldado3);
+        Batallon batallon = new Batallon(listPiezas);
+        Posicion posFinal1 = new Posicion(1,2);
+        Posicion posFinal2 = new Posicion(1,3);
+        Posicion posFinal3 = new Posicion(1,4);
+        Direccion direccion = Direccion.derecha();
+        // Act - Posiciono y muevo
+        soldado1.posicionar(tablero, new Posicion(0, 2));
+        soldado2.posicionar(tablero, new Posicion(0, 3));
+        soldado3.posicionar(tablero, new Posicion(0, 4));
+
+        batallon.mover(tablero,direccion);
+        // Assert
+        assertEquals(soldado1.getPosicion(),posFinal1);
+        assertEquals(soldado2.getPosicion(),posFinal2);
+        assertEquals(soldado3.getPosicion(),posFinal3);
+        }
+    @Test
+    public void test14ElBatallonSeMueveSoloSeMuevenDosSoldadosDebidoAUnObstaculo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        Curandero curandero = new Curandero();
+        List<Pieza> listPiezas = new ArrayList<Pieza>();
+        listPiezas.add(soldado1);
+        listPiezas.add(soldado2);
+        listPiezas.add(soldado3);
+        Batallon batallon = new Batallon(listPiezas);
+        Posicion posFinal1 = new Posicion(1,2);
+        Posicion posFinal2 = new Posicion(0,3);
+        Posicion posFinal3 = new Posicion(1,4);
+        Direccion direccion = Direccion.derecha();
+
+        // Act - Posiciono y muevo
+        soldado1.posicionar(tablero, new Posicion(0, 2));
+        soldado2.posicionar(tablero, new Posicion(0, 3));
+        soldado3.posicionar(tablero, new Posicion(0, 4));
+        curandero.posicionar(tablero,new Posicion(1, 3));
+
+        batallon.mover(tablero,direccion);
+        // Assert
+        assertEquals(soldado1.getPosicion(),posFinal1);
+        assertEquals(soldado2.getPosicion(),posFinal2);
+        assertEquals(soldado3.getPosicion(),posFinal3);
+    }
+
+
+
+
+
+
 }
