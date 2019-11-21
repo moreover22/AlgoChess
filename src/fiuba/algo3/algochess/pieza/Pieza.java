@@ -109,6 +109,10 @@ public abstract class Pieza implements Aliable, Movible {
         alianza = alianza.cambiar();
     }
 
+    protected void enlistarABatallon(List<Pieza> lista){
+
+    }
+
 
 
 

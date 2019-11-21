@@ -98,8 +98,32 @@ public class Tablero implements Aliable {
         }
     }
 
-    public void aplicarDanioTeritorio(){
-        casilleros.forEach((posicion,casillero) -> casillero.aplicarDanioTerritorio());
+    public void aplicarDanioTeritorio() {
+        casilleros.forEach((posicion, casillero) -> casillero.aplicarDanioTerritorio());
+    }
+
+    public List<Pieza> buscarVecinosVertical(Pieza pieza)throws FueraDelTableroException {
+        List<Pieza>vecinos = new ArrayList<Pieza>();
+        Posicion posicionCentral = pieza.getPosicion();
+
+        for (int j = -1; j <= 1; j++) {
+            Posicion proximaPosicion = posicionCentral.aplicarDireccion(0,j);
+            Pieza proximaPieza = getCasillero(proximaPosicion).getPieza();
+            vecinos.add(proximaPieza);
+        }
+        return vecinos;
+    }
+
+    public List<Pieza> buscarVecinosHorizontal(Pieza pieza)throws FueraDelTableroException {
+        List<Pieza>vecinos = new ArrayList<Pieza>();
+        Posicion posicionCentral = pieza.getPosicion();
+
+        for (int j = -1; j <= 1; j++) {
+            Posicion proximaPosicion = posicionCentral.aplicarDireccion(0,j);
+            Pieza proximaPieza = getCasillero(proximaPosicion).getPieza();
+            vecinos.add(proximaPieza);
+        }
+        return vecinos;
     }
 }
 

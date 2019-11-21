@@ -5,10 +5,17 @@ import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
 import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.tablero.Tablero;
 
+import java.util.List;
+
 public class Batallon implements Movible {
     private Iterable<Pieza> piezas;
 
-    public Batallon(Iterable<Pieza> piezas) {
+    public Batallon(List<Pieza> piezas){
+        this.piezas = piezas;
+    }
+
+    public Batallon(Pieza pieza , List<Pieza> piezas) {
+        piezas.add(pieza);
         this.piezas = piezas;
     }
 
@@ -25,7 +32,21 @@ public class Batallon implements Movible {
             pieza.deshacerMovimiento();
         }
     }
+
+    public boolean esValido(){
+        for (Pieza pieza: piezas) {
+            if(pieza == null) return false;
+        }
+        return true;
+    }
+
 }
+
+
+
+
+
+
 
 
 
