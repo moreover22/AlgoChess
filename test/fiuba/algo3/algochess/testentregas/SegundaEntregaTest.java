@@ -65,14 +65,14 @@ public class SegundaEntregaTest {
         SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
         SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
         SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
-        Posicion posFinal1 = new Posicion(2,2);
-        Posicion posFinal2 = new Posicion(2,3);
-        Posicion posFinal3 = new Posicion(2,4);
+        Posicion posFinal1 = new Posicion(1,2);
+        Posicion posFinal2 = new Posicion(1,3);
+        Posicion posFinal3 = new Posicion(1,4);
         Direccion direccion = Direccion.derecha();
         // Act - Posiciono y muevo
-        soldado1.posicionar(tablero, new Posicion(1, 2));
-        soldado2.posicionar(tablero, new Posicion(1, 3));
-        soldado3.posicionar(tablero, new Posicion(1, 4));
+        soldado1.posicionar(tablero, new Posicion(0, 2));
+        soldado2.posicionar(tablero, new Posicion(0, 3));
+        soldado3.posicionar(tablero, new Posicion(0, 4));
 
         Movible AMover = soldado2.seleccionarParaMover(tablero);
         AMover.mover(tablero,direccion);

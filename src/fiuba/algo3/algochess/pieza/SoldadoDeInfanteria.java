@@ -20,23 +20,6 @@ public class SoldadoDeInfanteria extends Pieza {
     public int contarAliadosDeCaballeria(int cantidadAliadosCaballeria) {
         return alianza.contarAliado(cantidadAliadosCaballeria);
     }
-/*
-    @Override
-    public void mover(Tablero tablero, Direccion direccion) throws MovimientoFueraDeAlcanceException, FueraDelTableroException {
-
-        reclutarSoldados(tablero).mover(tablero,direccion);
-
-    }
-    public Movible formarBatallonVertical(Tablero tablero) {
-        Iterable<Pieza> vecinos = tablero.buscarVecinosVertical(this);
-        return new Batallon(this, vecinos);
-    }
-
-    public Movible formarBatallonHorizontal(Tablero tablero, Pieza pieza) {
-        Iterable<Pieza> vecinos = tablero.buscarVecinosHorizontal(pieza);
-        return new Batallon(pieza, vecinos);
-    }
-*/
 
     @Override
     public Movible seleccionarParaMover(Tablero tablero) throws FueraDelTableroException {
