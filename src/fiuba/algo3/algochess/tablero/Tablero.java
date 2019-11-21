@@ -92,7 +92,7 @@ public class Tablero implements Aliable {
                     posicionActual = p.getKey().aplicarDireccion(i,j);
                     casilleroActual = getCasillero(posicionActual);
                     pieza = casilleroActual.getPieza();
-                    p.getValue().getPieza().agregarVecino(pieza);
+
                 }
             }
 

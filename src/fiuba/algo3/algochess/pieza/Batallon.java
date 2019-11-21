@@ -34,8 +34,7 @@ public class Batallon implements Movible {
     }
 
     public boolean esValido(){
-        if(piezas.size() == 3) return true;
-        return false;
+        return (piezas.size() == 3);
     }
 
 }

@@ -125,7 +125,7 @@ public class SegundaEntregaTest {
         soldado3.posicionar(tablero, new Posicion(1, 4));
         curandero.posicionar(tablero, new Posicion(2, 3));
 
-        Movible AMover = soldado2.seleccionarParaMover(tablero);
+        Movible AMover = soldado1.seleccionarParaMover(tablero);
         AMover.mover(tablero, direccion);
 
         // Act - Posiciono y muevo
