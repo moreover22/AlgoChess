@@ -108,24 +108,4 @@ public abstract class Pieza implements Aliable, Movible {
     public void cambiarAlianza(){
         alianza = alianza.cambiar();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
