@@ -74,13 +74,13 @@ public class SegundaEntregaTest {
         soldado2.posicionar(tablero, new Posicion(0, 3));
         soldado3.posicionar(tablero, new Posicion(0, 4));
 
-        Movible AMover = soldado2.seleccionarParaMover(tablero);
+        Movible AMover = soldado3.seleccionarParaMover(tablero);
         AMover.mover(tablero,direccion);
         // Assert
         assertEquals(soldado1.getPosicion(),posFinal1);
         assertEquals(soldado2.getPosicion(),posFinal2);
         assertEquals(soldado3.getPosicion(),posFinal3);
-        }
+    }
     @Test
     public void test14ElBatallonSeMueveSoloSeMuevenDosSoldadosDebidoAUnObstaculo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         // Arrange
@@ -165,9 +165,6 @@ public class SegundaEntregaTest {
         assertEquals(soldado3.getPosicion(),posFinal3);
         assertEquals(soldado4.getPosicion(),posFinal4);
     }
-
-
-
 }
 
 

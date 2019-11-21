@@ -13,7 +13,6 @@ public class SoldadoDeInfanteria extends Pieza {
     public SoldadoDeInfanteria(){
         super(100, 1);
         habilidad = new Ataque(new EspadaPesada());
-
     }
 
     @Override
@@ -40,20 +39,35 @@ public class SoldadoDeInfanteria extends Pieza {
         for(Pieza vecino:vecinosVerticales){
             vecino.enlistarABatallon(reclutasVerticales);
         }
-
+        
         Batallon batallon;
+        if(reclutasHorizontales.size() == 1){
+            Pieza vecino = reclutasHorizontales.get(0);
+            List<Pieza>reclutasHorizontalesVecino=tablero.buscarVecinosHorizontal(vecino);
+            reclutasHorizontalesVecino.add(vecino);
+            batallon = new Batallon(reclutasHorizontalesVecino);
+            if(batallon.esValido()) return batallon;
+            return this;
+        }
+        if(reclutasVerticales.size() == 1){
+            Pieza vecino = reclutasVerticales.get(0);
+            List<Pieza>reclutasVerticalesVecino=tablero.buscarVecinosVertical(vecino);
+            reclutasVerticalesVecino.add(vecino);
+            batallon = new Batallon(reclutasVerticalesVecino);
+            if(batallon.esValido()) return batallon;
+            return this;
+        }
 
-            batallon = new Batallon(reclutasHorizontales);
-            if (batallon.esValido()) {
-                return batallon;
-            }
-
-
-            batallon = new Batallon(reclutasVerticales);
-            if (batallon.esValido()) {
-                return batallon;
-            }
-
+        reclutasHorizontales.add(this);
+        batallon = new Batallon(reclutasHorizontales);
+        if (batallon.esValido()) {
+            return batallon;
+        }
+        reclutasVerticales.add(this);
+        batallon = new Batallon(reclutasVerticales);
+        if (batallon.esValido()) {
+            return batallon;
+        }
         return this;
     }
 

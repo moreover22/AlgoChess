@@ -80,6 +80,7 @@ public class Tablero implements Aliable {
     public void cambiarAlianza() {
         casilleros.forEach((posicion, casillero) -> casillero.cambiarAlianza());
     }
+
     public void buscarVecinos()throws FueraDelTableroException {
         Posicion posicionActual;
         Casillero casilleroActual;
@@ -107,6 +108,7 @@ public class Tablero implements Aliable {
         Posicion posicionCentral = pieza.getPosicion();
 
         for (int j = -1; j <= 1; j++) {
+            if(j==0) continue;
            try {
                Posicion proximaPosicion = posicionCentral.aplicarDireccion(0, j);
                Pieza proximaPieza = getCasillero(proximaPosicion).getPieza();
@@ -121,6 +123,7 @@ public class Tablero implements Aliable {
         Posicion posicionCentral = pieza.getPosicion();
 
         for (int j = -1; j <= 1; j++) {
+            if(j==0) continue;
            try {
                Posicion proximaPosicion = posicionCentral.aplicarDireccion(j, 0);
                Pieza proximaPieza = getCasillero(proximaPosicion).getPieza();
