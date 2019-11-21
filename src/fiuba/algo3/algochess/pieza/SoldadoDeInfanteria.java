@@ -2,8 +2,6 @@ package fiuba.algo3.algochess.pieza;
 
 import fiuba.algo3.algochess.pieza.habilidad.Ataque;
 import fiuba.algo3.algochess.pieza.habilidad.armas.EspadaPesada;
-import fiuba.algo3.algochess.pieza.movimiento.Direccion;
-import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
 import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.tablero.Tablero;
 
@@ -22,14 +20,14 @@ public class SoldadoDeInfanteria extends Pieza {
     public int contarAliadosDeCaballeria(int cantidadAliadosCaballeria) {
         return alianza.contarAliado(cantidadAliadosCaballeria);
     }
-
+/*
     @Override
     public void mover(Tablero tablero, Direccion direccion) throws MovimientoFueraDeAlcanceException, FueraDelTableroException {
 
         reclutarSoldados(tablero).mover(tablero,direccion);
 
     }
-   /* public Movible formarBatallonVertical(Tablero tablero) {
+    public Movible formarBatallonVertical(Tablero tablero) {
         Iterable<Pieza> vecinos = tablero.buscarVecinosVertical(this);
         return new Batallon(this, vecinos);
     }
@@ -39,6 +37,12 @@ public class SoldadoDeInfanteria extends Pieza {
         return new Batallon(pieza, vecinos);
     }
 */
+
+    @Override
+    public Movible seleccionarParaMover(Tablero tablero) throws FueraDelTableroException {
+        return reclutarSoldados(tablero);
+    }
+
 
     public Movible reclutarSoldados(Tablero tablero) throws FueraDelTableroException {
         Iterable<Pieza> vecinosHorizontales = tablero.buscarVecinosHorizontal(this);
@@ -55,18 +59,18 @@ public class SoldadoDeInfanteria extends Pieza {
         }
 
         Batallon batallon;
-        for (Pieza candidato : reclutasHorizontales) {
-            batallon = new Batallon(candidato,tablero.buscarVecinosHorizontal(candidato));
+
+            batallon = new Batallon(reclutasHorizontales);
             if (batallon.esValido()) {
                 return batallon;
             }
-        }
-        for (Pieza candidato : reclutasVerticales) {
-            batallon = new Batallon(candidato,tablero.buscarVecinosVertical(candidato));
+
+
+            batallon = new Batallon(reclutasVerticales);
             if (batallon.esValido()) {
                 return batallon;
             }
-        }
+
         return this;
     }
 

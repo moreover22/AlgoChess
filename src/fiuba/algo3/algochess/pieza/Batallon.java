@@ -8,7 +8,7 @@ import fiuba.algo3.algochess.tablero.Tablero;
 import java.util.List;
 
 public class Batallon implements Movible {
-    private Iterable<Pieza> piezas;
+    private List<Pieza> piezas;
 
     public Batallon(List<Pieza> piezas){
         this.piezas = piezas;
@@ -34,10 +34,8 @@ public class Batallon implements Movible {
     }
 
     public boolean esValido(){
-        for (Pieza pieza: piezas) {
-            if(pieza == null) return false;
-        }
-        return true;
+        if(piezas.size() == 3) return true;
+        return false;
     }
 
 }

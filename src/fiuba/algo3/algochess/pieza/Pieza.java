@@ -113,6 +113,10 @@ public abstract class Pieza implements Aliable, Movible {
 
     }
 
+    public Movible seleccionarParaMover(Tablero tablero) throws FueraDelTableroException {
+        return this;
+    }
+
 
 
 

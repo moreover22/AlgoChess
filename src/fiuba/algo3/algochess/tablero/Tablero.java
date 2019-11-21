@@ -119,7 +119,7 @@ public class Tablero implements Aliable {
         Posicion posicionCentral = pieza.getPosicion();
 
         for (int j = -1; j <= 1; j++) {
-            Posicion proximaPosicion = posicionCentral.aplicarDireccion(0,j);
+            Posicion proximaPosicion = posicionCentral.aplicarDireccion(j,0);
             Pieza proximaPieza = getCasillero(proximaPosicion).getPieza();
             vecinos.add(proximaPieza);
         }
