@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.pieza.Pieza;
 import fiuba.algo3.algochess.pieza.alcance.Alcance;
 import fiuba.algo3.algochess.pieza.habilidad.AtaqueAAliadoException;
+import fiuba.algo3.algochess.pieza.habilidad.Habilidad;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
 
 public abstract class Arma {
@@ -16,11 +17,11 @@ public abstract class Arma {
         this.alcance = alcance;
     }
 
-    public void atacarA(Pieza objetivo, Posicion desde,Habilidad habilidad) throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException {
+    public void atacarA(Pieza objetivo, Posicion desde, Habilidad habilidad) throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException {
         if (! alcance.llegoA(desde, objetivo.getPosicion())) {
             throw new HabilidadFueraDeAlcanceException();
         }
-        habilidad.aplicarHabilidad(danio,objetivo);
+        objetivo.recibirHabilidad(habilidad,danio);
     }
 
     public Arma actualizar(Iterable<Pieza> vecinos) {

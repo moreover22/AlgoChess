@@ -20,7 +20,7 @@ public class Ataque implements Habilidad{
         arma.atacarA(objetivo, desde,this);
     }
     @Override
-    public void aplicarHabilidad(float cantidad, Pieza pieza){
-        pieza.recibirHabilidad(this,cantidad);
+    public float aplicarHabilidad(float cantidad, Pieza pieza){
+        return (pieza.getVida()-cantidad);
     }
 }
