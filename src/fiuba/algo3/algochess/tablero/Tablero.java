@@ -124,8 +124,6 @@ public class Tablero implements Aliable {
 
     public void mover(Pieza pieza, Direccion direccion) throws FueraDelTableroException, MovimientoFueraDeAlcanceException {
         Movible movible = pieza.seleccionarParaMover(this);
-        getCasillero(pieza.getPosicion()).vaciar();
-        movible.mover(direccion);
-        getCasillero(pieza.getPosicion()).ocupar(pieza, this);
+        movible.mover(direccion, this);
     }
 }

@@ -87,8 +87,10 @@ public abstract class Pieza implements Aliable, Movible {
     }
 
     @Override
-    public void mover(Direccion direccion) throws MovimientoFueraDeAlcanceException {
+    public void mover(Direccion direccion, Tablero tablero) throws MovimientoFueraDeAlcanceException, FueraDelTableroException {
+        tablero.vaciar(posicion);
         posicion = movimiento.mover(posicion, direccion);
+        tablero.ocupar(posicion, this);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package fiuba.algo3.algochess.pieza;
 
 import fiuba.algo3.algochess.pieza.movimiento.Direccion;
+import fiuba.algo3.algochess.tablero.Tablero;
+
 public class PiezaNula extends Pieza{
     public PiezaNula() {
         super(0, 0);
@@ -17,7 +19,7 @@ public class PiezaNula extends Pieza{
     }
 
     @Override
-    public void mover(Direccion direccion) {
+    public void mover(Direccion direccion, Tablero tablero) {
 
     }
 

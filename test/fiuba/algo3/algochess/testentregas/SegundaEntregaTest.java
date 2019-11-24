@@ -31,7 +31,6 @@ public class SegundaEntregaTest {
         soldado2.posicionar(tablero, new Posicion(0, 3));
         soldado3.posicionar(tablero, new Posicion(0, 4));
 
-//        Movible AMover = soldado3.seleccionarParaMover(tablero);
         tablero.mover(soldado3, direccion);
         // Assert
         assertEquals(soldado1.getPosicion(), posFinal1);
@@ -58,7 +57,6 @@ public class SegundaEntregaTest {
         soldado3.posicionar(tablero, new Posicion(1, 4));
         curandero.posicionar(tablero,new Posicion(2, 3));
 
-//        Movible AMover = soldado2.seleccionarParaMover(tablero);
         tablero.mover(soldado2, direccion);
         // Assert
         assertEquals(soldado1.getPosicion(),posFinal1);
@@ -73,22 +71,25 @@ public class SegundaEntregaTest {
         SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
         SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
         SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
-        Curandero curandero = new Curandero();
-        Posicion posFinal1 = new Posicion(3, 2);
-        Posicion posFinal2 = new Posicion(1, 3);
-        Posicion posFinal3 = new Posicion(2, 4);
-        Direccion direccion = Direccion.derecha();
         soldado1.posicionar(tablero, new Posicion(1, 2));
         soldado2.posicionar(tablero, new Posicion(1, 3));
         soldado3.posicionar(tablero, new Posicion(1, 4));
+
+        Curandero curandero = new Curandero();
         curandero.posicionar(tablero, new Posicion(2, 3));
 
-//        Movible AMover = soldado1.seleccionarParaMover(tablero);
+        Posicion posFinal1 = new Posicion(3, 2);
+        Posicion posFinal2 = new Posicion(1, 3);
+        Posicion posFinal3 = new Posicion(2, 4);
+
+        Direccion direccion = Direccion.derecha();
+
+
         tablero.mover(soldado1, direccion);
 
-        // Act - Posiciono y muevo
-//        AMover = soldado1.seleccionarParaMover(tablero);
+        // Act
         tablero.mover(soldado1, direccion);
+
         // Assert
         assertEquals(soldado1.getPosicion(), posFinal1);
         assertEquals(soldado2.getPosicion(), posFinal2);
@@ -114,7 +115,6 @@ public class SegundaEntregaTest {
         soldado3.posicionar(tablero, new Posicion(1, 4));
         soldado4.posicionar(tablero, new Posicion(1, 5));
 
-//        Movible AMover = soldado2.seleccionarParaMover(tablero);
         tablero.mover(soldado2,direccion);
         // Assert
         assertEquals(soldado1.getPosicion(),posFinal1);
@@ -163,8 +163,3 @@ public class SegundaEntregaTest {
         assertEquals(100, otroSoldadoEnemigo.getVida());
     }
 }
-
-
-
-
-
