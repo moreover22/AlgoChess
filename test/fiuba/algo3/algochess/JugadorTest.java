@@ -144,5 +144,6 @@ public class JugadorTest {
         //Assert
         assertTrue(jugador.perdio());
 
+
     }
 }

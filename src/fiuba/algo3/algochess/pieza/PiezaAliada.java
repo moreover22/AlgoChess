@@ -2,6 +2,8 @@ package fiuba.algo3.algochess.pieza;
 
 import fiuba.algo3.algochess.pieza.habilidad.AtaqueAAliadoException;
 
+import java.util.List;
+
 public class PiezaAliada implements PiezaAlianza {
     @Override
     public PiezaAlianza cambiar() {
@@ -28,4 +30,31 @@ public class PiezaAliada implements PiezaAlianza {
         return cantidadEnemigos;
     }
 
+    @Override
+    public void enlistarABatallon(List<Pieza> lista, Pieza pieza) {
+        lista.add(pieza);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
