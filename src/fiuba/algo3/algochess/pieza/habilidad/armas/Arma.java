@@ -16,11 +16,11 @@ public abstract class Arma {
         this.alcance = alcance;
     }
 
-    public void atacarA(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException {
+    public void atacarA(Pieza objetivo, Posicion desde,Habilidad habilidad) throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException {
         if (! alcance.llegoA(desde, objetivo.getPosicion())) {
             throw new HabilidadFueraDeAlcanceException();
         }
-        objetivo.recibirDanio(danio);
+        habilidad.aplicarHabilidad(danio,objetivo);
     }
 
     public Arma actualizar(Iterable<Pieza> vecinos) {

@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.pieza;
 
 import fiuba.algo3.algochess.pieza.habilidad.AtaqueAAliadoException;
 import fiuba.algo3.algochess.pieza.habilidad.CuracionAEnemigoException;
+import fiuba.algo3.algochess.pieza.habilidad.Habilidad;
 
 public class Vida {
     private float vidaInicial;
@@ -33,4 +34,12 @@ public class Vida {
     public void recibirDanioPorcentual(int porcentaje) {
         vidaActual -= vidaInicial * porcentaje / 100;
     }
+
+    public void recibirHabilidad(float cantidad, Habilidad habilidad, PiezaAlianza alianza){
+        vidaActual = alianza.recibirHabilidad(vidaActual, cantidad);
+        if(vidaActual > vidaInicial) {
+            vidaActual = vidaInicial;
+        }
+    }
+
 }

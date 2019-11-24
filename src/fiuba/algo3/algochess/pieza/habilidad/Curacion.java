@@ -13,15 +13,20 @@ public class Curacion implements Habilidad {
         this.curacion = curacion;
         this.alcance = new AlcanceCercano();
     }
-
     @Override
-    public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
+    public void aplicarHabilidad(float cantidad, Pieza pieza) {
+        pieza.recibirHabilidad(this,cantidad);
+    }
+    @Override
+    public void usarCon(Pieza objetivo, Posicion desde,Habilidad habilidad) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         if (! alcance.llegoA(desde, objetivo.getPosicion())) {
             throw new HabilidadFueraDeAlcanceException();
         }
-
-        objetivo.recibirCuracion(curacion);
+<
+        habilidad.aplicarHabilidad(curacion, objetivo);
     }
+
+
 
 }
 
