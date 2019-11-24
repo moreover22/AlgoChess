@@ -9,40 +9,34 @@ import fiuba.algo3.algochess.tablero.Tablero;
 import java.util.List;
 
 public class Batallon implements Movible {
-    private List<Pieza> piezas;
+    private List<Pieza> movibles;
 
-    public Batallon(List<Pieza> piezas){
-        this.piezas = piezas;
-    }
-
-    public Batallon(Pieza pieza , List<Pieza> piezas) {
-        piezas.add(pieza);
-        this.piezas = piezas;
+    public Batallon(List<Pieza> movibles){
+        this.movibles = movibles;
     }
 
     @Override
     public void mover(Direccion direccion, Tablero tablero) throws MovimientoFueraDeAlcanceException, FueraDelTableroException {
-        for (Pieza pieza : piezas) {
-            pieza.mover(direccion, tablero);
+        for (Movible movible : movibles) {
+            movible.mover(direccion, tablero);
         }
     }
 
     @Override
     public void deshacerMovimiento() {
-        for (Pieza pieza : piezas) {
-            pieza.deshacerMovimiento();
+        for (Movible movible : movibles) {
+            movible.deshacerMovimiento();
         }
     }
 
     public boolean esValido(){
-        return (piezas.size() == 3);
+        return movibles.size() == 3;
     }
 
     @Override
     public Posicion getPosicion() {
-        return piezas.get(0).getPosicion();
+        return movibles.get(0).getPosicion();
     }
-
 }
 
 

@@ -90,40 +90,20 @@ public class Tablero implements Aliable {
         });
     }
 
-    public List<Pieza> buscarVecinosVertical(Pieza pieza) {
-        List<Pieza>vecinos = new ArrayList<>();
-        Posicion posicionCentral = pieza.getPosicion();
-
-        for (int j = -1; j <= 1; j++) {
-            if(j==0) continue;
-           try {
-               Posicion proximaPosicion = posicionCentral.aplicarDireccion(0, j);
-               Casillero proximoCasillero = getCasillero(proximaPosicion);
-               Pieza proximaPieza = proximoCasillero.getPieza();
-               vecinos.add(proximaPieza);
-           }catch(FueraDelTableroException excepcion){};
-        }
-        return vecinos;
-    }
-
-    public List<Pieza> buscarVecinosHorizontal(Pieza pieza) {
-        List<Pieza>vecinos = new ArrayList<>();
-        Posicion posicionCentral = pieza.getPosicion();
-
-        for (int j = -1; j <= 1; j++) {
-            if(j==0) continue;
-           try {
-               Posicion proximaPosicion = posicionCentral.aplicarDireccion(j, 0);
-               Casillero proximoCasillero = getCasillero(proximaPosicion);
-               Pieza proximaPieza = proximoCasillero.getPieza();
-               vecinos.add(proximaPieza);
-           }catch(FueraDelTableroException excepcion){}
-        }
-        return vecinos;
-    }
-
     public void mover(Pieza pieza, Direccion direccion) throws FueraDelTableroException, MovimientoFueraDeAlcanceException {
         Movible movible = pieza.seleccionarParaMover(this);
         movible.mover(direccion, this);
+    }
+
+    public Iterable<Pieza> getVecinos(Posicion posicion, Iterable<Direccion> direcciones) throws FueraDelTableroException {
+        List<Pieza> vecinos = new ArrayList<>();
+        for (Direccion direccion : direcciones) {
+            Posicion posicionEnDireccion = direccion.aplicarA(posicion);
+            if (! posicionEnDireccion.estaDentroDe(rango))
+                continue;
+            vecinos.add(getCasillero(posicionEnDireccion).getPieza());
+        }
+
+        return vecinos;
     }
 }
