@@ -80,6 +80,7 @@ public class Tablero implements Aliable {
     public void cambiarAlianza() {
         casilleros.forEach((posicion, casillero) -> casillero.cambiarAlianza());
     }
+
     public void buscarVecinos()throws FueraDelTableroException {
         Posicion posicionActual;
         Casillero casilleroActual;
@@ -91,15 +92,45 @@ public class Tablero implements Aliable {
                     posicionActual = p.getKey().aplicarDireccion(i,j);
                     casilleroActual = getCasillero(posicionActual);
                     pieza = casilleroActual.getPieza();
-                    p.getValue().getPieza().agregarVecino(pieza);
+
                 }
             }
 
         }
     }
 
-    public void aplicarDanioTeritorio(){
-        casilleros.forEach((posicion,casillero) -> casillero.aplicarDanioTerritorio());
+    public void aplicarDanioTeritorio() {
+        casilleros.forEach((posicion, casillero) -> casillero.aplicarDanioTerritorio());
+    }
+
+    public List<Pieza> buscarVecinosVertical(Pieza pieza)throws FueraDelTableroException {
+        List<Pieza>vecinos = new ArrayList<Pieza>();
+        Posicion posicionCentral = pieza.getPosicion();
+
+        for (int j = -1; j <= 1; j++) {
+            if(j==0) continue;
+           try {
+               Posicion proximaPosicion = posicionCentral.aplicarDireccion(0, j);
+               Pieza proximaPieza = getCasillero(proximaPosicion).getPieza();
+               vecinos.add(proximaPieza);
+           }catch(FueraDelTableroException excepcion){};
+        }
+        return vecinos;
+    }
+
+    public List<Pieza> buscarVecinosHorizontal(Pieza pieza)throws FueraDelTableroException {
+        List<Pieza>vecinos = new ArrayList<Pieza>();
+        Posicion posicionCentral = pieza.getPosicion();
+
+        for (int j = -1; j <= 1; j++) {
+            if(j==0) continue;
+           try {
+               Posicion proximaPosicion = posicionCentral.aplicarDireccion(j, 0);
+               Pieza proximaPieza = getCasillero(proximaPosicion).getPieza();
+               vecinos.add(proximaPieza);
+           }catch(FueraDelTableroException excepcion){}
+        }
+        return vecinos;
     }
 }
 

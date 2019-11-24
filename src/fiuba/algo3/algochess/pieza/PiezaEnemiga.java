@@ -2,6 +2,8 @@ package fiuba.algo3.algochess.pieza;
 
 import fiuba.algo3.algochess.pieza.habilidad.CuracionAEnemigoException;
 
+import java.util.List;
+
 public class PiezaEnemiga implements PiezaAlianza {
     @Override
     public PiezaAlianza cambiar() {
@@ -27,4 +29,22 @@ public class PiezaEnemiga implements PiezaAlianza {
     public int contarEnemigo(int cantidadEnemigos) {
         return cantidadEnemigos + 1;
     }
+
+    @Override
+    public void enlistarABatallon(List<Pieza> lista, Pieza pieza) {
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

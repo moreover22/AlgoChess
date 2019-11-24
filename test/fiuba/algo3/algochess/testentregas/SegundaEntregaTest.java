@@ -1,10 +1,14 @@
 package fiuba.algo3.algochess.testentregas;
 
 import fiuba.algo3.algochess.Posicion;
+import fiuba.algo3.algochess.pieza.Curandero;
 import fiuba.algo3.algochess.pieza.Jinete;
+import fiuba.algo3.algochess.pieza.Movible;
 import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
+import fiuba.algo3.algochess.pieza.movimiento.Direccion;
+import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
 import fiuba.algo3.algochess.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.tablero.Tablero;
 import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
@@ -54,4 +58,116 @@ public class SegundaEntregaTest {
         // Assert
         assertEquals(100, otroSoldadoEnemigo.getVida());
     }
+    @Test
+    public void test13ElBatallonSeMueveCorrectamente() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        Posicion posFinal1 = new Posicion(1,2);
+        Posicion posFinal2 = new Posicion(1,3);
+        Posicion posFinal3 = new Posicion(1,4);
+        Direccion direccion = Direccion.derecha();
+        // Act - Posiciono y muevo
+        soldado1.posicionar(tablero, new Posicion(0, 2));
+        soldado2.posicionar(tablero, new Posicion(0, 3));
+        soldado3.posicionar(tablero, new Posicion(0, 4));
+
+        Movible AMover = soldado3.seleccionarParaMover(tablero);
+        AMover.mover(tablero,direccion);
+        // Assert
+        assertEquals(soldado1.getPosicion(),posFinal1);
+        assertEquals(soldado2.getPosicion(),posFinal2);
+        assertEquals(soldado3.getPosicion(),posFinal3);
+    }
+    @Test
+    public void test14ElBatallonSeMueveSoloSeMuevenDosSoldadosDebidoAUnObstaculo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        Curandero curandero = new Curandero();
+        Posicion posFinal1 = new Posicion(2,2);
+        Posicion posFinal2 = new Posicion(1,3);
+        Posicion posFinal3 = new Posicion(2,4);
+        Direccion direccion = Direccion.derecha();
+
+        // Act - Posiciono y muevo
+        soldado1.posicionar(tablero, new Posicion(1, 2));
+        soldado2.posicionar(tablero, new Posicion(1, 3));
+        soldado3.posicionar(tablero, new Posicion(1, 4));
+        curandero.posicionar(tablero,new Posicion(2, 3));
+
+        Movible AMover = soldado2.seleccionarParaMover(tablero);
+        AMover.mover(tablero,direccion);
+        // Assert
+        assertEquals(soldado1.getPosicion(),posFinal1);
+        assertEquals(soldado2.getPosicion(),posFinal2);
+        assertEquals(soldado3.getPosicion(),posFinal3);
+    }
+
+    @Test
+    public void test15ElBatallonSeDisuelveCorrectamente() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        Curandero curandero = new Curandero();
+        Posicion posFinal1 = new Posicion(3, 2);
+        Posicion posFinal2 = new Posicion(1, 3);
+        Posicion posFinal3 = new Posicion(2, 4);
+        Direccion direccion = Direccion.derecha();
+        soldado1.posicionar(tablero, new Posicion(1, 2));
+        soldado2.posicionar(tablero, new Posicion(1, 3));
+        soldado3.posicionar(tablero, new Posicion(1, 4));
+        curandero.posicionar(tablero, new Posicion(2, 3));
+
+        Movible AMover = soldado1.seleccionarParaMover(tablero);
+        AMover.mover(tablero, direccion);
+
+        // Act - Posiciono y muevo
+        AMover = soldado1.seleccionarParaMover(tablero);
+        AMover.mover(tablero, direccion);
+        // Assert
+        assertEquals(soldado1.getPosicion(), posFinal1);
+        assertEquals(soldado2.getPosicion(), posFinal2);
+        assertEquals(soldado3.getPosicion(), posFinal3);
+
+    }
+
+    @Test
+    public void test16Habiendo4SoldadosContiguosSeMuevenUnicamente3() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado4 = new SoldadoDeInfanteria();
+        Posicion posFinal1 = new Posicion(2,2);
+        Posicion posFinal2 = new Posicion(2,3);
+        Posicion posFinal3 = new Posicion(2,4);
+        Posicion posFinal4 = new Posicion(1,5);
+        Direccion direccion = Direccion.derecha();
+        // Act - Posiciono y muevo
+        soldado1.posicionar(tablero, new Posicion(1, 2));
+        soldado2.posicionar(tablero, new Posicion(1, 3));
+        soldado3.posicionar(tablero, new Posicion(1, 4));
+        soldado4.posicionar(tablero, new Posicion(1, 5));
+
+        Movible AMover = soldado2.seleccionarParaMover(tablero);
+        AMover.mover(tablero,direccion);
+        // Assert
+        assertEquals(soldado1.getPosicion(),posFinal1);
+        assertEquals(soldado2.getPosicion(),posFinal2);
+        assertEquals(soldado3.getPosicion(),posFinal3);
+        assertEquals(soldado4.getPosicion(),posFinal4);
+    }
 }
+
+
+
+
+
