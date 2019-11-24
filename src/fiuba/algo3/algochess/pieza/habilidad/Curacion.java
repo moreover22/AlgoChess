@@ -2,6 +2,8 @@ package fiuba.algo3.algochess.pieza.habilidad;
 
 import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.pieza.Pieza;
+import fiuba.algo3.algochess.pieza.PiezaAlianza;
+import fiuba.algo3.algochess.pieza.Vida;
 import fiuba.algo3.algochess.pieza.alcance.Alcance;
 import fiuba.algo3.algochess.pieza.alcance.AlcanceCercano;
 
@@ -19,10 +21,8 @@ public class Curacion implements Habilidad {
         if (! alcance.llegoA(desde, objetivo.getPosicion())) {
             throw new HabilidadFueraDeAlcanceException();
         }
-
         objetivo.recibirCuracion(curacion);
     }
-
 }
 
 

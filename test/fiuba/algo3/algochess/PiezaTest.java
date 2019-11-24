@@ -216,7 +216,7 @@ public class PiezaTest {
         pieza1.posicionar(tablero, new Posicion(0, 0));
         pieza2.posicionar(tablero, new Posicion(0, 1));
         // Act
-        pieza2.mover(tablero, Direccion.arriba());
+        tablero.mover(pieza2, Direccion.arriba());
         // Assert
         assertEquals(new Posicion(0, 1), pieza2.getPosicion());
     }
@@ -228,28 +228,28 @@ public class PiezaTest {
 
         pieza.posicionar(tablero, new Posicion(0, 0));
 
-        pieza.mover(tablero, Direccion.abajo());
+        tablero.mover(pieza, Direccion.abajo());
         assertEquals(new Posicion(0, 1), pieza.getPosicion());
 
-        pieza.mover(tablero, Direccion.derecha());
+        tablero.mover(pieza, Direccion.derecha());
         assertEquals(new Posicion(1, 1), pieza.getPosicion());
 
-        pieza.mover(tablero, Direccion.izquierda());
+        tablero.mover(pieza, Direccion.izquierda());
         assertEquals(new Posicion(0, 1), pieza.getPosicion());
 
-        pieza.mover(tablero, Direccion.arriba());
+        tablero.mover(pieza, Direccion.arriba());
         assertEquals(new Posicion(0, 0), pieza.getPosicion());
 
-        pieza.mover(tablero, Direccion.derechaAbajo());
+        tablero.mover(pieza, Direccion.derechaAbajo());
         assertEquals(new Posicion(1, 1), pieza.getPosicion());
 
-        pieza.mover(tablero, Direccion.derechaArriba());
+        tablero.mover(pieza, Direccion.derechaArriba());
         assertEquals(new Posicion(2, 0), pieza.getPosicion());
 
-        pieza.mover(tablero, Direccion.izquierdaAbajo());
+        tablero.mover(pieza, Direccion.izquierdaAbajo());
         assertEquals(new Posicion(1, 1), pieza.getPosicion());
 
-        pieza.mover(tablero, Direccion.izquierdaArriba());
+        tablero.mover(pieza, Direccion.izquierdaArriba());
         assertEquals(new Posicion(0, 0), pieza.getPosicion());
     }
 
@@ -474,7 +474,7 @@ public class PiezaTest {
         // Act - Assert excepcion
         assertThrows(MovimientoFueraDeAlcanceException.class,
                 () -> {
-                    catapulta.mover(tablero, Direccion.derechaAbajo());
+                    tablero.mover(catapulta, Direccion.derechaAbajo());
                 });
         // Assert
         assertEquals(new Posicion(0, 0), catapulta.getPosicion());

@@ -15,15 +15,15 @@ public class Vida {
         return vidaActual;
     }
 
-    public void recibirCuracion(float curacion, PiezaAlianza alianza) throws CuracionAEnemigoException {
-        vidaActual = alianza.recibirCuracion(vidaActual, curacion);
+    public void aumentar(float cantidad, PiezaAlianza alianza) throws CuracionAEnemigoException {
+        vidaActual = alianza.recibirCuracion(vidaActual, cantidad);
         if(vidaActual > vidaInicial) {
             vidaActual = vidaInicial;
         }
     }
 
-    public void recibirDanio(float danio, PiezaAlianza alianza) throws AtaqueAAliadoException {
-        vidaActual = alianza.recibirDanio(vidaActual, danio);
+    public void reducir(float cantidad, PiezaAlianza alianza) throws AtaqueAAliadoException {
+        vidaActual = alianza.recibirDanio(vidaActual, cantidad);
     }
 
     public boolean tieneVida() {

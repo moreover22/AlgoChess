@@ -33,7 +33,7 @@ public abstract class Pieza implements Aliable, Movible {
 
     public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, FueraDelTableroException {
         habilidad.usarCon(objetivo, posicion);
-        if (!objetivo.estaViva()) tablero.sacar(objetivo.getPosicion());
+        if (!objetivo.estaViva()) tablero.vaciar(objetivo.getPosicion());
     }
 
     public void posicionar(Tablero tablero, Posicion posicion) throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
@@ -41,16 +41,17 @@ public abstract class Pieza implements Aliable, Movible {
         this.posicion = posicion;
     }
 
+    @Override
     public Posicion getPosicion() {
         return posicion;
     }
 
     public void recibirCuracion(float curacion) throws CuracionAEnemigoException {
-        vida.recibirCuracion(curacion, alianza);
+        vida.aumentar(curacion, alianza);
     }
 
     public void recibirDanio(float danio) throws AtaqueAAliadoException {
-        vida.recibirDanio(danio, alianza);
+        vida.reducir(danio, alianza);
     }
 
     public float getVida() {
@@ -86,10 +87,8 @@ public abstract class Pieza implements Aliable, Movible {
     }
 
     @Override
-    public void mover(Tablero tablero, Direccion direccion) throws MovimientoFueraDeAlcanceException, FueraDelTableroException {
-        tablero.sacar(posicion);
+    public void mover(Direccion direccion) throws MovimientoFueraDeAlcanceException {
         posicion = movimiento.mover(posicion, direccion);
-        tablero.ocupar(posicion, this);
     }
 
     @Override
@@ -102,8 +101,7 @@ public abstract class Pieza implements Aliable, Movible {
         alianza = alianza.cambiar();
     }
 
-    protected void enlistarABatallon(List<Pieza> lista){
-
+    protected void enlistarABatallon(List<Pieza> lista) {
     }
 
     public Movible seleccionarParaMover(Tablero tablero) throws FueraDelTableroException {

@@ -27,19 +27,19 @@ public class PrimerEntregaTest {
 
         pieza.posicionar(tablero, new Posicion(0, 0));
 
-        pieza.mover(tablero, Direccion.abajo());
+        tablero.mover(pieza, Direccion.abajo());
         assertEquals(new Posicion(0, 1), pieza.getPosicion());
 
-        pieza.mover(tablero, Direccion.derecha());
+        tablero.mover(pieza, Direccion.derecha());
         assertEquals(new Posicion(1, 1), pieza.getPosicion());
 
-        pieza.mover(tablero, Direccion.izquierda());
+        tablero.mover(pieza, Direccion.izquierda());
         assertEquals(new Posicion(0, 1), pieza.getPosicion());
 
-        pieza.mover(tablero, Direccion.arriba());
+        tablero.mover(pieza, Direccion.arriba());
         assertEquals(new Posicion(0, 0), pieza.getPosicion());
 
-        pieza.mover(tablero, Direccion.derechaAbajo());
+        tablero.mover(pieza, Direccion.derechaAbajo());
         assertEquals(new Posicion(1, 1), pieza.getPosicion());
 
     }
@@ -57,7 +57,7 @@ public class PrimerEntregaTest {
         otraPieza.posicionar(tablero, new Posicion(0, 1));
 
         // Act
-        unaPieza.mover(tablero, Direccion.abajo());
+        tablero.mover(unaPieza, Direccion.abajo());
 
         // Assert
         assertEquals(posicionOriginal, unaPieza.getPosicion());

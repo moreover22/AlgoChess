@@ -26,32 +26,34 @@ public class SoldadoDeInfanteria extends Pieza {
     }
 
 
-    public Movible reclutarSoldados(Tablero tablero) throws FueraDelTableroException {
+    private Movible reclutarSoldados(Tablero tablero) throws FueraDelTableroException {
         Iterable<Pieza> vecinosHorizontales = tablero.buscarVecinosHorizontal(this);
         Iterable<Pieza> vecinosVerticales = tablero.buscarVecinosVertical(this);
+
         List<Pieza> reclutasVerticales = new ArrayList<>();
         List<Pieza> reclutasHorizontales = new ArrayList<>();
 
-        for(Pieza vecino:vecinosHorizontales){
+        for(Pieza vecino : vecinosHorizontales){
             vecino.enlistarABatallon(reclutasHorizontales);
         }
 
-        for(Pieza vecino:vecinosVerticales){
+        for(Pieza vecino : vecinosVerticales){
             vecino.enlistarABatallon(reclutasVerticales);
         }
         
         Batallon batallon;
         if(reclutasHorizontales.size() == 1){
             Pieza vecino = reclutasHorizontales.get(0);
-            List<Pieza>reclutasHorizontalesVecino=tablero.buscarVecinosHorizontal(vecino);
+            List<Pieza> reclutasHorizontalesVecino = tablero.buscarVecinosHorizontal(vecino);
             reclutasHorizontalesVecino.add(vecino);
             batallon = new Batallon(reclutasHorizontalesVecino);
             if(batallon.esValido()) return batallon;
             return this;
         }
+
         if(reclutasVerticales.size() == 1){
             Pieza vecino = reclutasVerticales.get(0);
-            List<Pieza>reclutasVerticalesVecino=tablero.buscarVecinosVertical(vecino);
+            List<Pieza>reclutasVerticalesVecino = tablero.buscarVecinosVertical(vecino);
             reclutasVerticalesVecino.add(vecino);
             batallon = new Batallon(reclutasVerticalesVecino);
             if(batallon.esValido()) return batallon;

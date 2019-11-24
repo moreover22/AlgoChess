@@ -50,5 +50,10 @@ public class Posicion {
         Posicion otraPosicion = (Posicion) o;
         return otraPosicion.x == x && otraPosicion.y == y;
     }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ")";
+    }
 }
 

@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.pieza;
 
 import fiuba.algo3.algochess.pieza.habilidad.AtaqueAAliadoException;
 import fiuba.algo3.algochess.pieza.habilidad.CuracionAEnemigoException;
+import fiuba.algo3.algochess.pieza.habilidad.Habilidad;
 
 import java.util.List;
 

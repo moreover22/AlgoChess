@@ -1,10 +1,7 @@
 package fiuba.algo3.algochess.testentregas;
 
 import fiuba.algo3.algochess.Posicion;
-import fiuba.algo3.algochess.pieza.Curandero;
-import fiuba.algo3.algochess.pieza.Jinete;
-import fiuba.algo3.algochess.pieza.Movible;
-import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
+import fiuba.algo3.algochess.pieza.*;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.pieza.movimiento.Direccion;
@@ -18,46 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SegundaEntregaTest {
-
-    @Test
-    public void test16UnJineteSinAliadosYConEnemigoEnDistanciaCortaAtacaConSuEspadaAlEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
-        // Arrange
-        Tablero tablero = new Tablero();
-        Jinete jinete = new Jinete();
-        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
-        soldadoEnemigo.cambiarAlianza();
-        // Arrange - Posiciono
-        jinete.posicionar(tablero, new Posicion(0, 9));
-        tablero.cambiarAlianza();
-        soldadoEnemigo.posicionar(tablero, new Posicion(0, 10));
-        // Act
-        jinete.usarHabilidadEn(tablero, soldadoEnemigo);
-        // Assert
-        assertEquals(95, soldadoEnemigo.getVida());
-    }
-
-    @Test
-    public void test17UnJineteSinAliadosEnDistanciaCortaYUnEnemigoEnDistanciaCortaYOtroEnemigoEnDistanciaMediaJineteTrataDeAtacarADistanciaMediaYNoPuede() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
-        // Arrange
-        Tablero tablero = new Tablero();
-        Jinete jinete = new Jinete();
-        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria otroSoldadoEnemigo = new SoldadoDeInfanteria();
-        soldadoEnemigo.cambiarAlianza();
-        otroSoldadoEnemigo.cambiarAlianza();
-        // Arrange - Posiciono
-        jinete.posicionar(tablero, new Posicion(0, 9));
-        tablero.cambiarAlianza();
-        soldadoEnemigo.posicionar(tablero, new Posicion(0, 10));
-        otroSoldadoEnemigo.posicionar(tablero, new Posicion(0, 12));
-        // Act - Assert para exception
-        assertThrows(HabilidadFueraDeAlcanceException.class,
-                () -> {
-                    jinete.usarHabilidadEn(tablero, otroSoldadoEnemigo);
-                });
-        // Assert
-        assertEquals(100, otroSoldadoEnemigo.getVida());
-    }
     @Test
     public void test13ElBatallonSeMueveCorrectamente() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         // Arrange
@@ -74,13 +31,14 @@ public class SegundaEntregaTest {
         soldado2.posicionar(tablero, new Posicion(0, 3));
         soldado3.posicionar(tablero, new Posicion(0, 4));
 
-        Movible AMover = soldado3.seleccionarParaMover(tablero);
-        AMover.mover(tablero,direccion);
+//        Movible AMover = soldado3.seleccionarParaMover(tablero);
+        tablero.mover(soldado3, direccion);
         // Assert
-        assertEquals(soldado1.getPosicion(),posFinal1);
-        assertEquals(soldado2.getPosicion(),posFinal2);
-        assertEquals(soldado3.getPosicion(),posFinal3);
+        assertEquals(soldado1.getPosicion(), posFinal1);
+        assertEquals(soldado2.getPosicion(), posFinal2);
+        assertEquals(soldado3.getPosicion(), posFinal3);
     }
+
     @Test
     public void test14ElBatallonSeMueveSoloSeMuevenDosSoldadosDebidoAUnObstaculo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         // Arrange
@@ -100,8 +58,8 @@ public class SegundaEntregaTest {
         soldado3.posicionar(tablero, new Posicion(1, 4));
         curandero.posicionar(tablero,new Posicion(2, 3));
 
-        Movible AMover = soldado2.seleccionarParaMover(tablero);
-        AMover.mover(tablero,direccion);
+//        Movible AMover = soldado2.seleccionarParaMover(tablero);
+        tablero.mover(soldado2, direccion);
         // Assert
         assertEquals(soldado1.getPosicion(),posFinal1);
         assertEquals(soldado2.getPosicion(),posFinal2);
@@ -125,17 +83,16 @@ public class SegundaEntregaTest {
         soldado3.posicionar(tablero, new Posicion(1, 4));
         curandero.posicionar(tablero, new Posicion(2, 3));
 
-        Movible AMover = soldado1.seleccionarParaMover(tablero);
-        AMover.mover(tablero, direccion);
+//        Movible AMover = soldado1.seleccionarParaMover(tablero);
+        tablero.mover(soldado1, direccion);
 
         // Act - Posiciono y muevo
-        AMover = soldado1.seleccionarParaMover(tablero);
-        AMover.mover(tablero, direccion);
+//        AMover = soldado1.seleccionarParaMover(tablero);
+        tablero.mover(soldado1, direccion);
         // Assert
         assertEquals(soldado1.getPosicion(), posFinal1);
         assertEquals(soldado2.getPosicion(), posFinal2);
         assertEquals(soldado3.getPosicion(), posFinal3);
-
     }
 
     @Test
@@ -157,13 +114,53 @@ public class SegundaEntregaTest {
         soldado3.posicionar(tablero, new Posicion(1, 4));
         soldado4.posicionar(tablero, new Posicion(1, 5));
 
-        Movible AMover = soldado2.seleccionarParaMover(tablero);
-        AMover.mover(tablero,direccion);
+//        Movible AMover = soldado2.seleccionarParaMover(tablero);
+        tablero.mover(soldado2,direccion);
         // Assert
         assertEquals(soldado1.getPosicion(),posFinal1);
         assertEquals(soldado2.getPosicion(),posFinal2);
         assertEquals(soldado3.getPosicion(),posFinal3);
         assertEquals(soldado4.getPosicion(),posFinal4);
+    }
+
+    @Test
+    public void test17UnJineteSinAliadosYConEnemigoEnDistanciaCortaAtacaConSuEspadaAlEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        Jinete jinete = new Jinete();
+        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
+        soldadoEnemigo.cambiarAlianza();
+        // Arrange - Posiciono
+        jinete.posicionar(tablero, new Posicion(0, 9));
+        tablero.cambiarAlianza();
+        soldadoEnemigo.posicionar(tablero, new Posicion(0, 10));
+        // Act
+        jinete.usarHabilidadEn(tablero, soldadoEnemigo);
+        // Assert
+        assertEquals(95, soldadoEnemigo.getVida());
+    }
+
+    @Test
+    public void test18UnJineteSinAliadosEnDistanciaCortaYUnEnemigoEnDistanciaCortaYOtroEnemigoEnDistanciaMediaJineteTrataDeAtacarADistanciaMediaYNoPuede() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
+        // Arrange
+        Tablero tablero = new Tablero();
+        Jinete jinete = new Jinete();
+        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria otroSoldadoEnemigo = new SoldadoDeInfanteria();
+        soldadoEnemigo.cambiarAlianza();
+        otroSoldadoEnemigo.cambiarAlianza();
+        // Arrange - Posiciono
+        jinete.posicionar(tablero, new Posicion(0, 9));
+        tablero.cambiarAlianza();
+        soldadoEnemigo.posicionar(tablero, new Posicion(0, 10));
+        otroSoldadoEnemigo.posicionar(tablero, new Posicion(0, 12));
+        // Act - Assert para exception
+        assertThrows(HabilidadFueraDeAlcanceException.class,
+                () -> {
+                    jinete.usarHabilidadEn(tablero, otroSoldadoEnemigo);
+                });
+        // Assert
+        assertEquals(100, otroSoldadoEnemigo.getVida());
     }
 }
 

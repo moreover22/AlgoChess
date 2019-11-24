@@ -1,9 +1,8 @@
 package fiuba.algo3.algochess.pieza;
 
+import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
-import fiuba.algo3.algochess.tablero.FueraDelTableroException;
-import fiuba.algo3.algochess.tablero.Tablero;
 
 import java.util.List;
 
@@ -20,9 +19,9 @@ public class Batallon implements Movible {
     }
 
     @Override
-    public void mover(Tablero tablero, Direccion direccion) throws MovimientoFueraDeAlcanceException, FueraDelTableroException {
+    public void mover(Direccion direccion) throws MovimientoFueraDeAlcanceException {
         for (Pieza pieza : piezas) {
-            pieza.mover(tablero, direccion);
+            pieza.mover(direccion);
         }
     }
 
@@ -35,6 +34,11 @@ public class Batallon implements Movible {
 
     public boolean esValido(){
         return (piezas.size() == 3);
+    }
+
+    @Override
+    public Posicion getPosicion() {
+        return piezas.get(0).getPosicion();
     }
 
 }
