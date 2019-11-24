@@ -35,8 +35,9 @@ public class Vida {
         vidaActual -= vidaInicial * porcentaje / 100;
     }
 
-    public void recibirHabilidad(float cantidad, Habilidad habilidad, PiezaAlianza alianza){
-        vidaActual = alianza.recibirHabilidad(vidaActual, cantidad);
+    public void recibirHabilidad(float cantidad){
+        //vidaActual = alianza.recibirHabilidad(vidaActual, cantidad,habilidad);
+        vidaActual = cantidad;
         if(vidaActual > vidaInicial) {
             vidaActual = vidaInicial;
         }

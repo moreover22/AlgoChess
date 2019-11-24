@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.pieza;
 
 import fiuba.algo3.algochess.pieza.habilidad.CuracionAEnemigoException;
+import fiuba.algo3.algochess.pieza.habilidad.Habilidad;
 
 public class PiezaEnemiga implements PiezaAlianza {
     @Override
@@ -8,7 +9,7 @@ public class PiezaEnemiga implements PiezaAlianza {
         return new PiezaAliada();
     }
 
-    @Override
+    /*@Override
     public float recibirDanio(float vida, float danio) {
         return vida - danio;
     }
@@ -16,7 +17,7 @@ public class PiezaEnemiga implements PiezaAlianza {
     @Override
     public float recibirCuracion(float vida, float curacion) throws CuracionAEnemigoException {
         throw new CuracionAEnemigoException();
-    }
+    }*/
 
     @Override
     public int contarAliado(int cantidadAliados) {
@@ -26,5 +27,9 @@ public class PiezaEnemiga implements PiezaAlianza {
     @Override
     public int contarEnemigo(int cantidadEnemigos) {
         return cantidadEnemigos + 1;
+    }
+    @Override
+    public float recibirHabilidad(float vida, float cantidad, Habilidad habilidad, Pieza pieza){
+        return habilidad.aplicarHabilidad(cantidad, pieza);
     }
 }

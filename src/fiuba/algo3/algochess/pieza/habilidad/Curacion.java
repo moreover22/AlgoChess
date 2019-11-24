@@ -18,12 +18,11 @@ public class Curacion implements Habilidad {
         return (pieza.getVida()+curacion);
     }
     @Override
-    public void usarCon(Pieza objetivo, Posicion desde,Habilidad habilidad) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
+    public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         if (! alcance.llegoA(desde, objetivo.getPosicion())) {
             throw new HabilidadFueraDeAlcanceException();
         }
-<
-        objetivo.recibirHabilidad(habilidad,curacion);
+        objetivo.recibirHabilidad(this,curacion);
 
     }
 

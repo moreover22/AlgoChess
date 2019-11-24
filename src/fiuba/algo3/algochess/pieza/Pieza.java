@@ -56,7 +56,8 @@ public abstract class Pieza implements Aliable, Movible {
         vida.recibirDanio(danio, alianza);
     }
     public void recibirHabilidad(Habilidad habilidad, float cantidad ){
-        vida.recibirHabilidad(cantidad,habilidad,alianza);
+        float vidaActual = alianza.recibirHabilidad(this.getVida(),cantidad,habilidad,this);
+        vida.recibirHabilidad(cantidad);
     }
 
     public float getVida() {
