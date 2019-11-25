@@ -3,19 +3,12 @@ package fiuba.algo3.algochess.tablero;
 import fiuba.algo3.algochess.Aliable;
 import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.Rango;
-import fiuba.algo3.algochess.pieza.Movible;
 import fiuba.algo3.algochess.pieza.Pieza;
-import fiuba.algo3.algochess.pieza.PiezaNula;
-import fiuba.algo3.algochess.pieza.alcance.Alcance;
 import fiuba.algo3.algochess.pieza.movimiento.Direccion;
-import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
-import fiuba.algo3.algochess.tablero.casillero.Casillero;
-import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
+import fiuba.algo3.algochess.pieza.alcance.Alcance;
+import fiuba.algo3.algochess.tablero.casillero.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Tablero implements Aliable {
     private Map<Posicion, Casillero> casilleros;
@@ -51,6 +44,7 @@ public class Tablero implements Aliable {
         }
     }
 
+    //TODO Hay que sacarlo
     private Casillero getCasillero(Posicion posicion) throws FueraDelTableroException {
         if (!posicion.estaDentroDe(rango)) throw new FueraDelTableroException();
         return casilleros.get(posicion);
@@ -61,11 +55,11 @@ public class Tablero implements Aliable {
     }
 
     public void ocupar(Posicion posicion, Pieza pieza) throws FueraDelTableroException {
-        getCasillero(posicion).ocupar(pieza, this);
+        getCasillero(posicion).ocupar(pieza);
     }
 
-    public void vaciar(Posicion posicion) throws FueraDelTableroException {
-        getCasillero(posicion).vaciar();
+    public void sacar(Posicion posicion) throws FueraDelTableroException {
+        getCasillero(posicion).sacar();
     }
 
     public Iterable<Pieza> piezasDentroDe(Alcance alcance, Posicion desde) {
@@ -83,27 +77,55 @@ public class Tablero implements Aliable {
     public void cambiarAlianza() {
         casilleros.forEach((posicion, casillero) -> casillero.cambiarAlianza());
     }
+    public void buscarVecinos()throws FueraDelTableroException {
+        Posicion posicionActual;
+        Casillero casilleroActual;
+        Pieza pieza;
+        for (Map.Entry<Posicion,Casillero>p:casilleros.entrySet()){
+            for (int i =-1;i <= 1;i++){
+                for (int j =-1;j <= 1;i++){
 
-    public void aplicarDanioTeritorio() {
-        casilleros.forEach((posicion, casillero) -> {
-            casillero.aplicarDanioTerritorio(casillero.getPieza());
-        });
-    }
+                    posicionActual = p.getKey().aplicarDireccion(i,j);
+                    casilleroActual = getCasillero(posicionActual);
+                    pieza = casilleroActual.getPieza();
+                    p.getValue().getPieza().agregarVecino(pieza);
+                }
+            }
 
-    public void mover(Pieza pieza, Direccion direccion) throws FueraDelTableroException, MovimientoFueraDeAlcanceException {
-        Movible movible = pieza.seleccionarParaMover(this);
-        movible.mover(direccion, this);
-    }
-
-    public Iterable<Pieza> getVecinos(Posicion posicion, Iterable<Direccion> direcciones) throws FueraDelTableroException {
-        List<Pieza> vecinos = new ArrayList<>();
-        for (Direccion direccion : direcciones) {
-            Posicion posicionEnDireccion = direccion.aplicarA(posicion);
-            if (! posicionEnDireccion.estaDentroDe(rango))
-                continue;
-            vecinos.add(getCasillero(posicionEnDireccion).getPieza());
         }
+    }
+    public void buscarVecinosVertical()throws FueraDelTableroException {
+        Posicion posicionActual;
+        Casillero casilleroActual;
+        Pieza pieza;
+        for (Map.Entry<Posicion,Casillero>p:casilleros.entrySet()) {
+            for (int i = -2; i <= 2; i++) {
+                posicionActual = p.getKey().aplicarDireccion(i,0);
+                casilleroActual = getCasillero(posicionActual);
+                pieza = casilleroActual.getPieza();
+                p.getValue().getPieza().agregarVecino(pieza);
+            }
+        }
+    }
 
-        return vecinos;
+    public void buscarVecinosHorizontal()throws FueraDelTableroException {
+        Posicion posicionActual;
+        Casillero casilleroActual;
+        Pieza pieza;
+        for (Map.Entry<Posicion,Casillero>p:casilleros.entrySet()) {
+            for (int j = -2; j <= 2; j++) {
+                posicionActual = p.getKey().aplicarDireccion(0,j);
+                casilleroActual = getCasillero(posicionActual);
+                pieza = casilleroActual.getPieza();
+                p.getValue().getPieza().agregarVecino(pieza);
+            }
+        }
     }
 }
+
+
+
+
+
+
+

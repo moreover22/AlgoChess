@@ -6,7 +6,4 @@ public class Proyectil extends Arma {
     public Proyectil() {
         super(20, new AlcanceLejano());
     }
-
 }
-
-

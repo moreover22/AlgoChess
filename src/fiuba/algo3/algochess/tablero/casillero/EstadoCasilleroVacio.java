@@ -1,7 +1,6 @@
 package fiuba.algo3.algochess.tablero.casillero;
 
 import fiuba.algo3.algochess.pieza.Pieza;
-import fiuba.algo3.algochess.tablero.Tablero;
 
 public class EstadoCasilleroVacio extends EstadoCasillero {
     @Override
@@ -10,7 +9,7 @@ public class EstadoCasilleroVacio extends EstadoCasillero {
     }
 
     @Override
-    public EstadoCasillero ocupar(Pieza pieza, Tablero tablero) {
+    public EstadoCasillero ocupar(Pieza pieza) {
         return new EstadoCasilleroOcupado(pieza);
     }
 }

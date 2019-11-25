@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.pieza.habilidad.AtaqueAAliadoException;
+import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.jugador.CantidadDePuntosInsuficientesException;
 import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
@@ -114,7 +115,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void testJugadorConUnaPiezaVivaYUnaMuertaSigueEnPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+    public void testJugadorConUnaPiezaVivaYUnaMuertaSigueEnPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         // Arrange
         Jugador jugador = new Jugador(20);
         Pieza pieza1 = new SoldadoDeInfanteria();
@@ -122,28 +123,33 @@ public class JugadorTest {
         pieza1.cambiarAlianza();
         pieza1.posicionar(tablero, new Posicion(0, 0));
         Pieza pieza2 = new SoldadoDeInfanteria();
+        Pieza enemigo = new SoldadoDeInfanteria();
         //Act
         jugador.agregarPieza(pieza1);
         jugador.agregarPieza(pieza2);
-        pieza1.recibirDanio(100);
+        while(pieza1.estaViva()){
+            enemigo.usarHabilidadEn(tablero,pieza1);
+        }
         //Assert
         assertFalse(jugador.perdio());
     }
 
     @Test
-    public void testJugadorSinPiezasPierdeLaPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+    public void testJugadorSinPiezasPierdeLaPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         // Arrange
         Jugador jugador = new Jugador(20);
         Pieza pieza = new SoldadoDeInfanteria();
+        Pieza enemigo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         pieza.posicionar(tablero, new Posicion(0, 0));
         pieza.cambiarAlianza();
         // Act
         jugador.agregarPieza(pieza);
-        pieza.recibirDanio(100);
+        while(pieza.estaViva()) {
+            enemigo.usarHabilidadEn(tablero, pieza);
+        }
         //Assert
         assertTrue(jugador.perdio());
-
 
     }
 }

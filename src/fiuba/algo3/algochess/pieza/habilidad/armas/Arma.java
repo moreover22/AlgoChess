@@ -2,12 +2,9 @@ package fiuba.algo3.algochess.pieza.habilidad.armas;
 
 import fiuba.algo3.algochess.Posicion;
 import fiuba.algo3.algochess.pieza.Pieza;
-import fiuba.algo3.algochess.pieza.PiezaAlianza;
-import fiuba.algo3.algochess.pieza.Vida;
 import fiuba.algo3.algochess.pieza.alcance.Alcance;
 import fiuba.algo3.algochess.pieza.habilidad.AtaqueAAliadoException;
 import fiuba.algo3.algochess.pieza.habilidad.Habilidad;
-import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
 
 public abstract class Arma {
@@ -20,17 +17,12 @@ public abstract class Arma {
         this.alcance = alcance;
     }
 
-    public void atacarA(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException {
+    public void atacarA(Pieza objetivo, Posicion desde, Habilidad habilidad) throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException {
         if (! alcance.llegoA(desde, objetivo.getPosicion())) {
             throw new HabilidadFueraDeAlcanceException();
         }
-        objetivo.recibirDanio(danio);
+        objetivo.recibirHabilidad(habilidad,danio);
     }
-
-//
-//    public void usarArma(Vida vida, PiezaAlianza alianza) throws AtaqueAAliadoException {
-//        vida.reducir(danio, alianza);
-//    }
 
     public Arma actualizar(Iterable<Pieza> vecinos) {
         int cantidadAliados = 0;

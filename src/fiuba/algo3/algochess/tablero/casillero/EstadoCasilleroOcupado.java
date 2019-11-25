@@ -1,8 +1,6 @@
 package fiuba.algo3.algochess.tablero.casillero;
 
 import fiuba.algo3.algochess.pieza.Pieza;
-import fiuba.algo3.algochess.tablero.FueraDelTableroException;
-import fiuba.algo3.algochess.tablero.Tablero;
 
 public class EstadoCasilleroOcupado extends EstadoCasillero {
     public EstadoCasilleroOcupado(Pieza pieza) {
@@ -15,9 +13,8 @@ public class EstadoCasilleroOcupado extends EstadoCasillero {
     }
 
     @Override
-    public EstadoCasillero ocupar(Pieza pieza, Tablero tablero) throws FueraDelTableroException {
+    public EstadoCasillero ocupar(Pieza pieza) {
         pieza.deshacerMovimiento();
-        tablero.ocupar(pieza.getPosicion(), pieza);
         return this;
     }
 }

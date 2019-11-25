@@ -24,23 +24,3 @@ public class Jinete extends Pieza {
         super.usarHabilidadEn(tablero, objetivo);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
