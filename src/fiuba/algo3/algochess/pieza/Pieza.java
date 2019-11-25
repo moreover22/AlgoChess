@@ -48,15 +48,15 @@ public abstract class Pieza implements Aliable, Movible {
         return posicion;
     }
 
-    public void recibirCuracion(float curacion) throws CuracionAEnemigoException {
+    /*public void recibirCuracion(float curacion) throws CuracionAEnemigoException {
         vida.recibirCuracion(curacion, alianza);
     }
 
     public void recibirDanio(float danio) throws AtaqueAAliadoException {
         vida.recibirDanio(danio, alianza);
-    }
-    public void recibirHabilidad(Habilidad habilidad, float cantidad ){
-        float vidaActual = alianza.recibirHabilidad(this.getVida(),cantidad,habilidad,this);
+    }*/
+    public void recibirHabilidad(Habilidad habilidad, float cantidad ) throws AtaqueAAliadoException {
+        float vidaActual = alianza.recibirHabilidad(cantidad,habilidad,this);
         vida.recibirHabilidad(cantidad);
     }
 

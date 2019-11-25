@@ -29,7 +29,7 @@ public class PiezaEnemiga implements PiezaAlianza {
         return cantidadEnemigos + 1;
     }
     @Override
-    public float recibirHabilidad(float vida, float cantidad, Habilidad habilidad, Pieza pieza){
+    public float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza){
         return habilidad.aplicarHabilidad(cantidad, pieza);
     }
 }

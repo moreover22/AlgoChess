@@ -16,7 +16,7 @@ public class Vida {
         return vidaActual;
     }
 
-    public void recibirCuracion(float curacion, PiezaAlianza alianza) throws CuracionAEnemigoException {
+    /*public void recibirCuracion(float curacion, PiezaAlianza alianza) throws CuracionAEnemigoException {
         vidaActual = alianza.recibirCuracion(vidaActual, curacion);
         if(vidaActual > vidaInicial) {
             vidaActual = vidaInicial;
@@ -25,7 +25,7 @@ public class Vida {
 
     public void recibirDanio(float danio, PiezaAlianza alianza) throws AtaqueAAliadoException {
         vidaActual = alianza.recibirDanio(vidaActual, danio);
-    }
+    }*/
 
     public boolean tieneVida() {
         return vidaActual > 0;

@@ -14,5 +14,5 @@ public interface PiezaAlianza {
     int contarEnemigo(int cantidadEnemigos);
 
     //void enlistarABatallon(List<Pieza> lista, Pieza pieza);
-    float recibirHabilidad(float vida, float cantidad, Habilidad habilidad,Pieza pieza);
+    float recibirHabilidad(float cantidad, Habilidad habilidad,Pieza pieza) throws AtaqueAAliadoException;
 }
