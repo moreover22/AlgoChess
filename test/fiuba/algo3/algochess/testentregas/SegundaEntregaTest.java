@@ -1,14 +1,14 @@
 package fiuba.algo3.algochess.testentregas;
 
-import fiuba.algo3.algochess.Posicion;
-import fiuba.algo3.algochess.pieza.*;
-import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
-import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
-import fiuba.algo3.algochess.pieza.movimiento.Direccion;
-import fiuba.algo3.algochess.pieza.movimiento.MovimientoFueraDeAlcanceException;
-import fiuba.algo3.algochess.tablero.FueraDelTableroException;
-import fiuba.algo3.algochess.tablero.Tablero;
-import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
+import fiuba.algo3.algochess.model.Posicion;
+import fiuba.algo3.algochess.model.pieza.*;
+import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
+import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
+import fiuba.algo3.algochess.model.pieza.movimiento.Direccion;
+import fiuba.algo3.algochess.model.pieza.movimiento.MovimientoFueraDeAlcanceException;
+import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
+import fiuba.algo3.algochess.model.tablero.Tablero;
+import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,9 +27,9 @@ public class SegundaEntregaTest {
         Posicion posFinal3 = new Posicion(1,4);
         Direccion direccion = Direccion.derecha();
         // Act - Posiciono y muevo
-        soldado1.posicionar(tablero, new Posicion(0, 2));
-        soldado2.posicionar(tablero, new Posicion(0, 3));
-        soldado3.posicionar(tablero, new Posicion(0, 4));
+        tablero.posicionar(new Posicion(0, 2), soldado1);
+        tablero.posicionar(new Posicion(0, 3), soldado2);
+        tablero.posicionar(new Posicion(0, 4), soldado3);
 
         tablero.mover(soldado3, direccion);
         // Assert
@@ -52,10 +52,10 @@ public class SegundaEntregaTest {
         Direccion direccion = Direccion.derecha();
 
         // Act - Posiciono y muevo
-        soldado1.posicionar(tablero, new Posicion(1, 2));
-        soldado2.posicionar(tablero, new Posicion(1, 3));
-        soldado3.posicionar(tablero, new Posicion(1, 4));
-        curandero.posicionar(tablero,new Posicion(2, 3));
+        tablero.posicionar(new Posicion(1, 2), soldado1);
+        tablero.posicionar(new Posicion(1, 3), soldado2);
+        tablero.posicionar(new Posicion(1, 4), soldado3);
+        tablero.posicionar(new Posicion(2, 3), curandero);
 
         tablero.mover(soldado2, direccion);
         // Assert
@@ -71,12 +71,13 @@ public class SegundaEntregaTest {
         SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
         SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
         SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
-        soldado1.posicionar(tablero, new Posicion(1, 2));
-        soldado2.posicionar(tablero, new Posicion(1, 3));
-        soldado3.posicionar(tablero, new Posicion(1, 4));
+
+        tablero.posicionar(new Posicion(1, 2), soldado1);
+        tablero.posicionar(new Posicion(1, 3), soldado2);
+        tablero.posicionar(new Posicion(1, 4), soldado3);
 
         Curandero curandero = new Curandero();
-        curandero.posicionar(tablero, new Posicion(2, 3));
+        tablero.posicionar(new Posicion(2, 3), curandero);
 
         Posicion posFinal1 = new Posicion(3, 2);
         Posicion posFinal2 = new Posicion(1, 3);
@@ -110,17 +111,17 @@ public class SegundaEntregaTest {
         Posicion posFinal4 = new Posicion(1,5);
         Direccion direccion = Direccion.derecha();
         // Act - Posiciono y muevo
-        soldado1.posicionar(tablero, new Posicion(1, 2));
-        soldado2.posicionar(tablero, new Posicion(1, 3));
-        soldado3.posicionar(tablero, new Posicion(1, 4));
-        soldado4.posicionar(tablero, new Posicion(1, 5));
+        tablero.posicionar(new Posicion(1, 2), soldado1);
+        tablero.posicionar(new Posicion(1, 3), soldado2);
+        tablero.posicionar(new Posicion(1, 4), soldado3);
+        tablero.posicionar(new Posicion(1, 5), soldado4);
 
         tablero.mover(soldado2,direccion);
         // Assert
-        assertEquals(soldado1.getPosicion(),posFinal1);
-        assertEquals(soldado2.getPosicion(),posFinal2);
-        assertEquals(soldado3.getPosicion(),posFinal3);
-        assertEquals(soldado4.getPosicion(),posFinal4);
+        assertEquals(soldado1.getPosicion(), posFinal1);
+        assertEquals(soldado2.getPosicion(), posFinal2);
+        assertEquals(soldado3.getPosicion(), posFinal3);
+        assertEquals(soldado4.getPosicion(), posFinal4);
     }
 
     @Test
@@ -131,9 +132,10 @@ public class SegundaEntregaTest {
         SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
-        jinete.posicionar(tablero, new Posicion(0, 9));
+        tablero.posicionar(new Posicion(9, 0), jinete);
         tablero.cambiarAlianza();
-        soldadoEnemigo.posicionar(tablero, new Posicion(0, 10));
+        tablero.posicionar(new Posicion(10, 0), soldadoEnemigo);
+
         // Act
         jinete.usarHabilidadEn(tablero, soldadoEnemigo);
         // Assert
@@ -150,10 +152,10 @@ public class SegundaEntregaTest {
         soldadoEnemigo.cambiarAlianza();
         otroSoldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
-        jinete.posicionar(tablero, new Posicion(0, 9));
+        tablero.posicionar(new Posicion(0, 9), jinete);
         tablero.cambiarAlianza();
-        soldadoEnemigo.posicionar(tablero, new Posicion(0, 10));
-        otroSoldadoEnemigo.posicionar(tablero, new Posicion(0, 12));
+        tablero.posicionar(new Posicion(10, 0), soldadoEnemigo);
+        tablero.posicionar(new Posicion(12, 0), otroSoldadoEnemigo);
         // Act - Assert para exception
         assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {

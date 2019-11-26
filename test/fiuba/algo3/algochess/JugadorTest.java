@@ -1,15 +1,16 @@
 package fiuba.algo3.algochess;
 
-import fiuba.algo3.algochess.pieza.habilidad.AtaqueAAliadoException;
-import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
-import fiuba.algo3.algochess.jugador.CantidadDePuntosInsuficientesException;
-import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
-import fiuba.algo3.algochess.pieza.Pieza;
-import fiuba.algo3.algochess.jugador.Jugador;
+import fiuba.algo3.algochess.model.Posicion;
+import fiuba.algo3.algochess.model.pieza.habilidad.AtaqueAAliadoException;
+import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
+import fiuba.algo3.algochess.model.jugador.CantidadDePuntosInsuficientesException;
+import fiuba.algo3.algochess.model.pieza.SoldadoDeInfanteria;
+import fiuba.algo3.algochess.model.pieza.Pieza;
+import fiuba.algo3.algochess.model.jugador.Jugador;
 
-import fiuba.algo3.algochess.tablero.FueraDelTableroException;
-import fiuba.algo3.algochess.tablero.Tablero;
-import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
+import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
+import fiuba.algo3.algochess.model.tablero.Tablero;
+import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -120,7 +121,8 @@ public class JugadorTest {
         Pieza pieza1 = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         pieza1.cambiarAlianza();
-        pieza1.posicionar(tablero, new Posicion(0, 0));
+
+        tablero.posicionar(new Posicion(0, 0), pieza1);
         Pieza pieza2 = new SoldadoDeInfanteria();
         //Act
         jugador.agregarPieza(pieza1);
@@ -136,7 +138,8 @@ public class JugadorTest {
         Jugador jugador = new Jugador(20);
         Pieza pieza = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
-        pieza.posicionar(tablero, new Posicion(0, 0));
+
+        tablero.posicionar(new Posicion(0, 0), pieza);
         pieza.cambiarAlianza();
         // Act
         jugador.agregarPieza(pieza);

@@ -1,12 +1,13 @@
 package fiuba.algo3.algochess;
 
-import fiuba.algo3.algochess.pieza.*;
-import fiuba.algo3.algochess.pieza.habilidad.*;
-import fiuba.algo3.algochess.pieza.movimiento.*;
-import fiuba.algo3.algochess.tablero.FueraDelTableroException;
-import fiuba.algo3.algochess.tablero.Tablero;
-import fiuba.algo3.algochess.tablero.casillero.CasilleroException;
-import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
+import fiuba.algo3.algochess.model.Posicion;
+import fiuba.algo3.algochess.model.pieza.*;
+import fiuba.algo3.algochess.model.pieza.habilidad.*;
+import fiuba.algo3.algochess.model.pieza.movimiento.*;
+import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
+import fiuba.algo3.algochess.model.tablero.Tablero;
+import fiuba.algo3.algochess.model.tablero.casillero.CasilleroException;
+import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -78,8 +79,9 @@ public class PiezaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        pieza.posicionar(tablero, new Posicion(0, 0));
-        objetivo.posicionar(tablero, new Posicion(1, 1));
+
+        tablero.posicionar(new Posicion(0, 0), pieza);
+        tablero.posicionar(new Posicion(1, 1), objetivo);
         objetivo.recibirDanio(90);
         //Act
         pieza.usarHabilidadEn(tablero, objetivo);
@@ -94,8 +96,9 @@ public class PiezaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        pieza.posicionar(tablero, new Posicion(0, 0));
-        objetivo.posicionar(tablero, new Posicion(1, 1));
+
+        tablero.posicionar(new Posicion(0, 0), pieza);
+        tablero.posicionar(new Posicion(1, 1), objetivo);
         objetivo.recibirDanio(89);
         //Act
         pieza.usarHabilidadEn(tablero, objetivo);
@@ -110,8 +113,9 @@ public class PiezaTest {
         Pieza objetivo = new Jinete();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        pieza.posicionar(tablero, new Posicion(0, 0));
-        objetivo.posicionar(tablero, new Posicion(1, 1));
+
+        tablero.posicionar(new Posicion(0, 0), pieza);
+        tablero.posicionar(new Posicion(1, 1), objetivo);
         objetivo.recibirDanio(95);
         //Act
         pieza.usarHabilidadEn(tablero, objetivo);
@@ -126,8 +130,9 @@ public class PiezaTest {
         Pieza objetivo = new Jinete();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        pieza.posicionar(tablero, new Posicion(0, 0));
-        objetivo.posicionar(tablero, new Posicion(1, 1));
+
+        tablero.posicionar(new Posicion(0, 0), pieza);
+        tablero.posicionar(new Posicion(1, 1), objetivo);
         objetivo.recibirDanio(94);
         //Act
         pieza.usarHabilidadEn(tablero, objetivo);
@@ -142,9 +147,11 @@ public class PiezaTest {
         Pieza objetivo = new Catapulta();
         Tablero tablero = new Tablero(50, 50);
         objetivo.cambiarAlianza();
-        pieza.posicionar(tablero, new Posicion(0, 0));
+
+        tablero.posicionar(new Posicion(0, 0), pieza);
         tablero.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(20, 40));
+
+        tablero.posicionar(new Posicion(40, 20), objetivo);
         objetivo.recibirDanio(30);
         //Act
         pieza.usarHabilidadEn(tablero, objetivo);
@@ -159,9 +166,10 @@ public class PiezaTest {
         Pieza objetivo = new Catapulta();
         Tablero tablero = new Tablero(50, 50);
         objetivo.cambiarAlianza();
-        pieza.posicionar(tablero, new Posicion(0, 0));
+
+        tablero.posicionar(new Posicion(0, 0), pieza);
         tablero.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(20, 40));
+        tablero.posicionar(new Posicion(40, 20), objetivo);
         objetivo.recibirDanio(29);
         //Act
         pieza.usarHabilidadEn(tablero, objetivo);
@@ -175,8 +183,9 @@ public class PiezaTest {
         Pieza pieza = new Curandero();
         Pieza objetivo = new Curandero();
         Tablero tablero = new Tablero();
-        pieza.posicionar(tablero, new Posicion(0, 0));
-        objetivo.posicionar(tablero, new Posicion(1, 1));
+
+        tablero.posicionar(new Posicion(0, 0), pieza);
+        tablero.posicionar(new Posicion(1, 1), objetivo);
         objetivo.cambiarAlianza();
         objetivo.recibirDanio(74);
         objetivo.cambiarAlianza();
@@ -194,8 +203,9 @@ public class PiezaTest {
         Pieza pieza = new Curandero();
         Pieza objetivo = new Curandero();
         Tablero tablero = new Tablero();
-        pieza.posicionar(tablero, new Posicion(0, 0));
-        objetivo.posicionar(tablero, new Posicion(1, 1));
+
+        tablero.posicionar(new Posicion(0, 0), pieza);
+        tablero.posicionar(new Posicion(1, 1), objetivo);
         objetivo.cambiarAlianza();
         objetivo.recibirDanio(74);
         objetivo.cambiarAlianza();
@@ -213,8 +223,9 @@ public class PiezaTest {
         Tablero tablero = new Tablero();
         Pieza pieza1 = new SoldadoDeInfanteria();
         Pieza pieza2 = new SoldadoDeInfanteria();
-        pieza1.posicionar(tablero, new Posicion(0, 0));
-        pieza2.posicionar(tablero, new Posicion(0, 1));
+
+        tablero.posicionar(new Posicion(0, 0), pieza1);
+        tablero.posicionar(new Posicion(0, 1), pieza2);
         // Act
         tablero.mover(pieza2, Direccion.arriba());
         // Assert
@@ -226,7 +237,7 @@ public class PiezaTest {
         Pieza pieza = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
 
-        pieza.posicionar(tablero, new Posicion(0, 0));
+        tablero.posicionar(new Posicion(0, 0), pieza);
 
         tablero.mover(pieza, Direccion.abajo());
         assertEquals(new Posicion(0, 1), pieza.getPosicion());
@@ -258,11 +269,13 @@ public class PiezaTest {
     public void test03SoldadoDeInfanteriaAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
-        soldado.posicionar(tablero, new Posicion(0, 0));
+
+        tablero.posicionar(new Posicion(0, 0), soldado);
 
         Jinete enemigo = new Jinete();
         enemigo.cambiarAlianza();
-        enemigo.posicionar(tablero, new Posicion(1, 0));
+
+        tablero.posicionar(new Posicion(1, 0), enemigo);
 
         enemigo.recibirDanio(90);
         soldado.usarHabilidadEn(tablero, enemigo);
@@ -270,7 +283,8 @@ public class PiezaTest {
 
         enemigo = new Jinete();
         enemigo.cambiarAlianza();
-        enemigo.posicionar(new Tablero(), new Posicion(1, 0));
+
+        tablero.posicionar(new Posicion(1, 1), enemigo);
         enemigo.recibirDanio(89);
         soldado.usarHabilidadEn(tablero, enemigo);
 
@@ -281,18 +295,21 @@ public class PiezaTest {
     public void test04JineteAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         SoldadoDeInfanteria enemigo =  new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
-        enemigo.posicionar(tablero, new Posicion(0, 0));
+
+        tablero.posicionar(new Posicion(0, 0), enemigo);
         enemigo.cambiarAlianza();
 
         Jinete jinete = new Jinete();
-        jinete.posicionar(tablero, new Posicion(1, 0));
+
+        tablero.posicionar(new Posicion(1, 0), jinete);
         enemigo.recibirDanio(95);
         jinete.usarHabilidadEn(tablero, enemigo);
         assertFalse(enemigo.estaViva());
 
         enemigo = new SoldadoDeInfanteria();
         enemigo.cambiarAlianza();
-        enemigo.posicionar(tablero, new Posicion(1, 1));
+
+        tablero.posicionar(new Posicion(1, 1), enemigo);
         enemigo.recibirDanio(94);
         jinete.usarHabilidadEn(tablero, enemigo);
         assertTrue(enemigo.estaViva());
@@ -302,10 +319,13 @@ public class PiezaTest {
     public void test05CatapultaAliadoAtacaAUnaPiezaEnemigaYSeVerificaQueSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         Catapulta catapulta = new Catapulta();
         Tablero tablero = new Tablero();
-        catapulta.posicionar(tablero, new Posicion(0, 0));
+
+        tablero.posicionar(new Posicion(0, 0), catapulta);
         Jinete enemigo = new Jinete();
         enemigo.cambiarAlianza();
-        enemigo.posicionar(tablero, new Posicion(10, 0));
+
+        tablero.cambiarAlianza();
+        tablero.posicionar(new Posicion(10, 0), enemigo);
 
         enemigo.recibirDanio(80);
         catapulta.usarHabilidadEn(tablero, enemigo);
@@ -313,7 +333,8 @@ public class PiezaTest {
 
         enemigo = new Jinete();
         enemigo.cambiarAlianza();
-        enemigo.posicionar(new Tablero(), new Posicion(10, 0));
+
+        tablero.posicionar(new Posicion(10, 0), enemigo);
         enemigo.recibirDanio(79);
 
         catapulta.usarHabilidadEn(tablero, enemigo);
@@ -324,14 +345,17 @@ public class PiezaTest {
     public void test06CuranderoAliadoCuraAUnaPiezaAliadaSeLeSumaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         Curandero curandero =  new Curandero();
         Tablero tablero = new Tablero();
-        curandero.posicionar(tablero, new Posicion(0, 0));
+
+        tablero.posicionar(new Posicion(0, 0), curandero);
 
         SoldadoDeInfanteria enemigo =  new SoldadoDeInfanteria();
         enemigo.cambiarAlianza();
-        enemigo.posicionar(tablero, new Posicion(0, 1));
+
+        tablero.posicionar(new Posicion(0, 1), enemigo);
 
         Jinete aliado = new Jinete();
-        aliado.posicionar(tablero, new Posicion(1, 0));
+
+        tablero.posicionar(new Posicion(1, 0), aliado);
         aliado.cambiarAlianza();
         aliado.recibirDanio(95);
 
@@ -347,7 +371,8 @@ public class PiezaTest {
         assertFalse(aliado.estaViva());
 
         aliado = new Jinete();
-        aliado.posicionar(new Tablero(), new Posicion(1, 0));
+
+        tablero.posicionar(new Posicion(1, 0), aliado);
         aliado.cambiarAlianza();
         aliado.recibirDanio(94);
 
@@ -372,8 +397,10 @@ public class PiezaTest {
         objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0, 0);
         Posicion ubicacionObjetivo = new Posicion(12, 7);
-        pieza.posicionar(tablero, ubicacionPieza);
-        objetivo.posicionar(tablero, ubicacionObjetivo);
+
+        tablero.posicionar(ubicacionPieza, pieza);
+        tablero.cambiarAlianza();
+        tablero.posicionar(ubicacionObjetivo, objetivo);
         //Act-Assert
         assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {
@@ -390,8 +417,10 @@ public class PiezaTest {
         objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0, 0);
         Posicion ubicacionObjetivo = new Posicion(12, 7);
-        pieza.posicionar(tablero, ubicacionPieza);
-        objetivo.posicionar(tablero, ubicacionObjetivo);
+
+        tablero.posicionar(ubicacionPieza, pieza);
+        tablero.cambiarAlianza();
+        tablero.posicionar(ubicacionObjetivo, objetivo);
         //Act-Assert
         assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {
@@ -408,8 +437,10 @@ public class PiezaTest {
         objetivo.cambiarAlianza();
         Posicion ubicacionPieza = new Posicion(0, 0);
         Posicion ubicacionObjetivo = new Posicion(1, 1);
-        pieza.posicionar(tablero, ubicacionPieza);
-        objetivo.posicionar(tablero, ubicacionObjetivo);
+
+        tablero.posicionar(ubicacionPieza, pieza);
+
+        tablero.posicionar(ubicacionObjetivo, objetivo);
         //Act-Assert
         assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {
@@ -425,8 +456,11 @@ public class PiezaTest {
         Tablero tablero = new Tablero();
         Posicion ubicacionPieza = new Posicion(0, 0);
         Posicion ubicacionObjetivo = new Posicion(12, 7);
-        pieza.posicionar(tablero, ubicacionPieza);
-        objetivo.posicionar(tablero, ubicacionObjetivo);
+
+        tablero.posicionar(ubicacionPieza, pieza);
+
+        tablero.cambiarAlianza();
+        tablero.posicionar(ubicacionObjetivo, objetivo);
         //Act-Assert
         assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {
@@ -441,8 +475,9 @@ public class PiezaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        curandero.posicionar(tablero, new Posicion(0, 0));
-        objetivo.posicionar(tablero, new Posicion(1, 1));
+
+        tablero.posicionar(new Posicion(0, 0), curandero);
+        tablero.posicionar(new Posicion(1, 1), objetivo);
         // Act - Assert
         assertThrows(CuracionAEnemigoException.class,
                 () -> {
@@ -456,8 +491,9 @@ public class PiezaTest {
         Pieza pieza = new SoldadoDeInfanteria();
         Pieza otraPieza = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
-        pieza.posicionar(tablero, new Posicion(0, 0));
-        otraPieza.posicionar(tablero, new Posicion(1, 1));
+
+        tablero.posicionar(new Posicion(0, 0), pieza);
+        tablero.posicionar(new Posicion(1, 1), otraPieza);
         // Act - Assert
         assertThrows(AtaqueAAliadoException.class,
                 () -> {
@@ -470,7 +506,8 @@ public class PiezaTest {
         // Arrange
         Tablero tablero = new Tablero();
         Pieza catapulta = new Catapulta();
-        catapulta.posicionar(tablero, new Posicion(0, 0));
+
+        tablero.posicionar(new Posicion(0, 0), catapulta);
         // Act - Assert excepcion
         assertThrows(MovimientoFueraDeAlcanceException.class,
                 () -> {

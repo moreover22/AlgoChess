@@ -1,11 +1,12 @@
 package fiuba.algo3.algochess;
 
-import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
-import fiuba.algo3.algochess.pieza.Pieza;
+import fiuba.algo3.algochess.model.Posicion;
+import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
+import fiuba.algo3.algochess.model.pieza.Pieza;
 
-import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
-import fiuba.algo3.algochess.tablero.FueraDelTableroException;
-import fiuba.algo3.algochess.tablero.Tablero;
+import fiuba.algo3.algochess.model.pieza.SoldadoDeInfanteria;
+import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
+import fiuba.algo3.algochess.model.tablero.Tablero;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,7 +35,7 @@ public class TableroTest {
         // Act - Assert
         assertThrows(PosicionarEnCasilleroEnemigoException.class,
                 () -> {
-                    piezaConcreta.posicionar(tablero, new Posicion(0, 10));
+                    tablero.posicionar(new Posicion(10, 0), piezaConcreta);
                 });
     }
 /*
