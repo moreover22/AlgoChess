@@ -22,8 +22,8 @@ public class SegundaEntregaTest {
     public void test16UnJineteSinAliadosYConEnemigoEnDistanciaCortaAtacaConSuEspadaAlEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        Jinete jinete = new Jinete();
-        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
+        Pieza  jinete = new Jinete();
+        Pieza  soldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
         jinete.posicionar(tablero, new Posicion(0, 9));
@@ -32,16 +32,16 @@ public class SegundaEntregaTest {
         // Act
         jinete.usarHabilidadEn(tablero, soldadoEnemigo);
         // Assert
-        assertEquals(95, soldadoEnemigo.getVida());
+        assertEquals(soldadoEnemigo.getVida(),95.0);
     }
 
     @Test
     public void test17UnJineteSinAliadosEnDistanciaCortaYUnEnemigoEnDistanciaCortaYOtroEnemigoEnDistanciaMediaJineteTrataDeAtacarADistanciaMediaYNoPuede() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        Jinete jinete = new Jinete();
-        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria otroSoldadoEnemigo = new SoldadoDeInfanteria();
+        Pieza  jinete = new Jinete();
+        Pieza  soldadoEnemigo = new SoldadoDeInfanteria();
+        Pieza  otroSoldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         otroSoldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
@@ -55,15 +55,15 @@ public class SegundaEntregaTest {
                     jinete.usarHabilidadEn(tablero, otroSoldadoEnemigo);
                 });
         // Assert
-        assertEquals(100, otroSoldadoEnemigo.getVida());
+        assertEquals(otroSoldadoEnemigo.getVida(),100);
     }
     @Test
     public void test13ElBatallonSeMueveCorrectamente() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        Pieza  soldado1 = new SoldadoDeInfanteria();
+        Pieza  soldado2 = new SoldadoDeInfanteria();
+        Pieza  soldado3 = new SoldadoDeInfanteria();
         List<Pieza> listPiezas = new ArrayList<Pieza>();
         listPiezas.add(soldado1);
         listPiezas.add(soldado2);
@@ -88,10 +88,10 @@ public class SegundaEntregaTest {
     public void test14ElBatallonSeMueveSoloSeMuevenDosSoldadosDebidoAUnObstaculo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
-        Curandero curandero = new Curandero();
+        Pieza  soldado1 = new SoldadoDeInfanteria();
+        Pieza  soldado2 = new SoldadoDeInfanteria();
+        Pieza  soldado3 = new SoldadoDeInfanteria();
+        Pieza  curandero = new Curandero();
         List<Pieza> listPiezas = new ArrayList<Pieza>();
         listPiezas.add(soldado1);
         listPiezas.add(soldado2);
