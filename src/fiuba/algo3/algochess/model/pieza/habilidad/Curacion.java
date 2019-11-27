@@ -16,8 +16,16 @@ public class Curacion implements Habilidad {
     }
 
     @Override
-    public float aplicarHabilidad(float curacion, Pieza pieza) {
-        return (pieza.getVida()+curacion);
+    public float aplicarHabilidad(float cantidad, Pieza pieza,Habilidad habilidad){
+        return aplicarHabilidad(cantidad,pieza,this);
+    }
+    @Override
+    public float aplicarHabilidad(float cantidad, Pieza pieza,Ataque ataque){
+        return (pieza.getVida()-cantidad);
+    }
+    @Override
+    public float aplicarHabilidad(float cantidad, Pieza pieza,Curacion curacion){
+        return (pieza.getVida()+cantidad);
     }
     @Override
     public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {

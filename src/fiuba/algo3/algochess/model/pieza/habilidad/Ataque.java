@@ -20,10 +20,17 @@ public class Ataque implements Habilidad{
     public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         arma.atacarA(objetivo, desde, this);
     }
-
     @Override
-    public float aplicarHabilidad(float cantidad, Pieza pieza){
+    public float aplicarHabilidad(float cantidad, Pieza pieza,Habilidad habilidad){
+        return aplicarHabilidad(cantidad,pieza,this);
+    }
+    @Override
+    public float aplicarHabilidad(float cantidad, Pieza pieza,Ataque ataque){
         return (pieza.getVida()-cantidad);
+    }
+    @Override
+    public float aplicarHabilidad(float cantidad, Pieza pieza,Curacion curacion){
+        return (pieza.getVida()+cantidad);
     }
 
     @Override
