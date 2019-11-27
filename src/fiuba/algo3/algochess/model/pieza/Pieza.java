@@ -58,7 +58,7 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
     }*/
     public void recibirHabilidad(Habilidad habilidad, float cantidad ) throws AtaqueAAliadoException {
         float vidaActual = alianza.recibirHabilidad(cantidad,habilidad,this);
-        vida.recibirHabilidad(vidaActual);
+
     }
 
     public float getVida() {
