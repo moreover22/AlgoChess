@@ -1,13 +1,14 @@
 package fiuba.algo3.algochess;
 
 
-import fiuba.algo3.algochess.pieza.Pieza;
-import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
-import fiuba.algo3.algochess.pieza.habilidad.*;
-import fiuba.algo3.algochess.pieza.habilidad.armas.*;
-import fiuba.algo3.algochess.tablero.FueraDelTableroException;
-import fiuba.algo3.algochess.tablero.Tablero;
-import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
+import fiuba.algo3.algochess.model.Posicion;
+import fiuba.algo3.algochess.model.pieza.Pieza;
+import fiuba.algo3.algochess.model.pieza.SoldadoDeInfanteria;
+import fiuba.algo3.algochess.model.pieza.habilidad.*;
+import fiuba.algo3.algochess.model.pieza.habilidad.armas.*;
+import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
+import fiuba.algo3.algochess.model.tablero.Tablero;
+import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -24,7 +25,8 @@ public class ArmaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Habilidad ataque = new Ataque(espadaPesada);
         objetivo.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(2, 0));
+
+        tablero.posicionar(new Posicion(2, 0), objetivo);
         //Act
         espadaPesada.atacarA(objetivo, posOrigen,ataque);
         //Assert
@@ -39,7 +41,8 @@ public class ArmaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(2, 0));
+
+        tablero.posicionar(new Posicion(2, 0), objetivo);
         objetivo.recibirDanio(89);
         //Act
         espadaPesada.atacarA(objetivo, posOrigen);
@@ -55,7 +58,8 @@ public class ArmaTest {
         Posicion posOrigen = new Posicion(0, 0);
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
-        objetivo.posicionar(tablero, new Posicion(7, 8));
+
+        tablero.posicionar(new Posicion(7, 8), objetivo);
 
         //Act-Assert
         assertThrows(HabilidadFueraDeAlcanceException.class,
@@ -73,12 +77,14 @@ public class ArmaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(1, 0));
+
+        tablero.posicionar(new Posicion(2, 0), objetivo);
         //Act
         espadaLiviana.atacarA(objetivo, posOrigen,ataque);
         //Assert
         assertEquals(objetivo.getVida(),95);
     }
+
 /*
     @Test
     public void test04EspadaLivianaNoMataAUnaPiezaQueEstaACortoAlcanceQueTiene6DeVida() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
@@ -88,7 +94,7 @@ public class ArmaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(2, 0));
+        tablero.posicionar(new Posicion(2, 0), objetivo);
         objetivo.recibirDanio(94);
         //Act
         espadaLiviana.atacarA(objetivo, posOrigen);
@@ -105,7 +111,8 @@ public class ArmaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(7, 8));
+
+        tablero.posicionar(new Posicion(7, 8), objetivo);
 
         //Act-Assert
         assertThrows(HabilidadFueraDeAlcanceException.class,
@@ -123,13 +130,17 @@ public class ArmaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(4, 4));
+
+
+        tablero.posicionar(new Posicion(4, 4), objetivo);
+
         //Act
         arco.atacarA(objetivo, posOrigen,ataque);
         //Assert
         assertEquals(objetivo.getVida(),85);
     }
-/*
+
+    /*
     @Test
     public void test07ArcoNoMataAUnaPiezaQueEstaAAlcanceMedioQueTiene16DeVida() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         //Arrange
@@ -138,7 +149,8 @@ public class ArmaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(4, 4));
+
+        tablero.posicionar(new Posicion(4, 4), objetivo);
         objetivo.recibirDanio(84);
         //Act
         arco.atacarA(objetivo,posOrigen);
@@ -156,7 +168,8 @@ public class ArmaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(1, 1));
+
+        tablero.posicionar(new Posicion(1, 1), objetivo);
         //Act-Assert
         assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {
@@ -174,7 +187,8 @@ public class ArmaTest {
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
         tablero.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(10, 10));
+
+        tablero.posicionar(new Posicion(10, 10), objetivo);
         //Act
         proyectil.atacarA(objetivo, posOrigen,ataque);
         //Assert
@@ -190,7 +204,8 @@ public class ArmaTest {
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
         tablero.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(10, 10));
+
+        tablero.posicionar(new Posicion(10, 10), objetivo);
         objetivo.recibirDanio(79);
         //Act
         proyectil.atacarA(objetivo, posOrigen);
@@ -207,7 +222,8 @@ public class ArmaTest {
         Pieza objetivo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         objetivo.cambiarAlianza();
-        objetivo.posicionar(tablero, new Posicion(1, 1));
+
+        tablero.posicionar(new Posicion(1, 1), objetivo);
 
         //Act-Assert
         assertThrows(HabilidadFueraDeAlcanceException.class,

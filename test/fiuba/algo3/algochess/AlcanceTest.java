@@ -1,9 +1,10 @@
 package fiuba.algo3.algochess;
 
-import fiuba.algo3.algochess.pieza.alcance.Alcance;
-import fiuba.algo3.algochess.pieza.alcance.AlcanceCercano;
-import fiuba.algo3.algochess.pieza.alcance.AlcanceLejano;
-import fiuba.algo3.algochess.pieza.alcance.AlcanceMedio;
+import fiuba.algo3.algochess.model.Posicion;
+import fiuba.algo3.algochess.model.pieza.alcance.Alcance;
+import fiuba.algo3.algochess.model.pieza.alcance.AlcanceCercano;
+import fiuba.algo3.algochess.model.pieza.alcance.AlcanceLejano;
+import fiuba.algo3.algochess.model.pieza.alcance.AlcanceMedio;
 
 import org.junit.Test;
 

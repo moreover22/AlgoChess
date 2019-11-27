@@ -1,12 +1,13 @@
 package fiuba.algo3.algochess;
 
-import fiuba.algo3.algochess.pieza.Jinete;
-import fiuba.algo3.algochess.pieza.SoldadoDeInfanteria;
-import fiuba.algo3.algochess.pieza.habilidad.HabilidadConObjetivoInvalidoException;
-import fiuba.algo3.algochess.pieza.habilidad.HabilidadFueraDeAlcanceException;
-import fiuba.algo3.algochess.tablero.FueraDelTableroException;
-import fiuba.algo3.algochess.tablero.Tablero;
-import fiuba.algo3.algochess.tablero.casillero.PosicionarEnCasilleroEnemigoException;
+import fiuba.algo3.algochess.model.Posicion;
+import fiuba.algo3.algochess.model.pieza.Jinete;
+import fiuba.algo3.algochess.model.pieza.SoldadoDeInfanteria;
+import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
+import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
+import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
+import fiuba.algo3.algochess.model.tablero.Tablero;
+import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,10 +23,11 @@ public class PiezaJineteTest {
         SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
-        jinete.posicionar(tablero, new Posicion(0, 9));
-        soldado.posicionar(tablero, new Posicion(1, 9));
+        tablero.posicionar(new Posicion(9, 0), jinete);
+        tablero.posicionar(new Posicion(9, 1), soldado);
         tablero.cambiarAlianza();
-        soldadoEnemigo.posicionar(tablero, new Posicion(0, 12));
+        tablero.posicionar(new Posicion(12, 0), soldadoEnemigo);
+
         // Act
         jinete.usarHabilidadEn(tablero, soldadoEnemigo);
         // Assert
@@ -40,10 +42,10 @@ public class PiezaJineteTest {
         SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
-        jinete.posicionar(tablero, new Posicion(0, 9));
-        soldado.posicionar(tablero, new Posicion(1, 9));
+        tablero.posicionar(new Posicion(9, 0), jinete);
+        tablero.posicionar(new Posicion(9, 1), soldado);
         tablero.cambiarAlianza();
-        soldadoEnemigo.posicionar(tablero, new Posicion(0, 10));
+        tablero.posicionar(new Posicion(10, 0), soldadoEnemigo);
         // Act - Assert exception
         assertThrows(HabilidadFueraDeAlcanceException.class,
                 () -> {
@@ -61,9 +63,9 @@ public class PiezaJineteTest {
         SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
-        jinete.posicionar(tablero, new Posicion(0, 9));
+        tablero.posicionar(new Posicion(9, 0), jinete);
         tablero.cambiarAlianza();
-        soldadoEnemigo.posicionar(tablero, new Posicion(0, 12));
+        tablero.posicionar(new Posicion(12, 0), soldadoEnemigo);
         // Act
         jinete.usarHabilidadEn(tablero, soldadoEnemigo);
         // Assert
@@ -77,9 +79,9 @@ public class PiezaJineteTest {
         SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
-        jinete.posicionar(tablero, new Posicion(0, 9));
+        tablero.posicionar(new Posicion(9, 0), jinete);
         tablero.cambiarAlianza();
-        soldadoEnemigo.posicionar(tablero, new Posicion(0, 10));
+        tablero.posicionar(new Posicion(10, 0), soldadoEnemigo);
         // Act
         jinete.usarHabilidadEn(tablero, soldadoEnemigo);
         // Assert
@@ -96,10 +98,10 @@ public class PiezaJineteTest {
         soldadoEnemigoCercano.cambiarAlianza();
         soldadoEnemigoMediano.cambiarAlianza();
         // Arrange - Posiciono
-        jinete.posicionar(tablero, new Posicion(0, 9));
+        tablero.posicionar(new Posicion(9, 0), jinete);
         tablero.cambiarAlianza();
-        soldadoEnemigoCercano.posicionar(tablero, new Posicion(0, 10));
-        soldadoEnemigoMediano.posicionar(tablero, new Posicion(0, 12));
+        tablero.posicionar(new Posicion(10, 0), soldadoEnemigoCercano);
+        tablero.posicionar(new Posicion(12, 0), soldadoEnemigoMediano);
         while(soldadoEnemigoCercano.estaViva()) {
             jinete.usarHabilidadEn(tablero, soldadoEnemigoCercano);
         }
