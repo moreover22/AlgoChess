@@ -33,7 +33,7 @@ public class PiezaAliada implements PiezaAlianza {
 
     @Override
     public float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza){
-        return habilidad.aplicarHabilidad(cantidad, pieza);
+        return habilidad.aplicarHabilidad(cantidad, pieza, habilidad);
     }
 
     @Override

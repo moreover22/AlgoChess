@@ -10,7 +10,7 @@ public interface PiezaAlianza {
     int contarAliado(int cantidadAliados);
     int contarEnemigo(int cantidadEnemigos);
 
-    float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza) throws AtaqueAAliadoException;
+    float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza);
     void enlistarABatallon(List<Pieza> lista, Pieza pieza);
 
     String getAlianza();

@@ -7,5 +7,7 @@ import fiuba.algo3.algochess.model.pieza.Pieza;
 
 public interface Habilidad extends Parseable {
     void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException;
-    float aplicarHabilidad (float cantidad, Pieza pieza);
+    float aplicarHabilidad (float cantidad, Pieza pieza,Habilidad habilidad);
+    float aplicarHabilidad (float cantidad, Pieza pieza,Ataque ataque);
+    float aplicarHabilidad (float cantidad, Pieza pieza,Curacion curacion);
 }
