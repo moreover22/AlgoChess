@@ -9,10 +9,8 @@ import fiuba.algo3.algochess.model.pieza.movimiento.MovimientoFueraDeAlcanceExce
 import fiuba.algo3.algochess.model.tablero.casillero.Casillero;
 import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 public class Tablero implements Aliable, Parseable {
     private Map<Posicion, Casillero> casilleros;
@@ -59,11 +57,11 @@ public class Tablero implements Aliable, Parseable {
     }
 
     public void ocupar(Posicion posicion, Pieza pieza) throws FueraDelTableroException {
-        getCasillero(posicion).ocupar(pieza, this);
+        getCasillero(posicion).ocupar(pieza);
     }
 
-    public void vaciar(Posicion posicion) throws FueraDelTableroException {
-        getCasillero(posicion).vaciar();
+    public void sacar(Posicion posicion) throws FueraDelTableroException {
+        getCasillero(posicion).sacar();
     }
 
     public Iterable<Pieza> piezasDentroDe(Alcance alcance, Posicion desde) {
@@ -77,22 +75,6 @@ public class Tablero implements Aliable, Parseable {
         return piezas;
     }
 
-    @Override
-    public void cambiarAlianza() {
-        casilleros.forEach((posicion, casillero) -> casillero.cambiarAlianza());
-    }
-
-    public void aplicarDanioTeritorio() {
-        casilleros.forEach((posicion, casillero) -> {
-            casillero.aplicarDanioTerritorio(casillero.getPieza());
-        });
-    }
-
-    public void mover(Pieza pieza, Direccion direccion) throws FueraDelTableroException, MovimientoFueraDeAlcanceException {
-        Movible movible = pieza.seleccionarParaMover(this);
-        movible.mover(direccion, this);
-    }
-
     public Iterable<Pieza> getVecinos(Posicion posicion, Iterable<Direccion> direcciones) throws FueraDelTableroException {
         List<Pieza> vecinos = new ArrayList<>();
         for (Direccion direccion : direcciones) {
@@ -103,6 +85,17 @@ public class Tablero implements Aliable, Parseable {
         }
 
         return vecinos;
+    }
+
+    public void mover(Pieza pieza, Direccion direccion) throws FueraDelTableroException, MovimientoFueraDeAlcanceException {
+        Movible movible = pieza.seleccionarParaMover(this);
+        movible.mover(direccion, this);
+    }
+
+
+    @Override
+    public void cambiarAlianza() {
+        casilleros.forEach((posicion, casillero) -> casillero.cambiarAlianza());
     }
 
     @Override
@@ -118,3 +111,17 @@ public class Tablero implements Aliable, Parseable {
         return estado;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

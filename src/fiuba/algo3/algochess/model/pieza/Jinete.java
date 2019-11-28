@@ -27,6 +27,7 @@ public class Jinete extends Pieza {
     public static String getName() {
         return "Jinete";
     }
+
 }
 
 

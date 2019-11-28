@@ -8,10 +8,10 @@ import fiuba.algo3.algochess.model.tablero.Tablero;
 import java.util.List;
 
 public class SoldadoDeInfanteria extends Pieza {
-
     public SoldadoDeInfanteria(){
         super(100, 1);
         habilidad = new Ataque(new EspadaPesada());
+
     }
 
     @Override
@@ -34,39 +34,6 @@ public class SoldadoDeInfanteria extends Pieza {
     protected void enlistarABatallon(List<Pieza> lista){
         alianza.enlistarABatallon(lista,this);
     }
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

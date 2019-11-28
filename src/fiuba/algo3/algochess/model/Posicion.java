@@ -1,7 +1,5 @@
 package fiuba.algo3.algochess.model;
 
-import java.util.List;
-
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
 

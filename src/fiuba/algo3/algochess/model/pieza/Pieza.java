@@ -13,6 +13,7 @@ import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.model.tablero.Tablero;
 import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Pieza implements Aliable, Movible, Parseable {
@@ -23,6 +24,7 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
     protected Habilidad habilidad;
     protected Movimiento movimiento;
     protected PiezaAlianza alianza;
+    private List<Pieza> piezas;
 
     static final int PORCENTAJE_DANIO_TERRITORIO = 5;
 
@@ -31,28 +33,34 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         this.coste = coste;
         this.alianza = new PiezaAliada();
         this.movimiento = new Movimiento(new AlcanceInmediato());
+        piezas = new ArrayList<>();
     }
 
     public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, FueraDelTableroException {
         habilidad.usarCon(objetivo, posicion);
-        if (!objetivo.estaViva()) tablero.vaciar(objetivo.getPosicion());
+        if (!objetivo.estaViva()) tablero.sacar(objetivo.getPosicion());
     }
 
     public void setPosicion(Posicion posicion) throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
         this.posicion = posicion;
     }
 
-    @Override
     public Posicion getPosicion() {
         return posicion;
     }
 
-    public void recibirCuracion(float curacion) throws CuracionAEnemigoException {
-        vida.aumentar(curacion, alianza);
+    /*public void recibirCuracion(float curacion) throws CuracionAEnemigoException {
+        vida.recibirCuracion(curacion, alianza);
     }
 
     public void recibirDanio(float danio) throws AtaqueAAliadoException {
-        vida.reducir(danio, alianza);
+        vida.recibirDanio(danio, alianza);
+    }*/
+
+    public void recibirHabilidad(Habilidad habilidad, float cantidad ) throws AtaqueAAliadoException, CuracionAEnemigoException {
+
+        float vidaActual = habilidad.recibirHabilidad(cantidad,habilidad,this,this.alianza);
+        vida.recibirHabilidad(vidaActual);
     }
 
     public float getVida() {
@@ -89,7 +97,7 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
 
     @Override
     public void mover(Direccion direccion, Tablero tablero) throws MovimientoFueraDeAlcanceException, FueraDelTableroException {
-        tablero.vaciar(posicion);
+        tablero.sacar(posicion);
         posicion = movimiento.mover(posicion, direccion);
         tablero.ocupar(posicion, this);
     }
@@ -121,4 +129,5 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         parser.put("posicion", posicion);
         return parser;
     }
+
 }

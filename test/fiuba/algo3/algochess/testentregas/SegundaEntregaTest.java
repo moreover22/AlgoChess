@@ -19,9 +19,9 @@ public class SegundaEntregaTest {
     public void test13ElBatallonSeMueveCorrectamente() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        Pieza soldado1 = new SoldadoDeInfanteria();
+        Pieza soldado2 = new SoldadoDeInfanteria();
+        Pieza soldado3 = new SoldadoDeInfanteria();
         Posicion posFinal1 = new Posicion(1,2);
         Posicion posFinal2 = new Posicion(1,3);
         Posicion posFinal3 = new Posicion(1,4);
@@ -42,10 +42,10 @@ public class SegundaEntregaTest {
     public void test14ElBatallonSeMueveSoloSeMuevenDosSoldadosDebidoAUnObstaculo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
-        Curandero curandero = new Curandero();
+        Pieza soldado1 = new SoldadoDeInfanteria();
+        Pieza soldado2 = new SoldadoDeInfanteria();
+        Pieza soldado3 = new SoldadoDeInfanteria();
+        Pieza curandero = new Curandero();
         Posicion posFinal1 = new Posicion(2,2);
         Posicion posFinal2 = new Posicion(1,3);
         Posicion posFinal3 = new Posicion(2,4);
@@ -68,15 +68,15 @@ public class SegundaEntregaTest {
     public void test15ElBatallonSeDisuelveCorrectamente() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        Pieza soldado1 = new SoldadoDeInfanteria();
+        Pieza soldado2 = new SoldadoDeInfanteria();
+        Pieza soldado3 = new SoldadoDeInfanteria();
 
         tablero.posicionar(new Posicion(1, 2), soldado1);
         tablero.posicionar(new Posicion(1, 3), soldado2);
         tablero.posicionar(new Posicion(1, 4), soldado3);
 
-        Curandero curandero = new Curandero();
+        Pieza curandero = new Curandero();
         tablero.posicionar(new Posicion(2, 3), curandero);
 
         Posicion posFinal1 = new Posicion(3, 2);
@@ -101,10 +101,10 @@ public class SegundaEntregaTest {
     public void test16Habiendo4SoldadosContiguosSeMuevenUnicamente3() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldado4 = new SoldadoDeInfanteria();
+        Pieza soldado1 = new SoldadoDeInfanteria();
+        Pieza soldado2 = new SoldadoDeInfanteria();
+        Pieza soldado3 = new SoldadoDeInfanteria();
+        Pieza soldado4 = new SoldadoDeInfanteria();
         Posicion posFinal1 = new Posicion(2,2);
         Posicion posFinal2 = new Posicion(2,3);
         Posicion posFinal3 = new Posicion(2,4);
@@ -128,8 +128,8 @@ public class SegundaEntregaTest {
     public void test17UnJineteSinAliadosYConEnemigoEnDistanciaCortaAtacaConSuEspadaAlEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        Jinete jinete = new Jinete();
-        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
+        Pieza jinete = new Jinete();
+        Pieza soldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
         tablero.posicionar(new Posicion(9, 0), jinete);
@@ -146,9 +146,9 @@ public class SegundaEntregaTest {
     public void test18UnJineteSinAliadosEnDistanciaCortaYUnEnemigoEnDistanciaCortaYOtroEnemigoEnDistanciaMediaJineteTrataDeAtacarADistanciaMediaYNoPuede() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        Jinete jinete = new Jinete();
-        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria otroSoldadoEnemigo = new SoldadoDeInfanteria();
+        Pieza jinete = new Jinete();
+        Pieza soldadoEnemigo = new SoldadoDeInfanteria();
+        Pieza otroSoldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         otroSoldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono

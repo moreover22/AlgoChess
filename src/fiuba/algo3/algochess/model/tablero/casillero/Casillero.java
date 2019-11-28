@@ -21,24 +21,25 @@ public class Casillero implements Aliable, Parseable {
         estado = estado.posicionar(pieza);
     }
 
-    public void ocupar(Pieza pieza, Tablero tablero) throws FueraDelTableroException {
-        estado = estado.ocupar(pieza, tablero);
+    public void ocupar(Pieza pieza) {
+        estado = estado.ocupar(pieza);
     }
 
-    public void vaciar() {
+    public void sacar() {
         estado = estado.vaciar();
     }
 
     public Pieza getPieza() {
         return estado.getPieza();
     }
+
     @Override
     public void cambiarAlianza() {
         alianza = alianza.cambiar();
     }
 
-    public void aplicarDanioTerritorio(Pieza pieza) {
-        alianza.aplicarDanioTerritorio(pieza);
+    public void aplicarDanioTerritorio() {
+        alianza.aplicarDanioTerritorio(estado.getPieza());
     }
 
     @Override

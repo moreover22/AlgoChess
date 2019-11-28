@@ -2,6 +2,7 @@ package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.pieza.Jinete;
+import fiuba.algo3.algochess.model.pieza.Pieza;
 import fiuba.algo3.algochess.model.pieza.SoldadoDeInfanteria;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
@@ -18,9 +19,9 @@ public class PiezaJineteTest {
     public void testJineteConSoldadoDeInfanteriaAliadoCercanoPuedeAtacarADistanciaMediaConArcoYFlechaAEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        Jinete jinete = new Jinete();
-        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
+        Pieza jinete = new Jinete();
+        Pieza soldado = new SoldadoDeInfanteria();
+        Pieza soldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
         tablero.posicionar(new Posicion(9, 0), jinete);
@@ -37,9 +38,9 @@ public class PiezaJineteTest {
     public void testJineteConSoldadoDeInfanteriaAliadoCercanoNoPuedeAtacarADistanciaCercana() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        Jinete jinete = new Jinete();
-        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
+        Pieza jinete = new Jinete();
+        Pieza soldado = new SoldadoDeInfanteria();
+        Pieza soldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
         tablero.posicionar(new Posicion(9, 0), jinete);
@@ -59,8 +60,8 @@ public class PiezaJineteTest {
     public void testJineteSinEnemigoCercanoPuedeAtacarADistanciaMediaConArcoYFlechaAEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        Jinete jinete = new Jinete();
-        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
+        Pieza jinete = new Jinete();
+        Pieza soldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
         tablero.posicionar(new Posicion(9, 0), jinete);
@@ -75,8 +76,8 @@ public class PiezaJineteTest {
     public void testJineteSinAliadosCercanosYConEnemigosCercanoPuedeAtacarADistanciaCercanaConEspada() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        Jinete jinete = new Jinete();
-        SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
+        Pieza jinete = new Jinete();
+        Pieza soldadoEnemigo = new SoldadoDeInfanteria();
         soldadoEnemigo.cambiarAlianza();
         // Arrange - Posiciono
         tablero.posicionar(new Posicion(9, 0), jinete);
@@ -92,9 +93,9 @@ public class PiezaJineteTest {
     public void testJineteMataAEnemigoCercanoArmaCambiaAArcoYFlechaYPuedeAtacarAEnemigoADistanciaLejana() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
         // Arrange
         Tablero tablero = new Tablero();
-        Jinete jinete = new Jinete();
-        SoldadoDeInfanteria soldadoEnemigoCercano = new SoldadoDeInfanteria();
-        SoldadoDeInfanteria soldadoEnemigoMediano = new SoldadoDeInfanteria();
+        Pieza jinete = new Jinete();
+        Pieza soldadoEnemigoCercano = new SoldadoDeInfanteria();
+        Pieza soldadoEnemigoMediano = new SoldadoDeInfanteria();
         soldadoEnemigoCercano.cambiarAlianza();
         soldadoEnemigoMediano.cambiarAlianza();
         // Arrange - Posiciono

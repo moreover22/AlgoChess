@@ -38,18 +38,3 @@ public class Batallon implements Movible {
         return movibles.get(0).getPosicion();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
