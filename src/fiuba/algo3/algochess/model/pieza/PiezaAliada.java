@@ -32,8 +32,13 @@ public class PiezaAliada implements PiezaAlianza {
     }
 
     @Override
-    public float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza){
-        return habilidad.aplicarHabilidad(cantidad, pieza, habilidad);
+    public float recibirAtaque(float cantidad, Pieza pieza) throws AtaqueAAliadoException {
+        throw new AtaqueAAliadoException();
+    }
+
+    @Override
+    public float recibirCuracion(float cantidad, Pieza pieza){
+        return pieza.getVida() + cantidad;
     }
 
     @Override

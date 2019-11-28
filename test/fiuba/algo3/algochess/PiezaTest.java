@@ -295,14 +295,14 @@ public class PiezaTest {
 
     @Test
     public void test06CuranderoAliadoCuraAUnaPiezaAliadaSeLeSumaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
-        Curandero curandero = new Curandero();
+        Pieza curandero = new Curandero();
         Tablero tablero = new Tablero();
         tablero.posicionar(new Posicion(0, 0), curandero);
 
-        SoldadoDeInfanteria enemigo = new SoldadoDeInfanteria();
+        Pieza enemigo = new SoldadoDeInfanteria();
         tablero.posicionar(new Posicion(0, 1), enemigo);
 
-        Jinete aliado = new Jinete();
+        Pieza aliado = new Jinete();
         tablero.posicionar(new Posicion(1, 0), aliado);
         aliado.cambiarAlianza();
 
