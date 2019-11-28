@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.view;
 
 import fiuba.algo3.algochess.model.AlgoChess;
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -19,9 +20,10 @@ public class Main extends Application {
         AlgoChess algoChess = new AlgoChess();
 
         JuegoView juego = new JuegoView(stage, algoChess);
-//        Scene bienvenida = new Scene(new ContenedorEntrada(juego));
 
+//        Scene bienvenida = new Scene(new ContenedorEntrada(juego));
 //        stage.setScene(bienvenida);
+        
         juego.iniciar("pepe", "pupo");
         stage.show();
 

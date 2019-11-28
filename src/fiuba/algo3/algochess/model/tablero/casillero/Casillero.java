@@ -21,8 +21,8 @@ public class Casillero implements Aliable, Parseable {
         estado = estado.posicionar(pieza);
     }
 
-    public void ocupar(Pieza pieza) {
-        estado = estado.ocupar(pieza);
+    public void ocupar(Pieza pieza, Tablero tablero) throws FueraDelTableroException {
+        estado = estado.ocupar(pieza, tablero);
     }
 
     public void sacar() {

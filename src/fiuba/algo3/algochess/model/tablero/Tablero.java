@@ -57,7 +57,7 @@ public class Tablero implements Aliable, Parseable {
     }
 
     public void ocupar(Posicion posicion, Pieza pieza) throws FueraDelTableroException {
-        getCasillero(posicion).ocupar(pieza);
+        getCasillero(posicion).ocupar(pieza, this);
     }
 
     public void sacar(Posicion posicion) throws FueraDelTableroException {
@@ -95,7 +95,9 @@ public class Tablero implements Aliable, Parseable {
 
     @Override
     public void cambiarAlianza() {
-        casilleros.forEach((posicion, casillero) -> {casillero.cambiarAlianza();casillero.getPieza().cambiarAlianza();});
+        casilleros.forEach((posicion, casillero) -> {
+            casillero.cambiarAlianza();
+        });
     }
 
 

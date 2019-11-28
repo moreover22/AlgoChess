@@ -19,7 +19,6 @@ public abstract class EstadoCasillero implements Parseable {
 
     public abstract EstadoCasillero posicionar(Pieza pieza);
     public abstract EstadoCasillero ocupar(Pieza pieza, Tablero tablero) throws FueraDelTableroException;
-    public abstract String getEstado();
     // public abstract EstadoCasillero ocupar(Pieza pieza);
     public EstadoCasillero vaciar() {
         return new EstadoCasilleroVacio();

@@ -18,10 +18,12 @@ public class EstadoCasilleroOcupado extends EstadoCasillero {
     }
 
     @Override
-    public EstadoCasillero ocupar(Pieza pieza) {
+    public EstadoCasillero ocupar(Pieza pieza, Tablero tablero) throws FueraDelTableroException {
         pieza.deshacerMovimiento();
+        tablero.ocupar(pieza.getPosicion(), pieza);
         return this;
     }
+
 
     @Override
     public ParserObjeto parsear() {

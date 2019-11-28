@@ -26,11 +26,14 @@ public class PiezaJineteTest {
         // Arrange - Posiciono
         tablero.posicionar(new Posicion(9, 0), jinete);
         tablero.posicionar(new Posicion(9, 1), soldado);
+
         tablero.cambiarAlianza();
         tablero.posicionar(new Posicion(12, 0), soldadoEnemigo);
 
         // Act
+        System.out.println(jinete.parsear());
         jinete.usarHabilidadEn(tablero, soldadoEnemigo);
+
         // Assert
         assertEquals(85, soldadoEnemigo.getVida());
     }

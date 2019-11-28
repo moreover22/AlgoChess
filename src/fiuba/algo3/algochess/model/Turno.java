@@ -7,16 +7,18 @@ import java.util.List;
 
 public class Turno {
     private List<Aliable> aliables;
+
     public Turno(){
         aliables = new ArrayList<>();
     }
 
     public void agregarAliable(Aliable Aliable){
-    aliables.add(Aliable);
+        aliables.add(Aliable);
     }
 
     public void cambiarTurno() {
-        for(Aliable aliable: aliables){aliable.cambiarAlianza();};
+        for(Aliable aliable: aliables){
+            aliable.cambiarAlianza();
+        };
     }
-
 }
