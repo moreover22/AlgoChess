@@ -83,7 +83,6 @@ public class Tablero implements Aliable, Parseable {
                 continue;
             vecinos.add(getCasillero(posicionEnDireccion).getPieza());
         }
-
         return vecinos;
     }
 
@@ -92,15 +91,12 @@ public class Tablero implements Aliable, Parseable {
         movible.mover(direccion, this);
     }
 
-
     @Override
     public void cambiarAlianza() {
         casilleros.forEach((posicion, casillero) -> {
             casillero.cambiarAlianza();
         });
     }
-
-
 
     @Override
     public ParserObjeto parsear() {
