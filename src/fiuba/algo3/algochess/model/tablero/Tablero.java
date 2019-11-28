@@ -95,7 +95,7 @@ public class Tablero implements Aliable, Parseable {
 
     @Override
     public void cambiarAlianza() {
-        casilleros.forEach((posicion, casillero) -> casillero.cambiarAlianza());
+        casilleros.forEach((posicion, casillero) -> {casillero.cambiarAlianza();casillero.getPieza().cambiarAlianza();});
     }
 
     @Override
