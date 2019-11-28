@@ -32,3 +32,12 @@ public class AlgoChess {
         turno.cambiarTurno();
     }
 }
+
+
+
+
+
+
+
+
+

@@ -98,6 +98,8 @@ public class Tablero implements Aliable, Parseable {
         casilleros.forEach((posicion, casillero) -> {casillero.cambiarAlianza();casillero.getPieza().cambiarAlianza();});
     }
 
+
+
     @Override
     public ParserObjeto getEstado() {
         ParserObjeto estado = new ParserObjeto();
@@ -109,6 +111,12 @@ public class Tablero implements Aliable, Parseable {
         });
         estado.put("casilleros", casillerosParseados);
         return estado;
+    }
+
+    public void aplicarDanioTerritorio() {
+        casilleros.forEach((posicion, casillero) -> {
+            casillero.aplicarDanioTerritorio();
+        });
     }
 }
 

@@ -52,3 +52,13 @@ public class PiezaAliada implements PiezaAlianza {
         return "aliado";
     }
 }
+
+
+
+
+
+
+
+
+
+
