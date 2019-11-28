@@ -72,7 +72,7 @@ public class InfoPieza {
 
     public static TextFlow getInfo(String tipoPieza) {
         Pieza pieza = piezas.get(tipoPieza).get();
-        ParserObjeto parserInformacion = pieza.getEstado();
+        ParserObjeto parserInformacion = pieza.parsear();
         TextFlow info = new TextFlow();
 
         Text nombreText = new Text(nombresDisplayable.get(tipoPieza));

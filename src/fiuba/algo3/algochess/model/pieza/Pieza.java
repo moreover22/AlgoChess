@@ -20,6 +20,7 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
     private Vida vida;
     private int coste;
 
+    protected String tipoPieza;
     protected Posicion posicion;
     protected Habilidad habilidad;
     protected Movimiento movimiento;
@@ -120,13 +121,14 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
     }
 
     @Override
-    public ParserObjeto getEstado() {
+    public ParserObjeto parsear() {
         ParserObjeto parser = new ParserObjeto();
-        parser.put("vida", vida.getEstado());
+        parser.put("vida", vida.parsear());
         parser.put("coste", coste);
-        parser.put("habilidad", habilidad.getEstado());
+        parser.put("habilidad", habilidad.parsear());
         parser.put("alianza", alianza.getAlianza());
         parser.put("posicion", posicion);
+        parser.put("tipo_pieza", tipoPieza);
         return parser;
     }
 

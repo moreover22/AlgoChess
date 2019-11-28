@@ -6,5 +6,6 @@ public class Curandero extends Pieza {
     public Curandero () {
         super(75, 2);
         habilidad = new Curacion(15);
+        tipoPieza = "curandero";
     }
 }
