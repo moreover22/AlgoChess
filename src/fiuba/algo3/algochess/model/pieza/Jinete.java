@@ -15,6 +15,7 @@ public class Jinete extends Pieza {
         super(100, 3);
         ataque = new Ataque(new EspadaLiviana());
         habilidad = ataque;
+        tipoPieza = "jinete";
     }
 
     @Override

@@ -12,6 +12,7 @@ public class SoldadoDeInfanteria extends Pieza {
     public SoldadoDeInfanteria(){
         super(100, 1);
         habilidad = new Ataque(new EspadaPesada());
+        tipoPieza = "soldado";
     }
 
     @Override

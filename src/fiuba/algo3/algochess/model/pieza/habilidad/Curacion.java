@@ -24,7 +24,7 @@ public class Curacion implements Habilidad {
     }
 
     @Override
-    public ParserObjeto getEstado() {
+    public ParserObjeto parsear() {
         ParserObjeto parser = new ParserObjeto();
         parser.put("tipo", "curacion");
         ParserObjeto parserInfo = new ParserObjeto();

@@ -106,13 +106,13 @@ public class Tablero implements Aliable, Parseable {
     }
 
     @Override
-    public ParserObjeto getEstado() {
+    public ParserObjeto parsear() {
         ParserObjeto estado = new ParserObjeto();
         estado.put("cantidad_filas", cantFilas);
         estado.put("cantidad_columnas", cantColumnas);
         Map<Posicion, ParserObjeto> casillerosParseados = new HashMap<>();
         casilleros.forEach( (posicion, casillero) -> {
-            casillerosParseados.put(posicion, casillero.getEstado());
+            casillerosParseados.put(posicion, casillero.parsear());
         });
         estado.put("casilleros", casillerosParseados);
         return estado;

@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.model.pieza;
 
+import fiuba.algo3.algochess.model.ParserObjeto;
 import fiuba.algo3.algochess.model.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.model.tablero.Tablero;
 
@@ -22,5 +23,8 @@ public class PiezaNula extends Pieza{
     public void mover(Direccion direccion, Tablero tablero) {
 
     }
-
+    @Override
+    public ParserObjeto parsear() {
+        return null;
+    }
 }

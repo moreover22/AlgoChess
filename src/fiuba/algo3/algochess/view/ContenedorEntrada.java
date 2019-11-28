@@ -13,8 +13,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ContenedorEntrada extends VBox {
+    private static final String pathToCssFile = (ContenedorEntrada.class).getResource("/css/ContenedorEntrada.css").toExternalForm();
     public ContenedorEntrada(JuegoView vistaJuego) {
-        getStylesheets().add("fiuba/algo3/algochess/view/ContenedorEntrada.css");
+        getStylesheets().add(pathToCssFile);
         getStyleClass().add("contenedor-principal");
 
         getChildren().add(logo());
@@ -62,9 +63,7 @@ public class ContenedorEntrada extends VBox {
         contenedorJugadores.getChildren().add(errores);
 
         getChildren().add(contenedorJugadores);
-
         getChildren().add(botonEmpezar(botonController));
-
     }
 
     private VBox logo() {

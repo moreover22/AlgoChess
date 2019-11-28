@@ -2,18 +2,20 @@ package fiuba.algo3.algochess.view;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 
 public class ContenedorPiezas extends VBox {
-
+    private static final String pathToCssFila = (ContenedorPiezas.class).getResource("/css/PiezaView.css").toExternalForm();
     public ContenedorPiezas(String color, JuegoView juego) {
+        getStylesheets().add(pathToCssFila);
 
-        BorderPane.setMargin(this, new Insets(40, 40, 40, 0));
-        setStyle("-fx-background-color: rgba(0, 0, 0, 0.7); -fx-background-radius: 0;");
+        getStyleClass().add("contenedor-de-piezas");
+        getStyleClass().add("contenedor-de-piezas-" + color);
+
         Label seleccionarPieza = new Label("Seleccione una pieza:");
-        seleccionarPieza.setStyle("-fx-text-fill: #EEE; -fx-font-size: 15px; -fx-padding: 20px 15px 7px 15px;");
+        seleccionarPieza.getStyleClass().add("selecciona-pieza-lbl");
+
         getChildren().add(seleccionarPieza);
         getChildren().add(new PiezaItemView(color, "jinete", juego));
         getChildren().add(new PiezaItemView(color, "soldado", juego));

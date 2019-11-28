@@ -56,7 +56,7 @@ public abstract class Arma implements Parseable {
     }
 
     @Override
-    public ParserObjeto getEstado() {
+    public ParserObjeto parsear() {
         ParserObjeto parser = new ParserObjeto();
         parser.put("cantidad", danio);
         parser.put("alcance", alcance);

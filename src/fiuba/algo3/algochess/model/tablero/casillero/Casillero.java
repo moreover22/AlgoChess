@@ -42,10 +42,10 @@ public class Casillero implements Aliable, Parseable {
     }
 
     @Override
-    public ParserObjeto getEstado() {
+    public ParserObjeto parsear() {
         ParserObjeto parseado = new ParserObjeto();
         parseado.put("alianza", alianza.getAlianza());
-        parseado.put("ocupado", estado.getEstado());
+        parseado.put("estado", estado.parsear());
         return parseado;
     }
 }

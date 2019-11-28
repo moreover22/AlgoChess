@@ -37,7 +37,7 @@ public class Vida implements Parseable {
         vidaActual -= vidaInicial * porcentaje / 100;
     }
     @Override
-    public ParserObjeto getEstado() {
+    public ParserObjeto parsear() {
         ParserObjeto parser = new ParserObjeto();
         parser.put("vida_inicial", vidaInicial);
         parser.put("vida_actual", vidaActual);

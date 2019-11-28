@@ -10,5 +10,6 @@ public class Catapulta extends Pieza {
         super(50, 5);
         habilidad = new Ataque(new Proyectil());
         movimiento = new Movimiento(new AlcanceNulo());
+        tipoPieza = "catapulta";
     }
 }
