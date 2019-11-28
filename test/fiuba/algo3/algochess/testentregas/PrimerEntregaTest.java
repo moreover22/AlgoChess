@@ -84,7 +84,7 @@ public class PrimerEntregaTest {
         enemigo.cambiarAlianza();
 
 
-        Jinete jinete = new Jinete();
+        Pieza jinete = new Jinete();
         tablero.posicionar(new Posicion(1, 0), jinete);
         jinete.usarHabilidadEn(tablero, enemigo);
         assertEquals(enemigo.getVida(),95);
@@ -96,7 +96,7 @@ public class PrimerEntregaTest {
         Pieza catapulta = new Catapulta();
         Tablero tablero = new Tablero();
         tablero.posicionar(new Posicion(0, 0), catapulta);
-        Jinete enemigo = new Jinete();
+        Pieza enemigo = new Jinete();
         enemigo.cambiarAlianza();
         tablero.cambiarAlianza();
 
@@ -118,7 +118,7 @@ public class PrimerEntregaTest {
 
         tablero.posicionar(new Posicion(0, 1), enemigo);
 
-        Jinete aliado = new Jinete();
+        Pieza aliado = new Jinete();
         tablero.posicionar(new Posicion(1, 0), aliado);
         aliado.cambiarAlianza();
 

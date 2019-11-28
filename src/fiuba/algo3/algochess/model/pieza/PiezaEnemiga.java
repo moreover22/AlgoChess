@@ -32,8 +32,14 @@ public class PiezaEnemiga implements PiezaAlianza {
     }
 
     @Override
-    public float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza) {
-        return habilidad.aplicarHabilidad(cantidad, pieza,habilidad);
+    public float recibirAtaque(float cantidad,Pieza pieza){
+        return pieza.getVida()-cantidad;
+    }
+
+    @Override
+    public float recibirCuracion(float cantidad, Pieza pieza) throws CuracionAEnemigoException {
+        throw new CuracionAEnemigoException();
+
     }
 
     @Override
