@@ -24,27 +24,20 @@ public class PiezaTest {
     }
 
     @Test
-    public void testPiezaRecibeDanioMenorASuVidaYNoMuere() throws AtaqueAAliadoException {
+    public void testPiezaRecibeDanioMenorASuVidaYNoMuere() throws HabilidadConObjetivoInvalidoException, FueraDelTableroException, HabilidadFueraDeAlcanceException, PosicionarEnCasilleroEnemigoException {
         //Arrange
+        Tablero tablero = new Tablero();
+        Pieza atacante = new SoldadoDeInfanteria();
         Pieza pieza = new SoldadoDeInfanteria();
         pieza.cambiarAlianza();
+        tablero.posicionar(new Posicion(1, 0), pieza);
+        tablero.posicionar(new Posicion(0, 0), atacante);
         //Act
-        pieza.recibirDanio(50);
+        atacante.usarHabilidadEn(tablero,pieza);
         //Assert
         assertTrue(pieza.estaViva());
     }
-
-    @Test
-    public void testPiezaRecibeDanioIgualASuVidaYMuere() throws AtaqueAAliadoException {
-        //Arrange
-        Pieza pieza = new SoldadoDeInfanteria();
-        pieza.cambiarAlianza();
-        //Act
-        pieza.recibirDanio(100);
-        //Assert
-        assertFalse(pieza.estaViva());
-    }
-
+/*
     @Test
     public void testPiezaCon100DeVidaRecibe50DeDanioSeCura20DeVidaYVuelveARecibir50DeDanioYNoMuere() throws AtaqueAAliadoException, CuracionAEnemigoException {
         //Arrange
@@ -216,7 +209,7 @@ public class PiezaTest {
         //Assert
         assertFalse(objetivo.estaViva());
     }
-
+*/
     @Test
     public void test01PiezaNoPuedeMoverseAUnCasilleroOcupado() throws CasilleroException, FueraDelTableroException, MovimientoFueraDeAlcanceException {
         // Arrange
@@ -267,126 +260,60 @@ public class PiezaTest {
 
     @Test
     public void test03SoldadoDeInfanteriaAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
-        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        Pieza soldado = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
 
         tablero.posicionar(new Posicion(0, 0), soldado);
 
-        Jinete enemigo = new Jinete();
+        Pieza enemigo = new Jinete();
         enemigo.cambiarAlianza();
-
         tablero.posicionar(new Posicion(1, 0), enemigo);
-
-        enemigo.recibirDanio(90);
-        soldado.usarHabilidadEn(tablero, enemigo);
-        assertFalse(enemigo.estaViva());
-
-        enemigo = new Jinete();
-        enemigo.cambiarAlianza();
-
-        tablero.posicionar(new Posicion(1, 1), enemigo);
-        enemigo.recibirDanio(89);
-        soldado.usarHabilidadEn(tablero, enemigo);
-
-        assertTrue(enemigo.estaViva());
+        
+        soldado.usarHabilidadEn(tablero,enemigo);
+        
+        assertEquals(enemigo.getVida(),90);
+        
     }
-
-    @Test
-    public void test04JineteAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
-        SoldadoDeInfanteria enemigo =  new SoldadoDeInfanteria();
-        Tablero tablero = new Tablero();
-
-        tablero.posicionar(new Posicion(0, 0), enemigo);
-        enemigo.cambiarAlianza();
-
-        Jinete jinete = new Jinete();
-
-        tablero.posicionar(new Posicion(1, 0), jinete);
-        enemigo.recibirDanio(95);
-        jinete.usarHabilidadEn(tablero, enemigo);
-        assertFalse(enemigo.estaViva());
-
-        enemigo = new SoldadoDeInfanteria();
-        enemigo.cambiarAlianza();
-
-        tablero.posicionar(new Posicion(1, 1), enemigo);
-        enemigo.recibirDanio(94);
-        jinete.usarHabilidadEn(tablero, enemigo);
-        assertTrue(enemigo.estaViva());
-    }
+    
 
     @Test
     public void test05CatapultaAliadoAtacaAUnaPiezaEnemigaYSeVerificaQueSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
-        Catapulta catapulta = new Catapulta();
+        Pieza catapulta = new Catapulta();
         Tablero tablero = new Tablero();
 
         tablero.posicionar(new Posicion(0, 0), catapulta);
-        Jinete enemigo = new Jinete();
+        Pieza enemigo = new Jinete();
         enemigo.cambiarAlianza();
 
         tablero.cambiarAlianza();
         tablero.posicionar(new Posicion(10, 0), enemigo);
-
-        enemigo.recibirDanio(80);
-        catapulta.usarHabilidadEn(tablero, enemigo);
-        assertFalse(enemigo.estaViva());
-
-        enemigo = new Jinete();
-        enemigo.cambiarAlianza();
-
-        tablero.posicionar(new Posicion(10, 0), enemigo);
-        enemigo.recibirDanio(79);
-
-        catapulta.usarHabilidadEn(tablero, enemigo);
-        assertTrue(enemigo.estaViva());
+        
+        catapulta.usarHabilidadEn(tablero,enemigo);
+        
+        assertEquals(enemigo.getVida(),80);
     }
 
     @Test
     public void test06CuranderoAliadoCuraAUnaPiezaAliadaSeLeSumaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
-        Curandero curandero =  new Curandero();
+        Pieza curandero = new Curandero();
         Tablero tablero = new Tablero();
-
         tablero.posicionar(new Posicion(0, 0), curandero);
 
-        SoldadoDeInfanteria enemigo =  new SoldadoDeInfanteria();
-        enemigo.cambiarAlianza();
-
+        Pieza enemigo = new SoldadoDeInfanteria();
         tablero.posicionar(new Posicion(0, 1), enemigo);
 
-        Jinete aliado = new Jinete();
-
+        Pieza aliado = new Jinete();
         tablero.posicionar(new Posicion(1, 0), aliado);
         aliado.cambiarAlianza();
-        aliado.recibirDanio(95);
+
+        enemigo.usarHabilidadEn(tablero,aliado);
+        enemigo.usarHabilidadEn(tablero,aliado);
 
         aliado.cambiarAlianza();
         curandero.usarHabilidadEn(tablero, aliado);
 
-        // Cambio las alianzas
-        enemigo.cambiarAlianza();
-        aliado.cambiarAlianza();
-
-        enemigo.usarHabilidadEn(tablero, aliado);
-        enemigo.usarHabilidadEn(tablero, aliado);
-        assertFalse(aliado.estaViva());
-
-        aliado = new Jinete();
-
-        tablero.posicionar(new Posicion(1, 0), aliado);
-        aliado.cambiarAlianza();
-        aliado.recibirDanio(94);
-
-        // Cambio las alianzas
-        aliado.cambiarAlianza();
-        curandero.usarHabilidadEn(tablero, aliado);
-
-        // Cambio las alianzas
-        aliado.cambiarAlianza();
-
-        enemigo.usarHabilidadEn(tablero, aliado);
-        enemigo.usarHabilidadEn(tablero, aliado);
-        assertTrue(aliado.estaViva());
-    }
+        assertEquals(aliado.getVida(),95);
+    }   
 
     @Test
     public void testSoldadoDeInfateriaUsaHabilidadAEnemigoQueNoEstaACortaDistanciayLanzaHabilidadFueraDeAlcanceException() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
@@ -511,10 +438,14 @@ public class PiezaTest {
         // Act - Assert excepcion
         assertThrows(MovimientoFueraDeAlcanceException.class,
                 () -> {
-                    tablero.mover(catapulta, Direccion.derechaAbajo());
+                    tablero.mover(catapulta , Direccion.derechaAbajo());
                 });
         // Assert
         assertEquals(new Posicion(0, 0), catapulta.getPosicion());
     }
 
+
 }
+
+
+

@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.model.pieza;
 
 import fiuba.algo3.algochess.model.pieza.habilidad.AtaqueAAliadoException;
+import fiuba.algo3.algochess.model.pieza.habilidad.Habilidad;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class PiezaAliada implements PiezaAlianza {
         return new PiezaEnemiga();
     }
 
-    @Override
+    /*@Override
     public float recibirDanio(float vida, float danio) throws AtaqueAAliadoException {
         throw new AtaqueAAliadoException();
     }
@@ -18,7 +19,7 @@ public class PiezaAliada implements PiezaAlianza {
     @Override
     public float recibirCuracion(float vida, float curacion) {
         return vida + curacion;
-    }
+    }*/
 
     @Override
     public int contarAliado(int cantidadAliados) {
@@ -31,6 +32,16 @@ public class PiezaAliada implements PiezaAlianza {
     }
 
     @Override
+    public float recibirAtaque(float cantidad, Pieza pieza) throws AtaqueAAliadoException {
+        throw new AtaqueAAliadoException();
+    }
+
+    @Override
+    public float recibirCuracion(float cantidad, Pieza pieza){
+        return pieza.getVida() + cantidad;
+    }
+
+    @Override
     public void enlistarABatallon(List<Pieza> lista, Pieza pieza) {
         lista.add(pieza);
     }
@@ -39,27 +50,4 @@ public class PiezaAliada implements PiezaAlianza {
     public String getAlianza() {
         return "aliado";
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

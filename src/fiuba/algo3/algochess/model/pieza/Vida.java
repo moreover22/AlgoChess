@@ -18,16 +18,16 @@ public class Vida implements Parseable {
         return vidaActual;
     }
 
-    public void aumentar(float cantidad, PiezaAlianza alianza) throws CuracionAEnemigoException {
-        vidaActual = alianza.recibirCuracion(vidaActual, cantidad);
+    /*public void recibirCuracion(float curacion, PiezaAlianza alianza) throws CuracionAEnemigoException {
+        vidaActual = alianza.recibirCuracion(vidaActual, curacion);
         if(vidaActual > vidaInicial) {
             vidaActual = vidaInicial;
         }
     }
 
-    public void reducir(float cantidad, PiezaAlianza alianza) throws AtaqueAAliadoException {
-        vidaActual = alianza.recibirDanio(vidaActual, cantidad);
-    }
+    public void recibirDanio(float danio, PiezaAlianza alianza) throws AtaqueAAliadoException {
+        vidaActual = alianza.recibirDanio(vidaActual, danio);
+    }*/
 
     public boolean tieneVida() {
         return vidaActual > 0;
@@ -36,6 +36,15 @@ public class Vida implements Parseable {
     public void recibirDanioPorcentual(int porcentaje) {
         vidaActual -= vidaInicial * porcentaje / 100;
     }
+
+    public void recibirHabilidad(float cantidad){
+        //vidaActual = alianza.recibirHabilidad(vidaActual, cantidad,habilidad);
+        vidaActual = cantidad;
+        if(vidaActual > vidaInicial) {
+            vidaActual = vidaInicial;
+        }
+    }
+
     @Override
     public ParserObjeto parsear() {
         ParserObjeto parser = new ParserObjeto();
@@ -45,3 +54,21 @@ public class Vida implements Parseable {
         return parser;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
