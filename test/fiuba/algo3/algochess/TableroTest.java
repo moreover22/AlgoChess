@@ -1,6 +1,8 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.model.Posicion;
+import fiuba.algo3.algochess.model.pieza.movimiento.Direccion;
+import fiuba.algo3.algochess.model.pieza.movimiento.MovimientoFueraDeAlcanceException;
 import fiuba.algo3.algochess.model.tablero.casillero.CasilleroException;
 import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.model.pieza.Pieza;
@@ -107,4 +109,52 @@ public class TableroTest {
                     tablero.posicionar(new Posicion(-1, -1), new SoldadoDeInfanteria());
                 });
     }
+
+    @Test
+    public void testPiezaQueSeEncuentraEnCasilleroEnemigoRecibeElDanioCorrespondiente() throws FueraDelTableroException, PosicionarEnCasilleroEnemigoException, MovimientoFueraDeAlcanceException {
+        //Arrange
+        Tablero tablero = new Tablero();
+        Pieza pieza = new SoldadoDeInfanteria();
+        tablero.posicionar(new Posicion (9,0),pieza);
+        tablero.mover(pieza,Direccion.derecha());
+        //Act
+        tablero.aplicarDanioTerritorio();
+        //Assert
+        assertEquals(pieza.getVida(),95);
+    }
+
+    @Test
+    public void testPiezaQueSeEncuentraEnCasilleroAliadoNoRecibeElDanioDeTerritorio() throws FueraDelTableroException, PosicionarEnCasilleroEnemigoException, MovimientoFueraDeAlcanceException {
+        //Arrange
+        Tablero tablero = new Tablero();
+        Pieza pieza = new SoldadoDeInfanteria();
+        tablero.posicionar(new Posicion (9,0),pieza);
+
+        //Act
+        tablero.aplicarDanioTerritorio();
+        //Assert
+        assertEquals(pieza.getVida(),100);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -14,6 +14,7 @@ public interface Habilidad extends Parseable {
    float recibirHabilidad(float cantidad,Ataque ataque,Pieza pieza,PiezaAlianza alianza) throws AtaqueAAliadoException;
    float recibirHabilidad(float cantidad,Curacion curacion,Pieza pieza,PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException;
 
+
 }
 
 

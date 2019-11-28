@@ -39,6 +39,7 @@ public class PiezaEnemiga implements PiezaAlianza {
     @Override
     public float recibirCuracion(float cantidad, Pieza pieza) throws CuracionAEnemigoException {
         throw new CuracionAEnemigoException();
+
     }
 
     @Override

@@ -21,7 +21,7 @@ public class Ataque implements Habilidad{
     public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
         arma.atacarA(objetivo, desde, this);
     }
-    @Override
+   @Override
     public float aplicarHabilidad(float cantidad, Pieza pieza,Habilidad habilidad){
         return aplicarHabilidad(cantidad,pieza,this);
     }
@@ -32,7 +32,9 @@ public class Ataque implements Habilidad{
 
     public float recibirHabilidad(float cantidad, Ataque ataque, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException {
         return alianza.recibirAtaque(cantidad,pieza);
+
     }
+
 
     public float recibirHabilidad(float cantidad, Curacion curacion, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException {
         return -1;//No deberia ocurrir nunca

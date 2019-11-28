@@ -39,6 +39,7 @@ public class PiezaAliada implements PiezaAlianza {
     @Override
     public float recibirCuracion(float cantidad, Pieza pieza){
         return pieza.getVida() + cantidad;
+
     }
 
     @Override
@@ -51,3 +52,13 @@ public class PiezaAliada implements PiezaAlianza {
         return "aliado";
     }
 }
+
+
+
+
+
+
+
+
+
+
