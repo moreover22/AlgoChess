@@ -57,7 +57,7 @@ public class Tablero implements Aliable, Parseable {
     }
 
     public void ocupar(Posicion posicion, Pieza pieza) throws FueraDelTableroException {
-        getCasillero(posicion).ocupar(pieza);
+        getCasillero(posicion).ocupar(pieza, this);
     }
 
     public void sacar(Posicion posicion) throws FueraDelTableroException {
@@ -83,7 +83,6 @@ public class Tablero implements Aliable, Parseable {
                 continue;
             vecinos.add(getCasillero(posicionEnDireccion).getPieza());
         }
-
         return vecinos;
     }
 
@@ -92,22 +91,21 @@ public class Tablero implements Aliable, Parseable {
         movible.mover(direccion, this);
     }
 
-
     @Override
     public void cambiarAlianza() {
-        casilleros.forEach((posicion, casillero) -> {casillero.cambiarAlianza();casillero.getPieza().cambiarAlianza();});
+        casilleros.forEach((posicion, casillero) -> {
+            casillero.cambiarAlianza();
+        });
     }
 
-
-
     @Override
-    public ParserObjeto getEstado() {
+    public ParserObjeto parsear() {
         ParserObjeto estado = new ParserObjeto();
         estado.put("cantidad_filas", cantFilas);
         estado.put("cantidad_columnas", cantColumnas);
         Map<Posicion, ParserObjeto> casillerosParseados = new HashMap<>();
         casilleros.forEach( (posicion, casillero) -> {
-            casillerosParseados.put(posicion, casillero.getEstado());
+            casillerosParseados.put(posicion, casillero.parsear());
         });
         estado.put("casilleros", casillerosParseados);
         return estado;

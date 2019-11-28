@@ -1,0 +1,4 @@
+.casillero:hover {
+    -fx-effect: innershadow(gaussian, aqua, 15, 0, 0, 0);
+
+}

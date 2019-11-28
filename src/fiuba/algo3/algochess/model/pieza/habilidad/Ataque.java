@@ -42,10 +42,10 @@ public class Ataque implements Habilidad{
 
 
     @Override
-    public ParserObjeto getEstado() {
+    public ParserObjeto parsear() {
         ParserObjeto parser = new ParserObjeto();
         parser.put("tipo", "ataque");
-        parser.put("detalle", arma.getEstado());
+        parser.put("detalle", arma.parsear());
         return parser;
     }
 }
