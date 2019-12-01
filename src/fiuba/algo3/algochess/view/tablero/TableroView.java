@@ -5,6 +5,7 @@ import fiuba.algo3.algochess.model.ParserObjeto;
 import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.tablero.Tablero;
 import fiuba.algo3.algochess.view.CasilleroView;
+import fiuba.algo3.algochess.view.InformacionTurno;
 import fiuba.algo3.algochess.view.JuegoView;
 import fiuba.algo3.algochess.view.PiezaView;
 import javafx.geometry.Insets;
@@ -27,7 +28,7 @@ public class TableroView extends StackPane {
     private Tablero tableroModelo;
     private JuegoView juego;
 
-    public TableroView(Tablero tablero, JuegoView juego) {
+    public TableroView(Tablero tablero, JuegoView juego, InformacionTurno infoTurno, Button aceptar) {
         getStylesheets().add(pathToCssFile);
         cantFilas = (int) tablero.parsear().get("cantidad_filas");
         cantColumnas = (int) tablero.parsear().get("cantidad_columnas");
@@ -35,22 +36,17 @@ public class TableroView extends StackPane {
         casillerosInfo = new HashMap<>();
         tableroModelo = tablero;
         this.juego = juego;
+
         BorderPane.setAlignment(this, Pos.CENTER);
 
         getChildren().add(new ScrollableTablero(construirTablero(), getRealWidth()));
 
         actualizarCasilleros();
 
-        Button aceptar = new Button("Aceptar");
-        aceptar.getStyleClass().add("aceptar-btn");
-        StackPane.setAlignment(aceptar, Pos.BOTTOM_CENTER);
-        StackPane.setMargin(aceptar, new Insets(100));
+        getChildren().add(infoTurno);
 
-        aceptar.setOnAction((evt) -> {
-            cambiarAlianza();
-            juego.cambiarJugador();
-
-        });
+        StackPane.setMargin(infoTurno, new Insets(30));
+        StackPane.setAlignment(infoTurno, Pos.TOP_CENTER);
 
         getChildren().add(aceptar);
     }
@@ -62,7 +58,7 @@ public class TableroView extends StackPane {
     private VBox construirTablero() {
         VBox tableroContenedor = new VBox();
 
-        tableroContenedor.setPadding(new Insets(100, 0, 100, 0));
+        tableroContenedor.setPadding(new Insets(150, 0, 170, 0));
         tableroContenedor.setAlignment(Pos.CENTER);
         tableroContenedor.getChildren().add(new TableroBordeSuperior(cantColumnas, dimension));
         HBox contenedorCentro = new HBox();
@@ -96,6 +92,7 @@ public class TableroView extends StackPane {
             Map<?, ?> parserCasilleros = (Map<?, ?>) parser.get("casilleros");
             ParserObjeto infoCasillero = (ParserObjeto) parserCasilleros.get(posicion);
             ParserObjeto infoEstadoCasillero = (ParserObjeto) infoCasillero.get("estado");
+
             if (infoCasillero.get("alianza").equals("aliado") && infoEstadoCasillero.get("estado").equals("vacio") && juego.tienePiezaSeleccionada()) {
                 Tooltip.install(casilleroView, new Tooltip("Colocar pieza"));
             } else {
@@ -122,11 +119,6 @@ public class TableroView extends StackPane {
             ParserObjeto infoCasilleroParseado = (ParserObjeto) infoCasillero;
             casillerosInfo.put(new Posicion(posicionStr), infoCasilleroParseado);
         });
-    }
-
-    private void cambiarAlianza() {
-        tableroModelo.cambiarAlianza();
-        actualizarCasilleros();
     }
 
     public void colocarPieza(Posicion posicion, String tipoPieza, String color) {

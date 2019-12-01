@@ -1,11 +1,13 @@
 package fiuba.algo3.algochess.model.jugador;
 
+import fiuba.algo3.algochess.model.Parseable;
+import fiuba.algo3.algochess.model.ParserObjeto;
 import fiuba.algo3.algochess.model.pieza.Pieza;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jugador {
+public class Jugador implements Parseable {
     private int puntos;
     private String nombre;
     private List<Pieza> piezas;
@@ -48,4 +50,12 @@ public class Jugador {
         return true;
     }
 
+    @Override
+    public ParserObjeto parsear() {
+        ParserObjeto parser = new ParserObjeto();
+        parser.put("puntos", puntos);
+        parser.put("nombre", nombre);
+        parser.put("piezas", piezas);
+        return parser;
+    }
 }

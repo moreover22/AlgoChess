@@ -1,7 +1,6 @@
 package fiuba.algo3.algochess.view;
 
 import fiuba.algo3.algochess.model.ParserObjeto;
-import javafx.scene.Cursor;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,14 +35,19 @@ public class CasilleroView extends StackPane {
     }
 
     public void actualizar(ParserObjeto parserObjeto) {
+        getStyleClass().clear();
+
+        getStyleClass().add("casillero-" + parserObjeto.get("alianza"));
+        ParserObjeto parserEstado = (ParserObjeto) parserObjeto.get("estado");
+        String estado = (String) parserEstado.get("estado");
+        getStyleClass().add("casillero-" + estado);
+
         if (parserObjeto.get("alianza").equals("aliado")) {
             iv.setEffect(null);
-            iv.setCursor(Cursor.HAND);
         }
 
         if (parserObjeto.get("alianza").equals("enemigo")) {
             iv.setEffect(casilleroEnemigo);
-            iv.setCursor(Cursor.DEFAULT);
         }
     }
 

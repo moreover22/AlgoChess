@@ -43,6 +43,7 @@ public class BotonEmpezarController implements EventHandler<ActionEvent> {
         errores.setText("");
         return true;
     }
+
     public boolean validarInput(TextInputControl entrada, TextInputControl otraEntrada) {
         if (unJugador.getText().equals(otroJugador.getText())) {
             errores.setText("Los nombres deben ser diferentes");

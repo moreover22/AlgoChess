@@ -1,7 +1,5 @@
 package fiuba.algo3.algochess.model;
 
-import fiuba.algo3.algochess.model.tablero.Tablero;
-
 import java.util.ArrayList;
 import java.util.List;
 

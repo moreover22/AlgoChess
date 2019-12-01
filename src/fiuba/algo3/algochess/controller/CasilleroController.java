@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.controller;
 
 import fiuba.algo3.algochess.model.Posicion;
+import fiuba.algo3.algochess.model.jugador.CantidadDePuntosInsuficientesException;
 import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.model.tablero.Tablero;
 import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
@@ -26,11 +27,14 @@ public class CasilleroController implements EventHandler<MouseEvent> {
         if (juego.tienePiezaSeleccionada()) {
             try {
                 modelo.posicionar(posicion, juego.getPiezaSeleccionada().getPieza());
+                juego.agregarPieza();
                 juego.colocarPieza(posicion, juego.getPiezaSeleccionada());
                 juego.actualizarTablero();
             } catch (FueraDelTableroException e) {
                 e.printStackTrace();
             } catch (PosicionarEnCasilleroEnemigoException e) {
+                e.printStackTrace();
+            } catch (CantidadDePuntosInsuficientesException e) {
                 e.printStackTrace();
             }
         }
