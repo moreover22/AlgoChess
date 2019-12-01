@@ -4,7 +4,6 @@ import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.jugador.CantidadDePuntosInsuficientesException;
 import fiuba.algo3.algochess.model.jugador.Jugador;
 import fiuba.algo3.algochess.model.pieza.*;
-import fiuba.algo3.algochess.model.pieza.habilidad.AtaqueAAliadoException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.model.pieza.movimiento.*;

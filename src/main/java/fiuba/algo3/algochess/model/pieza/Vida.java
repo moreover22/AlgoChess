@@ -2,8 +2,6 @@ package fiuba.algo3.algochess.model.pieza;
 
 import fiuba.algo3.algochess.model.Parseable;
 import fiuba.algo3.algochess.model.ParserObjeto;
-import fiuba.algo3.algochess.model.pieza.habilidad.AtaqueAAliadoException;
-import fiuba.algo3.algochess.model.pieza.habilidad.CuracionAEnemigoException;
 
 public class Vida implements Parseable {
     private float vidaInicial;

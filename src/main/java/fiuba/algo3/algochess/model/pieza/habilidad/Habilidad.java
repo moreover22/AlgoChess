@@ -1,7 +1,6 @@
 package fiuba.algo3.algochess.model.pieza.habilidad;
 
 import fiuba.algo3.algochess.model.Parseable;
-import fiuba.algo3.algochess.model.ParserObjeto;
 import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.pieza.Pieza;
 import fiuba.algo3.algochess.model.pieza.PiezaAlianza;

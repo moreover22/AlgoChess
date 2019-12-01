@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.view;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 

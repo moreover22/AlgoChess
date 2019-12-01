@@ -6,7 +6,6 @@ import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.model.tablero.Tablero;
 import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 import fiuba.algo3.algochess.view.JuegoView;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 

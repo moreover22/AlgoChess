@@ -1,7 +1,6 @@
 package fiuba.algo3.algochess.model.pieza;
 
 import fiuba.algo3.algochess.model.pieza.habilidad.CuracionAEnemigoException;
-import fiuba.algo3.algochess.model.pieza.habilidad.Habilidad;
 
 import java.util.List;
 
