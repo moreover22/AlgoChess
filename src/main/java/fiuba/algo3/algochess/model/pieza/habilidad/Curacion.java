@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.model.pieza.habilidad;
 
 import fiuba.algo3.algochess.model.ParserObjeto;
 import fiuba.algo3.algochess.model.Posicion;
+import fiuba.algo3.algochess.model.pieza.Catapulta;
 import fiuba.algo3.algochess.model.pieza.Pieza;
 import fiuba.algo3.algochess.model.pieza.PiezaAlianza;
 import fiuba.algo3.algochess.model.pieza.alcance.Alcance;
@@ -24,7 +25,7 @@ public class Curacion implements Habilidad {
 
     }
 */
-    public float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException {
+    public float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException {
         return habilidad.recibirHabilidad(cantidad,this,pieza,alianza);
     }
 
@@ -32,7 +33,10 @@ public class Curacion implements Habilidad {
         return -1;//No deberia ocurrir nunca
     }
 
-    public float recibirHabilidad(float cantidad, Curacion curacion, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException {
+    public float recibirHabilidad(float cantidad, Curacion curacion, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException {
+
+        if(pieza instanceof Catapulta) throw new CuracionACatapultaException();
+
         return alianza.recibirCuracion(cantidad,pieza);
     }
 
@@ -42,7 +46,7 @@ public class Curacion implements Habilidad {
     }
 
     @Override
-    public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
+    public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, CuracionACatapultaException {
         if (! alcance.llegoA(desde, objetivo.getPosicion())) {
             throw new HabilidadFueraDeAlcanceException();
         }

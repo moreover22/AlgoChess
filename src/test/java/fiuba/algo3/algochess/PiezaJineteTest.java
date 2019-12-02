@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.pieza.Jinete;
 import fiuba.algo3.algochess.model.pieza.Pieza;
 import fiuba.algo3.algochess.model.pieza.SoldadoDeInfanteria;
+import fiuba.algo3.algochess.model.pieza.habilidad.CuracionACatapultaException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PiezaJineteTest {
     @Test
-    public void testJineteConSoldadoDeInfanteriaAliadoCercanoPuedeAtacarADistanciaMediaConArcoYFlechaAEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
+    public void testJineteConSoldadoDeInfanteriaAliadoCercanoPuedeAtacarADistanciaMediaConArcoYFlechaAEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException, CuracionACatapultaException {
         // Arrange
         Tablero tablero = new Tablero();
         Pieza jinete = new Jinete();
@@ -60,7 +61,7 @@ public class PiezaJineteTest {
     }
 
     @Test
-    public void testJineteSinEnemigoCercanoPuedeAtacarADistanciaMediaConArcoYFlechaAEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
+    public void testJineteSinEnemigoCercanoPuedeAtacarADistanciaMediaConArcoYFlechaAEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException, CuracionACatapultaException {
         // Arrange
         Tablero tablero = new Tablero();
         Pieza jinete = new Jinete();
@@ -76,7 +77,7 @@ public class PiezaJineteTest {
         assertEquals(85, soldadoEnemigo.getVida());
     }
     @Test
-    public void testJineteSinAliadosCercanosYConEnemigosCercanoPuedeAtacarADistanciaCercanaConEspada() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
+    public void testJineteSinAliadosCercanosYConEnemigosCercanoPuedeAtacarADistanciaCercanaConEspada() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException, CuracionACatapultaException {
         // Arrange
         Tablero tablero = new Tablero();
         Pieza jinete = new Jinete();
@@ -93,7 +94,7 @@ public class PiezaJineteTest {
     }
 
     @Test
-    public void testJineteMataAEnemigoCercanoArmaCambiaAArcoYFlechaYPuedeAtacarAEnemigoADistanciaLejana() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
+    public void testJineteMataAEnemigoCercanoArmaCambiaAArcoYFlechaYPuedeAtacarAEnemigoADistanciaLejana() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException, CuracionACatapultaException {
         // Arrange
         Tablero tablero = new Tablero();
         Pieza jinete = new Jinete();

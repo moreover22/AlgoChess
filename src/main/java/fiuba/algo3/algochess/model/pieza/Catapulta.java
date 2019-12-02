@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.model.pieza;
 
 import fiuba.algo3.algochess.model.pieza.alcance.AlcanceNulo;
 import fiuba.algo3.algochess.model.pieza.habilidad.Ataque;
+import fiuba.algo3.algochess.model.pieza.habilidad.CuracionACatapultaException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.model.pieza.habilidad.armas.Proyectil;
@@ -22,7 +23,7 @@ public class Catapulta extends Pieza {
     }
     
    @Override
-    public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
+    public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException, CuracionACatapultaException {
 
         habilidad.usarCon(objetivo, posicion);
         if (!objetivo.estaViva()) tablero.sacar(objetivo.getPosicion());

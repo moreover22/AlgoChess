@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ArmaTest {
 
     @Test
-    public void test00EspadaPesadaHaceElDanioCorrespondiente() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionAEnemigoException {
+    public void test00EspadaPesadaHaceElDanioCorrespondiente() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionAEnemigoException, CuracionACatapultaException {
         //Arrange
         Arma espadaPesada = new EspadaPesada();
         Posicion posOrigen = new Posicion(0, 0);
@@ -69,7 +69,7 @@ public class ArmaTest {
     }
 
     @Test
-    public void test03EspadaLivianaHaceElDanioCorrespondiente() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionAEnemigoException {
+    public void test03EspadaLivianaHaceElDanioCorrespondiente() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionAEnemigoException, CuracionACatapultaException {
         //Arrange
         Arma espadaLiviana = new EspadaLiviana();
         Habilidad ataque = new Ataque(espadaLiviana);
@@ -122,7 +122,7 @@ public class ArmaTest {
     }
 
     @Test
-    public void test06ArcoHaceElDanioCorrespondiente() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionAEnemigoException {
+    public void test06ArcoHaceElDanioCorrespondiente() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionAEnemigoException, CuracionACatapultaException {
         //Arrange
         Arma arco = new ArcoYFlecha();
         Habilidad ataque = new Ataque(arco);
@@ -178,7 +178,7 @@ public class ArmaTest {
     }
 
     @Test
-    public void test09ProyectilHAceElDanioCorrespondiente() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionAEnemigoException {
+    public void test09ProyectilHAceElDanioCorrespondiente() throws HabilidadFueraDeAlcanceException, AtaqueAAliadoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionAEnemigoException, CuracionACatapultaException {
         //Arrange
         Arma proyectil= new Proyectil();
         Habilidad ataque = new Ataque(proyectil);

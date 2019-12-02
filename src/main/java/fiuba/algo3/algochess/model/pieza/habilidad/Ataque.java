@@ -20,7 +20,7 @@ public class Ataque implements Habilidad{
     }
 
     @Override
-    public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
+    public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, CuracionACatapultaException {
         arma.atacarA(objetivo, desde, this);
     }
     /*
