@@ -120,6 +120,10 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         return this;
     }
 
+    public void recibirHabilidad(float nuevaVida){
+        vida.recibirHabilidad(nuevaVida);
+    }
+
     @Override
     public ParserObjeto parsear() {
         ParserObjeto parser = new ParserObjeto();

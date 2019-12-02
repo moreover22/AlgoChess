@@ -10,6 +10,8 @@ import fiuba.algo3.algochess.model.pieza.habilidad.CuracionAEnemigoException;
 import fiuba.algo3.algochess.model.pieza.habilidad.Habilidad;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
 
+import java.util.Set;
+
 public abstract class Arma implements Parseable {
 
     protected Alcance alcance;
@@ -63,6 +65,9 @@ public abstract class Arma implements Parseable {
         parser.put("cantidad", danio);
         parser.put("alcance", alcance);
         return parser;
+    }
+
+    public void atacarAGrupo(Set<Pieza> objetivos) {
     }
 }
 

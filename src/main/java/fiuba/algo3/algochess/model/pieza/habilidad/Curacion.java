@@ -7,6 +7,8 @@ import fiuba.algo3.algochess.model.pieza.PiezaAlianza;
 import fiuba.algo3.algochess.model.pieza.alcance.Alcance;
 import fiuba.algo3.algochess.model.pieza.alcance.AlcanceCercano;
 
+import java.util.Set;
+
 public class Curacion implements Habilidad {
     private Alcance alcance;
     private float curacion;
@@ -15,12 +17,13 @@ public class Curacion implements Habilidad {
         this.curacion = curacion;
         this.alcance = new AlcanceCercano();
     }
+    /*
     @Override
     public float aplicarHabilidad(float cantidad, Pieza pieza,Habilidad habilidad){
         return aplicarHabilidad(cantidad,pieza,this);
 
     }
-
+*/
     public float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException {
         return habilidad.recibirHabilidad(cantidad,this,pieza,alianza);
     }
@@ -31,6 +34,11 @@ public class Curacion implements Habilidad {
 
     public float recibirHabilidad(float cantidad, Curacion curacion, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException {
         return alianza.recibirCuracion(cantidad,pieza);
+    }
+
+    @Override
+    public void aplicarEnGrupo(Set<Pieza> objetivos) {
+
     }
 
     @Override
