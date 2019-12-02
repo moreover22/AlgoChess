@@ -21,7 +21,7 @@ public class Catapulta extends Pieza {
         tipoPieza = "catapulta";
     }
     
-    @Override
+   @Override
     public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
 
         habilidad.usarCon(objetivo, posicion);
@@ -39,8 +39,31 @@ public class Catapulta extends Pieza {
 
         Set<Pieza> conjuntoPiezas = ConcurrentHashMap.newKeySet();
 
-        List<Direccion> direcciones = new ArrayLi…
+        List<Direccion> direcciones = new ArrayList<Direccion>();
+        direcciones.add(Direccion.derecha());
+        direcciones.add(Direccion.izquierda());
+        direcciones.add(Direccion.arriba());
+        direcciones.add(Direccion.abajo());
+        direcciones.add(Direccion.derechaArriba());
+        direcciones.add(Direccion.derechaAbajo());
+        direcciones.add(Direccion.izquierdaAbajo());
+        direcciones.add(Direccion.izquierdaArriba());
 
+
+
+
+        conjuntoPiezas.addAll(tablero.getVecinos(objetivo.getPosicion(), direcciones));
+        Iterator<Pieza> iter =  conjuntoPiezas.iterator();
+
+        while(iter.hasNext()){
+            Pieza pieza = iter.next();
+            if(!(pieza instanceof PiezaNula)) {
+                conjuntoPiezas.addAll(tablero.getVecinos(pieza.getPosicion(), direcciones));
+            }
+        }
+        conjuntoPiezas.remove(objetivo);
+        return conjuntoPiezas;
+    }
 
 }
 
