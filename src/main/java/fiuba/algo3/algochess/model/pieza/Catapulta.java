@@ -20,7 +20,7 @@ public class Catapulta extends Pieza {
         movimiento = new Movimiento(new AlcanceNulo());
         tipoPieza = "catapulta";
     }
-
+    
     @Override
     public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
 
@@ -34,6 +34,12 @@ public class Catapulta extends Pieza {
         }
 
     }
+
+    private Set<Pieza> buscarObjetivos(Tablero tablero, Pieza objetivo) throws FueraDelTableroException {
+
+        Set<Pieza> conjuntoPiezas = ConcurrentHashMap.newKeySet();
+
+        List<Direccion> direcciones = new ArrayLi…
 
 
 }
