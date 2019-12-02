@@ -1,6 +1,6 @@
 package fiuba.algo3.algochess.view.tablero;
 
-import fiuba.algo3.algochess.controller.CasilleroController;
+import fiuba.algo3.algochess.controller.PosicionadorCasilleroController;
 import fiuba.algo3.algochess.model.ParserObjeto;
 import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.tablero.Tablero;
@@ -24,7 +24,7 @@ public class TableroView extends StackPane {
     private int cantColumnas;
     private Map<Posicion, CasilleroView> casillerosView;
     private Map<Posicion, ParserObjeto> casillerosInfo;
-    private int dimension = 70;
+    private int dimension = 60;
     private Tablero tableroModelo;
     private JuegoView juego;
 
@@ -39,8 +39,7 @@ public class TableroView extends StackPane {
 
         BorderPane.setAlignment(this, Pos.CENTER);
 
-        getChildren().add(new ScrollableTablero(construirTablero(), getRealWidth()));
-
+        getChildren().add(construirTablero());
         actualizarCasilleros();
 
         getChildren().add(infoTurno);
@@ -51,9 +50,6 @@ public class TableroView extends StackPane {
         getChildren().add(aceptar);
     }
 
-    private float getRealWidth() {
-        return cantColumnas * dimension + 44;
-    }
 
     private VBox construirTablero() {
         VBox tableroContenedor = new VBox();
@@ -85,7 +81,8 @@ public class TableroView extends StackPane {
     private CasilleroView iniciarCasilleroView(int i, int j) {
         CasilleroView casilleroView = new CasilleroView(i, j, dimension);
         Posicion posicion = new Posicion(i, j);
-        casilleroView.setOnMouseClicked(new CasilleroController(tableroModelo, juego, posicion));
+
+        casilleroView.setOnMouseClicked(new PosicionadorCasilleroController(tableroModelo, juego, posicion));
 
         casilleroView.setOnMouseEntered((evt) -> {
             ParserObjeto parser = tableroModelo.parsear();
@@ -119,6 +116,10 @@ public class TableroView extends StackPane {
             ParserObjeto infoCasilleroParseado = (ParserObjeto) infoCasillero;
             casillerosInfo.put(new Posicion(posicionStr), infoCasilleroParseado);
         });
+    }
+
+    public ParserObjeto casilleroInfo(Posicion posicion) {
+        return casillerosInfo.get(posicion);
     }
 
     public void colocarPieza(Posicion posicion, String tipoPieza, String color) {

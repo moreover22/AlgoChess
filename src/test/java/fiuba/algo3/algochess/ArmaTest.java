@@ -11,7 +11,6 @@ import fiuba.algo3.algochess.model.tablero.Tablero;
 import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArmaTest {

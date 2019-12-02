@@ -17,6 +17,6 @@ public class Turno {
     public void cambiarTurno() {
         for(Aliable aliable: aliables){
             aliable.cambiarAlianza();
-        };
+        }
     }
 }

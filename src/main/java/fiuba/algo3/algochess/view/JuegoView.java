@@ -22,7 +22,7 @@ public class JuegoView {
     private Stage stage;
     private AlgoChess modelo;
     private TableroView tableroView;
-    private BorderPane contenedor;
+    public CustomBorderPane contenedor;
     private PiezaItemView piezaSeleccionada;
     private ContenedorPiezas contenedorIzquierda;
     private ContenedorPiezas contenedorDerecha;
@@ -33,16 +33,15 @@ public class JuegoView {
     public JuegoView(Stage stage, AlgoChess modelo) {
         this.stage = stage;
         this.modelo = modelo;
-        this.contenedor = new BorderPane();
-        Tablero tablero = new Tablero();
-        infoTurno = new InformacionTurno();
+        this.contenedor = new CustomBorderPane();
+        this.infoTurno = new InformacionTurno();
 
+        Tablero tablero = new Tablero(16, 16);
 
         aceptar = new Button("Aceptar");
         aceptar.getStyleClass().add("aceptar-btn");
         StackPane.setAlignment(aceptar, Pos.BOTTOM_CENTER);
         StackPane.setMargin(aceptar, new Insets(100));
-
 
         this.tableroView = new TableroView(tablero, this, infoTurno, aceptar);
 
@@ -53,9 +52,13 @@ public class JuegoView {
         });
 
         contenedorIzquierda = new ContenedorPiezas("blanco", this);
-        contenedor.setLeft(contenedorIzquierda);
+        contenedorDerecha = new ContenedorPiezas("negro", this);
+
         contenedor.setCenter(tableroView);
+        contenedor.setLeft(contenedorIzquierda);
+
     }
+
 
 
     public void iniciar(String nombrePrimerJugador, String nombreSegundoJugador) {
@@ -66,7 +69,9 @@ public class JuegoView {
         ParserObjeto infoModelo = modelo.parsear();
         Jugador jugadorActual = (Jugador) infoModelo.get("jugador_actual");
         infoTurno.actualizarTurno(jugadorActual);
+
         stage.hide();
+        stage.setFullScreenExitHint("");
         stage.setFullScreen(true);
         stage.setScene(new Scene(contenedor));
         stage.show();
@@ -80,7 +85,6 @@ public class JuegoView {
         infoTurno.actualizarTurno(jugadorActual);
 
         ocultarJugadorContenedor(contenedorIzquierda, Direccion.izquierda());
-        contenedorDerecha = new ContenedorPiezas("negro", this);
         aceptar.setOnAction((evt) -> {
             empezarAJugar();
             tableroView.actualizarCasilleros();
@@ -98,10 +102,10 @@ public class JuegoView {
         ocultarContenedor.setToX(factor * contenedor.getWidth());
         ocultarContenedor.setOnFinished(evt -> {
             if (direccion == Direccion.izquierda()) {
-                this.contenedor.setLeft(null);
+                this.contenedor.getChildren().remove(contenedorIzquierda);
                 this.contenedor.setRight(contenedorDerecha);
             } else {
-                this.contenedor.setRight(null);
+                this.contenedor.getChildren().remove(contenedorDerecha);
             }
         });
         ocultarContenedor.play();
@@ -126,12 +130,28 @@ public class JuegoView {
         tableroView.actualizarCasilleros();
     }
 
+
     public void colocarPieza(Posicion posicion, PiezaItemView piezaSeleccionada) {
         tableroView.colocarPieza(posicion, piezaSeleccionada.getTipoPieza(), piezaSeleccionada.getColor());
     }
+
     public void agregarPieza() throws CantidadDePuntosInsuficientesException {
         modelo.agregarPieza(piezaSeleccionada.getPieza());
         Jugador jugadorActual = (Jugador) modelo.parsear().get("jugador_actual");
         infoTurno.actualizarTurno(jugadorActual);
+    }
+
+    public void colocarPieza(Posicion posicion) {
+        tableroView.colocarPieza(posicion, piezaSeleccionada.getTipoPieza(), piezaSeleccionada.getColor());
+    }
+
+    public ParserObjeto casilleroInfo(Posicion posicion) {
+        return tableroView.casilleroInfo(posicion);
+    }
+
+
+    public void mostrarError(String titulo, String mensaje) {
+        VentanaPopUp popUpError = new VentanaPopUp(contenedor, titulo, mensaje);
+        contenedor.setCenter(popUpError);
     }
 }

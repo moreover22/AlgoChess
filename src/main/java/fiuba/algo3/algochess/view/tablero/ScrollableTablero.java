@@ -2,8 +2,8 @@ package fiuba.algo3.algochess.view.tablero;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
 
@@ -11,10 +11,10 @@ public class ScrollableTablero extends StackPane {
     private float deltaScrollY = 0.0f;
     private ScrollPane scrollPane;
 
-    public ScrollableTablero(VBox tableroConstruido, float realWidth) {
+    public ScrollableTablero(Pane contenido, float realWidth) {
 
         scrollPane = new ScrollPane();
-        scrollPane.setContent(tableroConstruido);
+        scrollPane.setContent(contenido);
 
         scrollPane.setFitToWidth(true);
         scrollPane.setHvalue(0.5);

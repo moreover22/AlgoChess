@@ -6,6 +6,7 @@ import javafx.scene.layout.VBox;
 
 public class ContenedorPiezas extends VBox {
     private static final String pathToCssFila = (ContenedorPiezas.class).getResource("/css/PiezaView.css").toExternalForm();
+
     public ContenedorPiezas(String color, JuegoView juego) {
         getStylesheets().add(pathToCssFila);
 

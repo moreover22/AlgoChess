@@ -29,16 +29,27 @@
     -fx-background-radius: 0px;
     -fx-pref-height: 40px;
     -fx-border-color: transparent transparent #666666 transparent;
+    -fx-border-width: 2px;
+}
+.txtfield-jugador:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: transparent transparent #222222 transparent;
     -fx-border-width: 3px;
 }
 
 .error-input {
     -fx-border-color: transparent transparent #941c1c transparent;
+    -fx-background-color: #FF9494;
+    -fx-prompt-text-fill: #7C0A02;
+    -fx-border-width: 3px;
 }
+
 .lbl-errores {
     -fx-font-size: 12px;
     -fx-text-fill: #941c1c;
 }
+
 .titulo {
     -fx-font-size: 45px;
 }

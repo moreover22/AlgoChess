@@ -7,7 +7,7 @@ import javafx.scene.layout.StackPane;
 public class PiezaView extends ImageView {
     public PiezaView(String tipoPieza, String color) {
         super(ImagenesPieza.getImage(color, tipoPieza));
-        setFitWidth(60);
+        setFitWidth(50);
         setPreserveRatio(true);
         StackPane.setAlignment(this, Pos.CENTER);
     }

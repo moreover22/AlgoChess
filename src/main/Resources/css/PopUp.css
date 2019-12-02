@@ -1,0 +1,27 @@
+.contenedor-error {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 30;
+    -fx-max-height: 10;
+    -fx-max-width: 200;
+}
+
+.titulo-ventana {
+    -fx-font-size: 30;
+}
+
+.contenido-mensaje {
+    -fx-padding: 30 15;
+    -fx-font-size: 15;
+}
+
+.aceptar-error-btn {
+    -fx-padding: 10 15;
+    -fx-background-color: #222222;
+    -fx-text-fill: white;
+}
+
+.aceptar-error-btn:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #333333;
+}

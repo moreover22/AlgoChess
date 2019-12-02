@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.controller;
 
+import fiuba.algo3.algochess.model.ParserObjeto;
 import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.jugador.CantidadDePuntosInsuficientesException;
 import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
@@ -9,12 +10,12 @@ import fiuba.algo3.algochess.view.JuegoView;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
-public class CasilleroController implements EventHandler<MouseEvent> {
+public class PosicionadorCasilleroController implements EventHandler<MouseEvent> {
     private Tablero modelo;
     private JuegoView juego;
     private Posicion posicion;
 
-    public CasilleroController(Tablero tableroModelo, JuegoView juego, Posicion posicion) {
+    public PosicionadorCasilleroController(Tablero tableroModelo, JuegoView juego, Posicion posicion) {
         modelo = tableroModelo;
         this.juego = juego;
         this.posicion = posicion;
@@ -23,20 +24,33 @@ public class CasilleroController implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        if (juego.tienePiezaSeleccionada()) {
+        ParserObjeto parser = juego.casilleroInfo(posicion);
+        String alianza = (String) parser.get("alianza");
+
+        if (juego.tienePiezaSeleccionada() && alianza.equals("aliado")) {
             try {
                 modelo.posicionar(posicion, juego.getPiezaSeleccionada().getPieza());
                 juego.agregarPieza();
-                juego.colocarPieza(posicion, juego.getPiezaSeleccionada());
+                juego.colocarPieza(posicion);
                 juego.actualizarTablero();
             } catch (FueraDelTableroException e) {
-                e.printStackTrace();
+                juego.mostrarError("Error al colocar", "No se puede colocar una pieza fuera del tablero.");
             } catch (PosicionarEnCasilleroEnemigoException e) {
-                e.printStackTrace();
+                juego.mostrarError("Error al colocar", "No se puede posicionar en un casillero enemigo.");
             } catch (CantidadDePuntosInsuficientesException e) {
-                e.printStackTrace();
+                sacarSeguroPorPuntosInsuficientes();
             }
         }
-
     }
+
+    private void sacarSeguroPorPuntosInsuficientes() {
+        juego.mostrarError("Error al colocar", "No tiene puntos suficientes para comprar la unidad.");
+        try {
+            modelo.sacar(posicion);
+        } catch (FueraDelTableroException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

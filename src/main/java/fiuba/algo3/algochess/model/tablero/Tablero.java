@@ -9,8 +9,11 @@ import fiuba.algo3.algochess.model.pieza.movimiento.MovimientoFueraDeAlcanceExce
 import fiuba.algo3.algochess.model.tablero.casillero.Casillero;
 import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
 
 public class Tablero implements Aliable, Parseable {
     private Map<Posicion, Casillero> casilleros;
@@ -25,7 +28,7 @@ public class Tablero implements Aliable, Parseable {
     public Tablero(int cantFilas, int cantColumnas) {
         this.cantFilas = cantFilas;
         this.cantColumnas = cantColumnas;
-        this.rango = new Rango(0, 0, cantFilas, cantColumnas);
+        this.rango = new Rango(0, 0, cantColumnas, cantFilas);
         this.casilleros = new HashMap<>();
         inicializarCasilleros();
     }
@@ -117,17 +120,3 @@ public class Tablero implements Aliable, Parseable {
         });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
