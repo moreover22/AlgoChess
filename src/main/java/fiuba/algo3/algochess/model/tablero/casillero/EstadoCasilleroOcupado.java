@@ -29,7 +29,7 @@ public class EstadoCasilleroOcupado extends EstadoCasillero {
     public ParserObjeto parsear() {
         ParserObjeto parser = new ParserObjeto();
         parser.put("estado", "ocupado");
-        parser.put("pieza", pieza.parsear());
+        parser.put("pieza", pieza);
         return parser;
     }
 }

@@ -44,3 +44,18 @@
     -fx-border-insets: 40 0 40 40;
     -fx-background-insets: 40 0 40 40;
 }
+
+.aceptar-btn {
+    -fx-padding: 15px;
+    -fx-background-radius: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-background-color: #0E4D92;
+    -fx-border-color: transparent transparent #003152 transparent;
+    -fx-border-width: 2px;
+}
+
+.aceptar-btn:hover {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(2, 2, 2, 0.6), 7, 0, 0, 2);
+}

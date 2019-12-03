@@ -25,6 +25,7 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
     protected Habilidad habilidad;
     protected Movimiento movimiento;
     protected PiezaAlianza alianza;
+    private String color;
     private List<Pieza> piezas;
 
     static final int PORCENTAJE_DANIO_TERRITORIO = 5;
@@ -99,7 +100,10 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
     @Override
     public void mover(Direccion direccion, Tablero tablero) throws MovimientoFueraDeAlcanceException, FueraDelTableroException {
         tablero.sacar(posicion);
+        System.out.println("\033[1;32m" + "==========================================");
+        System.out.println("pos antes de mover: " + posicion);
         posicion = movimiento.mover(posicion, direccion);
+        System.out.println("pos despues de mover: " + posicion + "\033[0m");
         tablero.ocupar(posicion, this);
     }
 
@@ -120,6 +124,10 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         return this;
     }
 
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     @Override
     public ParserObjeto parsear() {
         ParserObjeto parser = new ParserObjeto();
@@ -127,8 +135,10 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         parser.put("coste", coste);
         parser.put("habilidad", habilidad.parsear());
         parser.put("alianza", alianza.getAlianza());
+        parser.put("movimiento", movimiento.parsear());
         parser.put("posicion", posicion);
         parser.put("tipo_pieza", tipoPieza);
+        parser.put("color", color);
         return parser;
     }
 

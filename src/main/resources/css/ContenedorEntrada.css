@@ -12,6 +12,7 @@
     -fx-background-radius: 0px;
     -fx-pref-height: 60px;
     -fx-pref-width: 150px;
+    -fx-padding: 12 18;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-color: #B22222;

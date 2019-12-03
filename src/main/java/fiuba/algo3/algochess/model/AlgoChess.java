@@ -38,6 +38,7 @@ public class AlgoChess implements Parseable {
     }
 
     public void agregarPieza(Pieza pieza) throws CantidadDePuntosInsuficientesException {
+        turno.agregarAliable(pieza);
         jugadorActual.agregarPieza(pieza);
     }
 

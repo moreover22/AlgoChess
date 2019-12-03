@@ -2,6 +2,8 @@ package fiuba.algo3.algochess.model.pieza.movimiento;
 
 import fiuba.algo3.algochess.model.Posicion;
 
+import java.util.Arrays;
+
 public class Direccion {
     private int deltaX;
     private int deltaY;
@@ -14,6 +16,7 @@ public class Direccion {
     private static Direccion abajo;
     private static Direccion izquierdaAbajo;
     private static Direccion izquierda;
+    private static Direccion[] direcciones;
 
     static {
         derecha = new Direccion(1, 0);
@@ -24,6 +27,7 @@ public class Direccion {
         derechaAbajo = new Direccion(derecha, abajo);
         izquierdaArriba = new Direccion(izquierda, arriba);
         izquierdaAbajo = new Direccion(izquierda, abajo);
+        direcciones = new Direccion[]{derecha, izquierda, arriba, abajo, derechaArriba, derechaAbajo, izquierdaArriba, izquierdaAbajo};
     }
 
     private Direccion(int deltaX, int deltaY) {
@@ -70,5 +74,9 @@ public class Direccion {
 
     public static Direccion izquierdaAbajo() {
         return izquierdaAbajo;
+    }
+
+    public static Iterable<Direccion> direcciones() {
+        return Arrays.asList(direcciones);
     }
 }

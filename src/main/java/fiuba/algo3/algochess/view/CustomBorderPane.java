@@ -3,9 +3,6 @@ package fiuba.algo3.algochess.view;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 public class CustomBorderPane extends AnchorPane {
-    public CustomBorderPane() {
-    }
-
     public void setCenter(Node nodo) {
         getChildren().add(nodo);
         centrar(nodo);
@@ -19,6 +16,11 @@ public class CustomBorderPane extends AnchorPane {
     public void setRight(Node nodo) {
         getChildren().add(nodo);
         centrarDerecha(nodo);
+    }
+
+    public void setTop(Node nodo) {
+        getChildren().add(nodo);
+        centrarArriba(nodo);
     }
 
     private void centrarHorizontal(Node nodo) {
@@ -43,6 +45,10 @@ public class CustomBorderPane extends AnchorPane {
     private void centrarDerecha(Node nodo) {
         AnchorPane.setRightAnchor(nodo, 0.0);
         centrarVertical(nodo);
+    }
+    private void centrarArriba(Node nodo) {
+        AnchorPane.setTopAnchor(nodo, 0.0);
+        centrarHorizontal(nodo);
     }
 
 }

@@ -82,9 +82,7 @@ public class ScrollableTablero extends StackPane {
         int count = 0;
         while (scrollPane.getVvalue() <= 1) {
             if (deltaScrollY == 0) break;
-            System.out.println(scrollPane.getVvalue());
             scrollPane.setVvalue(scrollPane.getVvalue() + deltaScrollY);
-
             if (count >= maxCount) break;
             count++;
 
