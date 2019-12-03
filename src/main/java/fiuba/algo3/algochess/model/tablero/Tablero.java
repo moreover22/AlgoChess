@@ -78,8 +78,8 @@ public class Tablero implements Aliable, Parseable {
         return piezas;
     }
 
-    public Iterable<Pieza> getVecinos(Posicion posicion, Iterable<Direccion> direcciones) throws FueraDelTableroException {
-        List<Pieza> vecinos = new ArrayList<>();
+    public Set<Pieza> getVecinos(Posicion posicion, Iterable<Direccion> direcciones) throws FueraDelTableroException {
+        Set<Pieza> vecinos = new HashSet<Pieza>();
         for (Direccion direccion : direcciones) {
             Posicion posicionEnDireccion = direccion.aplicarA(posicion);
             if (! posicionEnDireccion.estaDentroDe(rango))

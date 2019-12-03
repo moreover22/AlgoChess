@@ -5,13 +5,17 @@ import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.pieza.Pieza;
 import fiuba.algo3.algochess.model.pieza.PiezaAlianza;
 
-public interface Habilidad extends Parseable {
-    void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException;
-    float aplicarHabilidad (float cantidad, Pieza pieza,Habilidad habilidad);
+import java.util.Set;
 
-   float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException;
+public interface Habilidad extends Parseable {
+    void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, CuracionACatapultaException;
+    //float aplicarHabilidad (float cantidad, Pieza pieza,Habilidad habilidad);
+
+   float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException;
    float recibirHabilidad(float cantidad,Ataque ataque,Pieza pieza,PiezaAlianza alianza) throws AtaqueAAliadoException;
-   float recibirHabilidad(float cantidad,Curacion curacion,Pieza pieza,PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException;
+   float recibirHabilidad(float cantidad,Curacion curacion,Pieza pieza,PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException;
+
+   void aplicarEnGrupo(Set<Pieza> objetivos);
 
 
 }

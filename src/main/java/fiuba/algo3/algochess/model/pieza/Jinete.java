@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.model.pieza;
 
 import fiuba.algo3.algochess.model.pieza.alcance.AlcanceCercano;
 import fiuba.algo3.algochess.model.pieza.habilidad.Ataque;
+import fiuba.algo3.algochess.model.pieza.habilidad.CuracionACatapultaException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.model.pieza.habilidad.armas.EspadaLiviana;
@@ -19,7 +20,7 @@ public class Jinete extends Pieza {
     }
 
     @Override
-    public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException, FueraDelTableroException {
+    public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException, FueraDelTableroException, CuracionACatapultaException {
         Iterable<Pieza> vecinos = tablero.piezasDentroDe(new AlcanceCercano(), this.posicion);
         ataque.actualizarArma(vecinos);
         super.usarHabilidadEn(tablero, objetivo);

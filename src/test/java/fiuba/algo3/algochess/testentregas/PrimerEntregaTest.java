@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.jugador.CantidadDePuntosInsuficientesException;
 import fiuba.algo3.algochess.model.jugador.Jugador;
 import fiuba.algo3.algochess.model.pieza.*;
+import fiuba.algo3.algochess.model.pieza.habilidad.CuracionACatapultaException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.model.pieza.movimiento.*;
@@ -61,7 +62,7 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test02SoldadoDeInfanteriaAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+    public void test02SoldadoDeInfanteriaAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionACatapultaException {
         Pieza soldado = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
 
@@ -76,7 +77,7 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test03JineteAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+    public void test03JineteAliadoAtacaAUnaPiezaEnemigaSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionACatapultaException {
         Pieza enemigo = new SoldadoDeInfanteria();
         Tablero tablero = new Tablero();
         tablero.posicionar(new Posicion(0, 0), enemigo);
@@ -91,7 +92,7 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test04CatapultaAliadoAtacaAUnaPiezaEnemigaYSeVerificaQueSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+    public void test04CatapultaAliadoAtacaAUnaPiezaEnemigaYSeVerificaQueSeLeRestaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionACatapultaException {
         Pieza catapulta = new Catapulta();
         Tablero tablero = new Tablero();
         tablero.posicionar(new Posicion(0, 0), catapulta);
@@ -106,7 +107,7 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test05CuranderoAliadoCuraAUnaPiezaAliadaSeLeSumaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+    public void test05CuranderoAliadoCuraAUnaPiezaAliadaSeLeSumaLaVidaCorrespondiente() throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionACatapultaException {
         Pieza  curandero = new Curandero();
         Tablero tablero = new Tablero();
 
@@ -201,7 +202,7 @@ public class PrimerEntregaTest {
     }
 
     @Test
-    public void test11JugadorSinPiezasPierdeLaPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+    public void test11JugadorSinPiezasPierdeLaPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionACatapultaException {
         // Arrange
         Jugador jugador = new Jugador(20);
         Pieza pieza = new SoldadoDeInfanteria();

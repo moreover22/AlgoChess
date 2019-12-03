@@ -38,7 +38,7 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         piezas = new ArrayList<>();
     }
 
-    public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, FueraDelTableroException {
+    public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, FueraDelTableroException, CuracionACatapultaException {
         habilidad.usarCon(objetivo, posicion);
         if (!objetivo.estaViva()) tablero.sacar(objetivo.getPosicion());
     }
@@ -59,7 +59,7 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         vida.recibirDanio(danio, alianza);
     }*/
 
-    public void recibirHabilidad(Habilidad habilidad, float cantidad ) throws AtaqueAAliadoException, CuracionAEnemigoException {
+    public void recibirHabilidad(Habilidad habilidad, float cantidad ) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException {
 
         float vidaActual = habilidad.recibirHabilidad(cantidad,habilidad,this,this.alianza);
         vida.recibirHabilidad(vidaActual);
@@ -124,6 +124,9 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         return this;
     }
 
+    public void recibirHabilidad(float nuevaVida){
+        vida.recibirHabilidad(nuevaVida);
+    }
     public void setColor(String color) {
         this.color = color;
     }

@@ -1,6 +1,7 @@
 package fiuba.algo3algochess;
 
 import fiuba.algo3.algochess.model.Posicion;
+import fiuba.algo3.algochess.model.pieza.habilidad.CuracionACatapultaException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.model.jugador.CantidadDePuntosInsuficientesException;
@@ -115,7 +116,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void testJugadorConUnaPiezaVivaYUnaMuertaSigueEnPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+    public void testJugadorConUnaPiezaVivaYUnaMuertaSigueEnPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionACatapultaException {
         // Arrange
         Jugador jugador = new Jugador(20);
         Pieza pieza1 = new SoldadoDeInfanteria();
@@ -138,7 +139,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void testJugadorSinPiezasPierdeLaPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+    public void testJugadorSinPiezasPierdeLaPartida() throws CantidadDePuntosInsuficientesException, HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, PosicionarEnCasilleroEnemigoException, FueraDelTableroException, CuracionACatapultaException {
         // Arrange
         Jugador jugador = new Jugador(20);
         Pieza pieza = new SoldadoDeInfanteria();

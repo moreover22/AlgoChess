@@ -6,6 +6,8 @@ import fiuba.algo3.algochess.model.pieza.Pieza;
 import fiuba.algo3.algochess.model.pieza.PiezaAlianza;
 import fiuba.algo3.algochess.model.pieza.habilidad.armas.Arma;
 
+import java.util.Set;
+
 public class Ataque implements Habilidad{
     private Arma arma;
 
@@ -18,14 +20,15 @@ public class Ataque implements Habilidad{
     }
 
     @Override
-    public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException {
+    public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, CuracionACatapultaException {
         arma.atacarA(objetivo, desde, this);
     }
+    /*
    @Override
     public float aplicarHabilidad(float cantidad, Pieza pieza,Habilidad habilidad){
         return aplicarHabilidad(cantidad,pieza,this);
     }
-
+*/
     public float recibirHabilidad(float cantidad,Habilidad habilidad,Pieza pieza,PiezaAlianza alianza) throws AtaqueAAliadoException {
         return habilidad.recibirHabilidad(cantidad,this,pieza,alianza);
     }
@@ -38,6 +41,10 @@ public class Ataque implements Habilidad{
 
     public float recibirHabilidad(float cantidad, Curacion curacion, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException {
         return -1;//No deberia ocurrir nunca
+    }
+
+    public void aplicarEnGrupo(Set<Pieza> objetivos) {
+        arma.atacarAGrupo(objetivos);
     }
 
 

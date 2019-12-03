@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.testentregas;
 
 import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.pieza.*;
+import fiuba.algo3.algochess.model.pieza.habilidad.CuracionACatapultaException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.model.pieza.movimiento.Direccion;
@@ -125,7 +126,7 @@ public class SegundaEntregaTest {
     }
 
     @Test
-    public void test17UnJineteSinAliadosYConEnemigoEnDistanciaCortaAtacaConSuEspadaAlEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException {
+    public void test17UnJineteSinAliadosYConEnemigoEnDistanciaCortaAtacaConSuEspadaAlEnemigo() throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException, CuracionACatapultaException {
         // Arrange
         Tablero tablero = new Tablero();
         Pieza jinete = new Jinete();
