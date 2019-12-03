@@ -42,9 +42,9 @@ public class ContenedorEntrada extends VBox {
         primerJugador.getChildren().add(unJugador);
         unJugador.getStyleClass().add("txtfield-jugador");
         unJugador.setId("Nombre primer jugador");
-        unJugador.setOnKeyTyped(new InputJugadorTextController(unJugador, otroJugador, botonController));
-
-
+        InputJugadorTextController controllerJugadorUno = new InputJugadorTextController(unJugador, otroJugador, botonController);
+        unJugador.textProperty().addListener(controllerJugadorUno);
+        unJugador.setOnKeyPressed(controllerJugadorUno);
         VBox segundoJugador = new VBox();
         segundoJugador.setSpacing(7);
 
@@ -55,8 +55,9 @@ public class ContenedorEntrada extends VBox {
         segundoJugador.getChildren().add(otroJugador);
         otroJugador.getStyleClass().add("txtfield-jugador");
         otroJugador.setId("Nombre segundo jugador");
-        otroJugador.setOnKeyReleased(new InputJugadorTextController(otroJugador, unJugador, botonController));
-
+        InputJugadorTextController controllerJugadorDos = new InputJugadorTextController(otroJugador, unJugador, botonController);
+        otroJugador.textProperty().addListener(controllerJugadorDos);
+        otroJugador.setOnKeyPressed(controllerJugadorDos);
         contenedorJugadores.getChildren().add(primerJugador);
         contenedorJugadores.getChildren().add(segundoJugador);
 

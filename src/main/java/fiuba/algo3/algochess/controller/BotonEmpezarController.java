@@ -34,23 +34,27 @@ public class BotonEmpezarController implements EventHandler<ActionEvent> {
     }
 
     public boolean validarInput(TextInputControl entrada) {
-        entrada.getStyleClass().remove("error-input");
         if (entrada.getText().trim().isEmpty()) {
             entrada.getStyleClass().add("error-input");
             errores.setText("Todos los datos son obligatorios.");
             return false;
         }
+        entrada.getStyleClass().remove("error-input");
         errores.setText("");
         return true;
     }
 
     public boolean validarInput(TextInputControl entrada, TextInputControl otraEntrada) {
-        if (unJugador.getText().equals(otroJugador.getText())) {
+        entrada.getStyleClass().remove("error-input");
+        otraEntrada.getStyleClass().remove("error-input");
+        if (! validarInput(entrada)) return false;
+        if (entrada.getText().equals(otraEntrada.getText())) {
+            entrada.getStyleClass().add("error-input");
+            otraEntrada.getStyleClass().add("error-input");
             errores.setText("Los nombres deben ser diferentes");
             return false;
         }
         errores.setText("");
         return true;
     }
-
 }

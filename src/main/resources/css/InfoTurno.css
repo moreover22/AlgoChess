@@ -1,0 +1,5 @@
+.contenedor {
+    -fx-background-color:  rgba(10, 10, 10, 0.9);
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+}

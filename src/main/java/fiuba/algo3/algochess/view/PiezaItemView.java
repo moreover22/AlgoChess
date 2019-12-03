@@ -45,7 +45,7 @@ public class PiezaItemView extends VBox {
 
         Tooltip.install(this, crearTooltip(tipoPieza));
         setOnMouseClicked((evt) -> {
-            juego.setPiezaSeleccionada(this);
+            juego.setPiezaItemViewSeleccionada(this);
         });
     }
 
@@ -53,10 +53,12 @@ public class PiezaItemView extends VBox {
         Tooltip infoTooltip = new Tooltip();
         infoTooltip.setGraphic(InfoPieza.getInfo(tipoPieza));
         infoTooltip.setWrapText(true);
-        infoTooltip.setPrefHeight(300);
+        infoTooltip.setPrefHeight(200);
         infoTooltip.setPrefWidth(300);
+
         infoTooltip.setShowDelay(Duration.millis(150));
         infoTooltip.setShowDuration(Duration.INDEFINITE);
+
         return infoTooltip;
     }
 
@@ -69,15 +71,13 @@ public class PiezaItemView extends VBox {
     }
 
     public Pieza getPieza() {
-        return InfoPieza.getPieza(tipoPieza);
+        Pieza pieza = InfoPieza.getPieza(tipoPieza);
+        if (pieza != null) pieza.setColor(color);
+        return pieza;
     }
 
     public String getColor() {
         return color;
-    }
-
-    public String getTipoPieza() {
-        return tipoPieza;
     }
 }
 

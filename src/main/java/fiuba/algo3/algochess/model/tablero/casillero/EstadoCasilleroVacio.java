@@ -19,7 +19,7 @@ public class EstadoCasilleroVacio extends EstadoCasillero {
     public ParserObjeto parsear() {
         ParserObjeto parser = new ParserObjeto();
         parser.put("estado", "vacio");
-        parser.put("pieza", pieza.parsear());
+        parser.put("pieza", pieza);
         return parser;
     }
 }

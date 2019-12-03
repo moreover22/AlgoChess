@@ -9,8 +9,11 @@ import fiuba.algo3.algochess.model.pieza.movimiento.MovimientoFueraDeAlcanceExce
 import fiuba.algo3.algochess.model.tablero.casillero.Casillero;
 import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
 
 public class Tablero implements Aliable, Parseable {
     private Map<Posicion, Casillero> casilleros;
@@ -25,7 +28,7 @@ public class Tablero implements Aliable, Parseable {
     public Tablero(int cantFilas, int cantColumnas) {
         this.cantFilas = cantFilas;
         this.cantColumnas = cantColumnas;
-        this.rango = new Rango(0, 0, cantFilas, cantColumnas);
+        this.rango = new Rango(0, 0, cantColumnas, cantFilas);
         this.casilleros = new HashMap<>();
         inicializarCasilleros();
     }
@@ -88,7 +91,14 @@ public class Tablero implements Aliable, Parseable {
 
     public void mover(Pieza pieza, Direccion direccion) throws FueraDelTableroException, MovimientoFueraDeAlcanceException {
         Movible movible = pieza.seleccionarParaMover(this);
+
+        System.out.println("\033[1;32m" + "==========================================");
+        System.out.println("pos antes de mover: " + pieza.getPosicion());
+        System.out.println(pieza.parsear());
+        System.out.println(pieza);
+
         movible.mover(direccion, this);
+        System.out.println("pos despues de mover: " + pieza.getPosicion() + "\033[0m");
     }
 
     @Override
@@ -98,36 +108,18 @@ public class Tablero implements Aliable, Parseable {
         });
     }
 
-    @Override
-    public ParserObjeto parsear() {
-        ParserObjeto estado = new ParserObjeto();
-        estado.put("cantidad_filas", cantFilas);
-        estado.put("cantidad_columnas", cantColumnas);
-        Map<Posicion, ParserObjeto> casillerosParseados = new HashMap<>();
-        casilleros.forEach( (posicion, casillero) -> {
-            casillerosParseados.put(posicion, casillero.parsear());
-        });
-        estado.put("casilleros", casillerosParseados);
-        return estado;
-    }
-
     public void aplicarDanioTerritorio() {
         casilleros.forEach((posicion, casillero) -> {
             casillero.aplicarDanioTerritorio();
         });
     }
+
+    @Override
+    public ParserObjeto parsear() {
+        ParserObjeto estado = new ParserObjeto();
+        estado.put("cantidad_filas", cantFilas);
+        estado.put("cantidad_columnas", cantColumnas);
+        estado.put("casilleros", casilleros);
+        return estado;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -7,25 +7,25 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    private static String pathToIcon = (Main.class).getResource("/images/icon100.png").toExternalForm();
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stage) {
-        stage.getIcons().add(new Image(getClass().getResource("/images/icon100.png").toExternalForm()));
+        stage.getIcons().add(new Image(pathToIcon));
         stage.setTitle("AlgoChess");
         stage.setResizable(false);
-//        stage.setFullScreen(true);
 
         AlgoChess algoChess = new AlgoChess();
 
         JuegoView juego = new JuegoView(stage, algoChess);
 
-        Scene bienvenida = new Scene(new ContenedorEntrada(juego));
-        stage.setScene(bienvenida);
+//         Scene bienvenida = new Scene(new ContenedorEntrada(juego));
+//         stage.setScene(bienvenida);
+
+        juego.iniciar("jugador 1", "jugador 2");
         stage.show();
-
-
     }
 }

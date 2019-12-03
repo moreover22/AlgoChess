@@ -32,7 +32,6 @@ public class PiezaJineteTest {
         tablero.posicionar(new Posicion(12, 0), soldadoEnemigo);
 
         // Act
-        System.out.println(jinete.parsear());
         jinete.usarHabilidadEn(tablero, soldadoEnemigo);
 
         // Assert
