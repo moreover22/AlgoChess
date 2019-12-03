@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
+import java.util.HashSet;
 
 public class Tablero implements Aliable, Parseable {
     private Map<Posicion, Casillero> casilleros;
