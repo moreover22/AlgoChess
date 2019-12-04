@@ -13,7 +13,7 @@ public class Proyectil extends Arma {
     @Override
     public void atacarAGrupo(Set<Pieza> objetivos){
         for(Pieza pieza : objetivos){
-            pieza.recibirHabilidad(pieza.getVida()-danio);
+            pieza.recibirHabilidad(pieza.getVida() - danio);
         }
     }
 

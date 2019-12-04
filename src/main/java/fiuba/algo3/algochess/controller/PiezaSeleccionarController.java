@@ -10,12 +10,12 @@ import fiuba.algo3.algochess.view.tablero.TableroView;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
-public class PiezaMoverController implements EventHandler<MouseEvent> {
+public class PiezaSeleccionarController implements EventHandler<MouseEvent> {
     private TableroView tableroView;
     private CasilleroView casilleroView;
     private JuegoView juego;
 
-    public PiezaMoverController(TableroView tableroView, CasilleroView casilleroView, JuegoView juego) {
+    public PiezaSeleccionarController(TableroView tableroView, CasilleroView casilleroView, JuegoView juego) {
         this.tableroView = tableroView;
         this.casilleroView = casilleroView;
         this.juego = juego;
@@ -23,16 +23,23 @@ public class PiezaMoverController implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-
         Pieza pieza = casilleroView.getPieza();
         juego.setPiezaSeleccionada(pieza);
-        System.out.println(juego.getPiezaSeleccionada().parsear());
-        ParserObjeto infoPieza = pieza.parsear();
+        juego.actualizarHabilidad(pieza);
 
+        ParserObjeto infoPieza = pieza.parsear();
         Posicion posicion = (Posicion) infoPieza.get("posicion");
         ParserObjeto infoAlcance = (ParserObjeto) infoPieza.get("movimiento");
-        Alcance alcance = (Alcance) infoAlcance.get("alcance");
+        Alcance alcanceMovimiento = (Alcance) infoAlcance.get("alcance");
+        ParserObjeto infoHabilidad = (ParserObjeto) infoPieza.get("habilidad");
+        String tipoHabilidad = (String) infoHabilidad.get("tipo");
+        ParserObjeto detalleHabilidad = (ParserObjeto) infoHabilidad.get("detalle");
+        Alcance alcanceHabilidad = (Alcance) detalleHabilidad.get("alcance");
         tableroView.desresaltarCasilleros();
-        tableroView.resaltarParaMovimiento(alcance, posicion);
+
+        tableroView.hacerPiezasMovibles();
+        tableroView.resaltarParaMovimiento(alcanceMovimiento, posicion);
+        tableroView.resaltarParaHabilidad(alcanceHabilidad, posicion, tipoHabilidad);
+
     }
 }

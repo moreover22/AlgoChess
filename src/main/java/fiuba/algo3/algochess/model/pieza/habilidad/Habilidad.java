@@ -9,15 +9,10 @@ import java.util.Set;
 
 public interface Habilidad extends Parseable {
     void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, CuracionACatapultaException;
-    //float aplicarHabilidad (float cantidad, Pieza pieza,Habilidad habilidad);
-
-   float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException;
-   float recibirHabilidad(float cantidad,Ataque ataque,Pieza pieza,PiezaAlianza alianza) throws AtaqueAAliadoException;
-   float recibirHabilidad(float cantidad,Curacion curacion,Pieza pieza,PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException;
-
-   void aplicarEnGrupo(Set<Pieza> objetivos);
-
-
+    float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException;
+    float recibirHabilidad(float cantidad,Ataque ataque,Pieza pieza,PiezaAlianza alianza) throws AtaqueAAliadoException;
+    float recibirHabilidad(float cantidad,Curacion curacion,Pieza pieza,PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException;
+    void aplicarEnGrupo(Set<Pieza> objetivos);
 }
 
 

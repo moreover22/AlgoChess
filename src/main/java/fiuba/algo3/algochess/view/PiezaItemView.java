@@ -44,9 +44,7 @@ public class PiezaItemView extends VBox {
 
 
         Tooltip.install(this, crearTooltip(tipoPieza));
-        setOnMouseClicked((evt) -> {
-            juego.setPiezaItemViewSeleccionada(this);
-        });
+        setOnMouseClicked((evt) -> juego.setPiezaItemViewSeleccionada(this));
     }
 
     private Tooltip crearTooltip(String tipoPieza) {
@@ -55,7 +53,6 @@ public class PiezaItemView extends VBox {
         infoTooltip.setWrapText(true);
         infoTooltip.setPrefHeight(200);
         infoTooltip.setPrefWidth(300);
-
         infoTooltip.setShowDelay(Duration.millis(150));
         infoTooltip.setShowDuration(Duration.INDEFINITE);
 

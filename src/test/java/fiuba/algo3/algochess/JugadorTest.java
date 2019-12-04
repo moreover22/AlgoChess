@@ -1,4 +1,4 @@
-package fiuba.algo3algochess;
+package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.pieza.habilidad.CuracionACatapultaException;

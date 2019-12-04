@@ -23,12 +23,7 @@ public class Ataque implements Habilidad{
     public void usarCon(Pieza objetivo, Posicion desde) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, CuracionACatapultaException {
         arma.atacarA(objetivo, desde, this);
     }
-    /*
-   @Override
-    public float aplicarHabilidad(float cantidad, Pieza pieza,Habilidad habilidad){
-        return aplicarHabilidad(cantidad,pieza,this);
-    }
-*/
+
     public float recibirHabilidad(float cantidad,Habilidad habilidad,Pieza pieza,PiezaAlianza alianza) throws AtaqueAAliadoException {
         return habilidad.recibirHabilidad(cantidad,this,pieza,alianza);
     }
@@ -46,7 +41,6 @@ public class Ataque implements Habilidad{
     public void aplicarEnGrupo(Set<Pieza> objetivos) {
         arma.atacarAGrupo(objetivos);
     }
-
 
     @Override
     public ParserObjeto parsear() {

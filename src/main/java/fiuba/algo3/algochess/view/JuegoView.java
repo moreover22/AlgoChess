@@ -24,6 +24,7 @@ public class JuegoView {
     private ContenedorPiezas contenedorDerecha;
     private Pieza piezaSeleccionada;
     private InformacionTurno infoTurno;
+    private Tablero tablero;
 
     public JuegoView(Stage stage, AlgoChess modelo) {
         this.stage = stage;
@@ -31,7 +32,7 @@ public class JuegoView {
         this.contenedor = new CustomBorderPane();
         this.infoTurno = new InformacionTurno();
 
-        Tablero tablero = new Tablero(16, 16);
+        tablero = new Tablero(16, 16);
         modelo.agregarAliable(tablero);
         /*
         // FIXME para testear mas rápido
@@ -71,6 +72,7 @@ public class JuegoView {
         contenedor.setCenter(tableroView);
         contenedor.setTop(infoTurno);
         contenedor.setLeft(contenedorIzquierda);
+
         /*
         // FIXME para testear mas rápido
         empezarAJugar();
@@ -95,19 +97,20 @@ public class JuegoView {
     }
 
     public void cambiarJugador() {
-//        cambiarTurno();
         modelo.cambiarTurno();
-        tableroView.actualizarCasilleros();
+        tableroView.actualizarCasillerosPosicionables();
 
         ParserObjeto infoModelo = modelo.parsear();
         Jugador jugadorActual = (Jugador) infoModelo.get("jugador_actual");
         infoTurno.actualizarTurnoPuntos(jugadorActual);
+
         ocultarJugadorContenedor(contenedorIzquierda, Direccion.izquierda());
     }
 
     public void empezarAJugar() {
         ocultarJugadorContenedor(contenedorDerecha, Direccion.derecha());
         modelo.cambiarTurno();
+        tableroView.actualizarCasilleros();
         tableroView.hacerPiezasMovibles();
         infoTurno.setMensaje("Empezar a jugar");
     }
@@ -161,8 +164,8 @@ public class JuegoView {
         return piezaItemViewSeleccionada != null;
     }
 
-    public void actualizarTablero() {
-        tableroView.actualizarCasilleros();
+    public void actualizarTableroPosicionable() {
+        tableroView.actualizarCasillerosPosicionables();
     }
 
     public void agregarPieza(Pieza pieza) throws CantidadDePuntosInsuficientesException {
@@ -174,5 +177,9 @@ public class JuegoView {
     public void mostrarError(String titulo, String mensaje) {
         VentanaPopUp popUpError = new VentanaPopUp(contenedor, titulo, mensaje);
         contenedor.setCenter(popUpError);
+    }
+
+    public void actualizarHabilidad(Pieza pieza) {
+        pieza.actualizarHabilidad(tablero);
     }
 }
