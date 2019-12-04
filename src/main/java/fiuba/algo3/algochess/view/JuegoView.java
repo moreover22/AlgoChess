@@ -10,9 +10,12 @@ import fiuba.algo3.algochess.model.tablero.Tablero;
 import fiuba.algo3.algochess.view.tablero.TableroView;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Scene;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.File;
 
 public class JuegoView {
     private Stage stage;
@@ -24,6 +27,7 @@ public class JuegoView {
     private ContenedorPiezas contenedorDerecha;
     private Pieza piezaSeleccionada;
     private InformacionTurno infoTurno;
+
 
     public JuegoView(Stage stage, AlgoChess modelo) {
         this.stage = stage;
@@ -175,4 +179,15 @@ public class JuegoView {
         VentanaPopUp popUpError = new VentanaPopUp(contenedor, titulo, mensaje);
         contenedor.setCenter(popUpError);
     }
+    public void playAudio(String filepath) {
+
+        File archivo = new File(filepath);
+
+        Media audio = new Media(archivo.toURI().toString());
+        MediaPlayer reproductor = new MediaPlayer(audio);
+        reproductor.play();
+
+    }
+
+
 }
