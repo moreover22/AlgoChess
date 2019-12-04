@@ -27,5 +27,6 @@ public class Main extends Application {
 
         juego.iniciar("jugador 1", "jugador 2");
         stage.show();
+
     }
 }

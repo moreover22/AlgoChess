@@ -184,7 +184,9 @@ public class JuegoView {
         File archivo = new File(filepath);
 
         Media audio = new Media(archivo.toURI().toString());
+
         MediaPlayer reproductor = new MediaPlayer(audio);
+
         reproductor.play();
 
     }
