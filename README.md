@@ -19,11 +19,11 @@ FIUBA - 2° Cuatrimestre 2019
 ### Unica vez
 1. `git clone https://github.com/moreover22/N5_AlgoChess.git`  
 1. `cd N5_AlgoChess`  
-1. `apt install ant`  
-1. `ant`  
+1. `apt install maven`  
+1. `mvn`  
 
 ### Cuando se hace un cambio
-1. `ant test`
+1. `mvn test`
 1. `git pull`
 1. `git checkout -b NOMBRE-BRANCH`
 1. Hacer el cambio.

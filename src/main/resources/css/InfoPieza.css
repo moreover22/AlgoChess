@@ -1,0 +1,18 @@
+.nombre-pieza {
+    -fx-font-size: 25px;
+    -fx-fill: #AAAAAA;
+}
+.barra {
+    -fx-fill: #BBBBBB;
+}
+
+.titulo {
+    -fx-fill: #EEEEEE;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.texto {
+    -fx-fill: #EEEEEE;
+    -fx-font-size: 15px;
+}
