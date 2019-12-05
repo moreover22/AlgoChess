@@ -180,7 +180,7 @@ public class CasilleroView extends StackPane implements PropertyChangeListener {
             String tipoPieza = (String) parserPieza.get("tipo_pieza");
             String color = (String) parserPieza.get("color");
             getChildren().remove(piezaView);
-            piezaView = new PiezaView(tipoPieza, color);
+            piezaView = new PiezaView(tipoPieza, color, parserPieza);
             pieza.agregarChangeListener(piezaView);
             getChildren().add(piezaView);
         }

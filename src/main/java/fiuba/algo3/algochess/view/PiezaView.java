@@ -1,5 +1,7 @@
 package fiuba.algo3.algochess.view;
 
+import fiuba.algo3.algochess.model.ParserObjeto;
+import fiuba.algo3.algochess.model.pieza.Pieza;
 import javafx.animation.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,26 +16,39 @@ import java.beans.PropertyChangeListener;
 
 public class PiezaView extends StackPane implements PropertyChangeListener {
     private IndicadorDeCambioDeVida indicadorDeCambio;
+    private BarraDeVida barraDeVida;
 
-    public PiezaView(String tipoPieza, String color) {
+    public PiezaView(String tipoPieza, String color, ParserObjeto infoPieza) {
         getStyleClass().add("contenedor-pieza-view");
 
-        ImageView pieza = new ImageView(ImagenesPieza.getImage(color, tipoPieza));
-        pieza.getStyleClass().add("pieza-view");
-        pieza.setPreserveRatio(true);
-        pieza.setFitWidth(50);
-        StackPane.setAlignment(pieza, Pos.CENTER);
+        ImageView piezaView = new ImageView(ImagenesPieza.getImage(color, tipoPieza));
+        piezaView.getStyleClass().add("pieza-view");
+        piezaView.setPreserveRatio(true);
+        piezaView.setFitWidth(50);
+        StackPane.setAlignment(piezaView, Pos.CENTER);
 
         TrianguloEquilateroInvertido triangulo = new TrianguloEquilateroInvertido(12);
         triangulo.getStyleClass().add("indicador-target");
         triangulo.fillProperty().addListener((observableValue, paint, t1) -> triangulo.fadeUp());
         StackPane.setAlignment(triangulo, Pos.TOP_CENTER);
 
+        ParserObjeto parserVida = (ParserObjeto) infoPieza.get("vida");
+
+        float vidaInicial = (float) parserVida.get("vida_inicial");
+        float vidaActual = (float) parserVida.get("vida_actual");
+
+        barraDeVida = new BarraDeVida(vidaInicial, vidaActual);
+
         indicadorDeCambio = new IndicadorDeCambioDeVida();
         StackPane.setAlignment(indicadorDeCambio, Pos.TOP_RIGHT);
-        getChildren().add(pieza);
+        getChildren().add(piezaView);
+        getChildren().add(barraDeVida);
         getChildren().add(triangulo);
         getChildren().add(indicadorDeCambio);
+
+        StackPane.setAlignment(barraDeVida, Pos.BOTTOM_CENTER);
+        StackPane.setMargin(barraDeVida, new Insets(3));
+
         StackPane.setAlignment(this, Pos.CENTER);
     }
 
@@ -41,6 +56,7 @@ public class PiezaView extends StackPane implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
         float vidaVieja = (float) propertyChangeEvent.getOldValue();
         float vidaNueva = (float) propertyChangeEvent.getNewValue();
+        barraDeVida.actualizar(vidaNueva);
         indicadorDeCambio.huboCambio(vidaVieja, vidaNueva);
     }
 

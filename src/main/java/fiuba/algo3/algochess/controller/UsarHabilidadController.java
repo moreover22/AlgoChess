@@ -53,6 +53,7 @@ public class UsarHabilidadController implements EventHandler<MouseEvent> {
 
         reproductorHabilidad.setOnEndOfMedia(() -> {
             juego.cambiarTurno();
+            juego.desbloquear();
         });
 
         if (!tipoHabilidad.equals("ataque")) {
@@ -60,6 +61,7 @@ public class UsarHabilidadController implements EventHandler<MouseEvent> {
         }
 
         reproductorOrigen.play();
+        juego.bloquear();
     }
 
     private void safeUsarHabilidad(Pieza pieza, Pieza objetivo) {

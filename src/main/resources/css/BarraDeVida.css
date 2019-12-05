@@ -1,0 +1,18 @@
+.barra-vida-peligroso,
+.barra-vida-precaucion,
+.barra-vida-saludable {
+    -fx-stroke-width: 2px;
+    -fx-stroke: black;
+}
+
+.barra-vida-peligroso {
+    -fx-fill: darkred;
+}
+
+.barra-vida-precaucion {
+    -fx-fill: yellow;
+}
+
+.barra-vida-saludable {
+    -fx-fill: green;
+}

@@ -11,8 +11,9 @@ import fiuba.algo3.algochess.model.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.model.tablero.Tablero;
 import fiuba.algo3.algochess.view.tablero.TableroView;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -29,6 +30,7 @@ public class JuegoView {
     private InformacionTurno infoTurno;
     private Tablero tablero;
     private Scene escenaVieja;
+    private Scene escenaActual;
 
     public JuegoView(Stage stage, AlgoChess modelo) {
         this.stage = stage;
@@ -60,9 +62,9 @@ public class JuegoView {
         stage.hide();
         stage.setFullScreenExitHint("");
         stage.setFullScreen(true);
-        Scene principal = new Scene(contenedor);
+        escenaActual = new Scene(contenedor);
         escenaVieja = stage.getScene();
-        stage.setScene(principal);
+        stage.setScene(escenaActual);
 
         stage.show();
         /*
@@ -187,5 +189,18 @@ public class JuegoView {
 
     public void actualizarHabilidad(Pieza pieza) {
         pieza.actualizarHabilidad(tablero);
+    }
+
+    public void bloquear() {
+        contenedor.setDisable(true);
+        Platform.runLater(() -> {
+            escenaActual.setCursor(Cursor.WAIT);
+        });
+    }
+    public void desbloquear() {
+        contenedor.setDisable(false);
+        Platform.runLater(() -> {
+            escenaActual.setCursor(Cursor.DEFAULT);
+        });
     }
 }
