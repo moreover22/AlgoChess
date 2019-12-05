@@ -32,7 +32,7 @@ public class InformacionTurno extends StackPane {
         });
     }
 
-    private void ocultar() {
+    public void ocultar() {
         TranslateTransition ocultarContenedor = new TranslateTransition(new Duration(300), this);
         ocultarContenedor.setToY(-this.getHeight());
         ocultarContenedor.play();

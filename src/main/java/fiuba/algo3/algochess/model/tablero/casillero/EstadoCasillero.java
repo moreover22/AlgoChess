@@ -17,13 +17,11 @@ public abstract class EstadoCasillero implements Parseable {
         return pieza;
     }
 
-    public abstract EstadoCasillero posicionar(Pieza pieza);
-    public abstract EstadoCasillero ocupar(Pieza pieza, Tablero tablero) throws FueraDelTableroException;
-
     public EstadoCasillero vaciar() {
         return new EstadoCasilleroVacio();
     }
-
+    public abstract EstadoCasillero posicionar(Pieza pieza);
+    public abstract EstadoCasillero ocupar(Pieza pieza, Tablero tablero) throws FueraDelTableroException;
 }
 
 

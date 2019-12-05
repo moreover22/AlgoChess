@@ -36,9 +36,9 @@ public class PosicionadorCasilleroController implements EventHandler<MouseEvent>
         if (juego.tienePiezaItemViewSeleccionada() && alianza.equals("aliado") && estado.equals("vacio")) {
             try {
                 Pieza pieza = juego.getPiezaSeleccionadaConstruida();
-                modelo.posicionar(posicion, pieza);
                 juego.agregarPieza(pieza);
-                juego.actualizarTablero();
+                modelo.posicionar(posicion, pieza);
+                juego.actualizarTableroPosicionable();
             } catch (FueraDelTableroException e) {
                 juego.mostrarError("Error al colocar", "No se puede colocar una pieza fuera del tablero.");
             } catch (PosicionarEnCasilleroEnemigoException e) {
@@ -54,7 +54,7 @@ public class PosicionadorCasilleroController implements EventHandler<MouseEvent>
     private void sacarSeguroPorPuntosInsuficientes() {
         juego.mostrarError("Error al colocar", "No tiene puntos suficientes para comprar la unidad.");
         try {
-            modelo.sacar(posicion);
+            modelo.vaciar(posicion);
         } catch (FueraDelTableroException e) {
             e.printStackTrace();
         }

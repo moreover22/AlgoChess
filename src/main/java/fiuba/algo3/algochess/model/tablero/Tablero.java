@@ -64,8 +64,8 @@ public class Tablero implements Aliable, Parseable {
         getCasillero(posicion).ocupar(pieza, this);
     }
 
-    public void sacar(Posicion posicion) throws FueraDelTableroException {
-        getCasillero(posicion).sacar();
+    public void vaciar(Posicion posicion) throws FueraDelTableroException {
+        getCasillero(posicion).vaciar();
     }
 
     public Iterable<Pieza> piezasDentroDe(Alcance alcance, Posicion desde) {
@@ -80,7 +80,7 @@ public class Tablero implements Aliable, Parseable {
     }
 
     public Set<Pieza> getVecinos(Posicion posicion, Iterable<Direccion> direcciones) throws FueraDelTableroException {
-        Set<Pieza> vecinos = new HashSet<Pieza>();
+        Set<Pieza> vecinos = new HashSet<>();
         for (Direccion direccion : direcciones) {
             Posicion posicionEnDireccion = direccion.aplicarA(posicion);
             if (! posicionEnDireccion.estaDentroDe(rango))
@@ -92,14 +92,7 @@ public class Tablero implements Aliable, Parseable {
 
     public void mover(Pieza pieza, Direccion direccion) throws FueraDelTableroException, MovimientoFueraDeAlcanceException {
         Movible movible = pieza.seleccionarParaMover(this);
-
-        System.out.println("\033[1;32m" + "==========================================");
-        System.out.println("pos antes de mover: " + pieza.getPosicion());
-        System.out.println(pieza.parsear());
-        System.out.println(pieza);
-
         movible.mover(direccion, this);
-        System.out.println("pos despues de mover: " + pieza.getPosicion() + "\033[0m");
     }
 
     @Override

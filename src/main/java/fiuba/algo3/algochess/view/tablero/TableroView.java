@@ -1,9 +1,9 @@
 package fiuba.algo3.algochess.view.tablero;
 
 import fiuba.algo3.algochess.controller.CasilleroMoverPiezaController;
-import fiuba.algo3.algochess.controller.PiezaMoverController;
+import fiuba.algo3.algochess.controller.PiezaSeleccionarController;
 import fiuba.algo3.algochess.controller.PosicionadorCasilleroController;
-import fiuba.algo3.algochess.model.ParserObjeto;
+import fiuba.algo3.algochess.controller.UsarHabilidadController;
 import fiuba.algo3.algochess.model.Posicion;
 import fiuba.algo3.algochess.model.pieza.alcance.Alcance;
 import fiuba.algo3.algochess.model.pieza.movimiento.Direccion;
@@ -13,37 +13,29 @@ import fiuba.algo3.algochess.view.CasilleroView;
 import fiuba.algo3.algochess.view.JuegoView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class TableroView extends StackPane {
-    private static final String pathToCssFile = (TableroView.class).getResource("/css/Tablero.css").toExternalForm();
     private int cantFilas;
     private int cantColumnas;
     private Map<Posicion, CasilleroView> casillerosView;
-    private Map<Posicion, ParserObjeto> casillerosInfo;
     private Map<?, ?> casilleros;
     private int dimension = 60;
     private Tablero tableroModelo;
     private JuegoView juego;
 
     public TableroView(Tablero tablero, JuegoView juego) {
-        getStylesheets().add(pathToCssFile);
         cantFilas = (int) tablero.parsear().get("cantidad_filas");
         cantColumnas = (int) tablero.parsear().get("cantidad_columnas");
         casilleros = (Map<?, ?>) tablero.parsear().get("casilleros");
         casillerosView = new HashMap<>();
-        casillerosInfo = new HashMap<>();
         tableroModelo = tablero;
         this.juego = juego;
 
-        BorderPane.setAlignment(this, Pos.CENTER);
-
         getChildren().add(construirTablero());
-        actualizarCasilleros();
     }
 
     private VBox construirTablero() {
@@ -76,44 +68,33 @@ public class TableroView extends StackPane {
     private CasilleroView iniciarCasilleroView(int i, int j) {
         Posicion posicion = new Posicion(i, j);
         Casillero casilleroModelo = (Casillero) casilleros.get(posicion);
+
         CasilleroView casilleroView = new CasilleroView(casilleroModelo, i, j, dimension);
 
         casilleroView.setOnMouseClicked(new PosicionadorCasilleroController(tableroModelo, juego, casilleroModelo, posicion));
+
+        casilleroView.resaltarPosicionable();
+
         casillerosView.put(posicion, casilleroView);
+
         return casilleroView;
     }
 
     public void actualizarCasilleros() {
-        actualizarCasillerosInfo();
-        casillerosView.forEach((posicion, casillerosView) -> {
-            casillerosView.resaltarPosicionable();
-            casillerosView.actualizarImagen();
+        casillerosView.forEach((posicion, casilleroView) -> {
+            casilleroView.getStyleClass().clear();
+            casilleroView.resaltarCasillerosAliables();
         });
     }
-
-    private void actualizarCasillerosInfo() {
-        Map<?, ?> infoCasilleros = (Map<?,?>) tableroModelo.parsear().get("casilleros");
-        infoCasilleros.forEach((posicion, casillero) -> {
-            String posicionStr = posicion.toString();
-            Casillero casilleroObj = (Casillero) casillero;
-            ParserObjeto infoCasilleroParseado = casilleroObj.parsear();
-            casillerosInfo.put(new Posicion(posicionStr), infoCasilleroParseado);
+    public void actualizarCasillerosPosicionables() {
+        casillerosView.forEach((posicion, casilleroView) -> {
+               casilleroView.resaltarPosicionable();
         });
     }
-
 
     public void hacerPiezasMovibles() {
         casillerosView.forEach((posicion, casilleroView) -> {
-            Tooltip.install(casilleroView, null);
-            casilleroView.hacerMoviblePieza(new PiezaMoverController(this, casilleroView, juego));
-        });
-    }
-
-    public void resaltarEnAlcance(Alcance alcance, Posicion desde, String cssPrefix) {
-        casillerosView.forEach((posicion, casillerosView) -> {
-            if (alcance.llegoA(desde, posicion)) {
-                casillerosView.resaltar(cssPrefix);
-            }
+            casilleroView.hacerMoviblePieza(new PiezaSeleccionarController(this, casilleroView, juego));
         });
     }
 
@@ -124,11 +105,18 @@ public class TableroView extends StackPane {
     public void resaltarParaMovimiento(Alcance alcance, Posicion desde) {
         for(Direccion direccion : Direccion.direcciones()) {
             Posicion hasta = direccion.aplicarA(desde);
-            CasilleroView casilleroView = casillerosView.get(hasta);
-
+            CasilleroView casilleroView = casillerosView.getOrDefault(hasta, null);
             if (casilleroView != null && alcance.llegoA(desde, hasta)) {
                 casilleroView.hacerMovibleParaDestinoPieza(new CasilleroMoverPiezaController(tableroModelo, juego, direccion, this));
             }
         }
+    }
+
+    public void resaltarParaHabilidad(Alcance alcanceHabilidad, Posicion desde, String tipoHabilidad) {
+        casillerosView.forEach((posicion, casilleroView) -> {
+            if (alcanceHabilidad.llegoA(desde, posicion)) {
+                casilleroView.hacerHabilidadTargeteable(new UsarHabilidadController(tableroModelo, juego, casilleroView), tipoHabilidad);
+            }
+        });
     }
 }

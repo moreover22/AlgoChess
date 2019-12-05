@@ -21,15 +21,15 @@ public class Jinete extends Pieza {
 
     @Override
     public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException, FueraDelTableroException, CuracionACatapultaException {
-        Iterable<Pieza> vecinos = tablero.piezasDentroDe(new AlcanceCercano(), this.posicion);
-        ataque.actualizarArma(vecinos);
+        actualizarHabilidad(tablero);
         super.usarHabilidadEn(tablero, objetivo);
     }
 
-    public static String getName() {
-        return "Jinete";
+    @Override
+    public void actualizarHabilidad(Tablero tablero) {
+        Iterable<Pieza> vecinos = tablero.piezasDentroDe(new AlcanceCercano(), this.posicion);
+        ataque.actualizarArma(vecinos);
     }
-
 }
 
 

@@ -15,6 +15,8 @@ public interface PiezaAlianza {
     float recibirCuracion(float cantidad,Pieza pieza) throws CuracionAEnemigoException;
 
     String getAlianza();
+
+    void recibirDanioTerritorio(Vida vida, int danio_porcentual);
 }
 
 

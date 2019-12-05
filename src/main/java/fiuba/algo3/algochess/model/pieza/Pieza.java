@@ -11,8 +11,8 @@ import fiuba.algo3.algochess.model.pieza.movimiento.Movimiento;
 import fiuba.algo3.algochess.model.pieza.movimiento.MovimientoFueraDeAlcanceException;
 import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.model.tablero.Tablero;
-import fiuba.algo3.algochess.model.tablero.casillero.PosicionarEnCasilleroEnemigoException;
 
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +28,7 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
     private String color;
     private List<Pieza> piezas;
 
+
     static final int PORCENTAJE_DANIO_TERRITORIO = 5;
 
     protected Pieza(float vidaInicial, int coste) {
@@ -40,10 +41,10 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
 
     public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws HabilidadFueraDeAlcanceException, HabilidadConObjetivoInvalidoException, FueraDelTableroException, CuracionACatapultaException {
         habilidad.usarCon(objetivo, posicion);
-        if (!objetivo.estaViva()) tablero.sacar(objetivo.getPosicion());
+        if (!objetivo.estaViva()) tablero.vaciar(objetivo.getPosicion());
     }
 
-    public void setPosicion(Posicion posicion) throws PosicionarEnCasilleroEnemigoException, FueraDelTableroException {
+    public void setPosicion(Posicion posicion) {
         this.posicion = posicion;
     }
 
@@ -51,17 +52,8 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         return posicion;
     }
 
-    /*public void recibirCuracion(float curacion) throws CuracionAEnemigoException {
-        vida.recibirCuracion(curacion, alianza);
-    }
-
-    public void recibirDanio(float danio) throws AtaqueAAliadoException {
-        vida.recibirDanio(danio, alianza);
-    }*/
-
     public void recibirHabilidad(Habilidad habilidad, float cantidad ) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException {
-
-        float vidaActual = habilidad.recibirHabilidad(cantidad,habilidad,this,this.alianza);
+        float vidaActual = habilidad.recibirHabilidad(cantidad, habilidad, this, this.alianza);
         vida.recibirHabilidad(vidaActual);
     }
 
@@ -81,8 +73,8 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         return puntos + coste;
     }
 
-    public void  recibirDanioTerritorio() {
-        vida.recibirDanioPorcentual(PORCENTAJE_DANIO_TERRITORIO);
+    public void recibirDanioTerritorio() {
+        alianza.recibirDanioTerritorio(vida, PORCENTAJE_DANIO_TERRITORIO);
     }
 
     public int contarAliadosDeCaballeria(int cantidadAliadosCaballeria) {
@@ -97,13 +89,13 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         return alianza.contarAliado(cantidadAliados);
     }
 
+    public void actualizarHabilidad(Tablero tablero) {
+    }
+
     @Override
     public void mover(Direccion direccion, Tablero tablero) throws MovimientoFueraDeAlcanceException, FueraDelTableroException {
-        tablero.sacar(posicion);
-        System.out.println("\033[1;32m" + "==========================================");
-        System.out.println("pos antes de mover: " + posicion);
+        tablero.vaciar(posicion);
         posicion = movimiento.mover(posicion, direccion);
-        System.out.println("pos despues de mover: " + posicion + "\033[0m");
         tablero.ocupar(posicion, this);
     }
 
@@ -124,9 +116,10 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         return this;
     }
 
-    public void recibirHabilidad(float nuevaVida){
+    public void recibirHabilidad(float nuevaVida) {
         vida.recibirHabilidad(nuevaVida);
     }
+
     public void setColor(String color) {
         this.color = color;
     }
@@ -145,4 +138,7 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         return parser;
     }
 
+    public void agregarChangeListener(PropertyChangeListener notificado) {
+        vida.agregarChangeListener(notificado);
+    }
 }

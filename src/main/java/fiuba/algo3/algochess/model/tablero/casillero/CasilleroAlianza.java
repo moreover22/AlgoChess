@@ -8,27 +8,3 @@ public interface CasilleroAlianza {
     void aplicarDanioTerritorio(Pieza pieza);
     String getAlianza();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

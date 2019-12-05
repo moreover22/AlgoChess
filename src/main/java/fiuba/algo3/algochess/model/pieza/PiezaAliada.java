@@ -10,15 +10,6 @@ public class PiezaAliada implements PiezaAlianza {
         return new PiezaEnemiga();
     }
 
-    /*@Override
-    public float recibirDanio(float vida, float danio) throws AtaqueAAliadoException {
-        throw new AtaqueAAliadoException();
-    }
-
-    @Override
-    public float recibirCuracion(float vida, float curacion) {
-        return vida + curacion;
-    }*/
 
     @Override
     public int contarAliado(int cantidadAliados) {
@@ -49,6 +40,11 @@ public class PiezaAliada implements PiezaAlianza {
     @Override
     public String getAlianza() {
         return "aliado";
+    }
+
+    @Override
+    public void recibirDanioTerritorio(Vida vida, int danio_porcentual) {
+        vida.recibirDanioPorcentual(danio_porcentual);
     }
 }
 

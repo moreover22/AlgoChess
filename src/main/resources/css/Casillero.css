@@ -1,10 +1,11 @@
 .casillero-vacio:hover, .casillero-aliado:hover {
-    -fx-effect: innershadow(gaussian, aqua, 15, 0, 0, 0);
     -fx-cursor: hand;
+    -fx-effect: innershadow(gaussian, aqua, 15, 0, 0, 0);
 }
+
 .casillero-enemigo:hover, .casillero-ocupado:hover {
-    -fx-effect: null;
     -fx-cursor: default;
+    -fx-effect: null;
 }
 
 .casillero-aliado-ocupado:hover {
@@ -12,21 +13,52 @@
     -fx-effect: innershadow(gaussian, aqua, 15, 0, 0, 0);
 }
 
-.casillero-enemigo-ocupado-atacable:hover {
-    -fx-cursor: hand;
-    -fx-effect: innershadow(gaussian, darkred, 15, 0, 0, 0);
-}
-
-.mover-casillero-vacio {
+.mover-casillero-vacio,
+.mover-casillero-enemigo {
     -fx-cursor: hand;
     -fx-effect: innershadow(gaussian, darkcyan, 20, 0, 0, 0);
 }
 
-.mover-casillero-enemigo {
-    -fx-cursor: hand;
-    -fx-effect: innershadow(gaussian, yellow, 20, 0, 0, 0);
+.indicador-target {
+    -fx-fill: transparent;
 }
 
 .mover-casillero-ocupado {
     -fx-effect: null;
+}
+
+.habilidad-curacion-pieza-aliado:hover {
+    -fx-cursor: hand;
+    -fx-effect: innershadow(gaussian, rgb(0, 97, 100), 15, 0, 0, 0);
+}
+
+.habilidad-ataque-pieza-enemigo:hover {
+    -fx-cursor: hand;
+    -fx-effect: innershadow(gaussian, rgb(219, 67, 37), 15, 0, 0, 0);
+}
+
+
+.habilidad-ataque-pieza-enemigo .indicador-target {
+    -fx-fill: rgb(219, 67, 37);
+}
+
+.habilidad-curacion-pieza-aliado .indicador-target {
+    -fx-fill: rgb(0, 97, 100);
+}
+
+.indicador-danio,
+.indicador-curacion {
+    -fx-font-weight: bolder;
+    -fx-font-size: 15px;
+    -fx-stroke: black;
+    -fx-stroke-width: 0.5;
+    -fx-effect: null;
+}
+
+.indicador-danio {
+    -fx-fill: darkred;
+}
+
+.indicador-curacion {
+    -fx-fill: lawngreen;
 }

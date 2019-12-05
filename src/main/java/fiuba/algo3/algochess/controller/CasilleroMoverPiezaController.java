@@ -24,14 +24,12 @@ public class CasilleroMoverPiezaController implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         try {
-            System.out.println(juego.getPiezaSeleccionada().parsear());
             modeloTablero.mover(juego.getPiezaSeleccionada(), direccion);
-            tableroView.actualizarCasilleros();
             juego.cambiarTurno();
         } catch (FueraDelTableroException e) {
-            juego.mostrarError("Movimiento no permitico", "Después de realizar el movimiento, la pieza queda fuera del tablero.");
+            juego.mostrarError("Movimiento no permitido", "Después de realizar el movimiento, la pieza queda fuera del tablero.");
         } catch (MovimientoFueraDeAlcanceException e) {
-            juego.mostrarError("Movimiento no permitico", "La pieza no puede moverse hasta esa distancia.");
+            juego.mostrarError("Movimiento no permitido", "La pieza no puede moverse hasta esa distancia.");
         }
     }
 }

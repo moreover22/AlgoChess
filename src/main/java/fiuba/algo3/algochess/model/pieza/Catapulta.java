@@ -1,12 +1,12 @@
 package fiuba.algo3.algochess.model.pieza;
 
+import fiuba.algo3.algochess.model.pieza.alcance.AlcanceInmediato;
 import fiuba.algo3.algochess.model.pieza.alcance.AlcanceNulo;
 import fiuba.algo3.algochess.model.pieza.habilidad.Ataque;
 import fiuba.algo3.algochess.model.pieza.habilidad.CuracionACatapultaException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadFueraDeAlcanceException;
 import fiuba.algo3.algochess.model.pieza.habilidad.armas.Proyectil;
-import fiuba.algo3.algochess.model.pieza.movimiento.Direccion;
 import fiuba.algo3.algochess.model.pieza.movimiento.Movimiento;
 import fiuba.algo3.algochess.model.tablero.FueraDelTableroException;
 import fiuba.algo3.algochess.model.tablero.Tablero;
@@ -26,59 +26,30 @@ public class Catapulta extends Pieza {
     public void usarHabilidadEn(Tablero tablero, Pieza objetivo) throws FueraDelTableroException, HabilidadConObjetivoInvalidoException, HabilidadFueraDeAlcanceException, CuracionACatapultaException {
 
         habilidad.usarCon(objetivo, posicion);
-        if (!objetivo.estaViva()) tablero.sacar(objetivo.getPosicion());
+        if (!objetivo.estaViva()) tablero.vaciar(objetivo.getPosicion());
 
-        Set<Pieza> objetivos = buscarObjetivos(tablero,objetivo);
+        Set<Pieza> objetivos = buscarObjetivos(tablero, objetivo);
         habilidad.aplicarEnGrupo(objetivos);
         for(Pieza pieza : objetivos){
-            if(!pieza.estaViva()) tablero.sacar(objetivo.getPosicion());
+            if(!pieza.estaViva()) tablero.vaciar(pieza.getPosicion());
         }
-
     }
 
-    private Set<Pieza> buscarObjetivos(Tablero tablero, Pieza objetivo) throws FueraDelTableroException {
-
+    private Set<Pieza> buscarObjetivos(Tablero tablero, Pieza objetivo) {
         Set<Pieza> conjuntoPiezas = ConcurrentHashMap.newKeySet();
-
-        List<Direccion> direcciones = new ArrayList<Direccion>();
-        direcciones.add(Direccion.derecha());
-        direcciones.add(Direccion.izquierda());
-        direcciones.add(Direccion.arriba());
-        direcciones.add(Direccion.abajo());
-        direcciones.add(Direccion.derechaArriba());
-        direcciones.add(Direccion.derechaAbajo());
-        direcciones.add(Direccion.izquierdaAbajo());
-        direcciones.add(Direccion.izquierdaArriba());
-
-
-
-
-        conjuntoPiezas.addAll(tablero.getVecinos(objetivo.getPosicion(), direcciones));
-        Iterator<Pieza> iter =  conjuntoPiezas.iterator();
-
-        while(iter.hasNext()){
-            Pieza pieza = iter.next();
-            if(!(pieza instanceof PiezaNula)) {
-                conjuntoPiezas.addAll(tablero.getVecinos(pieza.getPosicion(), direcciones));
-            }
-        }
+        agregarVecinos(conjuntoPiezas, tablero, objetivo);
         conjuntoPiezas.remove(objetivo);
         return conjuntoPiezas;
     }
 
+    private void agregarVecinos(Set<Pieza> conjunto, Tablero tablero, Pieza origen) {
+        if (conjunto.contains(origen)) return;
+        conjunto.add(origen);
+        Iterable<Pieza> vecinosPiezaActual = tablero.piezasDentroDe(new AlcanceInmediato(), origen.getPosicion());
+        for (Pieza vecino : vecinosPiezaActual) {
+            if (!(vecino instanceof PiezaNula)) {
+                agregarVecinos(conjunto, tablero, vecino);
+            }
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

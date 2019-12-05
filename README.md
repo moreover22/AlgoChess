@@ -35,8 +35,8 @@ FIUBA - 2° Cuatrimestre 2019
 1. Solicitar merge desde github (Compare and pull request).
 
 ### Para JavaFX
-1. `apt install openjdk-8-jdk`  
-1. `export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64`  
+1. Usar Java11.
+1. `mvn javafx:run`  
 
 ## Progreso entregas
 ### Entrega 1 (jueves 7 de Noviembre)
@@ -58,10 +58,10 @@ FIUBA - 2° Cuatrimestre 2019
 
 ### Entrega 2 (jueves 21 de noviembre)
 #### Soldado
-- [ ] 13. Se verifica que 3 soldados contiguos pueden moverse al mismo tiempo en la misma dirección con una sola acción.
-- [ ] 14. Teniendo 3 soldados contiguos, y un obstáculo (una entidad distinta a los otros dos soldados) obstruyendo a uno de los 3, se verifica que al mover el Batallón, se mueven 2 soldados y uno se queda quieto.
-- [ ] 15. (En la situación anterior) Se verifica que el Batallón se disuelve, al quedar separados los 3 soldados.
-- [ ] 16. Habiendo 4 soldados contiguos, se verifica que al mover un Batallón se mueven únicamente 3.
+- [x] 13. Se verifica que 3 soldados contiguos pueden moverse al mismo tiempo en la misma dirección con una sola acción.
+- [x] 14. Teniendo 3 soldados contiguos, y un obstáculo (una entidad distinta a los otros dos soldados) obstruyendo a uno de los 3, se verifica que al mover el Batallón, se mueven 2 soldados y uno se queda quieto.
+- [x] 15. (En la situación anterior) Se verifica que el Batallón se disuelve, al quedar separados los 3 soldados.
+- [x] 16. Habiendo 4 soldados contiguos, se verifica que al mover un Batallón se mueven únicamente 3.
 #### Jinete
 - [x] 17. Un jinete sin aliados en distancia corta y un enemigo en distancia corta, ataca con su espada al enemigo y se verifica que se realiza correctamente el ataque.
 - [x] 18. Un jinete sin aliados en distancia corta y un enemigo en distancia corta y otro enemigo en distancia media, trata de atacar al enemigo en distancia media y se verifica que no se puede realizar el ataque.

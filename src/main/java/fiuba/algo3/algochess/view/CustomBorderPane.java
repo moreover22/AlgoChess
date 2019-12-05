@@ -51,4 +51,9 @@ public class CustomBorderPane extends AnchorPane {
         centrarHorizontal(nodo);
     }
 
+    public void setTopLeft(Node nodo) {
+        AnchorPane.setTopAnchor(nodo, 0.0);
+        AnchorPane.setLeftAnchor(nodo, 0.0);
+        getChildren().add(nodo);
+    }
 }
