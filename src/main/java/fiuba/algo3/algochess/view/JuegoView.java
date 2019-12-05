@@ -27,6 +27,7 @@ public class JuegoView {
     private ContenedorPiezas contenedorDerecha;
     private Pieza piezaSeleccionada;
     private InformacionTurno infoTurno;
+    public SonidosHabilidades sonidos;
 
 
     public JuegoView(Stage stage, AlgoChess modelo) {
@@ -34,6 +35,7 @@ public class JuegoView {
         this.modelo = modelo;
         this.contenedor = new CustomBorderPane();
         this.infoTurno = new InformacionTurno();
+        this.sonidos = new SonidosHabilidades();
 
         Tablero tablero = new Tablero(16, 16);
         modelo.agregarAliable(tablero);
