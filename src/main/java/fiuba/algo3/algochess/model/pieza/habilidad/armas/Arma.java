@@ -13,6 +13,7 @@ public abstract class Arma implements Parseable {
 
     protected Alcance alcance;
     protected float danio;
+    protected String tipoArma;
 
     protected Arma(float danio, Alcance alcance) {
         this.danio = danio;

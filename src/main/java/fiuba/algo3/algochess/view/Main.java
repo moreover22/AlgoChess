@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.model.AlgoChess;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -32,5 +33,7 @@ public class Main extends Application {
 //        juego.iniciar("jugador 1", "jugador 2");
         stage.centerOnScreen();
         stage.show();
+        
+
     }
 }

@@ -12,9 +12,12 @@ import fiuba.algo3.algochess.model.tablero.Tablero;
 import fiuba.algo3.algochess.view.tablero.TableroView;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Scene;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.File;
 
 
 public class JuegoView {
@@ -27,6 +30,7 @@ public class JuegoView {
     private ContenedorPiezas contenedorDerecha;
     private Pieza piezaSeleccionada;
     private InformacionTurno infoTurno;
+    public SonidosHabilidades sonidos;
     private Tablero tablero;
     private Scene escenaVieja;
 
@@ -35,6 +39,7 @@ public class JuegoView {
         this.modelo = modelo;
         this.contenedor = new CustomBorderPane();
         this.infoTurno = new InformacionTurno();
+        this.sonidos = new SonidosHabilidades();
 
         tablero = new Tablero(16, 16);
         modelo.agregarAliable(tablero);
