@@ -8,6 +8,7 @@ import java.util.Set;
 public class Proyectil extends Arma {
     public Proyectil() {
         super(20, new AlcanceLejano());
+        tipoArma = "proyectil";
     }
 
     @Override

@@ -14,7 +14,7 @@ public class SonidosHabilidades {
     private static final String pathToSonidoAtaqueCurandero = "curandero.mp3";
     private static final String pathToSonidoProyectil = "proyectil.mp3";
     private static final String pathToSonidoFlecha = "flecha.mp3";
-    private static final String pathToSonidoEspadaLiviana = "espadaLiviana.mp3";
+    private static final String pathToSonidoEspada = "espadaLiviana.mp3";
 
     private static final File archivoSoldado = new File(pathToSonidoAtaqueSoldado);
     private static final File archivoJinete = new File(pathToSonidoAtaqueJinete);
@@ -22,7 +22,7 @@ public class SonidosHabilidades {
     private static final File archivoCurandero = new File(pathToSonidoAtaqueCurandero);
     private static final File archivoProyectil = new File(pathToSonidoProyectil);
     private static final File archivoFlecha = new File(pathToSonidoFlecha);
-    private static final File archivoEspadaLiviana = new File(pathToSonidoEspadaLiviana);
+    private static final File archivoEspada = new File(pathToSonidoEspada);
 
 
     private static final Media audioAtaqueSoldado = new Media(archivoSoldado.toURI().toString());
@@ -31,7 +31,7 @@ public class SonidosHabilidades {
     private static final Media audioAtaqueCurandero = new Media(archivoCurandero.toURI().toString());
     private static final Media audioGolpeProyectil = new Media(archivoProyectil.toURI().toString());
     private static final Media audioGolpeFlecha = new Media(archivoFlecha.toURI().toString());
-    private static final Media audioGolpeEspadaLiviana = new Media(archivoEspadaLiviana.toURI().toString());
+    private static final Media audioGolpeEspada = new Media(archivoEspada.toURI().toString());
 
 
     private static Map<String,Media> sonidos;
@@ -43,10 +43,10 @@ public class SonidosHabilidades {
         sonidos.put("jinete", audioAtaqueJinete);
         sonidos.put("catapulta", audioAtaqueCatapulta);
         sonidos.put("curandero", audioAtaqueCurandero);
-        sonidos.put("proyectil", audioGolpeProyectil);
-        sonidos.put("flecha", audioGolpeFlecha);
-        sonidos.put("espadaLiviana", audioGolpeEspadaLiviana);
-
+        sonidos.put("catapultaproyectil", audioGolpeProyectil);
+        sonidos.put("jinetearcoYFlecha", audioGolpeFlecha);
+        sonidos.put("jineteespadaLiviana", audioGolpeEspada);
+        sonidos.put("soldadoespadaPesada", audioGolpeEspada);
     }
 
     public static MediaPlayer getReproductor(String tipoPieza){
