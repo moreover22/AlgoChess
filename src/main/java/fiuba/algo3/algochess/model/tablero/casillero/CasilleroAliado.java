@@ -13,7 +13,7 @@ public class CasilleroAliado implements CasilleroAlianza {
     }
 
     @Override
-    public void aplicarDanioTerritorio(Pieza pieza){
+    public void aplicarDanioTerritorio(Pieza pieza) {
     }
 
     @Override

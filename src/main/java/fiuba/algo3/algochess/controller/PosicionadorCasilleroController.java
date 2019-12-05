@@ -36,8 +36,8 @@ public class PosicionadorCasilleroController implements EventHandler<MouseEvent>
         if (juego.tienePiezaItemViewSeleccionada() && alianza.equals("aliado") && estado.equals("vacio")) {
             try {
                 Pieza pieza = juego.getPiezaSeleccionadaConstruida();
-                modelo.posicionar(posicion, pieza);
                 juego.agregarPieza(pieza);
+                modelo.posicionar(posicion, pieza);
                 juego.actualizarTableroPosicionable();
             } catch (FueraDelTableroException e) {
                 juego.mostrarError("Error al colocar", "No se puede colocar una pieza fuera del tablero.");

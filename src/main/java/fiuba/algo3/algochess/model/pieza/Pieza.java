@@ -74,7 +74,7 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
     }
 
     public void recibirDanioTerritorio() {
-        vida.recibirDanioPorcentual(PORCENTAJE_DANIO_TERRITORIO);
+        alianza.recibirDanioTerritorio(vida, PORCENTAJE_DANIO_TERRITORIO);
     }
 
     public int contarAliadosDeCaballeria(int cantidadAliadosCaballeria) {
@@ -116,7 +116,7 @@ public abstract class Pieza implements Aliable, Movible, Parseable {
         return this;
     }
 
-    public void recibirHabilidad(float nuevaVida){
+    public void recibirHabilidad(float nuevaVida) {
         vida.recibirHabilidad(nuevaVida);
     }
 

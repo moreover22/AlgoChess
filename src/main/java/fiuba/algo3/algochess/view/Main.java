@@ -14,6 +14,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+        comenzarJuego(stage);
+    }
+
+    public static void comenzarJuego(Stage stage) {
         stage.getIcons().add(new Image(pathToIcon));
         stage.setTitle("AlgoChess");
         stage.setResizable(false);
@@ -22,10 +26,11 @@ public class Main extends Application {
 
         JuegoView juego = new JuegoView(stage, algoChess);
 
-//         Scene bienvenida = new Scene(new ContenedorEntrada(juego));
-//         stage.setScene(bienvenida);
+         Scene bienvenida = new Scene(new ContenedorEntrada(juego));
+         stage.setScene(bienvenida);
 
-        juego.iniciar("jugador 1", "jugador 2");
+//        juego.iniciar("jugador 1", "jugador 2");
+        stage.centerOnScreen();
         stage.show();
     }
 }

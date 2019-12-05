@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.controller;
 
-import fiuba.algo3.algochess.model.ParserObjeto;
 import fiuba.algo3.algochess.model.pieza.Pieza;
 import fiuba.algo3.algochess.model.pieza.habilidad.CuracionACatapultaException;
 import fiuba.algo3.algochess.model.pieza.habilidad.HabilidadConObjetivoInvalidoException;
@@ -27,19 +26,17 @@ public class UsarHabilidadController implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         Pieza pieza = juego.getPiezaSeleccionada();
         Pieza objetivo = casilleroView.getPieza();
-        ParserObjeto infoPieza = pieza.parsear();
-        System.out.println(infoPieza);
         try {
             pieza.usarHabilidadEn(tableroModelo, objetivo);
             juego.cambiarTurno();
         } catch (HabilidadFueraDeAlcanceException e) {
-            e.printStackTrace();
+            juego.mostrarError("Habilidad no permitido", "La pieza objetivo no se encuentra en el alcance de la habilidad.");
         } catch (HabilidadConObjetivoInvalidoException e) {
-            e.printStackTrace();
+            juego.mostrarError("Habilidad no permitido", "La pieza objetivo no puede recibir esa habilidad.");
         } catch (FueraDelTableroException e) {
-            e.printStackTrace();
+            juego.mostrarError("Habilidad no permitido", "Habilidad queda fuera del tablero.");
         } catch (CuracionACatapultaException e) {
-            e.printStackTrace();
+            juego.mostrarError("Habilidad no permitido", "Las catapultas no se pueden curar.");
         }
     }
 }

@@ -61,8 +61,8 @@ public class CasilleroView extends StackPane implements PropertyChangeListener {
     }
 
     public void resaltarPosicionable() {
+        getStyleClass().clear();
         ParserObjeto parserObjeto = modelo.parsear();
-
         getStyleClass().add("casillero-" + parserObjeto.get("alianza"));
         ParserObjeto parserEstado = (ParserObjeto) parserObjeto.get("estado");
 
@@ -169,13 +169,17 @@ public class CasilleroView extends StackPane implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-        getChildren().remove(piezaView);
+        Pieza piezaVieja = (Pieza) propertyChangeEvent.getOldValue();
         Pieza pieza = (Pieza) propertyChangeEvent.getNewValue();
         ParserObjeto parserPieza = pieza.parsear();
-        System.out.println("Entro en CasilleroChange");
+        if (piezaView != null && !piezaVieja.estaViva()) {
+            piezaView.desaparecer();
+        }
+
         if (parserPieza != null) {
             String tipoPieza = (String) parserPieza.get("tipo_pieza");
             String color = (String) parserPieza.get("color");
+            getChildren().remove(piezaView);
             piezaView = new PiezaView(tipoPieza, color);
             pieza.agregarChangeListener(piezaView);
             getChildren().add(piezaView);

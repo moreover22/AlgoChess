@@ -23,7 +23,7 @@ public abstract class Arma implements Parseable {
         if (! alcance.llegoA(desde, objetivo.getPosicion())) {
             throw new HabilidadFueraDeAlcanceException();
         }
-        objetivo.recibirHabilidad(habilidad,danio);
+        objetivo.recibirHabilidad(habilidad, danio);
     }
 
     public Arma actualizar(Iterable<Pieza> vecinos) {

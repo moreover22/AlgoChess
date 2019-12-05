@@ -6,11 +6,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class VentanaPopUp extends StackPane {
-    public VentanaPopUp(Pane root, String titulo, String mensaje) {
+    public VentanaPopUp(Pane root, Ventana ventana, PopUpController controller) {
         setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");
-        PopUpController controller = new PopUpController(root, this);
-        VentanaError ventana = new VentanaError(controller, titulo, mensaje);
         getChildren().add(ventana);
+        controller.setRoot(root);
+        controller.setContenido(this);
         this.setOnMouseClicked(evt -> controller.handle(new ActionEvent()));
     }
 }

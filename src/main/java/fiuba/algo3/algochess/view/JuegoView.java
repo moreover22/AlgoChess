@@ -1,5 +1,7 @@
 package fiuba.algo3.algochess.view;
 
+import fiuba.algo3.algochess.controller.PopUpController;
+import fiuba.algo3.algochess.controller.PopUpFinalizar;
 import fiuba.algo3.algochess.model.AlgoChess;
 import fiuba.algo3.algochess.model.ParserObjeto;
 import fiuba.algo3.algochess.model.jugador.CantidadDePuntosInsuficientesException;
@@ -14,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+
 public class JuegoView {
     private Stage stage;
     private AlgoChess modelo;
@@ -25,6 +28,7 @@ public class JuegoView {
     private Pieza piezaSeleccionada;
     private InformacionTurno infoTurno;
     private Tablero tablero;
+    private Scene escenaVieja;
 
     public JuegoView(Stage stage, AlgoChess modelo) {
         this.stage = stage;
@@ -34,36 +38,6 @@ public class JuegoView {
 
         tablero = new Tablero(16, 16);
         modelo.agregarAliable(tablero);
-        /*
-        // FIXME para testear mas rápido
-        Pieza pieza = new SoldadoDeInfanteria();
-        pieza.setColor("blanco");
-        Pieza pieza2 = new SoldadoDeInfanteria();
-        pieza2.cambiarAlianza();
-        pieza2.setColor("negro");
-
-        Pieza pieza3 = new Jinete();
-        pieza3.cambiarAlianza();
-        pieza3.setColor("negro");
-
-        try {
-            modelo.agregarJugador("pepe");
-            modelo.agregarJugador("pupo");
-            modelo.agregarAliable(pieza);
-            modelo.agregarAliable(pieza2);
-            modelo.agregarAliable(pieza3);
-            tablero.posicionar(new Posicion(7, 3), pieza);
-            tablero.cambiarAlianza();
-            tablero.posicionar(new Posicion(15,0), pieza2);
-            tablero.posicionar(new Posicion(8,5), pieza3);
-            tablero.cambiarAlianza();
-        } catch (FueraDelTableroException e) {
-            e.printStackTrace();
-        } catch (PosicionarEnCasilleroEnemigoException e) {
-            e.printStackTrace();
-        }
-        // ---------------------------------
-        */
         this.tableroView = new TableroView(tablero, this);
 
         contenedorIzquierda = new ContenedorPiezas("blanco", this, (evt) -> cambiarJugador());
@@ -72,12 +46,6 @@ public class JuegoView {
         contenedor.setCenter(tableroView);
         contenedor.setTop(infoTurno);
         contenedor.setLeft(contenedorIzquierda);
-
-        /*
-        // FIXME para testear mas rápido
-        empezarAJugar();
-        // ----------------------------------------
-        */
     }
 
     public void iniciar(String nombrePrimerJugador, String nombreSegundoJugador) {
@@ -92,8 +60,26 @@ public class JuegoView {
         stage.hide();
         stage.setFullScreenExitHint("");
         stage.setFullScreen(true);
-        stage.setScene(new Scene(contenedor));
+        Scene principal = new Scene(contenedor);
+        escenaVieja = stage.getScene();
+        stage.setScene(principal);
+
         stage.show();
+
+        /*
+        // FIXME temporal soluciona problema de resolución
+        Slider sliderScale = new Slider(0.1, 3, 1);
+        sliderScale.setBlockIncrement(0.1);
+
+        sliderScale.valueProperty().addListener((evt) -> {
+            System.out.println(sliderScale.getValue());
+            Scale scale = new Scale(sliderScale.getValue(), sliderScale.getValue());
+            scale.setPivotX(0);
+            scale.setPivotY(0);
+            principal.getRoot().getTransforms().setAll(scale);
+        });
+        contenedor.setTopLeft(sliderScale);
+         */
     }
 
     public void cambiarJugador() {
@@ -116,6 +102,7 @@ public class JuegoView {
     }
 
     public void cambiarTurno() {
+        tablero.aplicarDanioTerritorio();
         modelo.cambiarTurno();
         tableroView.desresaltarCasilleros();
         tableroView.actualizarCasilleros();
@@ -124,6 +111,21 @@ public class JuegoView {
         infoTurno.actualizarTurno(jugadorActual);
         tableroView.hacerPiezasMovibles();
         piezaSeleccionada = null;
+        Jugador ganador = modelo.ganador();
+
+        if (ganador != null) {
+            infoTurno.ocultar();
+            finalizarJuego(ganador);
+        }
+    }
+
+    private void finalizarJuego(Jugador ganador) {
+        ParserObjeto parserJugador = ganador.parsear();
+        String nombre = (String) parserJugador.get("nombre");
+        VentanaFinaliza ventana = new VentanaFinaliza("Juego finalizado", "El ganador es: " + nombre);
+        PopUpController controller = new PopUpFinalizar(ventana, stage);
+        VentanaPopUp popUpGanador = new VentanaPopUp(contenedor, ventana, controller);
+        contenedor.setCenter(popUpGanador);
     }
 
     private void ocultarJugadorContenedor(ContenedorPiezas contenedor, Direccion direccion) {
@@ -175,7 +177,9 @@ public class JuegoView {
     }
 
     public void mostrarError(String titulo, String mensaje) {
-        VentanaPopUp popUpError = new VentanaPopUp(contenedor, titulo, mensaje);
+        VentanaError ventana = new VentanaError(titulo, mensaje);
+        PopUpController controller = new PopUpController(ventana);
+        VentanaPopUp popUpError = new VentanaPopUp(contenedor, ventana, controller);
         contenedor.setCenter(popUpError);
     }
 

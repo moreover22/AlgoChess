@@ -42,6 +42,20 @@ public class AlgoChess implements Parseable {
         jugadorActual.agregarPieza(pieza);
     }
 
+    public Jugador ganador() {
+        List<Jugador> ganadores = new ArrayList<>();
+
+        for (Jugador jugador : jugadores) {
+            if (!jugador.perdio()) {
+                ganadores.add(jugador);
+            }
+        }
+        if (ganadores.size() == 1) {
+            return ganadores.get(0);
+        }
+        return null;
+    }
+
     @Override
     public ParserObjeto parsear() {
         ParserObjeto parser = new ParserObjeto();

@@ -30,11 +30,6 @@ public class Jinete extends Pieza {
         Iterable<Pieza> vecinos = tablero.piezasDentroDe(new AlcanceCercano(), this.posicion);
         ataque.actualizarArma(vecinos);
     }
-
-    public static String getName() {
-        return "Jinete";
-    }
-
 }
 
 

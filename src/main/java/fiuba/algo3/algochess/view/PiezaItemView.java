@@ -61,8 +61,8 @@ public class PiezaItemView extends VBox {
 
     public void seleccionar() {
         imagen.setEffect(seleccionadoEffect);
-
     }
+
     public void deseleccionar() {
         imagen.setEffect(null);
     }

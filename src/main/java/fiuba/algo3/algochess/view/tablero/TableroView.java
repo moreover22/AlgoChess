@@ -72,7 +72,9 @@ public class TableroView extends StackPane {
         CasilleroView casilleroView = new CasilleroView(casilleroModelo, i, j, dimension);
 
         casilleroView.setOnMouseClicked(new PosicionadorCasilleroController(tableroModelo, juego, casilleroModelo, posicion));
+
         casilleroView.resaltarPosicionable();
+
         casillerosView.put(posicion, casilleroView);
 
         return casilleroView;
