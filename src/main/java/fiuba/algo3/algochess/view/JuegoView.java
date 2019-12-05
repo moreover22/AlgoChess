@@ -12,12 +12,9 @@ import fiuba.algo3.algochess.model.tablero.Tablero;
 import fiuba.algo3.algochess.view.tablero.TableroView;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Scene;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.io.File;
 
 
 public class JuegoView {
@@ -30,7 +27,6 @@ public class JuegoView {
     private ContenedorPiezas contenedorDerecha;
     private Pieza piezaSeleccionada;
     private InformacionTurno infoTurno;
-    public SonidosHabilidades sonidos;
     private Tablero tablero;
     private Scene escenaVieja;
 
@@ -39,7 +35,6 @@ public class JuegoView {
         this.modelo = modelo;
         this.contenedor = new CustomBorderPane();
         this.infoTurno = new InformacionTurno();
-        this.sonidos = new SonidosHabilidades();
 
         tablero = new Tablero(16, 16);
         modelo.agregarAliable(tablero);
@@ -70,7 +65,6 @@ public class JuegoView {
         stage.setScene(principal);
 
         stage.show();
-
         /*
         // FIXME temporal soluciona problema de resolución
         Slider sliderScale = new Slider(0.1, 3, 1);
@@ -107,6 +101,7 @@ public class JuegoView {
     }
 
     public void cambiarTurno() {
+        Sonidos.getReproductor("danio_territorio").play();
         tablero.aplicarDanioTerritorio();
         modelo.cambiarTurno();
         tableroView.desresaltarCasilleros();
@@ -116,6 +111,7 @@ public class JuegoView {
         infoTurno.actualizarTurno(jugadorActual);
         tableroView.hacerPiezasMovibles();
         piezaSeleccionada = null;
+
         Jugador ganador = modelo.ganador();
 
         if (ganador != null) {
@@ -130,6 +126,7 @@ public class JuegoView {
         VentanaFinaliza ventana = new VentanaFinaliza("Juego finalizado", "El ganador es: " + nombre);
         PopUpController controller = new PopUpFinalizar(ventana, stage);
         VentanaPopUp popUpGanador = new VentanaPopUp(contenedor, ventana, controller);
+        Sonidos.getReproductor("victoria").play();
         contenedor.setCenter(popUpGanador);
     }
 

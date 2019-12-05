@@ -18,22 +18,15 @@ public class Curacion implements Habilidad {
         this.curacion = curacion;
         this.alcance = new AlcanceCercano();
     }
-    /*
-    @Override
-    public float aplicarHabilidad(float cantidad, Pieza pieza,Habilidad habilidad){
-        return aplicarHabilidad(cantidad,pieza,this);
-
-    }
-*/
     public float recibirHabilidad(float cantidad, Habilidad habilidad, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException {
         return habilidad.recibirHabilidad(cantidad,this,pieza,alianza);
     }
 
-    public float recibirHabilidad(float cantidad, Ataque ataque, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException {
+    public float recibirHabilidad(float cantidad, Ataque ataque, Pieza pieza, PiezaAlianza alianza) {
         return -1;//No deberia ocurrir nunca
     }
 
-    public float recibirHabilidad(float cantidad, Curacion curacion, Pieza pieza, PiezaAlianza alianza) throws AtaqueAAliadoException, CuracionAEnemigoException, CuracionACatapultaException {
+    public float recibirHabilidad(float cantidad, Curacion curacion, Pieza pieza, PiezaAlianza alianza) throws CuracionAEnemigoException, CuracionACatapultaException {
 
         if(pieza instanceof Catapulta) throw new CuracionACatapultaException();
 

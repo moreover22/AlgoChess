@@ -5,7 +5,7 @@ import fiuba.algo3.algochess.model.pieza.alcance.AlcanceMedio;
 public class ArcoYFlecha extends Arma {
     public ArcoYFlecha() {
         super(15, new AlcanceMedio());
-        tipoArma = "arcoYFlecha";
+        tipoArma = "arco_y_flecha";
     }
 
     @Override

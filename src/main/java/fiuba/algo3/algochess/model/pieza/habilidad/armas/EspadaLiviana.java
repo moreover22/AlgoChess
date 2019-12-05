@@ -6,7 +6,7 @@ import fiuba.algo3.algochess.model.pieza.alcance.AlcanceCercano;
 public class EspadaLiviana extends Arma {
     public EspadaLiviana() {
         super(5, new AlcanceCercano());
-        tipoArma = "espadaLiviana";
+        tipoArma = "espada_liviana";
     }
 
     @Override

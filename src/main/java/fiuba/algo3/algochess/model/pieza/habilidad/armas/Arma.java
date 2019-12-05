@@ -62,6 +62,7 @@ public abstract class Arma implements Parseable {
         ParserObjeto parser = new ParserObjeto();
         parser.put("cantidad", danio);
         parser.put("alcance", alcance);
+        parser.put("tipo_arma", tipoArma);
         return parser;
     }
 
