@@ -10,8 +10,5 @@ after_success:
 notifications:
   email:
     recipients:
-      - fmariotti@fi.uba.ar
       - amore@fi.uba.ar
-      - alasinofranco3@gmail.com
-      - franfusco99@gmail.com
     on_failure: always
