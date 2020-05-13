@@ -24,11 +24,9 @@ public class Main extends Application {
         stage.setResizable(false);
 
         AlgoChess algoChess = new AlgoChess();
-
         JuegoView juego = new JuegoView(stage, algoChess);
-
-         Scene bienvenida = new Scene(new ContenedorEntrada(juego));
-         stage.setScene(bienvenida);
+        Scene bienvenida = new Scene(new ContenedorEntrada(juego));
+        stage.setScene(bienvenida);
 
         //juego.iniciar("jugador 1", "jugador 2");
         stage.centerOnScreen();
